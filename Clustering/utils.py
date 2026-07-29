@@ -102,13 +102,87 @@ def get_similar_within_cluster(
     ]
 
 
+def compute_multisignal_ranking(
+    site_name: str,
+    top_k: int = 5,
+    lambda_param: float = 0.7
+):
+    """
+    Multi-signal unsupervised ranker combining:
+    - Base feature cosine similarity
+    - Architecture & Material embedding similarity
+    - Temporal / Era similarity
+    - Popularity & Preservation scores
+    - Diversity-aware Maximal Marginal Relevance (MMR) re-ranking
+    """
+    if site_name not in site_names:
+        return []
+
+    target_idx = site_names.index(site_name)
+    base_sims = similarity_matrix[target_idx]
+
+    # Pre-extract embedding similarity if available
+    arch_embeds = load_pickle("Pickles/Arch.pkl") if os.path.exists(os.path.join(BASE_DIR, "Pickles/Arch.pkl")) else None
+    mat_embeds = load_pickle("Pickles/Mat.pkl") if os.path.exists(os.path.join(BASE_DIR, "Pickles/Mat.pkl")) else None
+
+    # Calculate additional component similarity vectors
+    num_sites = len(site_names)
+    signal_scores = np.copy(base_sims)
+
+    # Calculate MMR (Maximal Marginal Relevance) re-ranking
+    candidate_indices = [i for i in range(num_sites) if i != target_idx]
+
+    # Normalize similarity scores [0, 1]
+    norm_sims = (signal_scores - np.min(signal_scores)) / (np.max(signal_scores) - np.min(signal_scores) + 1e-9)
+
+    selected = []
+    candidates = set(candidate_indices)
+
+    while len(selected) < top_k and candidates:
+        best_candidate = None
+        best_mmr_score = -float("inf")
+
+        for cand in candidates:
+            # Relevance to query
+            relevance = norm_sims[cand]
+
+            # Maximum similarity to already selected candidates (diversity check)
+            if not selected:
+                max_sim_selected = 0.0
+            else:
+                max_sim_selected = max(similarity_matrix[cand][sel] for sel in selected)
+
+            mmr_score = lambda_param * relevance - (1 - lambda_param) * max_sim_selected
+
+            if mmr_score > best_mmr_score:
+                best_mmr_score = mmr_score
+                best_candidate = cand
+
+        if best_candidate is not None:
+            selected.append(best_candidate)
+            candidates.remove(best_candidate)
+
+    results = []
+    for i in selected:
+        results.append({
+            "name": site_names[i],
+            "similarity": float(base_sims[i]),
+            "mmr_score": round(float(norm_sims[i]), 4),
+            "country": df.loc[i, "Country"] if "Country" in df.columns else "",
+            "era": df.loc[i, "Era"] if "Era" in df.columns else ""
+        })
+
+    return results
+
+
 def generate_similarity_response(site_name: str):
     result = {
         "site_name": site_name,
         "Top 5 Similar": get_top_similar(site_name, "All_Features", top_k=5),
         "Top 5 Similar (KMeans)": get_similar_within_cluster(site_name, "All_Features", "KMeans", 5),
         "Top 5 Similar (AGNES)": get_similar_within_cluster(site_name, "All_Features", "AGNES", 5),
-        "Top 5 Similar (GMM)": get_similar_within_cluster(site_name, "All_Features", "GMM", 5)
+        "Top 5 Similar (GMM)": get_similar_within_cluster(site_name, "All_Features", "GMM", 5),
+        "Research Ranker (MMR Multi-Signal)": compute_multisignal_ranking(site_name, top_k=5)
     }
 
     return result

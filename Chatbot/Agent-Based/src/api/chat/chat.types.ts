@@ -1,5 +1,6 @@
 export interface ChatRequest {
-  query: string;
+  query?: string;
+  message?: string;
 }
 
 export interface ChatResponse {

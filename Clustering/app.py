@@ -29,18 +29,21 @@ class RequestData(BaseModel):
 def get_similarity(data: RequestData):
     result = generate_similarity_response(data.site_name)
 
-    cursor = get_cursor()
-    cursor.execute(
-        INSERT_SIMILARITY,
-        (
-            result["site_name"],
-            json.dumps(result["Top 5 Similar"]),
-            json.dumps(result["Top 5 Similar (KMeans)"]),
-            json.dumps(result["Top 5 Similar (AGNES)"]),
-            json.dumps(result["Top 5 Similar (GMM)"])
+    try:
+        cursor = get_cursor()
+        cursor.execute(
+            INSERT_SIMILARITY,
+            (
+                result["site_name"],
+                json.dumps(result["Top 5 Similar"]),
+                json.dumps(result["Top 5 Similar (KMeans)"]),
+                json.dumps(result["Top 5 Similar (AGNES)"]),
+                json.dumps(result["Top 5 Similar (GMM)"])
+            )
         )
-    )
-    conn.commit()
+        conn.commit()
+    except Exception as e:
+        print("Similarity DB insert error:", e)
 
     return result
 

@@ -8,14 +8,15 @@ export async function chatController(
 ) {
   try {
     const body = req.body as ChatRequest;
+    const queryText = body.query || body.message;
 
-    if (!body.query || body.query.trim().length === 0) {
+    if (!queryText || queryText.trim().length === 0) {
       return res.status(400).json({
         error: "Query is required"
       });
     }
 
-    const result = await runOrchestrator(body.query);
+    const result = await runOrchestrator(queryText);
 
     return res.status(200).json(result);
   } catch (error) {

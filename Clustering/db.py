@@ -1,12 +1,15 @@
 import psycopg2
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 conn = psycopg2.connect(
-    host="localhost",
-    database="sites_db",
-    user="postgres",
-    password="Yoimiya3000!",
-    port=5432
+    host=os.getenv("DB_HOST"),
+    database=os.getenv("DB_NAME"),
+    user=os.getenv("DB_USER"),
+    password=os.getenv("DB_PASSWORD"),
+    port=int(os.getenv("DB_PORT"))
 )
 
 def get_cursor():
