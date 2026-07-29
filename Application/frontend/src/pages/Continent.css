@@ -1,0 +1,15 @@
+.site-row {
+  display: flex;
+  gap: 12px;
+  padding: 10px;
+
+  background: white;
+  border-radius: 8px;
+
+  cursor: pointer;
+}
+
+.site-row:hover {
+  background: #2a2a2a;
+  color: white;
+}
