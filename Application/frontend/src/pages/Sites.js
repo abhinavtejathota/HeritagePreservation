@@ -209,7 +209,7 @@ export default function Sites() {
           <div className="mt-4 flex flex-col items-center">
             <p className="text-sm mb-2">Click to Enter</p>
             <iframe
-              src={`${SIM_BASE}/${toSimFolder(site.name)}/Buildv3/index.html`}
+              src={`${SIM_BASE}/${toSimFolder(site.name)}/Buildv3/`}
               title={`${site.name} Simulation`}
               className="w-[960px] h-[580px] rounded-lg border shadow-lg"
               sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-fullscreen"
