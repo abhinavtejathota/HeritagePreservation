@@ -1,5 +1,7 @@
 # Folders
-WebGLBuilds
+WebGLBuilds/*/Buildv1/
+WebGLBuilds/*/Buildv2/
+WebGLBuilds/*/Buildv4/
 Review
 Models
 Environment
