@@ -739,6 +739,7 @@ Environment/My project/Library/Artifacts/37/37865973c1cb0a4bb837c2d733cea858
 
 # Clustering
 Clustering/__pycache__/
+Clustering/.env
 Clustering/*.png
 Clustering/*.html
 Clustering/__pycache__/app.cpython-313.pyc
