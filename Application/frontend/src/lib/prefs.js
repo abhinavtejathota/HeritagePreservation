@@ -1,4 +1,4 @@
-/** Visitor preferences — also device-local (no login). */
+/** Visitor preferences - also device-local (no login). */
 
 const KIDS_KEY = "vheritage_kids_mode";
 

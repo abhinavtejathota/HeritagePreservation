@@ -1,0 +1,14666 @@
+{
+  "vocab": {
+    "<pad>": 0,
+    "<unk>": 1,
+    "<bos>": 2,
+    "<eos>": 3,
+    "\"": 4,
+    "&": 5,
+    "'": 6,
+    "(": 7,
+    ")": 8,
+    "+": 9,
+    ",": 10,
+    "-": 11,
+    ".": 12,
+    "/": 13,
+    "0": 14,
+    "1": 15,
+    "2": 16,
+    "3": 17,
+    "4": 18,
+    "5": 19,
+    "6": 20,
+    "7": 21,
+    "8": 22,
+    "9": 23,
+    ":": 24,
+    ";": 25,
+    "</w>": 26,
+    "?": 27,
+    "A": 28,
+    "B": 29,
+    "C": 30,
+    "D": 31,
+    "E": 32,
+    "F": 33,
+    "G": 34,
+    "H": 35,
+    "I": 36,
+    "J": 37,
+    "K": 38,
+    "L": 39,
+    "M": 40,
+    "N": 41,
+    "O": 42,
+    "P": 43,
+    "Q": 44,
+    "R": 45,
+    "S": 46,
+    "T": 47,
+    "U": 48,
+    "V": 49,
+    "W": 50,
+    "X": 51,
+    "Y": 52,
+    "Z": 53,
+    "[": 54,
+    "]": 55,
+    "a": 56,
+    "b": 57,
+    "c": 58,
+    "d": 59,
+    "e": 60,
+    "f": 61,
+    "g": 62,
+    "h": 63,
+    "i": 64,
+    "j": 65,
+    "k": 66,
+    "l": 67,
+    "m": 68,
+    "n": 69,
+    "o": 70,
+    "p": 71,
+    "q": 72,
+    "r": 73,
+    "s": 74,
+    "t": 75,
+    "u": 76,
+    "v": 77,
+    "w": 78,
+    "x": 79,
+    "y": 80,
+    "z": 81,
+    "~": 82,
+    "\u00f6": 83,
+    "\u2013": 84,
+    ":</w>": 85,
+    "e</w>": 86,
+    ".</w>": 87,
+    "on": 88,
+    "in": 89,
+    "er": 90,
+    "s</w>": 91,
+    "th": 92,
+    "t</w>": 93,
+    "an": 94,
+    "st": 95,
+    "ion": 96,
+    "it": 97,
+    "re": 98,
+    ",</w>": 99,
+    "at": 100,
+    "d</w>": 101,
+    "ar": 102,
+    "al": 103,
+    "is</w>": 104,
+    "ion:</w>": 105,
+    "en": 106,
+    "the</w>": 107,
+    "of": 108,
+    "of</w>": 109,
+    "tu": 110,
+    "a</w>": 111,
+    "ou": 112,
+    "y</w>": 113,
+    "er:</w>": 114,
+    "om": 115,
+    "in</w>": 116,
+    "or": 117,
+    "ch": 118,
+    "An": 119,
+    "est": 120,
+    "Qu": 121,
+    "ed</w>": 122,
+    "el": 123,
+    "at</w>": 124,
+    "ing": 125,
+    "ctu": 126,
+    "sw": 127,
+    "Quest": 128,
+    "Question:</w>": 129,
+    "Answ": 130,
+    "Answer:</w>": 131,
+    "ite": 132,
+    "ab": 133,
+    "ic": 134,
+    "mp": 135,
+    "Wh": 136,
+    "?</w>": 137,
+    "a.</w>": 138,
+    "tr": 139,
+    "es": 140,
+    "th</w>": 141,
+    "Ch": 142,
+    "si": 143,
+    "il": 144,
+    "al</w>": 145,
+    "o</w>": 146,
+    "ig": 147,
+    "e.</w>": 148,
+    "ing</w>": 149,
+    "an</w>": 150,
+    "chite": 151,
+    "chitectu": 152,
+    "ation:</w>": 153,
+    "oc": 154,
+    "ra": 155,
+    "CE": 156,
+    "What</w>": 157,
+    "ol": 158,
+    "cen": 159,
+    "and</w>": 160,
+    "op": 161,
+    "mpl": 162,
+    "Th": 163,
+    "ur": 164,
+    "tur": 165,
+    "res": 166,
+    "as": 167,
+    "out</w>": 168,
+    "t:</w>": 169,
+    "um": 170,
+    "empl": 171,
+    "centur": 172,
+    "es</w>": 173,
+    "di": 174,
+    "about</w>": 175,
+    "re</w>": 176,
+    "y:</w>": 177,
+    "re:</w>": 178,
+    "0</w>": 179,
+    "fr": 180,
+    "oun": 181,
+    "century</w>": 182,
+    "is": 183,
+    "iz": 184,
+    "to</w>": 185,
+    "erv": 186,
+    "a,</w>": 187,
+    "av": 188,
+    "The</w>": 189,
+    "od": 190,
+    "reserv": 191,
+    "mi": 192,
+    "l</w>": 193,
+    "uctu": 194,
+    "n</w>": 195,
+    "ci": 196,
+    "architectu": 197,
+    "ated</w>": 198,
+    "CE</w>": 199,
+    "ul": 200,
+    "ast": 201,
+    "Str": 202,
+    "Structu": 203,
+    "Preserv": 204,
+    "Preservation:</w>": 205,
+    "i</w>": 206,
+    "iv": 207,
+    "ac": 208,
+    "Chin": 209,
+    "pe": 210,
+    "as</w>": 211,
+    "Ar": 212,
+    "le": 213,
+    "Gre": 214,
+    "ad": 215,
+    "wi": 216,
+    "us": 217,
+    "ere</w>": 218,
+    "with</w>": 219,
+    "ont": 220,
+    "sia.</w>": 221,
+    "un": 222,
+    "eri": 223,
+    "me</w>": 224,
+    "from": 225,
+    "Site": 226,
+    "Asia.</w>": 227,
+    "emple</w>": 228,
+    "ell</w>": 229,
+    "ion</w>": 230,
+    "stan": 231,
+    "mid": 232,
+    "y.</w>": 233,
+    "e,</w>": 234,
+    ").</w>": 235,
+    "Where</w>": 236,
+    "Tell</w>": 237,
+    "ic</w>": 238,
+    "er</w>": 239,
+    "ong": 240,
+    "po": 241,
+    "ity</w>": 242,
+    "ston": 243,
+    "In": 244,
+    "com": 245,
+    "hi": 246,
+    "Great</w>": 247,
+    "int</w>": 248,
+    "ood": 249,
+    "ag": 250,
+    "Us": 251,
+    "User:</w>": 252,
+    "As": 253,
+    "Assi": 254,
+    "Assistan": 255,
+    "Assistant:</w>": 256,
+    "the": 257,
+    "am": 258,
+    "es.</w>": 259,
+    "Coun": 260,
+    "opul": 261,
+    "ent</w>": 262,
+    "architecture</w>": 263,
+    "ent": 264,
+    "iliz": 265,
+    "en</w>": 266,
+    "alac": 267,
+    "point</w>": 268,
+    "Indi": 269,
+    "ock": 270,
+    "Civ": 271,
+    "Civiliz": 272,
+    "and": 273,
+    ")</w>": 274,
+    "im": 275,
+    "ontin": 276,
+    "al:</w>": 277,
+    "igh": 278,
+    "Site:</w>": 279,
+    "Countr": 280,
+    "Country:</w>": 281,
+    "Contin": 282,
+    "Continen": 283,
+    "Continent:</w>": 284,
+    "Era": 285,
+    "Era:</w>": 286,
+    "(mid": 287,
+    "(midpoint</w>": 288,
+    "Civilization:</w>": 289,
+    "Rel": 290,
+    "Relig": 291,
+    "Religion:</w>": 292,
+    "Architectu": 293,
+    "Architecture:</w>": 294,
+    "Mat": 295,
+    "Materi": 296,
+    "Material:</w>": 297,
+    "Structure:</w>": 298,
+    "Popul": 299,
+    "Popular": 300,
+    "Popularit": 301,
+    "Popularity:</w>": 302,
+    "ot": 303,
+    "comp": 304,
+    "bel": 305,
+    "ood.</w>": 306,
+    "ae": 307,
+    "rel": 308,
+    "s.</w>": 309,
+    "00</w>": 310,
+    "ock-": 311,
+    "re.</w>": 312,
+    "comple": 313,
+    "cient</w>": 314,
+    "os": 315,
+    "str": 316,
+    "for": 317,
+    "Good.</w>": 318,
+    "Temple</w>": 319,
+    "Nab": 320,
+    "Nabat": 321,
+    "complex": 322,
+    "It</w>": 323,
+    "ow": 324,
+    "ap": 325,
+    "was</w>": 326,
+    "dd": 327,
+    "ass": 328,
+    "relig": 329,
+    "igh.</w>": 330,
+    "Cav": 331,
+    "ain": 332,
+    "Nabatae": 333,
+    "CE).</w>": 334,
+    "oder": 335,
+    "assoc": 336,
+    "associ": 337,
+    "ty": 338,
+    "Gr": 339,
+    "AD": 340,
+    "lin": 341,
+    "et": 342,
+    "an.</w>": 343,
+    "era</w>": 344,
+    "associated</w>": 345,
+    "ism": 346,
+    "omb": 347,
+    "art": 348,
+    "Mon": 349,
+    "ate.</w>": 350,
+    "mar": 351,
+    "alace</w>": 352,
+    "St": 353,
+    "br": 354,
+    "Moder": 355,
+    "eum": 356,
+    "andston": 357,
+    "cu": 358,
+    "imb": 359,
+    "using</w>": 360,
+    "from?</w>": 361,
+    "belong": 362,
+    "belongs</w>": 363,
+    "era,</w>": 364,
+    "religion</w>": 365,
+    "link": 366,
+    "linked</w>": 367,
+    "Structure</w>": 368,
+    "type": 369,
+    "type:</w>": 370,
+    "from</w>": 371,
+    "yn": 372,
+    "ynast": 373,
+    "India.</w>": 374,
+    "k</w>": 375,
+    "ocated</w>": 376,
+    "ock-cu": 377,
+    "amp": 378,
+    "Nabataean</w>": 379,
+    "ument": 380,
+    "Afr": 381,
+    "Afric": 382,
+    "all": 383,
+    "Moderate.</w>": 384,
+    "&</w>": 385,
+    "dom": 386,
+    "ed": 387,
+    "mon": 388,
+    "city</w>": 389,
+    "ha": 390,
+    "res</w>": 391,
+    "King": 392,
+    "Kingdom": 393,
+    "complex</w>": 394,
+    "est</w>": 395,
+    "located</w>": 396,
+    "Ming</w>": 397,
+    "Sandston": 398,
+    "Bu": 399,
+    "He": 400,
+    "ock-cut</w>": 401,
+    "12": 402,
+    "Rom": 403,
+    "ta</w>": 404,
+    "Budd": 405,
+    "Sum": 406,
+    "Summar": 407,
+    "Summariz": 408,
+    "Summarize</w>": 409,
+    "spe": 410,
+    "speci": 411,
+    "special</w>": 412,
+    "it?</w>": 413,
+    "wan": 414,
+    "es,</w>": 415,
+    "China.</w>": 416,
+    "ism.</w>": 417,
+    "For": 418,
+    "Al": 419,
+    "ical</w>": 420,
+    "architecture.</w>": 421,
+    "BCE</w>": 422,
+    "stric": 423,
+    "ev": 424,
+    "Kha": 425,
+    "Africa.</w>": 426,
+    "on</w>": 427,
+    "or</w>": 428,
+    "sou": 429,
+    "Ancient</w>": 430,
+    "Hin": 431,
+    "ak": 432,
+    "ite</w>": 433,
+    "ord": 434,
+    "age</w>": 435,
+    "Hind": 436,
+    "Hindu": 437,
+    "m</w>": 438,
+    "y,</w>": 439,
+    "og": 440,
+    "Buddh": 441,
+    "ali": 442,
+    "ery</w>": 443,
+    "ri": 444,
+    "p</w>": 445,
+    "s,</w>": 446,
+    "eh": 447,
+    "Ston": 448,
+    "hist": 449,
+    "cav": 450,
+    "ell": 451,
+    "Eur": 452,
+    "Europ": 453,
+    "Europe.</w>": 454,
+    "Pe": 455,
+    "st</w>": 456,
+    "50</w>": 457,
+    "orl": 458,
+    "ern</w>": 459,
+    "13": 460,
+    "templ": 461,
+    "ar</w>": 462,
+    "High.</w>": 463,
+    "-</w>": 464,
+    "ain</w>": 465,
+    "9</w>": 466,
+    "Emp": 467,
+    ";</w>": 468,
+    "urch": 469,
+    "ec": 470,
+    "/</w>": 471,
+    "Chines": 472,
+    "temple</w>": 473,
+    "distric": 474,
+    "t,</w>": 475,
+    "bu": 476,
+    "Tomb": 477,
+    "tow": 478,
+    "if": 479,
+    "Zimb": 480,
+    "Zimbab": 481,
+    "Zimbabw": 482,
+    "dr": 483,
+    "by</w>": 484,
+    "Monument": 485,
+    "Petr": 486,
+    "Roman</w>": 487,
+    "ancient</w>": 488,
+    "AD</w>": 489,
+    "City</w>": 490,
+    "ill": 491,
+    "yra": 492,
+    "ov": 493,
+    "wa</w>": 494,
+    "cr": 495,
+    "one</w>": 496,
+    "ynasty.</w>": 497,
+    "uin": 498,
+    "arth": 499,
+    "Jord": 500,
+    "Sandstone.</w>": 501,
+    "Hamp": 502,
+    "histor": 503,
+    "eum</w>": 504,
+    "ous</w>": 505,
+    "qu": 506,
+    "h</w>": 507,
+    "ly</w>": 508,
+    "Caves</w>": 509,
+    "th-": 510,
+    "-S": 511,
+    "palace</w>": 512,
+    "Moun": 513,
+    "athe": 514,
+    "athedr": 515,
+    "Kil": 516,
+    "Kilwa</w>": 517,
+    "es?</w>": 518,
+    "rock-cut</w>": 519,
+    "thic</w>": 520,
+    "e?</w>": 521,
+    "oup</w>": 522,
+    "14": 523,
+    "buil": 524,
+    "anc": 525,
+    "Her": 526,
+    "pt": 527,
+    "lu": 528,
+    "kil": 529,
+    "als": 530,
+    "also</w>": 531,
+    "s?</w>": 532,
+    "Stu": 533,
+    "Site</w>": 534,
+    "le</w>": 535,
+    "Very</w>": 536,
+    "high.</w>": 537,
+    "sl": 538,
+    "mos": 539,
+    "ity.</w>": 540,
+    "pr": 541,
+    "are</w>": 542,
+    "Ma": 543,
+    "ate</w>": 544,
+    "kilom": 545,
+    "ch</w>": 546,
+    "Min": 547,
+    "ste": 548,
+    "for</w>": 549,
+    "Chri": 550,
+    "Christ": 551,
+    "Christi": 552,
+    "Chart": 553,
+    "ang": 554,
+    "itage</w>": 555,
+    "Isl": 556,
+    "usol": 557,
+    "Ne": 558,
+    "Templ": 559,
+    "kilomet": 560,
+    "kilometres</w>": 561,
+    "it</w>": 562,
+    "b</w>": 563,
+    "ub": 564,
+    "UN": 565,
+    "UNE": 566,
+    "UNES": 567,
+    "UNESC": 568,
+    "UNESCO": 569,
+    "UNESCO</w>": 570,
+    "Worl": 571,
+    "World</w>": 572,
+    "Heritage</w>": 573,
+    "ast</w>": 574,
+    "Islam": 575,
+    "Chol": 576,
+    "Stup": 577,
+    "Palace</w>": 578,
+    "Heav": 579,
+    "Ath": 580,
+    "lar": 581,
+    "larg": 582,
+    "mi)</w>": 583,
+    "Chit": 584,
+    "Chitt": 585,
+    "China,</w>": 586,
+    "ao</w>": 587,
+    "1st</w>": 588,
+    "Col": 589,
+    "cul": 590,
+    "gar": 591,
+    "Hampi</w>": 592,
+    "ick": 593,
+    "Ex": 594,
+    "con": 595,
+    "el</w>": 596,
+    "opol": 597,
+    "ham": 598,
+    "chwan": 599,
+    "10": 600,
+    "Su": 601,
+    "nor": 602,
+    "Qut": 603,
+    "19": 604,
+    "ott": 605,
+    "oss": 606,
+    "Palac": 607,
+    "Kingdom.</w>": 608,
+    "theat": 609,
+    "t.</w>": 610,
+    "ura": 611,
+    "fort": 612,
+    "its</w>": 613,
+    "Fr": 614,
+    "lon": 615,
+    "Church": 616,
+    "wn</w>": 617,
+    "Fe": 618,
+    "Fez": 619,
+    "co": 620,
+    "7th</w>": 621,
+    "Group</w>": 622,
+    "Chola</w>": 623,
+    "erra": 624,
+    "errac": 625,
+    "isi": 626,
+    "6th</w>": 627,
+    "India,</w>": 628,
+    "ist</w>": 629,
+    "inc": 630,
+    "urb": 631,
+    "tomb": 632,
+    "now": 633,
+    "Exc": 634,
+    "Excell": 635,
+    "Excellent": 636,
+    "Excellent.</w>": 637,
+    "Dynasty.</w>": 638,
+    "eston": 639,
+    "ian</w>": 640,
+    "Christian": 641,
+    "aint": 642,
+    "no": 643,
+    "3</w>": 644,
+    "Kingdom</w>": 645,
+    "mperi": 646,
+    "mperial</w>": 647,
+    "Grott": 648,
+    "Grotto": 649,
+    "Athen": 650,
+    "nbr": 651,
+    "nbrun": 652,
+    "nbrunn</w>": 653,
+    "Carth": 654,
+    "Med": 655,
+    "ies</w>": 656,
+    "thern</w>": 657,
+    "Empi": 658,
+    "Qutb</w>": 659,
+    "cap": 660,
+    "eg": 661,
+    "Ta": 662,
+    "opolis</w>": 663,
+    "Cast": 664,
+    "Zimbabwe</w>": 665,
+    "Rock-": 666,
+    "Rock-He": 667,
+    "Rock-Hewn</w>": 668,
+    "Petra": 669,
+    "an,</w>": 670,
+    "Aj": 671,
+    "Ajan": 672,
+    "Ajanta</w>": 673,
+    "Kon": 674,
+    "Konar": 675,
+    "Konark</w>": 676,
+    "Sun</w>": 677,
+    "Pat": 678,
+    "Patt": 679,
+    "Pattad": 680,
+    "Pattadak": 681,
+    "ara</w>": 682,
+    "ay": 683,
+    "urban</w>": 684,
+    "San": 685,
+    "Sanch": 686,
+    "Sanchi</w>": 687,
+    "Khaz": 688,
+    "Khazn": 689,
+    "erracot": 690,
+    "erracotta</w>": 691,
+    "bur": 692,
+    "ia": 693,
+    "Long": 694,
+    "Longm": 695,
+    "Longmen</w>": 696,
+    "Ping": 697,
+    "Pingy": 698,
+    "edi": 699,
+    "ediev": 700,
+    "Clon": 701,
+    "Clonm": 702,
+    "Clonmac": 703,
+    "Clonmacno": 704,
+    "Pom": 705,
+    "Pompe": 706,
+    "Pompei": 707,
+    "Kisi": 708,
+    "Kisiwan": 709,
+    "AD).</w>": 710,
+    "largest</w>": 711,
+    "uk": 712,
+    "le.</w>": 713,
+    "most</w>": 714,
+    "ter</w>": 715,
+    "capit": 716,
+    "ions</w>": 717,
+    "Wal": 718,
+    "Wall</w>": 719,
+    "Mount</w>": 720,
+    "Acr": 721,
+    "Acropolis</w>": 722,
+    "Pyra": 723,
+    "Pyramid": 724,
+    "Map": 725,
+    "Mapun": 726,
+    "Mapung": 727,
+    "Mapungub": 728,
+    "Mapungubw": 729,
+    "5</w>": 730,
+    "temples</w>": 731,
+    "Khaj": 732,
+    "pol": 733,
+    "5th</w>": 734,
+    "Stone,</w>": 735,
+    "imeston": 736,
+    "Mi": 737,
+    "edieval</w>": 738,
+    "Christianity.</w>": 739,
+    "ia.</w>": 740,
+    "th\u2013": 741,
+    "gr": 742,
+    "ir": 743,
+    "district</w>": 744,
+    "6</w>": 745,
+    "The": 746,
+    "Chittor": 747,
+    "Chittorgar": 748,
+    "ation</w>": 749,
+    "ma": 750,
+    "Franc": 751,
+    "Chartres</w>": 752,
+    "Cathedr": 753,
+    "ers</w>": 754,
+    "ho</w>": 755,
+    "Wing": 756,
+    "Winged</w>": 757,
+    "oy": 758,
+    "hitheat": 759,
+    "500</w>": 760,
+    "Chinese</w>": 761,
+    "Coloss": 762,
+    "Mich": 763,
+    "Neus": 764,
+    "Neuschwan": 765,
+    "Neuschwanste": 766,
+    "Giz": 767,
+    "monument": 768,
+    "et</w>": 769,
+    "ong</w>": 770,
+    "4</w>": 771,
+    "00": 772,
+    "Ruin": 773,
+    "Qing</w>": 774,
+    "China</w>": 775,
+    "Mog": 776,
+    "Mogao</w>": 777,
+    "Eg": 778,
+    "Egy": 779,
+    "ina</w>": 780,
+    "are": 781,
+    "El": 782,
+    "Ell": 783,
+    "Ellor": 784,
+    "Ellora</w>": 785,
+    "al.</w>": 786,
+    "alled</w>": 787,
+    "Khajura": 788,
+    "Khajuraho</w>": 789,
+    "Ra": 790,
+    "Liv": 791,
+    "Living</w>": 792,
+    "stone</w>": 793,
+    "Al-": 794,
+    "Al-Khazn": 795,
+    "Al-Khazneh": 796,
+    "Forb": 797,
+    "Forbi": 798,
+    "Forbidd": 799,
+    "Forbidden</w>": 800,
+    "Con": 801,
+    "Terracotta</w>": 802,
+    "Arm": 803,
+    "Sh": 804,
+    "ied</w>": 805,
+    "Pot": 806,
+    "Potal": 807,
+    "Potala</w>": 808,
+    "ib": 809,
+    "Xia": 810,
+    "Xiaol": 811,
+    "Xiaoling</w>": 812,
+    "Stoneh": 813,
+    "Stonehen": 814,
+    "Stoneheng": 815,
+    "Mont": 816,
+    "Mont-S": 817,
+    "Mont-Saint": 818,
+    "Mont-Saint-": 819,
+    "Mont-Saint-Mich": 820,
+    "Alham": 821,
+    "Clonmacnois": 822,
+    "Clonmacnoise</w>": 823,
+    "Sch": 824,
+    "Neuschwanstein</w>": 825,
+    "Pompeii</w>": 826,
+    "Timb": 827,
+    "Timbuk": 828,
+    "Timbuktu": 829,
+    "Jordan,</w>": 830,
+    "Rock-cut</w>": 831,
+    "Site.</w>": 832,
+    "ded</w>": 833,
+    "he": 834,
+    "14th</w>": 835,
+    "Empire.</w>": 836,
+    "brick": 837,
+    "centr": 838,
+    "pre": 839,
+    "Minar": 840,
+    "built</w>": 841,
+    "capital</w>": 842,
+    "a?</w>": 843,
+    "uner": 844,
+    "ific": 845,
+    "our": 846,
+    "Mausol": 847,
+    "Heaven</w>": 848,
+    "astic</w>": 849,
+    "astern</w>": 850,
+    "2</w>": 851,
+    "ij": 852,
+    "ary</w>": 853,
+    "shi": 854,
+    "man": 855,
+    "ound</w>": 856,
+    "Lali": 857,
+    "Lalibel": 858,
+    "Lalibela</w>": 859,
+    "south</w>": 860,
+    "ings</w>": 861,
+    "des": 862,
+    "oli": 863,
+    "ding</w>": 864,
+    "Hindu</w>": 865,
+    "ct": 866,
+    "Monuments</w>": 867,
+    "hil": 868,
+    "11": 869,
+    "ther</w>": 870,
+    "amphitheat": 871,
+    "Emper": 872,
+    "It": 873,
+    "Jordan.</w>": 874,
+    "Caves.</w>": 875,
+    "cave</w>": 876,
+    "re,</w>": 877,
+    "agara</w>": 878,
+    "Sou": 879,
+    "oyal</w>": 880,
+    "Le": 881,
+    "ious</w>": 882,
+    "olithic</w>": 883,
+    "ruin": 884,
+    "preserv": 885,
+    "Gran": 886,
+    "Chittorgarh</w>": 887,
+    "fam": 888,
+    "'s</w>": 889,
+    "sid": 890,
+    "Ital": 891,
+    "Medina</w>": 892,
+    "(Petra": 893,
+    "Buddhism.</w>": 894,
+    "80</w>": 895,
+    "theast</w>": 896,
+    "ya</w>": 897,
+    "arv": 898,
+    "stone.</w>": 899,
+    "ort": 900,
+    "20": 901,
+    "ao": 902,
+    "15th</w>": 903,
+    "ood,</w>": 904,
+    "Sp": 905,
+    "Monastic</w>": 906,
+    "Sch\u00f6": 907,
+    "Sch\u00f6nbrunn</w>": 908,
+    "Arch": 909,
+    "Archae": 910,
+    "Archaeol": 911,
+    "Archaeolog": 912,
+    "Archaeological</w>": 913,
+    "Pyramids</w>": 914,
+    "der</w>": 915,
+    "Caves?</w>": 916,
+    "Buddhist</w>": 917,
+    "state</w>": 918,
+    "ism</w>": 919,
+    "district,</w>": 920,
+    "dynast": 921,
+    "km</w>": 922,
+    "cit": 923,
+    "ce</w>": 924,
+    "er,</w>": 925,
+    "ains</w>": 926,
+    "know": 927,
+    "were</w>": 928,
+    "Stupa</w>": 929,
+    "e:</w>": 930,
+    "ous": 931,
+    "Tai": 932,
+    "around</w>": 933,
+    "pyra": 934,
+    "pyrami": 935,
+    "pyramid</w>": 936,
+    "er.</w>": 937,
+    "ro": 938,
+    "ayan": 939,
+    "ab</w>": 940,
+    "pl": 941,
+    "town": 942,
+    "ade</w>": 943,
+    "Pingyao": 944,
+    "Alhambr": 945,
+    "Eth": 946,
+    "Ethi": 947,
+    "Ethiop": 948,
+    "church": 949,
+    "Lept": 950,
+    "Leptis</w>": 951,
+    "Mag": 952,
+    "Magn": 953,
+    "scul": 954,
+    "sculp": 955,
+    "worl": 956,
+    "world": 957,
+    "ex": 958,
+    "Pur": 959,
+    "whi": 960,
+    "which</w>": 961,
+    "ur</w>": 962,
+    "li": 963,
+    "Islamic</w>": 964,
+    "een</w>": 965,
+    "ason": 966,
+    "known</w>": 967,
+    "Chap": 968,
+    "Tomb</w>": 969,
+    "Royal</w>": 970,
+    "Theat": 971,
+    "historical</w>": 972,
+    "Imperial</w>": 973,
+    "Chinese:</w>": 974,
+    "imp": 975,
+    "ff": 976,
+    "mun": 977,
+    "13th</w>": 978,
+    "reg": 979,
+    "tural</w>": 980,
+    "caves.</w>": 981,
+    "8th</w>": 982,
+    "arved</w>": 983,
+    "ult": 984,
+    "cont": 985,
+    "BCE).</w>": 986,
+    "structu": 987,
+    "Conf": 988,
+    "Confu": 989,
+    "Confuci": 990,
+    "eum.</w>": 991,
+    "ici": 992,
+    "Medieval</w>": 993,
+    "cathedr": 994,
+    "Tun": 995,
+    "il</w>": 996,
+    "2n": 997,
+    "2nd</w>": 998,
+    "religious</w>": 999,
+    "wor": 1000,
+    "Hinduism.</w>": 1001,
+    "ite.</w>": 1002,
+    "(2": 1003,
+    "rav": 1004,
+    "temples.</w>": 1005,
+    "Riv": 1006,
+    "16th</w>": 1007,
+    "ann": 1008,
+    "Islam.</w>": 1009,
+    "marb": 1010,
+    "asonr": 1011,
+    "Br": 1012,
+    "famous</w>": 1013,
+    "Di": 1014,
+    "Funer": 1015,
+    "20</w>": 1016,
+    "art</w>": 1017,
+    "his</w>": 1018,
+    "Grottoes</w>": 1019,
+    "Tib": 1020,
+    "Limeston": 1021,
+    "se": 1022,
+    "be": 1023,
+    ",0": 1024,
+    "poly": 1025,
+    "polythe": 1026,
+    "polytheism.</w>": 1027,
+    "amphitheatre</w>": 1028,
+    "cl": 1029,
+    "au": 1030,
+    "Carthage</w>": 1031,
+    "Kisiwani</w>": 1032,
+    "Nabataean.</w>": 1033,
+    "Un": 1034,
+    "ally</w>": 1035,
+    "Hinduism</w>": 1036,
+    "South</w>": 1037,
+    "lue</w>": 1038,
+    "em": 1039,
+    "os</w>": 1040,
+    "ited</w>": 1041,
+    "ini": 1042,
+    "mausol": 1043,
+    "ne": 1044,
+    "near</w>": 1045,
+    "Mount": 1046,
+    "Castle</w>": 1047,
+    "Mali": 1048,
+    "Carthag": 1049,
+    "Tan": 1050,
+    "Tanz": 1051,
+    "Tanzan": 1052,
+    "that</w>": 1053,
+    "ted</w>": 1054,
+    "ear": 1055,
+    "fir": 1056,
+    "first</w>": 1057,
+    "under</w>": 1058,
+    "dat": 1059,
+    "Jain</w>": 1060,
+    "sev": 1061,
+    "c.</w>": 1062,
+    "dynasty.</w>": 1063,
+    "Sandstone</w>": 1064,
+    "dynasty</w>": 1065,
+    "northern</w>": 1066,
+    "nat": 1067,
+    "west</w>": 1068,
+    "Monuments.</w>": 1069,
+    "ite,</w>": 1070,
+    "red</w>": 1071,
+    "i,</w>": 1072,
+    "central</w>": 1073,
+    "Del": 1074,
+    "other</w>": 1075,
+    "op</w>": 1076,
+    "ean</w>": 1077,
+    "sit": 1078,
+    "situ": 1079,
+    "situated</w>": 1080,
+    "main</w>": 1081,
+    "and,</w>": 1082,
+    "build": 1083,
+    "buildings</w>": 1084,
+    "center</w>": 1085,
+    "ence</w>": 1086,
+    "Emperor": 1087,
+    "ng": 1088,
+    "as,</w>": 1089,
+    "Palace.</w>": 1090,
+    "Mar": 1091,
+    "foun": 1092,
+    "oo": 1093,
+    "ial</w>": 1094,
+    "seat</w>": 1095,
+    "Greec": 1096,
+    "Gree": 1097,
+    "ic.</w>": 1098,
+    "historic</w>": 1099,
+    "m)</w>": 1100,
+    "France.</w>": 1101,
+    "Irel": 1102,
+    "site</w>": 1103,
+    "wh": 1104,
+    "Egypt": 1105,
+    "Fes</w>": 1106,
+    "col": 1107,
+    "onn": 1108,
+    "onnad": 1109,
+    "area</w>": 1110,
+    "ret": 1111,
+    "Indian</w>": 1112,
+    "ash": 1113,
+    "end</w>": 1114,
+    "23</w>": 1115,
+    "ers,</w>": 1116,
+    "Vij": 1117,
+    "Vijayan": 1118,
+    "Vijayanagara</w>": 1119,
+    "ity": 1120,
+    "hill": 1121,
+    "hill</w>": 1122,
+    "Lion": 1123,
+    "Blue</w>": 1124,
+    "Pill": 1125,
+    "Pillar</w>": 1126,
+    "Obel": 1127,
+    "Obelis": 1128,
+    "Obelisk</w>": 1129,
+    "Bab</w>": 1130,
+    "as-S": 1131,
+    "as-Si": 1132,
+    "as-Siq": 1133,
+    "Tem": 1134,
+    "Temen": 1135,
+    "Temenos</w>": 1136,
+    "Fac": 1137,
+    "Facade</w>": 1138,
+    "stat": 1139,
+    "imperial</w>": 1140,
+    "Army</w>": 1141,
+    "Au": 1142,
+    "Heaven": 1143,
+    "Mont-Saint-Michel": 1144,
+    "Nor": 1145,
+    "sum": 1146,
+    "Ger": 1147,
+    "German": 1148,
+    "Tig": 1149,
+    "Tigra": 1150,
+    "Tigray</w>": 1151,
+    "Fez,</w>": 1152,
+    "Kisiwani": 1153,
+    "inclu": 1154,
+    "exa": 1155,
+    "exampl": 1156,
+    "ari": 1157,
+    "ha</w>": 1158,
+    "pin": 1159,
+    "al?</w>": 1160,
+    "this</w>": 1161,
+    "Monuments?</w>": 1162,
+    "Mad": 1163,
+    "Madh": 1164,
+    "Madhya</w>": 1165,
+    "Pra": 1166,
+    "Prades": 1167,
+    "17": 1168,
+    "bet": 1169,
+    "betw": 1170,
+    "contains</w>": 1171,
+    "ew": 1172,
+    "pres": 1173,
+    "da": 1174,
+    "day</w>": 1175,
+    "over</w>": 1176,
+    "ft": 1177,
+    "tw": 1178,
+    "two</w>": 1179,
+    "Arab": 1180,
+    "structure</w>": 1181,
+    "Dynast": 1182,
+    "fortific": 1183,
+    "ect": 1184,
+    "resid": 1185,
+    "now</w>": 1186,
+    "in:</w>": 1187,
+    "mausoleum</w>": 1188,
+    "prov": 1189,
+    "provinc": 1190,
+    "province,</w>": 1191,
+    "monast": 1192,
+    "Palace?</w>": 1193,
+    "Reg": 1194,
+    "eum?</w>": 1195,
+    "ance</w>": 1196,
+    "high": 1197,
+    "import": 1198,
+    "ive</w>": 1199,
+    "world.</w>": 1200,
+    "egali": 1201,
+    "Site?</w>": 1202,
+    "Cathedral</w>": 1203,
+    "Chartres": 1204,
+    "region</w>": 1205,
+    "olc": 1206,
+    "olcan": 1207,
+    "olcanic</w>": 1208,
+    "Mas": 1209,
+    "Giza</w>": 1210,
+    "Mali,</w>": 1211,
+    ",000</w>": 1212,
+    "su": 1213,
+    "Jain": 1214,
+    "Jainism.</w>": 1215,
+    "Drav": 1216,
+    "Dravi": 1217,
+    "Dravidi": 1218,
+    "Dravidian</w>": 1219,
+    "brick,</w>": 1220,
+    "ruins,</w>": 1221,
+    "119": 1222,
+    "Ind": 1223,
+    "mosqu": 1224,
+    "masonr": 1225,
+    "Fort</w>": 1226,
+    "complex.</w>": 1227,
+    "abov": 1228,
+    "above</w>": 1229,
+    "3r": 1230,
+    "3rd</w>": 1231,
+    "Brick": 1232,
+    "Brick,</w>": 1233,
+    "Funerar": 1234,
+    "Funerary.</w>": 1235,
+    "rock": 1236,
+    "brick.</w>": 1237,
+    "Confucian.</w>": 1238,
+    "Wood,</w>": 1239,
+    "arth.</w>": 1240,
+    "uang": 1241,
+    "ified</w>": 1242,
+    "limeston": 1243,
+    "Go": 1244,
+    "Gothic</w>": 1245,
+    "co.</w>": 1246,
+    "Zimbabwe.</w>": 1247,
+    "th\u201315th</w>": 1248,
+    "lies</w>": 1249,
+    "architectur": 1250,
+    "monuments</w>": 1251,
+    "eral</w>": 1252,
+    "hav": 1253,
+    "1250</w>": 1254,
+    "ury": 1255,
+    "Pattadakal</w>": 1256,
+    "),</w>": 1257,
+    "called</w>": 1258,
+    "Pradesh": 1259,
+    "quart": 1260,
+    "Ruins</w>": 1261,
+    "town</w>": 1262,
+    "sandston": 1263,
+    "Minar</w>": 1264,
+    "between</w>": 1265,
+    "ts</w>": 1266,
+    "ps</w>": 1267,
+    "Temples</w>": 1268,
+    "Lions</w>": 1269,
+    "tomb.</w>": 1270,
+    "ep": 1271,
+    "cour": 1272,
+    "useum</w>": 1273,
+    "piny": 1274,
+    "pinyin:</w>": 1275,
+    "form": 1276,
+    "ame</w>": 1277,
+    "trad": 1278,
+    "ition": 1279,
+    "13</w>": 1280,
+    "ere": 1281,
+    "eremon": 1282,
+    "Tai</w>": 1283,
+    "sig": 1284,
+    "sign": 1285,
+    "signific": 1286,
+    "Pingyao</w>": 1287,
+    "ti": 1288,
+    "Colosseum</w>": 1289,
+    "Italy,</w>": 1290,
+    "stru": 1291,
+    "Greek</w>": 1292,
+    "Athens</w>": 1293,
+    "Stonehenge</w>": 1294,
+    "ish</w>": 1295,
+    "medieval</w>": 1296,
+    "Mont-Saint-Michel</w>": 1297,
+    "France,</w>": 1298,
+    "isl": 1299,
+    "ish": 1300,
+    "Alhambra</w>": 1301,
+    "Sch</w>": 1302,
+    "por": 1303,
+    "Egyp": 1304,
+    "Ethiopia.</w>": 1305,
+    "Churches?</w>": 1306,
+    "ant</w>": 1307,
+    "Timbuktu</w>": 1308,
+    "Mor": 1309,
+    "Moroc": 1310,
+    "hamle": 1311,
+    "Mapungubwe.</w>": 1312,
+    "Mapungubwe</w>": 1313,
+    "caves</w>": 1314,
+    "sculptu": 1315,
+    "monolithic</w>": 1316,
+    "ed.</w>": 1317,
+    "southeast</w>": 1318,
+    "Raj": 1319,
+    "ues</w>": 1320,
+    "acr": 1321,
+    "Qin</w>": 1322,
+    "Mausoleum</w>": 1323,
+    "ship</w>": 1324,
+    "egalithic</w>": 1325,
+    "Spain": 1326,
+    "set": 1327,
+    "sett": 1328,
+    "churches.</w>": 1329,
+    "Colonnad": 1330,
+    "Colonnaded</w>": 1331,
+    "Stre": 1332,
+    "Street</w>": 1333,
+    "cov": 1334,
+    "rul": 1335,
+    "king</w>": 1336,
+    "Aret": 1337,
+    "Aretas</w>": 1338,
+    "IV": 1339,
+    "gg": 1340,
+    "dating</w>": 1341,
+    "econ": 1342,
+    "Aur": 1343,
+    "Aurang": 1344,
+    "Aurangab": 1345,
+    "ad,</w>": 1346,
+    "complexes</w>": 1347,
+    "several</w>": 1348,
+    "th-century</w>": 1349,
+    "northeast</w>": 1350,
+    "Puri</w>": 1351,
+    "dis": 1352,
+    "Ded": 1353,
+    "Dedic": 1354,
+    "Dedicated</w>": 1355,
+    "od</w>": 1356,
+    "Kar": 1357,
+    "Karnat": 1358,
+    "Karnatak": 1359,
+    "Karnataka,</w>": 1360,
+    "River</w>": 1361,
+    "ko": 1362,
+    "1000</w>": 1363,
+    "group</w>": 1364,
+    "Chh": 1365,
+    "Chhat": 1366,
+    "Chhatar": 1367,
+    "Chhatarp": 1368,
+    "Chhatarpur</w>": 1369,
+    "Pradesh,</w>": 1370,
+    "They</w>": 1371,
+    "46</w>": 1372,
+    "head": 1373,
+    "headquart": 1374,
+    "ar.</w>": 1375,
+    "marble.</w>": 1376,
+    "Minar,</w>": 1377,
+    "sp": 1378,
+    "ict": 1379,
+    "dur": 1380,
+    "during</w>": 1381,
+    "complex,</w>": 1382,
+    "fort</w>": 1383,
+    "ai</w>": 1384,
+    "lit": 1385,
+    "11th</w>": 1386,
+    "thre": 1387,
+    "three</w>": 1388,
+    "anj": 1389,
+    "added</w>": 1390,
+    "4.</w>": 1391,
+    "Rais": 1392,
+    "Raisen</w>": 1393,
+    "Distric": 1394,
+    "District</w>": 1395,
+    "Nabatean</w>": 1396,
+    "Petra,</w>": 1397,
+    "Petra's</w>": 1398,
+    "consi": 1399,
+    "consist": 1400,
+    "Tombs?</w>": 1401,
+    "Tombs</w>": 1402,
+    "gat": 1403,
+    "Roman.</w>": 1404,
+    "fortificat": 1405,
+    "oss</w>": 1406,
+    "bord": 1407,
+    "prot": 1408,
+    "protect": 1409,
+    "BC": 1410,
+    "Be": 1411,
+    "Beij": 1412,
+    "Beijing": 1413,
+    "residence</w>": 1414,
+    "mini": 1415,
+    "ction</w>": 1416,
+    "uang,</w>": 1417,
+    "emp": 1418,
+    "emper": 1419,
+    "emperor</w>": 1420,
+    "form</w>": 1421,
+    "buried</w>": 1422,
+    "Thous": 1423,
+    "Thousand</w>": 1424,
+    "Buddha</w>": 1425,
+    "25</w>": 1426,
+    "cultural</w>": 1427,
+    "Tibet": 1428,
+    "ton": 1429,
+    "til</w>": 1430,
+    "southern</w>": 1431,
+    "foo": 1432,
+    "east</w>": 1433,
+    "centre</w>": 1434,
+    "leg": 1435,
+    "')</w>": 1436,
+    "ome</w>": 1437,
+    "part</w>": 1438,
+    "ater</w>": 1439,
+    "north</w>": 1440,
+    "walled</w>": 1441,
+    "well": 1442,
+    "well-": 1443,
+    "well-preserv": 1444,
+    "well-preserved</w>": 1445,
+    "only</w>": 1446,
+    "sur": 1447,
+    "Italy.</w>": 1448,
+    "standing</w>": 1449,
+    "rom": 1450,
+    "roman": 1451,
+    "romaniz": 1452,
+    "romanized": 1453,
+    "romanized:</w>": 1454,
+    "mil": 1455,
+    "fe": 1456,
+    "feet</w>": 1457,
+    "commun": 1458,
+    "Fre": 1459,
+    "Fren": 1460,
+    "Count": 1461,
+    "County</w>": 1462,
+    "founded</w>": 1463,
+    "ia,</w>": 1464,
+    "cathedral</w>": 1465,
+    "what</w>": 1466,
+    "eastern</w>": 1467,
+    "along</w>": 1468,
+    "Churches.</w>": 1469,
+    "Churches</w>": 1470,
+    "popul": 1471,
+    "Jdi": 1472,
+    "Buddhist": 1473,
+    "30</w>": 1474,
+    "ashtr": 1475,
+    "ers": 1476,
+    "Eastern</w>": 1477,
+    "Gang": 1478,
+    "Ganga</w>": 1479,
+    "24</w>": 1480,
+    "7</w>": 1481,
+    "tri": 1482,
+    "sty": 1483,
+    "carved</w>": 1484,
+    "Mal": 1485,
+    "50": 1486,
+    "city,</w>": 1487,
+    "temples,</w>": 1488,
+    "1</w>": 1489,
+    "Delh": 1490,
+    "Delhi</w>": 1491,
+    "ultan": 1492,
+    "o-": 1493,
+    "Mew": 1494,
+    "Mewar</w>": 1495,
+    "masonry.</w>": 1496,
+    "e-": 1497,
+    "Chapel": 1498,
+    "Chapel</w>": 1499,
+    "eries</w>": 1500,
+    "ple</w>": 1501,
+    "ef": 1502,
+    "ion.</w>": 1503,
+    "sy": 1504,
+    "syste": 1505,
+    "system</w>": 1506,
+    "wall": 1507,
+    "lif": 1508,
+    "ity,</w>": 1509,
+    "cross": 1510,
+    "monastery</w>": 1511,
+    "ang</w>": 1512,
+    "statues</w>": 1513,
+    "Mountain</w>": 1514,
+    "ert": 1515,
+    "ine</w>": 1516,
+    "ars": 1517,
+    "arsen</w>": 1518,
+    "Norm": 1519,
+    "fortres": 1520,
+    "9th</w>": 1521,
+    "clos": 1522,
+    "Austr": 1523,
+    "Hab": 1524,
+    "Habs": 1525,
+    "Habsbur": 1526,
+    "Habsburg": 1527,
+    "Habsburg</w>": 1528,
+    "ath": 1529,
+    "Castle.</w>": 1530,
+    "Bav": 1531,
+    "volcanic</w>": 1532,
+    "Ph": 1533,
+    "Pho": 1534,
+    "Phoen": 1535,
+    "Lib": 1536,
+    ",5": 1537,
+    "completed</w>": 1538,
+    "architectural</w>": 1539,
+    "Bas": 1540,
+    "Basal": 1541,
+    "Basalt.</w>": 1542,
+    "ad</w>": 1543,
+    "aster": 1544,
+    "10th</w>": 1545,
+    "600</w>": 1546,
+    "including</w>": 1547,
+    "preserved.</w>": 1548,
+    "Dev": 1549,
+    "Nagara</w>": 1550,
+    "Located</w>": 1551,
+    "10</w>": 1552,
+    "(5": 1553,
+    "centuries</w>": 1554,
+    "Granite,</w>": 1555,
+    "tombs.</w>": 1556,
+    "mo": 1557,
+    "most": 1558,
+    "mostly</w>": 1559,
+    "1220": 1560,
+    "Rajp": 1561,
+    "Rajpu": 1562,
+    "Rajput</w>": 1563,
+    "Fort,</w>": 1564,
+    "present": 1565,
+    "present-": 1566,
+    "present-day</w>": 1567,
+    "ft)</w>": 1568,
+    "di</w>": 1569,
+    "12th</w>": 1570,
+    "Granite.</w>": 1571,
+    "desig": 1572,
+    "design": 1573,
+    "Maury": 1574,
+    "stu": 1575,
+    "town,</w>": 1576,
+    "large</w>": 1577,
+    "Tombs.</w>": 1578,
+    "arch": 1579,
+    "Theatre.</w>": 1580,
+    "Carved</w>": 1581,
+    "Al-Khazneh</w>": 1582,
+    "Arabic": 1583,
+    "Arabic:</w>": 1584,
+    "Dynasti": 1585,
+    "Dynasties.</w>": 1586,
+    "tower": 1587,
+    "towers.</w>": 1588,
+    "sian</w>": 1589,
+    "courty": 1590,
+    "courtyar": 1591,
+    "courtyard": 1592,
+    "City": 1593,
+    "admini": 1594,
+    "ered</w>": 1595,
+    "Anc": 1596,
+    "Ancest": 1597,
+    "Ancestor</w>": 1598,
+    "worshi": 1599,
+    "worship": 1600,
+    "worship.</w>": 1601,
+    "earth.</w>": 1602,
+    "funer": 1603,
+    "th-14th</w>": 1604,
+    "Chinese.</w>": 1605,
+    "th-1": 1606,
+    "Tibetan</w>": 1607,
+    "wood,</w>": 1608,
+    "museum</w>": 1609,
+    "Region</w>": 1610,
+    "Dal": 1611,
+    "Dalai</w>": 1612,
+    "Lam": 1613,
+    "serv": 1614,
+    "served</w>": 1615,
+    "lit.</w>": 1616,
+    "Limestone.</w>": 1617,
+    "000": 1618,
+    "+</w>": 1619,
+    "examples</w>": 1620,
+    "many</w>": 1621,
+    "side</w>": 1622,
+    "eremonial</w>": 1623,
+    "highest</w>": 1624,
+    "tall": 1625,
+    "Emperor</w>": 1626,
+    "common": 1627,
+    "tuff": 1628,
+    "tuff.</w>": 1629,
+    "Athens.</w>": 1630,
+    "Greece,</w>": 1631,
+    "2500</w>": 1632,
+    "Am": 1633,
+    "limestone.</w>": 1634,
+    "Sa": 1635,
+    "Saint</w>": 1636,
+    "Palaces,</w>": 1637,
+    "que</w>": 1638,
+    "French": 1639,
+    "Germany,</w>": 1640,
+    "ia</w>": 1641,
+    "munici": 1642,
+    "municip": 1643,
+    "municipal": 1644,
+    "municipality</w>": 1645,
+    "chwang": 1646,
+    "chwangau": 1647,
+    "vill": 1648,
+    "Indig": 1649,
+    "Indigen": 1650,
+    "Indigenou": 1651,
+    "Indigenous.</w>": 1652,
+    "Hil": 1653,
+    "Hill</w>": 1654,
+    "Zimbabwe,</w>": 1655,
+    "moder": 1656,
+    "modern</w>": 1657,
+    "Egyptian</w>": 1658,
+    "Limestone,</w>": 1659,
+    "12th\u2013": 1660,
+    "churches</w>": 1661,
+    "important</w>": 1662,
+    "wood.</w>": 1663,
+    "population</w>": 1664,
+    "\u2013</w>": 1665,
+    "Greco": 1666,
+    "Greco-": 1667,
+    "Greco-Roman.</w>": 1668,
+    "port.</w>": 1669,
+    "Sandstone,</w>": 1670,
+    "Morocco.</w>": 1671,
+    "mosques,</w>": 1672,
+    "9th\u2013": 1673,
+    "Cor": 1674,
+    "Coral</w>": 1675,
+    "Maso": 1676,
+    "Africa,</w>": 1677,
+    "(Petra).</w>": 1678,
+    "sculptural</w>": 1679,
+    "200</w>": 1680,
+    "Temple.</w>": 1681,
+    "ed,</w>": 1682,
+    "Pattadakal.</w>": 1683,
+    "Minar.</w>": 1684,
+    "69</w>": 1685,
+    "Fort.</w>": 1686,
+    "Temples.</w>": 1687,
+    "maj": 1688,
+    "Stupa.</w>": 1689,
+    "Lions.</w>": 1690,
+    "Low": 1691,
+    "Al-Khazneh.</w>": 1692,
+    "tre": 1693,
+    "City.</w>": 1694,
+    "900</w>": 1695,
+    "Dun": 1696,
+    "Dunh": 1697,
+    "Mausoleum.</w>": 1698,
+    "1400</w>": 1699,
+    "Grottoes.</w>": 1700,
+    "Heaven.</w>": 1701,
+    "Tai.</w>": 1702,
+    "Pingyao.</w>": 1703,
+    "Colosseum.</w>": 1704,
+    "assical</w>": 1705,
+    "Ak": 1706,
+    "Stonehenge.</w>": 1707,
+    "Mont-Saint-Michel.</w>": 1708,
+    "Alhambra.</w>": 1709,
+    "Spain.</w>": 1710,
+    "co,</w>": 1711,
+    "Cathedral.</w>": 1712,
+    "Sw": 1713,
+    "79</w>": 1714,
+    "Ruins.</w>": 1715,
+    "Giza.</w>": 1716,
+    "Timbuktu.</w>": 1717,
+    "Carthage.</w>": 1718,
+    "Tuni": 1719,
+    "Tunisia.</w>": 1720,
+    "Fez.</w>": 1721,
+    "Kisiwani.</w>": 1722,
+    "Tanzania.</w>": 1723,
+    "(Petra)": 1724,
+    "(Petra)?</w>": 1725,
+    "(Petra)</w>": 1726,
+    "monumental</w>": 1727,
+    "pro": 1728,
+    "har": 1729,
+    "paint": 1730,
+    "they</w>": 1731,
+    "have</w>": 1732,
+    "Temple?</w>": 1733,
+    "coast": 1734,
+    "ref": 1735,
+    "Pattadakal?</w>": 1736,
+    ".6</w>": 1737,
+    "palac": 1738,
+    "Minar?</w>": 1739,
+    "compr": 1740,
+    "compris": 1741,
+    "Fort": 1742,
+    "Fort?</w>": 1743,
+    "Chittorgarh": 1744,
+    "ach</w>": 1745,
+    "River.</w>": 1746,
+    "Temples?</w>": 1747,
+    "198": 1748,
+    "1987": 1749,
+    "Stupa?</w>": 1750,
+    "al,</w>": 1751,
+    "Lions?</w>": 1752,
+    "r</w>": 1753,
+    "pos": 1754,
+    "monumental.</w>": 1755,
+    "Gate</w>": 1756,
+    "Al-Khazneh?</w>": 1757,
+    "(Arabic:</w>": 1758,
+    "China?</w>": 1759,
+    "walls</w>": 1760,
+    "oge": 1761,
+    "ogether</w>": 1762,
+    "City?</w>": 1763,
+    "has</w>": 1764,
+    "Army": 1765,
+    "Army?</w>": 1766,
+    "Tibet</w>": 1767,
+    "oll": 1768,
+    "simpl": 1769,
+    "simplified</w>": 1770,
+    "tradition": 1771,
+    "traditional</w>": 1772,
+    "Mausoleum?</w>": 1773,
+    "Grottoes?</w>": 1774,
+    "out": 1775,
+    "Heaven?</w>": 1776,
+    "sto": 1777,
+    "Tai?</w>": 1778,
+    "ak</w>": 1779,
+    "being</w>": 1780,
+    "Pingyao?</w>": 1781,
+    "off": 1782,
+    "lay": 1783,
+    "layout</w>": 1784,
+    "strat": 1785,
+    "Colosseum?</w>": 1786,
+    "Ves": 1787,
+    "Greece.</w>": 1788,
+    "Athens?</w>": 1789,
+    "Neolithic</w>": 1790,
+    "Stonehenge?</w>": 1791,
+    "megalithic</w>": 1792,
+    "Eng": 1793,
+    "Engl": 1794,
+    "Mont-Saint-Michel?</w>": 1795,
+    "island</w>": 1796,
+    "ely</w>": 1797,
+    "Alhamb": 1798,
+    "Alhambra": 1799,
+    "Alhambra?</w>": 1800,
+    "Ireland": 1801,
+    "Ireland.</w>": 1802,
+    "Cathedral?</w>": 1803,
+    "Chartres,</w>": 1804,
+    "constru": 1805,
+    "Castle": 1806,
+    "Castle?</w>": 1807,
+    "chwangau,</w>": 1808,
+    "Southern</w>": 1809,
+    "Ruins?</w>": 1810,
+    "Egypt.</w>": 1811,
+    "Giza?</w>": 1812,
+    "Egypt,</w>": 1813,
+    "Ol": 1814,
+    "Old</w>": 1815,
+    "Timbuktu?</w>": 1816,
+    "Tombou": 1817,
+    "Tombouct": 1818,
+    "Tombouctou": 1819,
+    "(12": 1820,
+    "Carthage?</w>": 1821,
+    "Medit": 1822,
+    "Mediter": 1823,
+    "Mediterr": 1824,
+    "Mediterran": 1825,
+    "Magna</w>": 1826,
+    "Fez?</w>": 1827,
+    "Fez</w>": 1828,
+    "Kisiwani?</w>": 1829,
+    "hamlet</w>": 1830,
+    "township</w>": 1831,
+    "Mapungubwe?</w>": 1832,
+    "sculptures": 1833,
+    "Kal": 1834,
+    "Kaling": 1835,
+    "hor": 1836,
+    "aret</w>": 1837,
+    "Meh": 1838,
+    "Mehra": 1839,
+    "Mehraul": 1840,
+    "Delhi": 1841,
+    "Delhi,</w>": 1842,
+    "city.</w>": 1843,
+    "Hi": 1844,
+    "ple": 1845,
+    "fac": 1846,
+    "treas": 1847,
+    "treasur": 1848,
+    "siv": 1849,
+    "sive</w>": 1850,
+    "City,</w>": 1851,
+    "Gan": 1852,
+    "Gansu": 1853,
+    "16": 1854,
+    "we</w>": 1855,
+    "rag": 1856,
+    "Shand": 1857,
+    "opolis": 1858,
+    "citad": 1859,
+    "citadel</w>": 1860,
+    "United</w>": 1861,
+    "hel": 1862,
+    "fortified</w>": 1863,
+    "Austria.</w>": 1864,
+    "Pun": 1865,
+    "Punic</w>": 1866,
+    "Magna.</w>": 1867,
+    "Liby": 1868,
+    "settle": 1869,
+    "settlem": 1870,
+    "settlement</w>": 1871,
+    "Petra</w>": 1872,
+    "grand</w>": 1873,
+    "Petra.</w>": 1874,
+    "covers</w>": 1875,
+    "~7": 1876,
+    "~7,5": 1877,
+    "~7,56": 1878,
+    "~7,560</w>": 1879,
+    "m2": 1880,
+    "m2.</w>": 1881,
+    "prob": 1882,
+    "probab": 1883,
+    "probably</w>": 1884,
+    "early</w>": 1885,
+    "AD,</w>": 1886,
+    "rule</w>": 1887,
+    "IV,</w>": 1888,
+    "sugg": 1889,
+    "suggest": 1890,
+    "suggested</w>": 1891,
+    "secon": 1892,
+    "second</w>": 1893,
+    "480</w>": 1894,
+    "Aurangabad</w>": 1895,
+    "Mahar": 1896,
+    "Maharashtr": 1897,
+    "Maharashtra</w>": 1898,
+    "Univ": 1899,
+    "Univers": 1900,
+    "Universally</w>": 1901,
+    "regar": 1902,
+    "regarded</w>": 1903,
+    "master": 1904,
+    "masterp": 1905,
+    "masterpi": 1906,
+    "masterpiec": 1907,
+    "masterpieces</w>": 1908,
+    "art,</w>": 1909,
+    "includ": 1910,
+    "Aurangabad,</w>": 1911,
+    "world,</w>": 1912,
+    "artwor": 1913,
+    "artwork</w>": 1914,
+    "1000": 1915,
+    "1000,</w>": 1916,
+    "Hindu,</w>": 1917,
+    "Buddhist,</w>": 1918,
+    "lead": 1919,
+    "leading</w>": 1920,
+    "example</w>": 1921,
+    "13th-century</w>": 1922,
+    "35</w>": 1923,
+    "(22</w>": 1924,
+    "coastlin": 1925,
+    "coastline</w>": 1926,
+    "Odis": 1927,
+    "Odish": 1928,
+    "Odisha,</w>": 1929,
+    "attri": 1930,
+    "attribu": 1931,
+    "attributed</w>": 1932,
+    "Nar": 1933,
+    "Naras": 1934,
+    "Narasing": 1935,
+    "Narasingha</w>": 1936,
+    "Deva</w>": 1937,
+    "I</w>": 1938,
+    "CE.</w>": 1939,
+    "-g": 1940,
+    "700</w>": 1941,
+    "(Pattadak": 1942,
+    "(Pattadakall": 1943,
+    "(Pattadakallu": 1944,
+    "(Pattadakallu),</w>": 1945,
+    "Rak": 1946,
+    "Rakt": 1947,
+    "Raktap": 1948,
+    "Raktapura": 1949,
+    "Raktapura,</w>": 1950,
+    "ban": 1951,
+    "bank</w>": 1952,
+    "Malap": 1953,
+    "Malapr": 1954,
+    "Malaprab": 1955,
+    "Malaprabha</w>": 1956,
+    "Bag": 1957,
+    "Bagal": 1958,
+    "Bagalko": 1959,
+    "Bagalkot</w>": 1960,
+    "(14": 1961,
+    "(14</w>": 1962,
+    "Bad": 1963,
+    "mi</w>": 1964,
+    "Dig": 1965,
+    "Digam": 1966,
+    "Digamb": 1967,
+    "Digambara</w>": 1968,
+    "headquarters,</w>": 1969,
+    "28": 1970,
+    "283</w>": 1971,
+    "Gw": 1972,
+    "Gwali": 1973,
+    "Gwalior": 1974,
+    "Gwalior,</w>": 1975,
+    "175</w>": 1976,
+    "(10": 1977,
+    "(109</w>": 1978,
+    "Jh": 1979,
+    "Jhan": 1980,
+    "refer": 1981,
+    "referred</w>": 1982,
+    "Hampi,</w>": 1983,
+    "east": 1984,
+    "east-": 1985,
+    "east-central</w>": 1986,
+    "predat": 1987,
+    "predates</w>": 1988,
+    "Empire": 1989,
+    "Empire;</w>": 1990,
+    "ment": 1991,
+    "mention": 1992,
+    "mentioned</w>": 1993,
+    "Ram": 1994,
+    "Ramayan": 1995,
+    "Ramayana</w>": 1996,
+    "spell": 1997,
+    "spelled</w>": 1998,
+    "Qutu": 1999,
+    "Qutub</w>": 2000,
+    "Qutab</w>": 2001,
+    "min": 2002,
+    "minaret</w>": 2003,
+    "vict": 2004,
+    "victor": 2005,
+    "victory</w>": 2006,
+    "tower,</w>": 2007,
+    "sultan": 2008,
+    "sultanat": 2009,
+    "sultanate,</w>": 2010,
+    "comprising</w>": 2011,
+    "Mehrauli,</w>": 2012,
+    "1199</w>": 2013,
+    "1220,</w>": 2014,
+    "39": 2015,
+    "399</w>": 2016,
+    "fter</w>": 2017,
+    "Chittor</w>": 2018,
+    "Chittod</w>": 2019,
+    "forts</w>": 2020,
+    "Chittorgarh.</w>": 2021,
+    "spra": 2022,
+    "spraw": 2023,
+    "sprawl": 2024,
+    "sprawls</w>": 2025,
+    "ined</w>": 2026,
+    "1100</w>": 2027,
+    "Moderat": 2028,
+    "Moderate-": 2029,
+    "Moderate-High.</w>": 2030,
+    "designation</w>": 2031,
+    "Tam": 2032,
+    "Tamil</w>": 2033,
+    "Nad": 2034,
+    "Nadu": 2035,
+    "Nadu.</w>": 2036,
+    "Thanj": 2037,
+    "Thanjav": 2038,
+    "Thanjavur</w>": 2039,
+    "list</w>": 2040,
+    "1987,</w>": 2041,
+    "whil": 2042,
+    "while</w>": 2043,
+    "200": 2044,
+    "2004.</w>": 2045,
+    "Stupa,</w>": 2046,
+    "hillt": 2047,
+    "hilltop</w>": 2048,
+    "Tow": 2049,
+    "Town</w>": 2050,
+    "State</w>": 2051,
+    "headquarters</w>": 2052,
+    "(29</w>": 2053,
+    "Bh": 2054,
+    "Bhop": 2055,
+    "Bhopal,</w>": 2056,
+    "Low-": 2057,
+    "Low-Moderate.</w>": 2058,
+    "dated</w>": 2059,
+    "reig": 2060,
+    "reign</w>": 2061,
+    "King</w>": 2062,
+    "so-": 2063,
+    "so-called</w>": 2064,
+    "Sac": 2065,
+    "Sacred</w>": 2066,
+    "Quart": 2067,
+    "Quarter,</w>": 2068,
+    "consisting</w>": 2069,
+    "estic</w>": 2070,
+    "al-": 2071,
+    "450</w>": 2072,
+    "Chapel?</w>": 2073,
+    "as-Siq?</w>": 2074,
+    "as-Siq</w>": 2075,
+    "tomb</w>": 2076,
+    "Gat": 2077,
+    "Gate?</w>": 2078,
+    "sandstone</w>": 2079,
+    "Theatre": 2080,
+    "Theatre?</w>": 2081,
+    "Theatre</w>": 2082,
+    "rock-cu": 2083,
+    "rock-cut.</w>": 2084,
+    "Khaznat</w>": 2085,
+    "el-": 2086,
+    "el-F": 2087,
+    "el-Far": 2088,
+    "el-Far'": 2089,
+    "el-Far'oun": 2090,
+    "elab": 2091,
+    "elabor": 2092,
+    "elaborate</w>": 2093,
+    "tombs</w>": 2094,
+    "inh": 2095,
+    "inhab": 2096,
+    "inhabited</w>": 2097,
+    "Arabs</w>": 2098,
+    "tim": 2099,
+    "times.</w>": 2100,
+    "As</w>": 2101,
+    "na": 2102,
+    "fortification.</w>": 2103,
+    "series</w>": 2104,
+    "fortifications</w>": 2105,
+    "across</w>": 2106,
+    "borders</w>": 2107,
+    "states</w>": 2108,
+    "protection</w>": 2109,
+    "again": 2110,
+    "against</w>": 2111,
+    "var": 2112,
+    "various</w>": 2113,
+    "nom": 2114,
+    "nomad": 2115,
+    "nomadic</w>": 2116,
+    "grou": 2117,
+    "groups</w>": 2118,
+    "Eura": 2119,
+    "Eurasian</w>": 2120,
+    "Step": 2121,
+    "Stepp": 2122,
+    "Steppe.</w>": 2123,
+    "date</w>": 2124,
+    "BC;</w>": 2125,
+    "ese</w>": 2126,
+    "dynasties</w>": 2127,
+    "1500</w>": 2128,
+    "Beijing,</w>": 2129,
+    "Emperors,</w>": 2130,
+    "polit": 2131,
+    "political</w>": 2132,
+    "pow": 2133,
+    "power</w>": 2134,
+    "year": 2135,
+    "years</w>": 2136,
+    "1420</w>": 2137,
+    "192": 2138,
+    "1924.</w>": 2139,
+    "(Chinese:</w>": 2140,
+    "Army.</w>": 2141,
+    "colle": 2142,
+    "collection</w>": 2143,
+    "terracotta</w>": 2144,
+    "sculptures</w>": 2145,
+    "dep": 2146,
+    "depict": 2147,
+    "depicting</w>": 2148,
+    "armi": 2149,
+    "armies</w>": 2150,
+    "Shi</w>": 2151,
+    "Huang,</w>": 2152,
+    "funerary</w>": 2153,
+    "210</w>": 2154,
+    "209</w>": 2155,
+    "pur": 2156,
+    "purpos": 2157,
+    "purpose</w>": 2158,
+    "protecting</w>": 2159,
+    "him</w>": 2160,
+    "aft": 2161,
+    "after": 2162,
+    "afterlif": 2163,
+    "afterlife.</w>": 2164,
+    "Caves,</w>": 2165,
+    "Buddhas,</w>": 2166,
+    "(1": 2167,
+    "(16</w>": 2168,
+    "Dunhuang,</w>": 2169,
+    "oas": 2170,
+    "oasis</w>": 2171,
+    "crossro": 2172,
+    "crossroad": 2173,
+    "crossroads</w>": 2174,
+    "Sil": 2175,
+    "Silk</w>": 2176,
+    "Ro": 2177,
+    "Road,</w>": 2178,
+    "Gansu</w>": 2179,
+    "als</w>": 2180,
+    "Lh": 2181,
+    "Lhas": 2182,
+    "Lhasa,</w>": 2183,
+    "Auton": 2184,
+    "Autonom": 2185,
+    "Autonomous</w>": 2186,
+    "former": 2187,
+    "formerly</w>": 2188,
+    "win": 2189,
+    "winter</w>": 2190,
+    "Lamas,</w>": 2191,
+    "dz": 2192,
+    "dzong</w>": 2193,
+    "style</w>": 2194,
+    "po</w>": 2195,
+    "until</w>": 2196,
+    "'</w>": 2197,
+    "bec": 2198,
+    "became</w>": 2199,
+    "ief": 2200,
+    "an:</w>": 2201,
+    "Hong": 2202,
+    "Hongw": 2203,
+    "Hongwu": 2204,
+    "Hongwu</w>": 2205,
+    "Emperor,</w>": 2206,
+    "founder</w>": 2207,
+    "foot</w>": 2208,
+    "Purple</w>": 2209,
+    "Mountain": 2210,
+    "Mountain,</w>": 2211,
+    "Nanj": 2212,
+    "Nanjing": 2213,
+    "Nanjing.</w>": 2214,
+    "legend</w>": 2215,
+    "say": 2216,
+    "says</w>": 2217,
+    "ess": 2218,
+    "some</w>": 2219,
+    "fin": 2220,
+    "finest</w>": 2221,
+    "art.</w>": 2222,
+    "Hous": 2223,
+    "Housing</w>": 2224,
+    "ten": 2225,
+    "tens</w>": 2226,
+    "thous": 2227,
+    "thousand": 2228,
+    "thousands</w>": 2229,
+    "Sha": 2230,
+    "Shak": 2231,
+    "Shaky": 2232,
+    "Shakyam": 2233,
+    "Shakyamun": 2234,
+    "Shakyamuni</w>": 2235,
+    "disci": 2236,
+    "discipl": 2237,
+    "disciples,</w>": 2238,
+    "(simplified</w>": 2239,
+    "Confucian</w>": 2240,
+    "southe": 2241,
+    "southeastern</w>": 2242,
+    "Beijing.</w>": 2243,
+    "vis": 2244,
+    "visited</w>": 2245,
+    "Emperors</w>": 2246,
+    "then</w>": 2247,
+    "later</w>": 2248,
+    "resto": 2249,
+    "restored</w>": 2250,
+    "n)</w>": 2251,
+    "moun": 2252,
+    "mount": 2253,
+    "mountain</w>": 2254,
+    "significance</w>": 2255,
+    "Tai'": 2256,
+    "Tai'an.</w>": 2257,
+    "Shandong</w>": 2258,
+    "tallest</w>": 2259,
+    "peak</w>": 2260,
+    "Jade</w>": 2261,
+    "Pingyao,</w>": 2262,
+    "offici": 2263,
+    "officially</w>": 2264,
+    "Shan": 2265,
+    "Shanx": 2266,
+    "Shanxi,</w>": 2267,
+    "famed</w>": 2268,
+    "importance</w>": 2269,
+    "econom": 2270,
+    "economic</w>": 2271,
+    "history</w>": 2272,
+    "plann": 2273,
+    "planning</w>": 2274,
+    "surv": 2275,
+    "survive</w>": 2276,
+    "elli": 2277,
+    "ellipt": 2278,
+    "elliptical</w>": 2279,
+    "Rome,</w>": 2280,
+    "jus": 2281,
+    "just</w>": 2282,
+    "Forum": 2283,
+    "Forum.</w>": 2284,
+    "ever</w>": 2285,
+    "built,</w>": 2286,
+    "Constru": 2287,
+    "beg": 2288,
+    "began</w>": 2289,
+    "us.</w>": 2290,
+    "(</w>": 2291,
+    "rocky</w>": 2292,
+    "outcr": 2293,
+    "outcrop</w>": 2294,
+    "Athens,</w>": 2295,
+    "rem": 2296,
+    "remains</w>": 2297,
+    "gre": 2298,
+    "great</w>": 2299,
+    "prehistoric</w>": 2300,
+    "Sal": 2301,
+    "Salis": 2302,
+    "Salisbur": 2303,
+    "Salisbury</w>": 2304,
+    "Pl": 2305,
+    "Plain</w>": 2306,
+    "Wil": 2307,
+    "Wilt": 2308,
+    "Wiltshi": 2309,
+    "Wiltshire,</w>": 2310,
+    "England,</w>": 2311,
+    "miles</w>": 2312,
+    "(3</w>": 2313,
+    "km)</w>": 2314,
+    "Ames": 2315,
+    "Amesbur": 2316,
+    "Amesbury.</w>": 2317,
+    "consists</w>": 2318,
+    "outer</w>": 2319,
+    "ring</w>": 2320,
+    "vert": 2321,
+    "vertical</w>": 2322,
+    "sarsen</w>": 2323,
+    "stones,</w>": 2324,
+    "each</w>": 2325,
+    "(4": 2326,
+    "(4.": 2327,
+    "(4.0</w>": 2328,
+    "high,</w>": 2329,
+    "seven</w>": 2330,
+    "(2.": 2331,
+    "(2.1</w>": 2332,
+    "wid": 2333,
+    "wide,</w>": 2334,
+    "we": 2335,
+    "weigh": 2336,
+    "weighing</w>": 2337,
+    "tons,</w>": 2338,
+    "tid": 2339,
+    "tidal</w>": 2340,
+    "main": 2341,
+    "mainl": 2342,
+    "mainland</w>": 2343,
+    "commune</w>": 2344,
+    "Normand": 2345,
+    "Normandy,</w>": 2346,
+    "pron": 2347,
+    "];</w>": 2348,
+    "ish:</w>": 2349,
+    "1350</w>": 2350,
+    "fortress</w>": 2351,
+    "Granad": 2352,
+    "Granada,</w>": 2353,
+    "Add": 2354,
+    "Addition": 2355,
+    "Additionall": 2356,
+    "Additionally,</w>": 2357,
+    "Span": 2358,
+    "Clonmacnois</w>": 2359,
+    "ruined</w>": 2360,
+    "Off": 2361,
+    "Offal": 2362,
+    "Offaly</w>": 2363,
+    "Ireland</w>": 2364,
+    "Shann": 2365,
+    "Shannon</w>": 2366,
+    "Athlon": 2367,
+    "Athlone,</w>": 2368,
+    "54": 2369,
+    "544</w>": 2370,
+    "Ci": 2371,
+    "Ciar</w>": 2372,
+    "n,</w>": 2373,
+    "Rath": 2374,
+    "Rathcr": 2375,
+    "Rathcrog": 2376,
+    "Rathcrogh": 2377,
+    "Rathcroghan,</w>": 2378,
+    "Ros": 2379,
+    "Roscommon": 2380,
+    "Roscommon.</w>": 2381,
+    "Until</w>": 2382,
+    "had</w>": 2383,
+    "close</w>": 2384,
+    "associat": 2385,
+    "associations</w>": 2386,
+    "kings</w>": 2387,
+    "summ": 2388,
+    "summer</w>": 2389,
+    "rulers,</w>": 2390,
+    "Hiet": 2391,
+    "Hietz": 2392,
+    "Hietzing": 2393,
+    "Hietzing,</w>": 2394,
+    "Vi": 2395,
+    "Vien": 2396,
+    "Vienn": 2397,
+    "Vienna.</w>": 2398,
+    "name</w>": 2399,
+    "root": 2400,
+    "roots</w>": 2401,
+    "artes": 2402,
+    "artesian</w>": 2403,
+    "well</w>": 2404,
+    "water</w>": 2405,
+    "consum": 2406,
+    "consumed</w>": 2407,
+    "Schl": 2408,
+    "Schloss</w>": 2409,
+    "Cath": 2410,
+    "Cathol": 2411,
+    "Catholic</w>": 2412,
+    "south": 2413,
+    "southwest</w>": 2414,
+    "Par": 2415,
+    "Paris": 2416,
+    "Paris,</w>": 2417,
+    "Bish": 2418,
+    "Bishop</w>": 2419,
+    "Chartres.</w>": 2420,
+    "hon": 2421,
+    "honour": 2422,
+    "honour</w>": 2423,
+    "Vir": 2424,
+    "Virg": 2425,
+    "Virgin</w>": 2426,
+    "least</w>": 2427,
+    "('": 2428,
+    "19th-century</w>": 2429,
+    "historic": 2430,
+    "historicist</w>": 2431,
+    "ru": 2432,
+    "rugg": 2433,
+    "rugged</w>": 2434,
+    "footh": 2435,
+    "foothill": 2436,
+    "foothills</w>": 2437,
+    "Alps</w>": 2438,
+    "very</w>": 2439,
+    "border</w>": 2440,
+    "Bavari": 2441,
+    "Ho": 2442,
+    "Hoh": 2443,
+    "Hohen": 2444,
+    "Hohens": 2445,
+    "Pompei,</w>": 2446,
+    "Nap": 2447,
+    "Napl": 2448,
+    "Naples,</w>": 2449,
+    "Camp": 2450,
+    "Campan": 2451,
+    "Campania</w>": 2452,
+    "Along</w>": 2453,
+    "Hercul": 2454,
+    "Herculan": 2455,
+    "Herculaneum": 2456,
+    "Herculaneum,</w>": 2457,
+    "Stab": 2458,
+    "Stabia": 2459,
+    "Stabiae,</w>": 2460,
+    "surr": 2461,
+    "surroun": 2462,
+    "surrounding</w>": 2463,
+    "villas,</w>": 2464,
+    "ash</w>": 2465,
+    "pum": 2466,
+    "pumic": 2467,
+    "pumice</w>": 2468,
+    "eru": 2469,
+    "erupt": 2470,
+    "1300</w>": 2471,
+    "south-": 2472,
+    "south-eastern</w>": 2473,
+    "hills</w>": 2474,
+    "coun": 2475,
+    "countr": 2476,
+    "country</w>": 2477,
+    "Masv": 2478,
+    "Masving": 2479,
+    "Masvingo": 2480,
+    "Masvingo.</w>": 2481,
+    "settl": 2482,
+    "settled</w>": 2483,
+    "CE,</w>": 2484,
+    "century.</w>": 2485,
+    "precol": 2486,
+    "precolon": 2487,
+    "precolonial</w>": 2488,
+    "Egypt</w>": 2489,
+    "home</w>": 2490,
+    "Pyramid,</w>": 2491,
+    "Khaf": 2492,
+    "Khafre,</w>": 2493,
+    "Men": 2494,
+    "Menk": 2495,
+    "Menkau": 2496,
+    "Menkaure,</w>": 2497,
+    "their": 2498,
+    "their</w>": 2499,
+    "Sph": 2500,
+    "Sphin": 2501,
+    "Sphinx": 2502,
+    "Sphinx.</w>": 2503,
+    "All</w>": 2504,
+    "Four": 2505,
+    "Fourth</w>": 2506,
+    "Dynasty</w>": 2507,
+    "1200</w>": 2508,
+    "Nig": 2509,
+    "Niger</w>": 2510,
+    "Tombouctou</w>": 2511,
+    "Region": 2512,
+    "Region,</w>": 2513,
+    "19</w>": 2514,
+    "administrat": 2515,
+    "administrative</w>": 2516,
+    "regions</w>": 2517,
+    "Africa</w>": 2518,
+    "legen": 2519,
+    "legend": 2520,
+    "legendary</w>": 2521,
+    "Phoenic": 2522,
+    "Phoenician</w>": 2523,
+    "queen</w>": 2524,
+    "Did": 2525,
+    "Dido</w>": 2526,
+    "Lak": 2527,
+    "Lake</w>": 2528,
+    "Tunis</w>": 2529,
+    "trading</w>": 2530,
+    "hub": 2531,
+    "hubs</w>": 2532,
+    "Mediterranean</w>": 2533,
+    "aff": 2534,
+    "Magna?</w>": 2535,
+    "Bal": 2536,
+    "Bali</w>": 2537,
+    "old": 2538,
+    "oldest</w>": 2539,
+    "districts</w>": 2540,
+    "Jdid</w>": 2541,
+    "French-": 2542,
+    "French-c": 2543,
+    "French-cre": 2544,
+    "French-created</w>": 2545,
+    "Vill": 2546,
+    "Ville</w>": 2547,
+    "Nou": 2548,
+    "Nouv": 2549,
+    "Nouvell": 2550,
+    "Together</w>": 2551,
+    "Jdid": 2552,
+    "Jdid,</w>": 2553,
+    "forms</w>": 2554,
+    "med": 2555,
+    "medina</w>": 2556,
+    "island,</w>": 2557,
+    "nation": 2558,
+    "national</w>": 2559,
+    "site,</w>": 2560,
+    "community</w>": 2561,
+    "Masoko": 2562,
+    "Masoko,</w>": 2563,
+    "Tanzanian</w>": 2564,
+    "Lin": 2565,
+    "Lindi</w>": 2566,
+    "nine</w>": 2567,
+    "hamlets</w>": 2568,
+    "conf": 2569,
+    "conflu": 2570,
+    "confluence</w>": 2571,
+    "Shash": 2572,
+    "Shashe</w>": 2573,
+    "Limp": 2574,
+    "Limpop": 2575,
+    "Limpopo</w>": 2576,
+    "riv": 2577,
+    "rivers</w>": 2578,
+    "present</w>": 2579,
+    "capital": 2580,
+    "capital's</w>": 2581,
+    "5,000</w>": 2582,
+    "1250": 2583,
+    "1250,</w>": 2584,
+    "lik": 2585,
+    "likely</w>": 2586,
+    "covered</w>": 2587,
+    "30": 2588,
+    "30,000</w>": 2589,
+    "km": 2590,
+    "km2</w>": 2591,
+    "drom": 2592,
+    "dromos": 2593,
+    "dromos,</w>": 2594,
+    "colonnad": 2595,
+    "colonnades,</w>": 2596,
+    "theater.</w>": 2597,
+    "(Buddhist": 2598,
+    "(Buddhist).</w>": 2599,
+    "Rashtr": 2600,
+    "Rashtrak": 2601,
+    "Rashtraku": 2602,
+    "Rashtrakuta</w>": 2603,
+    "Yad": 2604,
+    "Yadav": 2605,
+    "Yadava</w>": 2606,
+    "Buddhism</w>": 2607,
+    "34</w>": 2608,
+    "Kalinga</w>": 2609,
+    "(temple</w>": 2610,
+    "chari": 2611,
+    "chariot": 2612,
+    "lat": 2613,
+    "later": 2614,
+    "laterite.</w>": 2615,
+    "whe": 2616,
+    "wheel": 2617,
+    "wheels</w>": 2618,
+    "hors": 2619,
+    "horses.</w>": 2620,
+    "Part": 2621,
+    "Parti": 2622,
+    "Partially</w>": 2623,
+    "ruined,</w>": 2624,
+    "Chal": 2625,
+    "Chaluk": 2626,
+    "Chalukya</w>": 2627,
+    "Bl": 2628,
+    "Blend</w>": 2629,
+    "styl": 2630,
+    "950": 2631,
+    "950-": 2632,
+    "950-10": 2633,
+    "950-1050</w>": 2634,
+    "Chand": 2635,
+    "Chandel": 2636,
+    "Chandela</w>": 2637,
+    "lime</w>": 2638,
+    "mort": 2639,
+    "mortar.</w>": 2640,
+    "palaces.</w>": 2641,
+    "1193</w>": 2642,
+    "1369</w>": 2643,
+    "Sultan": 2644,
+    "Sultanate.</w>": 2645,
+    "Indo-": 2646,
+    "Indo-Islamic</w>": 2647,
+    "Red</w>": 2648,
+    "sandstone,</w>": 2649,
+    "Minare": 2650,
+    "Minaret,</w>": 2651,
+    "mosque,</w>": 2652,
+    "(Rajput</w>": 2653,
+    "polity": 2654,
+    "polity).</w>": 2655,
+    "hill-": 2656,
+    "hill-fort</w>": 2657,
+    "Stone</w>": 2658,
+    "(Chol": 2659,
+    "(Chola": 2660,
+    "(Chola)</w>": 2661,
+    "major</w>": 2662,
+    "Mauryan.</w>": 2663,
+    "(Maury": 2664,
+    "(Mauryan": 2665,
+    "sm": 2666,
+    "small": 2667,
+    "smaller</w>": 2668,
+    "stup": 2669,
+    "stupas": 2670,
+    "stupas.</w>": 2671,
+    "cult</w>": 2672,
+    "room": 2673,
+    "rooms.</w>": 2674,
+    "40</w>": 2675,
+    "Chapel.</w>": 2676,
+    "chap": 2677,
+    "chapel</w>": 2678,
+    "structure.</w>": 2679,
+    "as-Siq.</w>": 2680,
+    "Series</w>": 2681,
+    "royal</w>": 2682,
+    "Gate.</w>": 2683,
+    "Masonr": 2684,
+    "Masonry</w>": 2685,
+    "triple": 2686,
+    "triple-": 2687,
+    "triple-arch": 2688,
+    "triple-arched</w>": 2689,
+    "gatew": 2690,
+    "gatewa": 2691,
+    "gateway.</w>": 2692,
+    "Rock-cu": 2693,
+    "Rock-cut,</w>": 2694,
+    "amphitheater.</w>": 2695,
+    "Mult": 2696,
+    "Multi": 2697,
+    "Multiple</w>": 2698,
+    "facad": 2699,
+    "facade,</w>": 2700,
+    "treasury.</w>": 2701,
+    "Sec": 2702,
+    "Secul": 2703,
+    "Secular.</w>": 2704,
+    "Mil": 2705,
+    "Milit": 2706,
+    "Military</w>": 2707,
+    "Def": 2708,
+    "Defen": 2709,
+    "Defensive</w>": 2710,
+    "wat": 2711,
+    "watch": 2712,
+    "watchtowers.</w>": 2713,
+    "courtyards.</w>": 2714,
+    "Funerary</w>": 2715,
+    "Terrac": 2716,
+    "Terracott": 2717,
+    "Terracotta,</w>": 2718,
+    "Pits</w>": 2719,
+    "contain": 2720,
+    "containing</w>": 2721,
+    "life-": 2722,
+    "life-si": 2723,
+    "life-siz": 2724,
+    "life-size</w>": 2725,
+    "war": 2726,
+    "warri": 2727,
+    "warrior": 2728,
+    "warriors.</w>": 2729,
+    "4th-14th</w>": 2730,
+    "mur": 2731,
+    "mural</w>": 2732,
+    "49": 2733,
+    "492</w>": 2734,
+    "sculptures.</w>": 2735,
+    "7th-1": 2736,
+    "7th-17th</w>": 2737,
+    "monastic": 2738,
+    "monastic-": 2739,
+    "monastic-palace</w>": 2740,
+    "ram": 2741,
+    "ramm": 2742,
+    "rammed</w>": 2743,
+    "pav": 2744,
+    "pavil": 2745,
+    "pavilion": 2746,
+    "pavilions.</w>": 2747,
+    "5th-": 2748,
+    "5th-10th</w>": 2749,
+    "We": 2750,
+    "Wei</w>": 2751,
+    "Tang</w>": 2752,
+    "grot": 2753,
+    "grotto</w>": 2754,
+    "100": 2755,
+    "100,": 2756,
+    "100,000": 2757,
+    "100,000+</w>": 2758,
+    "2,": 2759,
+    "2,3": 2760,
+    "2,300</w>": 2761,
+    "Wor": 2762,
+    "Worship</w>": 2763,
+    "ceremonial</w>": 2764,
+    "Ceremonial</w>": 2765,
+    "alt": 2766,
+    "altar": 2767,
+    "altars.</w>": 2768,
+    "Cult": 2769,
+    "Cults</w>": 2770,
+    "Earth.</w>": 2771,
+    "sh": 2772,
+    "shr": 2773,
+    "shrin": 2774,
+    "shrines,</w>": 2775,
+    "gates.</w>": 2776,
+    "timb": 2777,
+    "timber.</w>": 2778,
+    "Walled</w>": 2779,
+    "Trav": 2780,
+    "Travert": 2781,
+    "Travertine</w>": 2782,
+    "limestone,</w>": 2783,
+    "conc": 2784,
+    "concret": 2785,
+    "concrete,</w>": 2786,
+    "Fl": 2787,
+    "Flav": 2788,
+    "Flavian</w>": 2789,
+    "Amp": 2790,
+    "Amphitheat": 2791,
+    "Amphitheatre.</w>": 2792,
+    "Cl": 2793,
+    "Classical</w>": 2794,
+    "Marb": 2795,
+    "Marble.</w>": 2796,
+    "acropolis": 2797,
+    "acropolis.</w>": 2798,
+    "3000": 2799,
+    "3000-": 2800,
+    "3000-20": 2801,
+    "3000-2000</w>": 2802,
+    "Brit": 2803,
+    "Britain</w>": 2804,
+    "Pre": 2805,
+    "Prehistor": 2806,
+    "Prehistoric.</w>": 2807,
+    "thic.</w>": 2808,
+    "Sarsen</w>": 2809,
+    "stone,</w>": 2810,
+    "blu": 2811,
+    "blueston": 2812,
+    "bluestone.</w>": 2813,
+    "Megalithic</w>": 2814,
+    "cir": 2815,
+    "circ": 2816,
+    "circle.</w>": 2817,
+    "Fran": 2818,
+    "Frank": 2819,
+    "Frankish</w>": 2820,
+    "Norman</w>": 2821,
+    "Christian.</w>": 2822,
+    "abbe": 2823,
+    "abbey</w>": 2824,
+    "Ab": 2825,
+    "Abbe": 2826,
+    "Abbey,</w>": 2827,
+    "clo": 2828,
+    "cloi": 2829,
+    "cloist": 2830,
+    "cloister,</w>": 2831,
+    "town.</w>": 2832,
+    "13th-14th</w>": 2833,
+    "Nas": 2834,
+    "Nasri": 2835,
+    "Nasrid</w>": 2836,
+    "Islamic.</w>": 2837,
+    "Mo": 2838,
+    "Moor": 2839,
+    "Moorish</w>": 2840,
+    "Stuc": 2841,
+    "Stucco,</w>": 2842,
+    "marble": 2843,
+    "marble,</w>": 2844,
+    "til": 2845,
+    "tiles.</w>": 2846,
+    "courtyards,</w>": 2847,
+    "fortress.</w>": 2848,
+    "6th-": 2849,
+    "6th-12th</w>": 2850,
+    "Ear": 2851,
+    "Early</w>": 2852,
+    "Christian</w>": 2853,
+    "monastic</w>": 2854,
+    "Churches,</w>": 2855,
+    "round</w>": 2856,
+    "towers,</w>": 2857,
+    "crosses.</w>": 2858,
+    "17th-1": 2859,
+    "17th-18th</w>": 2860,
+    "Monarch": 2861,
+    "Monarchy.</w>": 2862,
+    "Bar": 2863,
+    "Baro": 2864,
+    "Baroque</w>": 2865,
+    "stuc": 2866,
+    "stucco.</w>": 2867,
+    "gard": 2868,
+    "garden": 2869,
+    "gardens.</w>": 2870,
+    "12th-": 2871,
+    "12th-13th</w>": 2872,
+    "High": 2873,
+    "High</w>": 2874,
+    "cathedral.</w>": 2875,
+    "19th</w>": 2876,
+    "Bavar": 2877,
+    "Bavaria.</w>": 2878,
+    "Roman": 2879,
+    "Romanes": 2880,
+    "Romanesque</w>": 2881,
+    "Rev": 2882,
+    "Reviv": 2883,
+    "Revival</w>": 2884,
+    "cast": 2885,
+    "towers</w>": 2886,
+    "hall": 2887,
+    "halls.</w>": 2888,
+    "plast": 2889,
+    "plaster,</w>": 2890,
+    "Excav": 2891,
+    "Excavated</w>": 2892,
+    "11th\u201315th</w>": 2893,
+    "Dr": 2894,
+    "Dry": 2895,
+    "Dry-": 2896,
+    "Dry-stone</w>": 2897,
+    "En": 2898,
+    "Enclos": 2899,
+    "Enclosu": 2900,
+    "Enclosure.</w>": 2901,
+    "26th</w>": 2902,
+    "gran": 2903,
+    "granite.</w>": 2904,
+    "Pyramids,</w>": 2905,
+    "mor": 2906,
+    "mortu": 2907,
+    "mortuary</w>": 2908,
+    "12th\u201313th</w>": 2909,
+    "Zag": 2910,
+    "Zagwe</w>": 2911,
+    "Monolithic</w>": 2912,
+    "Volcanic</w>": 2913,
+    "11</w>": 2914,
+    "12th\u201316th</w>": 2915,
+    "Mali</w>": 2916,
+    "Sud": 2917,
+    "Sudan": 2918,
+    "Sudano": 2919,
+    "Sudano-S": 2920,
+    "Sudano-Sa": 2921,
+    "Sudano-Sahel": 2922,
+    "Sudano-Sahelian</w>": 2923,
+    "mu": 2924,
+    "mud</w>": 2925,
+    "Mu": 2926,
+    "Mud": 2927,
+    "Mudbrick,</w>": 2928,
+    "Mos": 2929,
+    "Mosqu": 2930,
+    "Mosques,</w>": 2931,
+    "libr": 2932,
+    "librari": 2933,
+    "libraries.</w>": 2934,
+    "Phoenici": 2935,
+    "Phoenician.</w>": 2936,
+    "Christianity</w>": 2937,
+    "bath": 2938,
+    "baths,</w>": 2939,
+    "4th\u201315th</w>": 2940,
+    "Aksum": 2941,
+    "Aksumite</w>": 2942,
+    "Ethiopi": 2943,
+    "Ethiopian.</w>": 2944,
+    "rock.</w>": 2945,
+    "120": 2946,
+    "120+</w>": 2947,
+    "rock-": 2948,
+    "rock-he": 2949,
+    "rock-hewn</w>": 2950,
+    "theatre,</w>": 2951,
+    "ba": 2952,
+    "basi": 2953,
+    "basil": 2954,
+    "basilic": 2955,
+    "basilica.</w>": 2956,
+    "13th\u201315th</w>": 2957,
+    "Id": 2958,
+    "Idri": 2959,
+    "Idrisi": 2960,
+    "Idrisid</w>": 2961,
+    "Marini": 2962,
+    "Marinid</w>": 2963,
+    "Meders": 2964,
+    "Medersa,</w>": 2965,
+    "souk": 2966,
+    "souks.</w>": 2967,
+    "9th\u201316th</w>": 2968,
+    "Swa": 2969,
+    "Swahil": 2970,
+    "Swahili</w>": 2971,
+    "Civilizat": 2972,
+    "Civilization.</w>": 2973,
+    "rag,</w>": 2974,
+    "lim": 2975,
+    "lime.</w>": 2976,
+    "9th\u201314th</w>": 2977,
+    "so": 2978,
+    "soil": 2979,
+    "soil.</w>": 2980,
+    "det": 2981,
+    "deta": 2982,
+    "include</w>": 2983,
+    "paintings</w>": 2984,
+    "cri": 2985,
+    "crib": 2986,
+    "cribed</w>": 2987,
+    "f</w>": 2988,
+    "architecture,</w>": 2989,
+    "no</w>": 2990,
+    "Sun": 2991,
+    "Sun-g": 2992,
+    "Sun-god</w>": 2993,
+    "architectur</w>": 2994,
+    "Bada": 2995,
+    "Badami</w>": 2996,
+    "9.": 2997,
+    "9.7</w>": 2998,
+    "Jhansi": 2999
+  },
+  "merges": [
+    [
+      ":",
+      "</w>"
+    ],
+    [
+      "e",
+      "</w>"
+    ],
+    [
+      ".",
+      "</w>"
+    ],
+    [
+      "o",
+      "n"
+    ],
+    [
+      "i",
+      "n"
+    ],
+    [
+      "e",
+      "r"
+    ],
+    [
+      "s",
+      "</w>"
+    ],
+    [
+      "t",
+      "h"
+    ],
+    [
+      "t",
+      "</w>"
+    ],
+    [
+      "a",
+      "n"
+    ],
+    [
+      "s",
+      "t"
+    ],
+    [
+      "i",
+      "on"
+    ],
+    [
+      "i",
+      "t"
+    ],
+    [
+      "r",
+      "e"
+    ],
+    [
+      ",",
+      "</w>"
+    ],
+    [
+      "a",
+      "t"
+    ],
+    [
+      "d",
+      "</w>"
+    ],
+    [
+      "a",
+      "r"
+    ],
+    [
+      "a",
+      "l"
+    ],
+    [
+      "i",
+      "s</w>"
+    ],
+    [
+      "ion",
+      ":</w>"
+    ],
+    [
+      "e",
+      "n"
+    ],
+    [
+      "th",
+      "e</w>"
+    ],
+    [
+      "o",
+      "f"
+    ],
+    [
+      "of",
+      "</w>"
+    ],
+    [
+      "t",
+      "u"
+    ],
+    [
+      "a",
+      "</w>"
+    ],
+    [
+      "o",
+      "u"
+    ],
+    [
+      "y",
+      "</w>"
+    ],
+    [
+      "er",
+      ":</w>"
+    ],
+    [
+      "o",
+      "m"
+    ],
+    [
+      "in",
+      "</w>"
+    ],
+    [
+      "o",
+      "r"
+    ],
+    [
+      "c",
+      "h"
+    ],
+    [
+      "A",
+      "n"
+    ],
+    [
+      "e",
+      "st"
+    ],
+    [
+      "Q",
+      "u"
+    ],
+    [
+      "e",
+      "d</w>"
+    ],
+    [
+      "e",
+      "l"
+    ],
+    [
+      "a",
+      "t</w>"
+    ],
+    [
+      "in",
+      "g"
+    ],
+    [
+      "c",
+      "tu"
+    ],
+    [
+      "s",
+      "w"
+    ],
+    [
+      "Qu",
+      "est"
+    ],
+    [
+      "Quest",
+      "ion:</w>"
+    ],
+    [
+      "An",
+      "sw"
+    ],
+    [
+      "Answ",
+      "er:</w>"
+    ],
+    [
+      "it",
+      "e"
+    ],
+    [
+      "a",
+      "b"
+    ],
+    [
+      "i",
+      "c"
+    ],
+    [
+      "m",
+      "p"
+    ],
+    [
+      "W",
+      "h"
+    ],
+    [
+      "?",
+      "</w>"
+    ],
+    [
+      "a",
+      ".</w>"
+    ],
+    [
+      "t",
+      "r"
+    ],
+    [
+      "e",
+      "s"
+    ],
+    [
+      "th",
+      "</w>"
+    ],
+    [
+      "C",
+      "h"
+    ],
+    [
+      "s",
+      "i"
+    ],
+    [
+      "i",
+      "l"
+    ],
+    [
+      "al",
+      "</w>"
+    ],
+    [
+      "o",
+      "</w>"
+    ],
+    [
+      "i",
+      "g"
+    ],
+    [
+      "e",
+      ".</w>"
+    ],
+    [
+      "ing",
+      "</w>"
+    ],
+    [
+      "an",
+      "</w>"
+    ],
+    [
+      "ch",
+      "ite"
+    ],
+    [
+      "chite",
+      "ctu"
+    ],
+    [
+      "at",
+      "ion:</w>"
+    ],
+    [
+      "o",
+      "c"
+    ],
+    [
+      "r",
+      "a"
+    ],
+    [
+      "C",
+      "E"
+    ],
+    [
+      "Wh",
+      "at</w>"
+    ],
+    [
+      "o",
+      "l"
+    ],
+    [
+      "c",
+      "en"
+    ],
+    [
+      "an",
+      "d</w>"
+    ],
+    [
+      "o",
+      "p"
+    ],
+    [
+      "mp",
+      "l"
+    ],
+    [
+      "T",
+      "h"
+    ],
+    [
+      "u",
+      "r"
+    ],
+    [
+      "tu",
+      "r"
+    ],
+    [
+      "re",
+      "s"
+    ],
+    [
+      "a",
+      "s"
+    ],
+    [
+      "ou",
+      "t</w>"
+    ],
+    [
+      "t",
+      ":</w>"
+    ],
+    [
+      "u",
+      "m"
+    ],
+    [
+      "e",
+      "mpl"
+    ],
+    [
+      "cen",
+      "tur"
+    ],
+    [
+      "e",
+      "s</w>"
+    ],
+    [
+      "d",
+      "i"
+    ],
+    [
+      "ab",
+      "out</w>"
+    ],
+    [
+      "r",
+      "e</w>"
+    ],
+    [
+      "y",
+      ":</w>"
+    ],
+    [
+      "re",
+      ":</w>"
+    ],
+    [
+      "0",
+      "</w>"
+    ],
+    [
+      "f",
+      "r"
+    ],
+    [
+      "ou",
+      "n"
+    ],
+    [
+      "centur",
+      "y</w>"
+    ],
+    [
+      "i",
+      "s"
+    ],
+    [
+      "i",
+      "z"
+    ],
+    [
+      "t",
+      "o</w>"
+    ],
+    [
+      "er",
+      "v"
+    ],
+    [
+      "a",
+      ",</w>"
+    ],
+    [
+      "a",
+      "v"
+    ],
+    [
+      "Th",
+      "e</w>"
+    ],
+    [
+      "o",
+      "d"
+    ],
+    [
+      "res",
+      "erv"
+    ],
+    [
+      "m",
+      "i"
+    ],
+    [
+      "l",
+      "</w>"
+    ],
+    [
+      "u",
+      "ctu"
+    ],
+    [
+      "n",
+      "</w>"
+    ],
+    [
+      "c",
+      "i"
+    ],
+    [
+      "ar",
+      "chitectu"
+    ],
+    [
+      "at",
+      "ed</w>"
+    ],
+    [
+      "CE",
+      "</w>"
+    ],
+    [
+      "u",
+      "l"
+    ],
+    [
+      "a",
+      "st"
+    ],
+    [
+      "S",
+      "tr"
+    ],
+    [
+      "Str",
+      "uctu"
+    ],
+    [
+      "P",
+      "reserv"
+    ],
+    [
+      "Preserv",
+      "ation:</w>"
+    ],
+    [
+      "i",
+      "</w>"
+    ],
+    [
+      "i",
+      "v"
+    ],
+    [
+      "a",
+      "c"
+    ],
+    [
+      "Ch",
+      "in"
+    ],
+    [
+      "p",
+      "e"
+    ],
+    [
+      "a",
+      "s</w>"
+    ],
+    [
+      "A",
+      "r"
+    ],
+    [
+      "l",
+      "e"
+    ],
+    [
+      "G",
+      "re"
+    ],
+    [
+      "a",
+      "d"
+    ],
+    [
+      "w",
+      "i"
+    ],
+    [
+      "u",
+      "s"
+    ],
+    [
+      "er",
+      "e</w>"
+    ],
+    [
+      "wi",
+      "th</w>"
+    ],
+    [
+      "on",
+      "t"
+    ],
+    [
+      "si",
+      "a.</w>"
+    ],
+    [
+      "u",
+      "n"
+    ],
+    [
+      "er",
+      "i"
+    ],
+    [
+      "m",
+      "e</w>"
+    ],
+    [
+      "fr",
+      "om"
+    ],
+    [
+      "S",
+      "ite"
+    ],
+    [
+      "A",
+      "sia.</w>"
+    ],
+    [
+      "empl",
+      "e</w>"
+    ],
+    [
+      "el",
+      "l</w>"
+    ],
+    [
+      "ion",
+      "</w>"
+    ],
+    [
+      "st",
+      "an"
+    ],
+    [
+      "mi",
+      "d"
+    ],
+    [
+      "y",
+      ".</w>"
+    ],
+    [
+      "e",
+      ",</w>"
+    ],
+    [
+      ")",
+      ".</w>"
+    ],
+    [
+      "Wh",
+      "ere</w>"
+    ],
+    [
+      "T",
+      "ell</w>"
+    ],
+    [
+      "ic",
+      "</w>"
+    ],
+    [
+      "er",
+      "</w>"
+    ],
+    [
+      "on",
+      "g"
+    ],
+    [
+      "p",
+      "o"
+    ],
+    [
+      "it",
+      "y</w>"
+    ],
+    [
+      "st",
+      "on"
+    ],
+    [
+      "I",
+      "n"
+    ],
+    [
+      "c",
+      "om"
+    ],
+    [
+      "h",
+      "i"
+    ],
+    [
+      "Gre",
+      "at</w>"
+    ],
+    [
+      "in",
+      "t</w>"
+    ],
+    [
+      "o",
+      "od"
+    ],
+    [
+      "a",
+      "g"
+    ],
+    [
+      "U",
+      "s"
+    ],
+    [
+      "Us",
+      "er:</w>"
+    ],
+    [
+      "A",
+      "s"
+    ],
+    [
+      "As",
+      "si"
+    ],
+    [
+      "Assi",
+      "stan"
+    ],
+    [
+      "Assistan",
+      "t:</w>"
+    ],
+    [
+      "th",
+      "e"
+    ],
+    [
+      "a",
+      "m"
+    ],
+    [
+      "es",
+      ".</w>"
+    ],
+    [
+      "C",
+      "oun"
+    ],
+    [
+      "op",
+      "ul"
+    ],
+    [
+      "en",
+      "t</w>"
+    ],
+    [
+      "architectu",
+      "re</w>"
+    ],
+    [
+      "en",
+      "t"
+    ],
+    [
+      "il",
+      "iz"
+    ],
+    [
+      "en",
+      "</w>"
+    ],
+    [
+      "al",
+      "ac"
+    ],
+    [
+      "po",
+      "int</w>"
+    ],
+    [
+      "In",
+      "di"
+    ],
+    [
+      "oc",
+      "k"
+    ],
+    [
+      "C",
+      "iv"
+    ],
+    [
+      "Civ",
+      "iliz"
+    ],
+    [
+      "an",
+      "d"
+    ],
+    [
+      ")",
+      "</w>"
+    ],
+    [
+      "i",
+      "m"
+    ],
+    [
+      "ont",
+      "in"
+    ],
+    [
+      "al",
+      ":</w>"
+    ],
+    [
+      "ig",
+      "h"
+    ],
+    [
+      "Site",
+      ":</w>"
+    ],
+    [
+      "Coun",
+      "tr"
+    ],
+    [
+      "Countr",
+      "y:</w>"
+    ],
+    [
+      "C",
+      "ontin"
+    ],
+    [
+      "Contin",
+      "en"
+    ],
+    [
+      "Continen",
+      "t:</w>"
+    ],
+    [
+      "E",
+      "ra"
+    ],
+    [
+      "Era",
+      ":</w>"
+    ],
+    [
+      "(",
+      "mid"
+    ],
+    [
+      "(mid",
+      "point</w>"
+    ],
+    [
+      "Civiliz",
+      "ation:</w>"
+    ],
+    [
+      "R",
+      "el"
+    ],
+    [
+      "Rel",
+      "ig"
+    ],
+    [
+      "Relig",
+      "ion:</w>"
+    ],
+    [
+      "Ar",
+      "chitectu"
+    ],
+    [
+      "Architectu",
+      "re:</w>"
+    ],
+    [
+      "M",
+      "at"
+    ],
+    [
+      "Mat",
+      "eri"
+    ],
+    [
+      "Materi",
+      "al:</w>"
+    ],
+    [
+      "Structu",
+      "re:</w>"
+    ],
+    [
+      "P",
+      "opul"
+    ],
+    [
+      "Popul",
+      "ar"
+    ],
+    [
+      "Popular",
+      "it"
+    ],
+    [
+      "Popularit",
+      "y:</w>"
+    ],
+    [
+      "o",
+      "t"
+    ],
+    [
+      "com",
+      "p"
+    ],
+    [
+      "b",
+      "el"
+    ],
+    [
+      "ood",
+      ".</w>"
+    ],
+    [
+      "a",
+      "e"
+    ],
+    [
+      "re",
+      "l"
+    ],
+    [
+      "s",
+      ".</w>"
+    ],
+    [
+      "0",
+      "0</w>"
+    ],
+    [
+      "ock",
+      "-"
+    ],
+    [
+      "re",
+      ".</w>"
+    ],
+    [
+      "comp",
+      "le"
+    ],
+    [
+      "ci",
+      "ent</w>"
+    ],
+    [
+      "o",
+      "s"
+    ],
+    [
+      "st",
+      "r"
+    ],
+    [
+      "f",
+      "or"
+    ],
+    [
+      "G",
+      "ood.</w>"
+    ],
+    [
+      "T",
+      "emple</w>"
+    ],
+    [
+      "N",
+      "ab"
+    ],
+    [
+      "Nab",
+      "at"
+    ],
+    [
+      "comple",
+      "x"
+    ],
+    [
+      "I",
+      "t</w>"
+    ],
+    [
+      "o",
+      "w"
+    ],
+    [
+      "a",
+      "p"
+    ],
+    [
+      "w",
+      "as</w>"
+    ],
+    [
+      "d",
+      "d"
+    ],
+    [
+      "as",
+      "s"
+    ],
+    [
+      "rel",
+      "ig"
+    ],
+    [
+      "igh",
+      ".</w>"
+    ],
+    [
+      "C",
+      "av"
+    ],
+    [
+      "a",
+      "in"
+    ],
+    [
+      "Nabat",
+      "ae"
+    ],
+    [
+      "CE",
+      ").</w>"
+    ],
+    [
+      "od",
+      "er"
+    ],
+    [
+      "ass",
+      "oc"
+    ],
+    [
+      "assoc",
+      "i"
+    ],
+    [
+      "t",
+      "y"
+    ],
+    [
+      "G",
+      "r"
+    ],
+    [
+      "A",
+      "D"
+    ],
+    [
+      "l",
+      "in"
+    ],
+    [
+      "e",
+      "t"
+    ],
+    [
+      "an",
+      ".</w>"
+    ],
+    [
+      "er",
+      "a</w>"
+    ],
+    [
+      "associ",
+      "ated</w>"
+    ],
+    [
+      "is",
+      "m"
+    ],
+    [
+      "om",
+      "b"
+    ],
+    [
+      "ar",
+      "t"
+    ],
+    [
+      "M",
+      "on"
+    ],
+    [
+      "at",
+      "e.</w>"
+    ],
+    [
+      "m",
+      "ar"
+    ],
+    [
+      "alac",
+      "e</w>"
+    ],
+    [
+      "S",
+      "t"
+    ],
+    [
+      "b",
+      "r"
+    ],
+    [
+      "M",
+      "oder"
+    ],
+    [
+      "e",
+      "um"
+    ],
+    [
+      "and",
+      "ston"
+    ],
+    [
+      "c",
+      "u"
+    ],
+    [
+      "im",
+      "b"
+    ],
+    [
+      "us",
+      "ing</w>"
+    ],
+    [
+      "from",
+      "?</w>"
+    ],
+    [
+      "bel",
+      "ong"
+    ],
+    [
+      "belong",
+      "s</w>"
+    ],
+    [
+      "er",
+      "a,</w>"
+    ],
+    [
+      "relig",
+      "ion</w>"
+    ],
+    [
+      "lin",
+      "k"
+    ],
+    [
+      "link",
+      "ed</w>"
+    ],
+    [
+      "Structu",
+      "re</w>"
+    ],
+    [
+      "ty",
+      "pe"
+    ],
+    [
+      "type",
+      ":</w>"
+    ],
+    [
+      "from",
+      "</w>"
+    ],
+    [
+      "y",
+      "n"
+    ],
+    [
+      "yn",
+      "ast"
+    ],
+    [
+      "Indi",
+      "a.</w>"
+    ],
+    [
+      "k",
+      "</w>"
+    ],
+    [
+      "oc",
+      "ated</w>"
+    ],
+    [
+      "ock-",
+      "cu"
+    ],
+    [
+      "a",
+      "mp"
+    ],
+    [
+      "Nabatae",
+      "an</w>"
+    ],
+    [
+      "um",
+      "ent"
+    ],
+    [
+      "A",
+      "fr"
+    ],
+    [
+      "Afr",
+      "ic"
+    ],
+    [
+      "al",
+      "l"
+    ],
+    [
+      "Moder",
+      "ate.</w>"
+    ],
+    [
+      "&",
+      "</w>"
+    ],
+    [
+      "d",
+      "om"
+    ],
+    [
+      "e",
+      "d"
+    ],
+    [
+      "m",
+      "on"
+    ],
+    [
+      "c",
+      "ity</w>"
+    ],
+    [
+      "h",
+      "a"
+    ],
+    [
+      "re",
+      "s</w>"
+    ],
+    [
+      "K",
+      "ing"
+    ],
+    [
+      "King",
+      "dom"
+    ],
+    [
+      "complex",
+      "</w>"
+    ],
+    [
+      "es",
+      "t</w>"
+    ],
+    [
+      "l",
+      "ocated</w>"
+    ],
+    [
+      "M",
+      "ing</w>"
+    ],
+    [
+      "S",
+      "andston"
+    ],
+    [
+      "B",
+      "u"
+    ],
+    [
+      "H",
+      "e"
+    ],
+    [
+      "ock-cu",
+      "t</w>"
+    ],
+    [
+      "1",
+      "2"
+    ],
+    [
+      "R",
+      "om"
+    ],
+    [
+      "t",
+      "a</w>"
+    ],
+    [
+      "Bu",
+      "dd"
+    ],
+    [
+      "S",
+      "um"
+    ],
+    [
+      "Sum",
+      "mar"
+    ],
+    [
+      "Summar",
+      "iz"
+    ],
+    [
+      "Summariz",
+      "e</w>"
+    ],
+    [
+      "s",
+      "pe"
+    ],
+    [
+      "spe",
+      "ci"
+    ],
+    [
+      "speci",
+      "al</w>"
+    ],
+    [
+      "it",
+      "?</w>"
+    ],
+    [
+      "w",
+      "an"
+    ],
+    [
+      "es",
+      ",</w>"
+    ],
+    [
+      "Chin",
+      "a.</w>"
+    ],
+    [
+      "ism",
+      ".</w>"
+    ],
+    [
+      "F",
+      "or"
+    ],
+    [
+      "A",
+      "l"
+    ],
+    [
+      "ic",
+      "al</w>"
+    ],
+    [
+      "architectu",
+      "re.</w>"
+    ],
+    [
+      "B",
+      "CE</w>"
+    ],
+    [
+      "str",
+      "ic"
+    ],
+    [
+      "e",
+      "v"
+    ],
+    [
+      "K",
+      "ha"
+    ],
+    [
+      "Afric",
+      "a.</w>"
+    ],
+    [
+      "on",
+      "</w>"
+    ],
+    [
+      "or",
+      "</w>"
+    ],
+    [
+      "s",
+      "ou"
+    ],
+    [
+      "An",
+      "cient</w>"
+    ],
+    [
+      "H",
+      "in"
+    ],
+    [
+      "a",
+      "k"
+    ],
+    [
+      "it",
+      "e</w>"
+    ],
+    [
+      "or",
+      "d"
+    ],
+    [
+      "ag",
+      "e</w>"
+    ],
+    [
+      "Hin",
+      "d"
+    ],
+    [
+      "Hind",
+      "u"
+    ],
+    [
+      "m",
+      "</w>"
+    ],
+    [
+      "y",
+      ",</w>"
+    ],
+    [
+      "o",
+      "g"
+    ],
+    [
+      "Budd",
+      "h"
+    ],
+    [
+      "al",
+      "i"
+    ],
+    [
+      "er",
+      "y</w>"
+    ],
+    [
+      "r",
+      "i"
+    ],
+    [
+      "p",
+      "</w>"
+    ],
+    [
+      "s",
+      ",</w>"
+    ],
+    [
+      "e",
+      "h"
+    ],
+    [
+      "St",
+      "on"
+    ],
+    [
+      "hi",
+      "st"
+    ],
+    [
+      "c",
+      "av"
+    ],
+    [
+      "el",
+      "l"
+    ],
+    [
+      "E",
+      "ur"
+    ],
+    [
+      "Eur",
+      "op"
+    ],
+    [
+      "Europ",
+      "e.</w>"
+    ],
+    [
+      "P",
+      "e"
+    ],
+    [
+      "s",
+      "t</w>"
+    ],
+    [
+      "5",
+      "0</w>"
+    ],
+    [
+      "or",
+      "l"
+    ],
+    [
+      "er",
+      "n</w>"
+    ],
+    [
+      "1",
+      "3"
+    ],
+    [
+      "t",
+      "empl"
+    ],
+    [
+      "ar",
+      "</w>"
+    ],
+    [
+      "H",
+      "igh.</w>"
+    ],
+    [
+      "-",
+      "</w>"
+    ],
+    [
+      "a",
+      "in</w>"
+    ],
+    [
+      "9",
+      "</w>"
+    ],
+    [
+      "E",
+      "mp"
+    ],
+    [
+      ";",
+      "</w>"
+    ],
+    [
+      "ur",
+      "ch"
+    ],
+    [
+      "e",
+      "c"
+    ],
+    [
+      "/",
+      "</w>"
+    ],
+    [
+      "Chin",
+      "es"
+    ],
+    [
+      "t",
+      "emple</w>"
+    ],
+    [
+      "di",
+      "stric"
+    ],
+    [
+      "t",
+      ",</w>"
+    ],
+    [
+      "b",
+      "u"
+    ],
+    [
+      "T",
+      "omb"
+    ],
+    [
+      "t",
+      "ow"
+    ],
+    [
+      "i",
+      "f"
+    ],
+    [
+      "Z",
+      "imb"
+    ],
+    [
+      "Zimb",
+      "ab"
+    ],
+    [
+      "Zimbab",
+      "w"
+    ],
+    [
+      "d",
+      "r"
+    ],
+    [
+      "b",
+      "y</w>"
+    ],
+    [
+      "Mon",
+      "ument"
+    ],
+    [
+      "Pe",
+      "tr"
+    ],
+    [
+      "Rom",
+      "an</w>"
+    ],
+    [
+      "an",
+      "cient</w>"
+    ],
+    [
+      "AD",
+      "</w>"
+    ],
+    [
+      "C",
+      "ity</w>"
+    ],
+    [
+      "il",
+      "l"
+    ],
+    [
+      "y",
+      "ra"
+    ],
+    [
+      "o",
+      "v"
+    ],
+    [
+      "w",
+      "a</w>"
+    ],
+    [
+      "c",
+      "r"
+    ],
+    [
+      "on",
+      "e</w>"
+    ],
+    [
+      "ynast",
+      "y.</w>"
+    ],
+    [
+      "u",
+      "in"
+    ],
+    [
+      "ar",
+      "th"
+    ],
+    [
+      "J",
+      "ord"
+    ],
+    [
+      "Sandston",
+      "e.</w>"
+    ],
+    [
+      "H",
+      "amp"
+    ],
+    [
+      "hist",
+      "or"
+    ],
+    [
+      "eum",
+      "</w>"
+    ],
+    [
+      "ou",
+      "s</w>"
+    ],
+    [
+      "q",
+      "u"
+    ],
+    [
+      "h",
+      "</w>"
+    ],
+    [
+      "l",
+      "y</w>"
+    ],
+    [
+      "Cav",
+      "es</w>"
+    ],
+    [
+      "th",
+      "-"
+    ],
+    [
+      "-",
+      "S"
+    ],
+    [
+      "p",
+      "alace</w>"
+    ],
+    [
+      "M",
+      "oun"
+    ],
+    [
+      "a",
+      "the"
+    ],
+    [
+      "athe",
+      "dr"
+    ],
+    [
+      "K",
+      "il"
+    ],
+    [
+      "Kil",
+      "wa</w>"
+    ],
+    [
+      "es",
+      "?</w>"
+    ],
+    [
+      "r",
+      "ock-cut</w>"
+    ],
+    [
+      "th",
+      "ic</w>"
+    ],
+    [
+      "e",
+      "?</w>"
+    ],
+    [
+      "ou",
+      "p</w>"
+    ],
+    [
+      "1",
+      "4"
+    ],
+    [
+      "bu",
+      "il"
+    ],
+    [
+      "an",
+      "c"
+    ],
+    [
+      "H",
+      "er"
+    ],
+    [
+      "p",
+      "t"
+    ],
+    [
+      "l",
+      "u"
+    ],
+    [
+      "k",
+      "il"
+    ],
+    [
+      "al",
+      "s"
+    ],
+    [
+      "als",
+      "o</w>"
+    ],
+    [
+      "s",
+      "?</w>"
+    ],
+    [
+      "S",
+      "tu"
+    ],
+    [
+      "S",
+      "ite</w>"
+    ],
+    [
+      "l",
+      "e</w>"
+    ],
+    [
+      "V",
+      "ery</w>"
+    ],
+    [
+      "h",
+      "igh.</w>"
+    ],
+    [
+      "s",
+      "l"
+    ],
+    [
+      "m",
+      "os"
+    ],
+    [
+      "it",
+      "y.</w>"
+    ],
+    [
+      "p",
+      "r"
+    ],
+    [
+      "ar",
+      "e</w>"
+    ],
+    [
+      "M",
+      "a"
+    ],
+    [
+      "at",
+      "e</w>"
+    ],
+    [
+      "kil",
+      "om"
+    ],
+    [
+      "ch",
+      "</w>"
+    ],
+    [
+      "M",
+      "in"
+    ],
+    [
+      "st",
+      "e"
+    ],
+    [
+      "for",
+      "</w>"
+    ],
+    [
+      "Ch",
+      "ri"
+    ],
+    [
+      "Chri",
+      "st"
+    ],
+    [
+      "Christ",
+      "i"
+    ],
+    [
+      "Ch",
+      "art"
+    ],
+    [
+      "an",
+      "g"
+    ],
+    [
+      "it",
+      "age</w>"
+    ],
+    [
+      "I",
+      "sl"
+    ],
+    [
+      "us",
+      "ol"
+    ],
+    [
+      "N",
+      "e"
+    ],
+    [
+      "T",
+      "empl"
+    ],
+    [
+      "kilom",
+      "et"
+    ],
+    [
+      "kilomet",
+      "res</w>"
+    ],
+    [
+      "i",
+      "t</w>"
+    ],
+    [
+      "b",
+      "</w>"
+    ],
+    [
+      "u",
+      "b"
+    ],
+    [
+      "U",
+      "N"
+    ],
+    [
+      "UN",
+      "E"
+    ],
+    [
+      "UNE",
+      "S"
+    ],
+    [
+      "UNES",
+      "C"
+    ],
+    [
+      "UNESC",
+      "O"
+    ],
+    [
+      "UNESCO",
+      "</w>"
+    ],
+    [
+      "W",
+      "orl"
+    ],
+    [
+      "Worl",
+      "d</w>"
+    ],
+    [
+      "Her",
+      "itage</w>"
+    ],
+    [
+      "as",
+      "t</w>"
+    ],
+    [
+      "Isl",
+      "am"
+    ],
+    [
+      "Ch",
+      "ol"
+    ],
+    [
+      "Stu",
+      "p"
+    ],
+    [
+      "P",
+      "alace</w>"
+    ],
+    [
+      "He",
+      "av"
+    ],
+    [
+      "A",
+      "th"
+    ],
+    [
+      "l",
+      "ar"
+    ],
+    [
+      "lar",
+      "g"
+    ],
+    [
+      "mi",
+      ")</w>"
+    ],
+    [
+      "Ch",
+      "it"
+    ],
+    [
+      "Chit",
+      "t"
+    ],
+    [
+      "Chin",
+      "a,</w>"
+    ],
+    [
+      "a",
+      "o</w>"
+    ],
+    [
+      "1",
+      "st</w>"
+    ],
+    [
+      "C",
+      "ol"
+    ],
+    [
+      "c",
+      "ul"
+    ],
+    [
+      "g",
+      "ar"
+    ],
+    [
+      "Hamp",
+      "i</w>"
+    ],
+    [
+      "ic",
+      "k"
+    ],
+    [
+      "E",
+      "x"
+    ],
+    [
+      "c",
+      "on"
+    ],
+    [
+      "el",
+      "</w>"
+    ],
+    [
+      "op",
+      "ol"
+    ],
+    [
+      "h",
+      "am"
+    ],
+    [
+      "ch",
+      "wan"
+    ],
+    [
+      "1",
+      "0"
+    ],
+    [
+      "S",
+      "u"
+    ],
+    [
+      "n",
+      "or"
+    ],
+    [
+      "Qu",
+      "t"
+    ],
+    [
+      "1",
+      "9"
+    ],
+    [
+      "ot",
+      "t"
+    ],
+    [
+      "os",
+      "s"
+    ],
+    [
+      "P",
+      "alac"
+    ],
+    [
+      "Kingdom",
+      ".</w>"
+    ],
+    [
+      "the",
+      "at"
+    ],
+    [
+      "t",
+      ".</w>"
+    ],
+    [
+      "u",
+      "ra"
+    ],
+    [
+      "for",
+      "t"
+    ],
+    [
+      "it",
+      "s</w>"
+    ],
+    [
+      "F",
+      "r"
+    ],
+    [
+      "l",
+      "on"
+    ],
+    [
+      "Ch",
+      "urch"
+    ],
+    [
+      "w",
+      "n</w>"
+    ],
+    [
+      "F",
+      "e"
+    ],
+    [
+      "Fe",
+      "z"
+    ],
+    [
+      "c",
+      "o"
+    ],
+    [
+      "7",
+      "th</w>"
+    ],
+    [
+      "Gr",
+      "oup</w>"
+    ],
+    [
+      "Chol",
+      "a</w>"
+    ],
+    [
+      "er",
+      "ra"
+    ],
+    [
+      "erra",
+      "c"
+    ],
+    [
+      "i",
+      "si"
+    ],
+    [
+      "6",
+      "th</w>"
+    ],
+    [
+      "Indi",
+      "a,</w>"
+    ],
+    [
+      "is",
+      "t</w>"
+    ],
+    [
+      "in",
+      "c"
+    ],
+    [
+      "ur",
+      "b"
+    ],
+    [
+      "t",
+      "omb"
+    ],
+    [
+      "n",
+      "ow"
+    ],
+    [
+      "Ex",
+      "c"
+    ],
+    [
+      "Exc",
+      "ell"
+    ],
+    [
+      "Excell",
+      "ent"
+    ],
+    [
+      "Excellent",
+      ".</w>"
+    ],
+    [
+      "D",
+      "ynasty.</w>"
+    ],
+    [
+      "est",
+      "on"
+    ],
+    [
+      "i",
+      "an</w>"
+    ],
+    [
+      "Christi",
+      "an"
+    ],
+    [
+      "ain",
+      "t"
+    ],
+    [
+      "n",
+      "o"
+    ],
+    [
+      "3",
+      "</w>"
+    ],
+    [
+      "Kingdom",
+      "</w>"
+    ],
+    [
+      "mp",
+      "eri"
+    ],
+    [
+      "mperi",
+      "al</w>"
+    ],
+    [
+      "Gr",
+      "ott"
+    ],
+    [
+      "Grott",
+      "o"
+    ],
+    [
+      "Ath",
+      "en"
+    ],
+    [
+      "n",
+      "br"
+    ],
+    [
+      "nbr",
+      "un"
+    ],
+    [
+      "nbrun",
+      "n</w>"
+    ],
+    [
+      "C",
+      "arth"
+    ],
+    [
+      "M",
+      "ed"
+    ],
+    [
+      "i",
+      "es</w>"
+    ],
+    [
+      "th",
+      "ern</w>"
+    ],
+    [
+      "Emp",
+      "i"
+    ],
+    [
+      "Qut",
+      "b</w>"
+    ],
+    [
+      "c",
+      "ap"
+    ],
+    [
+      "e",
+      "g"
+    ],
+    [
+      "T",
+      "a"
+    ],
+    [
+      "opol",
+      "is</w>"
+    ],
+    [
+      "C",
+      "ast"
+    ],
+    [
+      "Zimbabw",
+      "e</w>"
+    ],
+    [
+      "R",
+      "ock-"
+    ],
+    [
+      "Rock-",
+      "He"
+    ],
+    [
+      "Rock-He",
+      "wn</w>"
+    ],
+    [
+      "Petr",
+      "a"
+    ],
+    [
+      "an",
+      ",</w>"
+    ],
+    [
+      "A",
+      "j"
+    ],
+    [
+      "Aj",
+      "an"
+    ],
+    [
+      "Ajan",
+      "ta</w>"
+    ],
+    [
+      "K",
+      "on"
+    ],
+    [
+      "Kon",
+      "ar"
+    ],
+    [
+      "Konar",
+      "k</w>"
+    ],
+    [
+      "Su",
+      "n</w>"
+    ],
+    [
+      "P",
+      "at"
+    ],
+    [
+      "Pat",
+      "t"
+    ],
+    [
+      "Patt",
+      "ad"
+    ],
+    [
+      "Pattad",
+      "ak"
+    ],
+    [
+      "ar",
+      "a</w>"
+    ],
+    [
+      "a",
+      "y"
+    ],
+    [
+      "urb",
+      "an</w>"
+    ],
+    [
+      "S",
+      "an"
+    ],
+    [
+      "San",
+      "ch"
+    ],
+    [
+      "Sanch",
+      "i</w>"
+    ],
+    [
+      "Kha",
+      "z"
+    ],
+    [
+      "Khaz",
+      "n"
+    ],
+    [
+      "errac",
+      "ot"
+    ],
+    [
+      "erracot",
+      "ta</w>"
+    ],
+    [
+      "b",
+      "ur"
+    ],
+    [
+      "i",
+      "a"
+    ],
+    [
+      "L",
+      "ong"
+    ],
+    [
+      "Long",
+      "m"
+    ],
+    [
+      "Longm",
+      "en</w>"
+    ],
+    [
+      "P",
+      "ing"
+    ],
+    [
+      "Ping",
+      "y"
+    ],
+    [
+      "e",
+      "di"
+    ],
+    [
+      "edi",
+      "ev"
+    ],
+    [
+      "C",
+      "lon"
+    ],
+    [
+      "Clon",
+      "m"
+    ],
+    [
+      "Clonm",
+      "ac"
+    ],
+    [
+      "Clonmac",
+      "no"
+    ],
+    [
+      "P",
+      "om"
+    ],
+    [
+      "Pom",
+      "pe"
+    ],
+    [
+      "Pompe",
+      "i"
+    ],
+    [
+      "K",
+      "isi"
+    ],
+    [
+      "Kisi",
+      "wan"
+    ],
+    [
+      "AD",
+      ").</w>"
+    ],
+    [
+      "larg",
+      "est</w>"
+    ],
+    [
+      "u",
+      "k"
+    ],
+    [
+      "l",
+      "e.</w>"
+    ],
+    [
+      "mos",
+      "t</w>"
+    ],
+    [
+      "t",
+      "er</w>"
+    ],
+    [
+      "cap",
+      "it"
+    ],
+    [
+      "ion",
+      "s</w>"
+    ],
+    [
+      "W",
+      "al"
+    ],
+    [
+      "Wal",
+      "l</w>"
+    ],
+    [
+      "Moun",
+      "t</w>"
+    ],
+    [
+      "A",
+      "cr"
+    ],
+    [
+      "Acr",
+      "opolis</w>"
+    ],
+    [
+      "P",
+      "yra"
+    ],
+    [
+      "Pyra",
+      "mid"
+    ],
+    [
+      "M",
+      "ap"
+    ],
+    [
+      "Map",
+      "un"
+    ],
+    [
+      "Mapun",
+      "g"
+    ],
+    [
+      "Mapung",
+      "ub"
+    ],
+    [
+      "Mapungub",
+      "w"
+    ],
+    [
+      "5",
+      "</w>"
+    ],
+    [
+      "templ",
+      "es</w>"
+    ],
+    [
+      "Kha",
+      "j"
+    ],
+    [
+      "p",
+      "ol"
+    ],
+    [
+      "5",
+      "th</w>"
+    ],
+    [
+      "Ston",
+      "e,</w>"
+    ],
+    [
+      "im",
+      "eston"
+    ],
+    [
+      "M",
+      "i"
+    ],
+    [
+      "ediev",
+      "al</w>"
+    ],
+    [
+      "Christian",
+      "ity.</w>"
+    ],
+    [
+      "i",
+      "a.</w>"
+    ],
+    [
+      "th",
+      "\u2013"
+    ],
+    [
+      "g",
+      "r"
+    ],
+    [
+      "i",
+      "r"
+    ],
+    [
+      "distric",
+      "t</w>"
+    ],
+    [
+      "6",
+      "</w>"
+    ],
+    [
+      "Th",
+      "e"
+    ],
+    [
+      "Chitt",
+      "or"
+    ],
+    [
+      "Chittor",
+      "gar"
+    ],
+    [
+      "at",
+      "ion</w>"
+    ],
+    [
+      "m",
+      "a"
+    ],
+    [
+      "Fr",
+      "anc"
+    ],
+    [
+      "Chart",
+      "res</w>"
+    ],
+    [
+      "C",
+      "athedr"
+    ],
+    [
+      "er",
+      "s</w>"
+    ],
+    [
+      "h",
+      "o</w>"
+    ],
+    [
+      "W",
+      "ing"
+    ],
+    [
+      "Wing",
+      "ed</w>"
+    ],
+    [
+      "o",
+      "y"
+    ],
+    [
+      "hi",
+      "theat"
+    ],
+    [
+      "5",
+      "00</w>"
+    ],
+    [
+      "Chines",
+      "e</w>"
+    ],
+    [
+      "Col",
+      "oss"
+    ],
+    [
+      "Mi",
+      "ch"
+    ],
+    [
+      "Ne",
+      "us"
+    ],
+    [
+      "Neus",
+      "chwan"
+    ],
+    [
+      "Neuschwan",
+      "ste"
+    ],
+    [
+      "G",
+      "iz"
+    ],
+    [
+      "mon",
+      "ument"
+    ],
+    [
+      "e",
+      "t</w>"
+    ],
+    [
+      "ong",
+      "</w>"
+    ],
+    [
+      "4",
+      "</w>"
+    ],
+    [
+      "0",
+      "0"
+    ],
+    [
+      "R",
+      "uin"
+    ],
+    [
+      "Q",
+      "ing</w>"
+    ],
+    [
+      "Chin",
+      "a</w>"
+    ],
+    [
+      "M",
+      "og"
+    ],
+    [
+      "Mog",
+      "ao</w>"
+    ],
+    [
+      "E",
+      "g"
+    ],
+    [
+      "Eg",
+      "y"
+    ],
+    [
+      "in",
+      "a</w>"
+    ],
+    [
+      "a",
+      "re"
+    ],
+    [
+      "E",
+      "l"
+    ],
+    [
+      "El",
+      "l"
+    ],
+    [
+      "Ell",
+      "or"
+    ],
+    [
+      "Ellor",
+      "a</w>"
+    ],
+    [
+      "al",
+      ".</w>"
+    ],
+    [
+      "all",
+      "ed</w>"
+    ],
+    [
+      "Khaj",
+      "ura"
+    ],
+    [
+      "Khajura",
+      "ho</w>"
+    ],
+    [
+      "R",
+      "a"
+    ],
+    [
+      "L",
+      "iv"
+    ],
+    [
+      "Liv",
+      "ing</w>"
+    ],
+    [
+      "ston",
+      "e</w>"
+    ],
+    [
+      "Al",
+      "-"
+    ],
+    [
+      "Al-",
+      "Khazn"
+    ],
+    [
+      "Al-Khazn",
+      "eh"
+    ],
+    [
+      "For",
+      "b"
+    ],
+    [
+      "Forb",
+      "i"
+    ],
+    [
+      "Forbi",
+      "dd"
+    ],
+    [
+      "Forbidd",
+      "en</w>"
+    ],
+    [
+      "C",
+      "on"
+    ],
+    [
+      "T",
+      "erracotta</w>"
+    ],
+    [
+      "Ar",
+      "m"
+    ],
+    [
+      "S",
+      "h"
+    ],
+    [
+      "i",
+      "ed</w>"
+    ],
+    [
+      "P",
+      "ot"
+    ],
+    [
+      "Pot",
+      "al"
+    ],
+    [
+      "Potal",
+      "a</w>"
+    ],
+    [
+      "i",
+      "b"
+    ],
+    [
+      "X",
+      "ia"
+    ],
+    [
+      "Xia",
+      "ol"
+    ],
+    [
+      "Xiaol",
+      "ing</w>"
+    ],
+    [
+      "Ston",
+      "eh"
+    ],
+    [
+      "Stoneh",
+      "en"
+    ],
+    [
+      "Stonehen",
+      "g"
+    ],
+    [
+      "M",
+      "ont"
+    ],
+    [
+      "Mont",
+      "-S"
+    ],
+    [
+      "Mont-S",
+      "aint"
+    ],
+    [
+      "Mont-Saint",
+      "-"
+    ],
+    [
+      "Mont-Saint-",
+      "Mich"
+    ],
+    [
+      "Al",
+      "ham"
+    ],
+    [
+      "Clonmacno",
+      "is"
+    ],
+    [
+      "Clonmacnois",
+      "e</w>"
+    ],
+    [
+      "S",
+      "ch"
+    ],
+    [
+      "Neuschwanste",
+      "in</w>"
+    ],
+    [
+      "Pompei",
+      "i</w>"
+    ],
+    [
+      "T",
+      "imb"
+    ],
+    [
+      "Timb",
+      "uk"
+    ],
+    [
+      "Timbuk",
+      "tu"
+    ],
+    [
+      "Jord",
+      "an,</w>"
+    ],
+    [
+      "R",
+      "ock-cut</w>"
+    ],
+    [
+      "Site",
+      ".</w>"
+    ],
+    [
+      "d",
+      "ed</w>"
+    ],
+    [
+      "h",
+      "e"
+    ],
+    [
+      "14",
+      "th</w>"
+    ],
+    [
+      "Empi",
+      "re.</w>"
+    ],
+    [
+      "br",
+      "ick"
+    ],
+    [
+      "cen",
+      "tr"
+    ],
+    [
+      "p",
+      "re"
+    ],
+    [
+      "Min",
+      "ar"
+    ],
+    [
+      "buil",
+      "t</w>"
+    ],
+    [
+      "capit",
+      "al</w>"
+    ],
+    [
+      "a",
+      "?</w>"
+    ],
+    [
+      "un",
+      "er"
+    ],
+    [
+      "if",
+      "ic"
+    ],
+    [
+      "ou",
+      "r"
+    ],
+    [
+      "Ma",
+      "usol"
+    ],
+    [
+      "Heav",
+      "en</w>"
+    ],
+    [
+      "ast",
+      "ic</w>"
+    ],
+    [
+      "ast",
+      "ern</w>"
+    ],
+    [
+      "2",
+      "</w>"
+    ],
+    [
+      "i",
+      "j"
+    ],
+    [
+      "ar",
+      "y</w>"
+    ],
+    [
+      "s",
+      "hi"
+    ],
+    [
+      "m",
+      "an"
+    ],
+    [
+      "oun",
+      "d</w>"
+    ],
+    [
+      "L",
+      "ali"
+    ],
+    [
+      "Lali",
+      "bel"
+    ],
+    [
+      "Lalibel",
+      "a</w>"
+    ],
+    [
+      "sou",
+      "th</w>"
+    ],
+    [
+      "ing",
+      "s</w>"
+    ],
+    [
+      "d",
+      "es"
+    ],
+    [
+      "ol",
+      "i"
+    ],
+    [
+      "d",
+      "ing</w>"
+    ],
+    [
+      "Hindu",
+      "</w>"
+    ],
+    [
+      "c",
+      "t"
+    ],
+    [
+      "Monument",
+      "s</w>"
+    ],
+    [
+      "h",
+      "il"
+    ],
+    [
+      "1",
+      "1"
+    ],
+    [
+      "th",
+      "er</w>"
+    ],
+    [
+      "amp",
+      "hitheat"
+    ],
+    [
+      "Emp",
+      "er"
+    ],
+    [
+      "I",
+      "t"
+    ],
+    [
+      "Jord",
+      "an.</w>"
+    ],
+    [
+      "Cav",
+      "es.</w>"
+    ],
+    [
+      "cav",
+      "e</w>"
+    ],
+    [
+      "re",
+      ",</w>"
+    ],
+    [
+      "ag",
+      "ara</w>"
+    ],
+    [
+      "S",
+      "ou"
+    ],
+    [
+      "oy",
+      "al</w>"
+    ],
+    [
+      "L",
+      "e"
+    ],
+    [
+      "i",
+      "ous</w>"
+    ],
+    [
+      "oli",
+      "thic</w>"
+    ],
+    [
+      "r",
+      "uin"
+    ],
+    [
+      "p",
+      "reserv"
+    ],
+    [
+      "Gr",
+      "an"
+    ],
+    [
+      "Chittorgar",
+      "h</w>"
+    ],
+    [
+      "f",
+      "am"
+    ],
+    [
+      "'",
+      "s</w>"
+    ],
+    [
+      "si",
+      "d"
+    ],
+    [
+      "It",
+      "al"
+    ],
+    [
+      "Med",
+      "ina</w>"
+    ],
+    [
+      "(",
+      "Petra"
+    ],
+    [
+      "Buddh",
+      "ism.</w>"
+    ],
+    [
+      "8",
+      "0</w>"
+    ],
+    [
+      "the",
+      "ast</w>"
+    ],
+    [
+      "y",
+      "a</w>"
+    ],
+    [
+      "ar",
+      "v"
+    ],
+    [
+      "ston",
+      "e.</w>"
+    ],
+    [
+      "or",
+      "t"
+    ],
+    [
+      "2",
+      "0"
+    ],
+    [
+      "a",
+      "o"
+    ],
+    [
+      "1",
+      "5th</w>"
+    ],
+    [
+      "ood",
+      ",</w>"
+    ],
+    [
+      "S",
+      "p"
+    ],
+    [
+      "Mon",
+      "astic</w>"
+    ],
+    [
+      "Sch",
+      "\u00f6"
+    ],
+    [
+      "Sch\u00f6",
+      "nbrunn</w>"
+    ],
+    [
+      "Ar",
+      "ch"
+    ],
+    [
+      "Arch",
+      "ae"
+    ],
+    [
+      "Archae",
+      "ol"
+    ],
+    [
+      "Archaeol",
+      "og"
+    ],
+    [
+      "Archaeolog",
+      "ical</w>"
+    ],
+    [
+      "Pyramid",
+      "s</w>"
+    ],
+    [
+      "d",
+      "er</w>"
+    ],
+    [
+      "Cav",
+      "es?</w>"
+    ],
+    [
+      "Buddh",
+      "ist</w>"
+    ],
+    [
+      "st",
+      "ate</w>"
+    ],
+    [
+      "ism",
+      "</w>"
+    ],
+    [
+      "distric",
+      "t,</w>"
+    ],
+    [
+      "d",
+      "ynast"
+    ],
+    [
+      "k",
+      "m</w>"
+    ],
+    [
+      "c",
+      "it"
+    ],
+    [
+      "c",
+      "e</w>"
+    ],
+    [
+      "er",
+      ",</w>"
+    ],
+    [
+      "ain",
+      "s</w>"
+    ],
+    [
+      "k",
+      "now"
+    ],
+    [
+      "w",
+      "ere</w>"
+    ],
+    [
+      "Stup",
+      "a</w>"
+    ],
+    [
+      "e",
+      ":</w>"
+    ],
+    [
+      "ou",
+      "s"
+    ],
+    [
+      "Ta",
+      "i"
+    ],
+    [
+      "ar",
+      "ound</w>"
+    ],
+    [
+      "p",
+      "yra"
+    ],
+    [
+      "pyra",
+      "mi"
+    ],
+    [
+      "pyrami",
+      "d</w>"
+    ],
+    [
+      "er",
+      ".</w>"
+    ],
+    [
+      "r",
+      "o"
+    ],
+    [
+      "ay",
+      "an"
+    ],
+    [
+      "ab",
+      "</w>"
+    ],
+    [
+      "p",
+      "l"
+    ],
+    [
+      "tow",
+      "n"
+    ],
+    [
+      "ad",
+      "e</w>"
+    ],
+    [
+      "Pingy",
+      "ao"
+    ],
+    [
+      "Alham",
+      "br"
+    ],
+    [
+      "E",
+      "th"
+    ],
+    [
+      "Eth",
+      "i"
+    ],
+    [
+      "Ethi",
+      "op"
+    ],
+    [
+      "ch",
+      "urch"
+    ],
+    [
+      "Le",
+      "pt"
+    ],
+    [
+      "Lept",
+      "is</w>"
+    ],
+    [
+      "M",
+      "ag"
+    ],
+    [
+      "Mag",
+      "n"
+    ],
+    [
+      "s",
+      "cul"
+    ],
+    [
+      "scul",
+      "p"
+    ],
+    [
+      "w",
+      "orl"
+    ],
+    [
+      "worl",
+      "d"
+    ],
+    [
+      "e",
+      "x"
+    ],
+    [
+      "P",
+      "ur"
+    ],
+    [
+      "w",
+      "hi"
+    ],
+    [
+      "whi",
+      "ch</w>"
+    ],
+    [
+      "ur",
+      "</w>"
+    ],
+    [
+      "l",
+      "i"
+    ],
+    [
+      "Islam",
+      "ic</w>"
+    ],
+    [
+      "e",
+      "en</w>"
+    ],
+    [
+      "as",
+      "on"
+    ],
+    [
+      "know",
+      "n</w>"
+    ],
+    [
+      "Ch",
+      "ap"
+    ],
+    [
+      "Tomb",
+      "</w>"
+    ],
+    [
+      "R",
+      "oyal</w>"
+    ],
+    [
+      "The",
+      "at"
+    ],
+    [
+      "histor",
+      "ical</w>"
+    ],
+    [
+      "I",
+      "mperial</w>"
+    ],
+    [
+      "Chines",
+      "e:</w>"
+    ],
+    [
+      "i",
+      "mp"
+    ],
+    [
+      "f",
+      "f"
+    ],
+    [
+      "m",
+      "un"
+    ],
+    [
+      "13",
+      "th</w>"
+    ],
+    [
+      "re",
+      "g"
+    ],
+    [
+      "tur",
+      "al</w>"
+    ],
+    [
+      "cav",
+      "es.</w>"
+    ],
+    [
+      "8",
+      "th</w>"
+    ],
+    [
+      "arv",
+      "ed</w>"
+    ],
+    [
+      "ul",
+      "t"
+    ],
+    [
+      "c",
+      "ont"
+    ],
+    [
+      "B",
+      "CE).</w>"
+    ],
+    [
+      "str",
+      "uctu"
+    ],
+    [
+      "Con",
+      "f"
+    ],
+    [
+      "Conf",
+      "u"
+    ],
+    [
+      "Confu",
+      "ci"
+    ],
+    [
+      "eum",
+      ".</w>"
+    ],
+    [
+      "ic",
+      "i"
+    ],
+    [
+      "M",
+      "edieval</w>"
+    ],
+    [
+      "c",
+      "athedr"
+    ],
+    [
+      "T",
+      "un"
+    ],
+    [
+      "il",
+      "</w>"
+    ],
+    [
+      "2",
+      "n"
+    ],
+    [
+      "2n",
+      "d</w>"
+    ],
+    [
+      "relig",
+      "ious</w>"
+    ],
+    [
+      "w",
+      "or"
+    ],
+    [
+      "Hindu",
+      "ism.</w>"
+    ],
+    [
+      "ite",
+      ".</w>"
+    ],
+    [
+      "(",
+      "2"
+    ],
+    [
+      "ra",
+      "v"
+    ],
+    [
+      "templ",
+      "es.</w>"
+    ],
+    [
+      "R",
+      "iv"
+    ],
+    [
+      "1",
+      "6th</w>"
+    ],
+    [
+      "an",
+      "n"
+    ],
+    [
+      "Islam",
+      ".</w>"
+    ],
+    [
+      "mar",
+      "b"
+    ],
+    [
+      "ason",
+      "r"
+    ],
+    [
+      "B",
+      "r"
+    ],
+    [
+      "fam",
+      "ous</w>"
+    ],
+    [
+      "D",
+      "i"
+    ],
+    [
+      "F",
+      "uner"
+    ],
+    [
+      "2",
+      "0</w>"
+    ],
+    [
+      "ar",
+      "t</w>"
+    ],
+    [
+      "h",
+      "is</w>"
+    ],
+    [
+      "Grotto",
+      "es</w>"
+    ],
+    [
+      "T",
+      "ib"
+    ],
+    [
+      "L",
+      "imeston"
+    ],
+    [
+      "s",
+      "e"
+    ],
+    [
+      "b",
+      "e"
+    ],
+    [
+      ",",
+      "0"
+    ],
+    [
+      "pol",
+      "y"
+    ],
+    [
+      "poly",
+      "the"
+    ],
+    [
+      "polythe",
+      "ism.</w>"
+    ],
+    [
+      "amphitheat",
+      "re</w>"
+    ],
+    [
+      "c",
+      "l"
+    ],
+    [
+      "a",
+      "u"
+    ],
+    [
+      "Carth",
+      "age</w>"
+    ],
+    [
+      "Kisiwan",
+      "i</w>"
+    ],
+    [
+      "Nabatae",
+      "an.</w>"
+    ],
+    [
+      "U",
+      "n"
+    ],
+    [
+      "all",
+      "y</w>"
+    ],
+    [
+      "Hindu",
+      "ism</w>"
+    ],
+    [
+      "Sou",
+      "th</w>"
+    ],
+    [
+      "lu",
+      "e</w>"
+    ],
+    [
+      "e",
+      "m"
+    ],
+    [
+      "o",
+      "s</w>"
+    ],
+    [
+      "it",
+      "ed</w>"
+    ],
+    [
+      "in",
+      "i"
+    ],
+    [
+      "ma",
+      "usol"
+    ],
+    [
+      "n",
+      "e"
+    ],
+    [
+      "ne",
+      "ar</w>"
+    ],
+    [
+      "Moun",
+      "t"
+    ],
+    [
+      "Cast",
+      "le</w>"
+    ],
+    [
+      "M",
+      "ali"
+    ],
+    [
+      "Carth",
+      "ag"
+    ],
+    [
+      "T",
+      "an"
+    ],
+    [
+      "Tan",
+      "z"
+    ],
+    [
+      "Tanz",
+      "an"
+    ],
+    [
+      "th",
+      "at</w>"
+    ],
+    [
+      "t",
+      "ed</w>"
+    ],
+    [
+      "e",
+      "ar"
+    ],
+    [
+      "f",
+      "ir"
+    ],
+    [
+      "fir",
+      "st</w>"
+    ],
+    [
+      "un",
+      "der</w>"
+    ],
+    [
+      "d",
+      "at"
+    ],
+    [
+      "J",
+      "ain</w>"
+    ],
+    [
+      "s",
+      "ev"
+    ],
+    [
+      "c",
+      ".</w>"
+    ],
+    [
+      "d",
+      "ynasty.</w>"
+    ],
+    [
+      "Sandston",
+      "e</w>"
+    ],
+    [
+      "dynast",
+      "y</w>"
+    ],
+    [
+      "nor",
+      "thern</w>"
+    ],
+    [
+      "n",
+      "at"
+    ],
+    [
+      "w",
+      "est</w>"
+    ],
+    [
+      "Monument",
+      "s.</w>"
+    ],
+    [
+      "ite",
+      ",</w>"
+    ],
+    [
+      "re",
+      "d</w>"
+    ],
+    [
+      "i",
+      ",</w>"
+    ],
+    [
+      "centr",
+      "al</w>"
+    ],
+    [
+      "D",
+      "el"
+    ],
+    [
+      "o",
+      "ther</w>"
+    ],
+    [
+      "op",
+      "</w>"
+    ],
+    [
+      "e",
+      "an</w>"
+    ],
+    [
+      "s",
+      "it"
+    ],
+    [
+      "sit",
+      "u"
+    ],
+    [
+      "situ",
+      "ated</w>"
+    ],
+    [
+      "m",
+      "ain</w>"
+    ],
+    [
+      "and",
+      ",</w>"
+    ],
+    [
+      "buil",
+      "d"
+    ],
+    [
+      "build",
+      "ings</w>"
+    ],
+    [
+      "cen",
+      "ter</w>"
+    ],
+    [
+      "en",
+      "ce</w>"
+    ],
+    [
+      "Emper",
+      "or"
+    ],
+    [
+      "n",
+      "g"
+    ],
+    [
+      "as",
+      ",</w>"
+    ],
+    [
+      "Palac",
+      "e.</w>"
+    ],
+    [
+      "M",
+      "ar"
+    ],
+    [
+      "f",
+      "oun"
+    ],
+    [
+      "o",
+      "o"
+    ],
+    [
+      "i",
+      "al</w>"
+    ],
+    [
+      "se",
+      "at</w>"
+    ],
+    [
+      "Gre",
+      "ec"
+    ],
+    [
+      "Gre",
+      "e"
+    ],
+    [
+      "ic",
+      ".</w>"
+    ],
+    [
+      "histor",
+      "ic</w>"
+    ],
+    [
+      "m",
+      ")</w>"
+    ],
+    [
+      "Franc",
+      "e.</w>"
+    ],
+    [
+      "I",
+      "rel"
+    ],
+    [
+      "s",
+      "ite</w>"
+    ],
+    [
+      "w",
+      "h"
+    ],
+    [
+      "Egy",
+      "pt"
+    ],
+    [
+      "F",
+      "es</w>"
+    ],
+    [
+      "c",
+      "ol"
+    ],
+    [
+      "on",
+      "n"
+    ],
+    [
+      "onn",
+      "ad"
+    ],
+    [
+      "are",
+      "a</w>"
+    ],
+    [
+      "re",
+      "t"
+    ],
+    [
+      "Indi",
+      "an</w>"
+    ],
+    [
+      "as",
+      "h"
+    ],
+    [
+      "en",
+      "d</w>"
+    ],
+    [
+      "2",
+      "3</w>"
+    ],
+    [
+      "er",
+      "s,</w>"
+    ],
+    [
+      "V",
+      "ij"
+    ],
+    [
+      "Vij",
+      "ayan"
+    ],
+    [
+      "Vijayan",
+      "agara</w>"
+    ],
+    [
+      "it",
+      "y"
+    ],
+    [
+      "h",
+      "ill"
+    ],
+    [
+      "hil",
+      "l</w>"
+    ],
+    [
+      "L",
+      "ion"
+    ],
+    [
+      "B",
+      "lue</w>"
+    ],
+    [
+      "P",
+      "ill"
+    ],
+    [
+      "Pill",
+      "ar</w>"
+    ],
+    [
+      "O",
+      "bel"
+    ],
+    [
+      "Obel",
+      "is"
+    ],
+    [
+      "Obelis",
+      "k</w>"
+    ],
+    [
+      "B",
+      "ab</w>"
+    ],
+    [
+      "as",
+      "-S"
+    ],
+    [
+      "as-S",
+      "i"
+    ],
+    [
+      "as-Si",
+      "q"
+    ],
+    [
+      "T",
+      "em"
+    ],
+    [
+      "Tem",
+      "en"
+    ],
+    [
+      "Temen",
+      "os</w>"
+    ],
+    [
+      "F",
+      "ac"
+    ],
+    [
+      "Fac",
+      "ade</w>"
+    ],
+    [
+      "st",
+      "at"
+    ],
+    [
+      "i",
+      "mperial</w>"
+    ],
+    [
+      "Arm",
+      "y</w>"
+    ],
+    [
+      "A",
+      "u"
+    ],
+    [
+      "Heav",
+      "en"
+    ],
+    [
+      "Mont-Saint-Mich",
+      "el"
+    ],
+    [
+      "N",
+      "or"
+    ],
+    [
+      "s",
+      "um"
+    ],
+    [
+      "G",
+      "er"
+    ],
+    [
+      "Ger",
+      "man"
+    ],
+    [
+      "T",
+      "ig"
+    ],
+    [
+      "Tig",
+      "ra"
+    ],
+    [
+      "Tigra",
+      "y</w>"
+    ],
+    [
+      "Fez",
+      ",</w>"
+    ],
+    [
+      "Kisiwan",
+      "i"
+    ],
+    [
+      "inc",
+      "lu"
+    ],
+    [
+      "ex",
+      "a"
+    ],
+    [
+      "exa",
+      "mpl"
+    ],
+    [
+      "ar",
+      "i"
+    ],
+    [
+      "h",
+      "a</w>"
+    ],
+    [
+      "p",
+      "in"
+    ],
+    [
+      "al",
+      "?</w>"
+    ],
+    [
+      "th",
+      "is</w>"
+    ],
+    [
+      "Monument",
+      "s?</w>"
+    ],
+    [
+      "M",
+      "ad"
+    ],
+    [
+      "Mad",
+      "h"
+    ],
+    [
+      "Madh",
+      "ya</w>"
+    ],
+    [
+      "P",
+      "ra"
+    ],
+    [
+      "Pra",
+      "des"
+    ],
+    [
+      "1",
+      "7"
+    ],
+    [
+      "b",
+      "et"
+    ],
+    [
+      "bet",
+      "w"
+    ],
+    [
+      "cont",
+      "ains</w>"
+    ],
+    [
+      "e",
+      "w"
+    ],
+    [
+      "p",
+      "res"
+    ],
+    [
+      "d",
+      "a"
+    ],
+    [
+      "da",
+      "y</w>"
+    ],
+    [
+      "ov",
+      "er</w>"
+    ],
+    [
+      "f",
+      "t"
+    ],
+    [
+      "t",
+      "w"
+    ],
+    [
+      "tw",
+      "o</w>"
+    ],
+    [
+      "Ar",
+      "ab"
+    ],
+    [
+      "structu",
+      "re</w>"
+    ],
+    [
+      "D",
+      "ynast"
+    ],
+    [
+      "fort",
+      "ific"
+    ],
+    [
+      "ec",
+      "t"
+    ],
+    [
+      "re",
+      "sid"
+    ],
+    [
+      "now",
+      "</w>"
+    ],
+    [
+      "in",
+      ":</w>"
+    ],
+    [
+      "mausol",
+      "eum</w>"
+    ],
+    [
+      "pr",
+      "ov"
+    ],
+    [
+      "prov",
+      "inc"
+    ],
+    [
+      "provinc",
+      "e,</w>"
+    ],
+    [
+      "mon",
+      "ast"
+    ],
+    [
+      "Palac",
+      "e?</w>"
+    ],
+    [
+      "R",
+      "eg"
+    ],
+    [
+      "eum",
+      "?</w>"
+    ],
+    [
+      "anc",
+      "e</w>"
+    ],
+    [
+      "h",
+      "igh"
+    ],
+    [
+      "imp",
+      "ort"
+    ],
+    [
+      "iv",
+      "e</w>"
+    ],
+    [
+      "world",
+      ".</w>"
+    ],
+    [
+      "eg",
+      "ali"
+    ],
+    [
+      "Site",
+      "?</w>"
+    ],
+    [
+      "Cathedr",
+      "al</w>"
+    ],
+    [
+      "Chart",
+      "res"
+    ],
+    [
+      "reg",
+      "ion</w>"
+    ],
+    [
+      "ol",
+      "c"
+    ],
+    [
+      "olc",
+      "an"
+    ],
+    [
+      "olcan",
+      "ic</w>"
+    ],
+    [
+      "M",
+      "as"
+    ],
+    [
+      "Giz",
+      "a</w>"
+    ],
+    [
+      "Mali",
+      ",</w>"
+    ],
+    [
+      ",0",
+      "00</w>"
+    ],
+    [
+      "s",
+      "u"
+    ],
+    [
+      "J",
+      "ain"
+    ],
+    [
+      "Jain",
+      "ism.</w>"
+    ],
+    [
+      "D",
+      "rav"
+    ],
+    [
+      "Drav",
+      "i"
+    ],
+    [
+      "Dravi",
+      "di"
+    ],
+    [
+      "Dravidi",
+      "an</w>"
+    ],
+    [
+      "brick",
+      ",</w>"
+    ],
+    [
+      "ruin",
+      "s,</w>"
+    ],
+    [
+      "1",
+      "19"
+    ],
+    [
+      "In",
+      "d"
+    ],
+    [
+      "mos",
+      "qu"
+    ],
+    [
+      "m",
+      "asonr"
+    ],
+    [
+      "For",
+      "t</w>"
+    ],
+    [
+      "complex",
+      ".</w>"
+    ],
+    [
+      "ab",
+      "ov"
+    ],
+    [
+      "abov",
+      "e</w>"
+    ],
+    [
+      "3",
+      "r"
+    ],
+    [
+      "3r",
+      "d</w>"
+    ],
+    [
+      "Br",
+      "ick"
+    ],
+    [
+      "Brick",
+      ",</w>"
+    ],
+    [
+      "Funer",
+      "ar"
+    ],
+    [
+      "Funerar",
+      "y.</w>"
+    ],
+    [
+      "r",
+      "ock"
+    ],
+    [
+      "brick",
+      ".</w>"
+    ],
+    [
+      "Confuci",
+      "an.</w>"
+    ],
+    [
+      "W",
+      "ood,</w>"
+    ],
+    [
+      "arth",
+      ".</w>"
+    ],
+    [
+      "u",
+      "ang"
+    ],
+    [
+      "if",
+      "ied</w>"
+    ],
+    [
+      "l",
+      "imeston"
+    ],
+    [
+      "G",
+      "o"
+    ],
+    [
+      "Go",
+      "thic</w>"
+    ],
+    [
+      "co",
+      ".</w>"
+    ],
+    [
+      "Zimbabw",
+      "e.</w>"
+    ],
+    [
+      "th\u2013",
+      "15th</w>"
+    ],
+    [
+      "l",
+      "ies</w>"
+    ],
+    [
+      "architectu",
+      "r"
+    ],
+    [
+      "monument",
+      "s</w>"
+    ],
+    [
+      "er",
+      "al</w>"
+    ],
+    [
+      "h",
+      "av"
+    ],
+    [
+      "12",
+      "50</w>"
+    ],
+    [
+      "ur",
+      "y"
+    ],
+    [
+      "Pattadak",
+      "al</w>"
+    ],
+    [
+      ")",
+      ",</w>"
+    ],
+    [
+      "c",
+      "alled</w>"
+    ],
+    [
+      "Prades",
+      "h"
+    ],
+    [
+      "qu",
+      "art"
+    ],
+    [
+      "Ruin",
+      "s</w>"
+    ],
+    [
+      "tow",
+      "n</w>"
+    ],
+    [
+      "s",
+      "andston"
+    ],
+    [
+      "Min",
+      "ar</w>"
+    ],
+    [
+      "betw",
+      "een</w>"
+    ],
+    [
+      "t",
+      "s</w>"
+    ],
+    [
+      "p",
+      "s</w>"
+    ],
+    [
+      "Templ",
+      "es</w>"
+    ],
+    [
+      "L",
+      "ions</w>"
+    ],
+    [
+      "tomb",
+      ".</w>"
+    ],
+    [
+      "e",
+      "p"
+    ],
+    [
+      "c",
+      "our"
+    ],
+    [
+      "us",
+      "eum</w>"
+    ],
+    [
+      "pin",
+      "y"
+    ],
+    [
+      "piny",
+      "in:</w>"
+    ],
+    [
+      "for",
+      "m"
+    ],
+    [
+      "a",
+      "me</w>"
+    ],
+    [
+      "tr",
+      "ad"
+    ],
+    [
+      "it",
+      "ion"
+    ],
+    [
+      "13",
+      "</w>"
+    ],
+    [
+      "er",
+      "e"
+    ],
+    [
+      "ere",
+      "mon"
+    ],
+    [
+      "Ta",
+      "i</w>"
+    ],
+    [
+      "si",
+      "g"
+    ],
+    [
+      "sig",
+      "n"
+    ],
+    [
+      "sign",
+      "ific"
+    ],
+    [
+      "Pingy",
+      "ao</w>"
+    ],
+    [
+      "t",
+      "i"
+    ],
+    [
+      "Coloss",
+      "eum</w>"
+    ],
+    [
+      "Ital",
+      "y,</w>"
+    ],
+    [
+      "str",
+      "u"
+    ],
+    [
+      "Gree",
+      "k</w>"
+    ],
+    [
+      "Athen",
+      "s</w>"
+    ],
+    [
+      "Stoneheng",
+      "e</w>"
+    ],
+    [
+      "is",
+      "h</w>"
+    ],
+    [
+      "m",
+      "edieval</w>"
+    ],
+    [
+      "Mont-Saint-Mich",
+      "el</w>"
+    ],
+    [
+      "Franc",
+      "e,</w>"
+    ],
+    [
+      "is",
+      "l"
+    ],
+    [
+      "is",
+      "h"
+    ],
+    [
+      "Alhambr",
+      "a</w>"
+    ],
+    [
+      "S",
+      "ch</w>"
+    ],
+    [
+      "p",
+      "or"
+    ],
+    [
+      "Egy",
+      "p"
+    ],
+    [
+      "Ethiop",
+      "ia.</w>"
+    ],
+    [
+      "Church",
+      "es?</w>"
+    ],
+    [
+      "an",
+      "t</w>"
+    ],
+    [
+      "Timbuktu",
+      "</w>"
+    ],
+    [
+      "M",
+      "or"
+    ],
+    [
+      "Mor",
+      "oc"
+    ],
+    [
+      "ham",
+      "le"
+    ],
+    [
+      "Mapungubw",
+      "e.</w>"
+    ],
+    [
+      "Mapungubw",
+      "e</w>"
+    ],
+    [
+      "cav",
+      "es</w>"
+    ],
+    [
+      "sculp",
+      "tu"
+    ],
+    [
+      "mon",
+      "olithic</w>"
+    ],
+    [
+      "ed",
+      ".</w>"
+    ],
+    [
+      "sou",
+      "theast</w>"
+    ],
+    [
+      "Ra",
+      "j"
+    ],
+    [
+      "u",
+      "es</w>"
+    ],
+    [
+      "ac",
+      "r"
+    ],
+    [
+      "Q",
+      "in</w>"
+    ],
+    [
+      "Mausol",
+      "eum</w>"
+    ],
+    [
+      "shi",
+      "p</w>"
+    ],
+    [
+      "egali",
+      "thic</w>"
+    ],
+    [
+      "Sp",
+      "ain"
+    ],
+    [
+      "s",
+      "et"
+    ],
+    [
+      "set",
+      "t"
+    ],
+    [
+      "church",
+      "es.</w>"
+    ],
+    [
+      "Col",
+      "onnad"
+    ],
+    [
+      "Colonnad",
+      "ed</w>"
+    ],
+    [
+      "St",
+      "re"
+    ],
+    [
+      "Stre",
+      "et</w>"
+    ],
+    [
+      "c",
+      "ov"
+    ],
+    [
+      "r",
+      "ul"
+    ],
+    [
+      "k",
+      "ing</w>"
+    ],
+    [
+      "A",
+      "ret"
+    ],
+    [
+      "Aret",
+      "as</w>"
+    ],
+    [
+      "I",
+      "V"
+    ],
+    [
+      "g",
+      "g"
+    ],
+    [
+      "dat",
+      "ing</w>"
+    ],
+    [
+      "ec",
+      "on"
+    ],
+    [
+      "A",
+      "ur"
+    ],
+    [
+      "Aur",
+      "ang"
+    ],
+    [
+      "Aurang",
+      "ab"
+    ],
+    [
+      "ad",
+      ",</w>"
+    ],
+    [
+      "complex",
+      "es</w>"
+    ],
+    [
+      "sev",
+      "eral</w>"
+    ],
+    [
+      "th-",
+      "century</w>"
+    ],
+    [
+      "nor",
+      "theast</w>"
+    ],
+    [
+      "Pur",
+      "i</w>"
+    ],
+    [
+      "di",
+      "s"
+    ],
+    [
+      "D",
+      "ed"
+    ],
+    [
+      "Ded",
+      "ic"
+    ],
+    [
+      "Dedic",
+      "ated</w>"
+    ],
+    [
+      "o",
+      "d</w>"
+    ],
+    [
+      "K",
+      "ar"
+    ],
+    [
+      "Kar",
+      "nat"
+    ],
+    [
+      "Karnat",
+      "ak"
+    ],
+    [
+      "Karnatak",
+      "a,</w>"
+    ],
+    [
+      "Riv",
+      "er</w>"
+    ],
+    [
+      "k",
+      "o"
+    ],
+    [
+      "10",
+      "00</w>"
+    ],
+    [
+      "gr",
+      "oup</w>"
+    ],
+    [
+      "Ch",
+      "h"
+    ],
+    [
+      "Chh",
+      "at"
+    ],
+    [
+      "Chhat",
+      "ar"
+    ],
+    [
+      "Chhatar",
+      "p"
+    ],
+    [
+      "Chhatarp",
+      "ur</w>"
+    ],
+    [
+      "Pradesh",
+      ",</w>"
+    ],
+    [
+      "The",
+      "y</w>"
+    ],
+    [
+      "4",
+      "6</w>"
+    ],
+    [
+      "he",
+      "ad"
+    ],
+    [
+      "head",
+      "quart"
+    ],
+    [
+      "ar",
+      ".</w>"
+    ],
+    [
+      "marb",
+      "le.</w>"
+    ],
+    [
+      "Minar",
+      ",</w>"
+    ],
+    [
+      "s",
+      "p"
+    ],
+    [
+      "ic",
+      "t"
+    ],
+    [
+      "d",
+      "ur"
+    ],
+    [
+      "dur",
+      "ing</w>"
+    ],
+    [
+      "complex",
+      ",</w>"
+    ],
+    [
+      "for",
+      "t</w>"
+    ],
+    [
+      "a",
+      "i</w>"
+    ],
+    [
+      "l",
+      "it"
+    ],
+    [
+      "11",
+      "th</w>"
+    ],
+    [
+      "th",
+      "re"
+    ],
+    [
+      "thre",
+      "e</w>"
+    ],
+    [
+      "an",
+      "j"
+    ],
+    [
+      "ad",
+      "ded</w>"
+    ],
+    [
+      "4",
+      ".</w>"
+    ],
+    [
+      "Ra",
+      "is"
+    ],
+    [
+      "Rais",
+      "en</w>"
+    ],
+    [
+      "Di",
+      "stric"
+    ],
+    [
+      "Distric",
+      "t</w>"
+    ],
+    [
+      "Nabat",
+      "ean</w>"
+    ],
+    [
+      "Petr",
+      "a,</w>"
+    ],
+    [
+      "Petra",
+      "'s</w>"
+    ],
+    [
+      "con",
+      "si"
+    ],
+    [
+      "consi",
+      "st"
+    ],
+    [
+      "Tomb",
+      "s?</w>"
+    ],
+    [
+      "Tomb",
+      "s</w>"
+    ],
+    [
+      "g",
+      "at"
+    ],
+    [
+      "Rom",
+      "an.</w>"
+    ],
+    [
+      "fortific",
+      "at"
+    ],
+    [
+      "os",
+      "s</w>"
+    ],
+    [
+      "b",
+      "ord"
+    ],
+    [
+      "pr",
+      "ot"
+    ],
+    [
+      "prot",
+      "ect"
+    ],
+    [
+      "B",
+      "C"
+    ],
+    [
+      "B",
+      "e"
+    ],
+    [
+      "Be",
+      "ij"
+    ],
+    [
+      "Beij",
+      "ing"
+    ],
+    [
+      "resid",
+      "ence</w>"
+    ],
+    [
+      "m",
+      "ini"
+    ],
+    [
+      "ct",
+      "ion</w>"
+    ],
+    [
+      "uang",
+      ",</w>"
+    ],
+    [
+      "e",
+      "mp"
+    ],
+    [
+      "emp",
+      "er"
+    ],
+    [
+      "emper",
+      "or</w>"
+    ],
+    [
+      "for",
+      "m</w>"
+    ],
+    [
+      "bur",
+      "ied</w>"
+    ],
+    [
+      "Th",
+      "ous"
+    ],
+    [
+      "Thous",
+      "and</w>"
+    ],
+    [
+      "Buddh",
+      "a</w>"
+    ],
+    [
+      "2",
+      "5</w>"
+    ],
+    [
+      "cul",
+      "tural</w>"
+    ],
+    [
+      "Tib",
+      "et"
+    ],
+    [
+      "t",
+      "on"
+    ],
+    [
+      "t",
+      "il</w>"
+    ],
+    [
+      "sou",
+      "thern</w>"
+    ],
+    [
+      "f",
+      "oo"
+    ],
+    [
+      "e",
+      "ast</w>"
+    ],
+    [
+      "centr",
+      "e</w>"
+    ],
+    [
+      "le",
+      "g"
+    ],
+    [
+      "'",
+      ")</w>"
+    ],
+    [
+      "om",
+      "e</w>"
+    ],
+    [
+      "p",
+      "art</w>"
+    ],
+    [
+      "at",
+      "er</w>"
+    ],
+    [
+      "nor",
+      "th</w>"
+    ],
+    [
+      "w",
+      "alled</w>"
+    ],
+    [
+      "w",
+      "ell"
+    ],
+    [
+      "well",
+      "-"
+    ],
+    [
+      "well-",
+      "preserv"
+    ],
+    [
+      "well-preserv",
+      "ed</w>"
+    ],
+    [
+      "on",
+      "ly</w>"
+    ],
+    [
+      "s",
+      "ur"
+    ],
+    [
+      "Ital",
+      "y.</w>"
+    ],
+    [
+      "stan",
+      "ding</w>"
+    ],
+    [
+      "r",
+      "om"
+    ],
+    [
+      "rom",
+      "an"
+    ],
+    [
+      "roman",
+      "iz"
+    ],
+    [
+      "romaniz",
+      "ed"
+    ],
+    [
+      "romanized",
+      ":</w>"
+    ],
+    [
+      "m",
+      "il"
+    ],
+    [
+      "f",
+      "e"
+    ],
+    [
+      "fe",
+      "et</w>"
+    ],
+    [
+      "com",
+      "mun"
+    ],
+    [
+      "F",
+      "re"
+    ],
+    [
+      "Fre",
+      "n"
+    ],
+    [
+      "Coun",
+      "t"
+    ],
+    [
+      "Count",
+      "y</w>"
+    ],
+    [
+      "foun",
+      "ded</w>"
+    ],
+    [
+      "i",
+      "a,</w>"
+    ],
+    [
+      "cathedr",
+      "al</w>"
+    ],
+    [
+      "wh",
+      "at</w>"
+    ],
+    [
+      "e",
+      "astern</w>"
+    ],
+    [
+      "al",
+      "ong</w>"
+    ],
+    [
+      "Church",
+      "es.</w>"
+    ],
+    [
+      "Church",
+      "es</w>"
+    ],
+    [
+      "p",
+      "opul"
+    ],
+    [
+      "J",
+      "di"
+    ],
+    [
+      "Budd",
+      "hist"
+    ],
+    [
+      "3",
+      "0</w>"
+    ],
+    [
+      "ash",
+      "tr"
+    ],
+    [
+      "er",
+      "s"
+    ],
+    [
+      "E",
+      "astern</w>"
+    ],
+    [
+      "G",
+      "ang"
+    ],
+    [
+      "Gang",
+      "a</w>"
+    ],
+    [
+      "2",
+      "4</w>"
+    ],
+    [
+      "7",
+      "</w>"
+    ],
+    [
+      "tr",
+      "i"
+    ],
+    [
+      "st",
+      "y"
+    ],
+    [
+      "c",
+      "arved</w>"
+    ],
+    [
+      "M",
+      "al"
+    ],
+    [
+      "5",
+      "0"
+    ],
+    [
+      "cit",
+      "y,</w>"
+    ],
+    [
+      "templ",
+      "es,</w>"
+    ],
+    [
+      "1",
+      "</w>"
+    ],
+    [
+      "Del",
+      "h"
+    ],
+    [
+      "Delh",
+      "i</w>"
+    ],
+    [
+      "ult",
+      "an"
+    ],
+    [
+      "o",
+      "-"
+    ],
+    [
+      "M",
+      "ew"
+    ],
+    [
+      "Mew",
+      "ar</w>"
+    ],
+    [
+      "masonr",
+      "y.</w>"
+    ],
+    [
+      "e",
+      "-"
+    ],
+    [
+      "Chap",
+      "el"
+    ],
+    [
+      "Chap",
+      "el</w>"
+    ],
+    [
+      "eri",
+      "es</w>"
+    ],
+    [
+      "p",
+      "le</w>"
+    ],
+    [
+      "e",
+      "f"
+    ],
+    [
+      "ion",
+      ".</w>"
+    ],
+    [
+      "s",
+      "y"
+    ],
+    [
+      "sy",
+      "ste"
+    ],
+    [
+      "syste",
+      "m</w>"
+    ],
+    [
+      "w",
+      "all"
+    ],
+    [
+      "l",
+      "if"
+    ],
+    [
+      "it",
+      "y,</w>"
+    ],
+    [
+      "cr",
+      "oss"
+    ],
+    [
+      "monast",
+      "ery</w>"
+    ],
+    [
+      "ang",
+      "</w>"
+    ],
+    [
+      "stat",
+      "ues</w>"
+    ],
+    [
+      "Mount",
+      "ain</w>"
+    ],
+    [
+      "er",
+      "t"
+    ],
+    [
+      "in",
+      "e</w>"
+    ],
+    [
+      "ar",
+      "s"
+    ],
+    [
+      "ars",
+      "en</w>"
+    ],
+    [
+      "Nor",
+      "m"
+    ],
+    [
+      "fort",
+      "res"
+    ],
+    [
+      "9",
+      "th</w>"
+    ],
+    [
+      "cl",
+      "os"
+    ],
+    [
+      "Au",
+      "str"
+    ],
+    [
+      "H",
+      "ab"
+    ],
+    [
+      "Hab",
+      "s"
+    ],
+    [
+      "Habs",
+      "bur"
+    ],
+    [
+      "Habsbur",
+      "g"
+    ],
+    [
+      "Habsburg",
+      "</w>"
+    ],
+    [
+      "a",
+      "th"
+    ],
+    [
+      "Cast",
+      "le.</w>"
+    ],
+    [
+      "B",
+      "av"
+    ],
+    [
+      "v",
+      "olcanic</w>"
+    ],
+    [
+      "P",
+      "h"
+    ],
+    [
+      "Ph",
+      "o"
+    ],
+    [
+      "Pho",
+      "en"
+    ],
+    [
+      "L",
+      "ib"
+    ],
+    [
+      ",",
+      "5"
+    ],
+    [
+      "comple",
+      "ted</w>"
+    ],
+    [
+      "architectur",
+      "al</w>"
+    ],
+    [
+      "B",
+      "as"
+    ],
+    [
+      "Bas",
+      "al"
+    ],
+    [
+      "Basal",
+      "t.</w>"
+    ],
+    [
+      "a",
+      "d</w>"
+    ],
+    [
+      "ast",
+      "er"
+    ],
+    [
+      "10",
+      "th</w>"
+    ],
+    [
+      "6",
+      "00</w>"
+    ],
+    [
+      "inclu",
+      "ding</w>"
+    ],
+    [
+      "preserv",
+      "ed.</w>"
+    ],
+    [
+      "D",
+      "ev"
+    ],
+    [
+      "N",
+      "agara</w>"
+    ],
+    [
+      "L",
+      "ocated</w>"
+    ],
+    [
+      "1",
+      "0</w>"
+    ],
+    [
+      "(",
+      "5"
+    ],
+    [
+      "centur",
+      "ies</w>"
+    ],
+    [
+      "Gran",
+      "ite,</w>"
+    ],
+    [
+      "tomb",
+      "s.</w>"
+    ],
+    [
+      "m",
+      "o"
+    ],
+    [
+      "mo",
+      "st"
+    ],
+    [
+      "most",
+      "ly</w>"
+    ],
+    [
+      "12",
+      "20"
+    ],
+    [
+      "Raj",
+      "p"
+    ],
+    [
+      "Rajp",
+      "u"
+    ],
+    [
+      "Rajpu",
+      "t</w>"
+    ],
+    [
+      "For",
+      "t,</w>"
+    ],
+    [
+      "pres",
+      "ent"
+    ],
+    [
+      "present",
+      "-"
+    ],
+    [
+      "present-",
+      "day</w>"
+    ],
+    [
+      "ft",
+      ")</w>"
+    ],
+    [
+      "di",
+      "</w>"
+    ],
+    [
+      "12",
+      "th</w>"
+    ],
+    [
+      "Gran",
+      "ite.</w>"
+    ],
+    [
+      "des",
+      "ig"
+    ],
+    [
+      "desig",
+      "n"
+    ],
+    [
+      "Ma",
+      "ury"
+    ],
+    [
+      "st",
+      "u"
+    ],
+    [
+      "town",
+      ",</w>"
+    ],
+    [
+      "larg",
+      "e</w>"
+    ],
+    [
+      "Tomb",
+      "s.</w>"
+    ],
+    [
+      "ar",
+      "ch"
+    ],
+    [
+      "Theat",
+      "re.</w>"
+    ],
+    [
+      "C",
+      "arved</w>"
+    ],
+    [
+      "Al-Khazneh",
+      "</w>"
+    ],
+    [
+      "Arab",
+      "ic"
+    ],
+    [
+      "Arabic",
+      ":</w>"
+    ],
+    [
+      "Dynast",
+      "i"
+    ],
+    [
+      "Dynasti",
+      "es.</w>"
+    ],
+    [
+      "tow",
+      "er"
+    ],
+    [
+      "tower",
+      "s.</w>"
+    ],
+    [
+      "si",
+      "an</w>"
+    ],
+    [
+      "cour",
+      "ty"
+    ],
+    [
+      "courty",
+      "ar"
+    ],
+    [
+      "courtyar",
+      "d"
+    ],
+    [
+      "C",
+      "ity"
+    ],
+    [
+      "ad",
+      "mini"
+    ],
+    [
+      "er",
+      "ed</w>"
+    ],
+    [
+      "An",
+      "c"
+    ],
+    [
+      "Anc",
+      "est"
+    ],
+    [
+      "Ancest",
+      "or</w>"
+    ],
+    [
+      "wor",
+      "shi"
+    ],
+    [
+      "worshi",
+      "p"
+    ],
+    [
+      "worship",
+      ".</w>"
+    ],
+    [
+      "e",
+      "arth.</w>"
+    ],
+    [
+      "f",
+      "uner"
+    ],
+    [
+      "th-",
+      "14th</w>"
+    ],
+    [
+      "Chines",
+      "e.</w>"
+    ],
+    [
+      "th-",
+      "1"
+    ],
+    [
+      "Tibet",
+      "an</w>"
+    ],
+    [
+      "w",
+      "ood,</w>"
+    ],
+    [
+      "m",
+      "useum</w>"
+    ],
+    [
+      "Reg",
+      "ion</w>"
+    ],
+    [
+      "D",
+      "al"
+    ],
+    [
+      "Dal",
+      "ai</w>"
+    ],
+    [
+      "L",
+      "am"
+    ],
+    [
+      "s",
+      "erv"
+    ],
+    [
+      "serv",
+      "ed</w>"
+    ],
+    [
+      "lit",
+      ".</w>"
+    ],
+    [
+      "Limeston",
+      "e.</w>"
+    ],
+    [
+      "00",
+      "0"
+    ],
+    [
+      "+",
+      "</w>"
+    ],
+    [
+      "exampl",
+      "es</w>"
+    ],
+    [
+      "man",
+      "y</w>"
+    ],
+    [
+      "sid",
+      "e</w>"
+    ],
+    [
+      "eremon",
+      "ial</w>"
+    ],
+    [
+      "high",
+      "est</w>"
+    ],
+    [
+      "t",
+      "all"
+    ],
+    [
+      "Emper",
+      "or</w>"
+    ],
+    [
+      "com",
+      "mon"
+    ],
+    [
+      "tu",
+      "ff"
+    ],
+    [
+      "tuff",
+      ".</w>"
+    ],
+    [
+      "Athen",
+      "s.</w>"
+    ],
+    [
+      "Greec",
+      "e,</w>"
+    ],
+    [
+      "2",
+      "500</w>"
+    ],
+    [
+      "A",
+      "m"
+    ],
+    [
+      "limeston",
+      "e.</w>"
+    ],
+    [
+      "S",
+      "a"
+    ],
+    [
+      "Sa",
+      "int</w>"
+    ],
+    [
+      "Palac",
+      "es,</w>"
+    ],
+    [
+      "qu",
+      "e</w>"
+    ],
+    [
+      "Fren",
+      "ch"
+    ],
+    [
+      "German",
+      "y,</w>"
+    ],
+    [
+      "i",
+      "a</w>"
+    ],
+    [
+      "mun",
+      "ici"
+    ],
+    [
+      "munici",
+      "p"
+    ],
+    [
+      "municip",
+      "al"
+    ],
+    [
+      "municipal",
+      "ity</w>"
+    ],
+    [
+      "chwan",
+      "g"
+    ],
+    [
+      "chwang",
+      "au"
+    ],
+    [
+      "v",
+      "ill"
+    ],
+    [
+      "Ind",
+      "ig"
+    ],
+    [
+      "Indig",
+      "en"
+    ],
+    [
+      "Indigen",
+      "ou"
+    ],
+    [
+      "Indigenou",
+      "s.</w>"
+    ],
+    [
+      "H",
+      "il"
+    ],
+    [
+      "Hil",
+      "l</w>"
+    ],
+    [
+      "Zimbabw",
+      "e,</w>"
+    ],
+    [
+      "m",
+      "oder"
+    ],
+    [
+      "moder",
+      "n</w>"
+    ],
+    [
+      "Egypt",
+      "ian</w>"
+    ],
+    [
+      "Limeston",
+      "e,</w>"
+    ],
+    [
+      "12",
+      "th\u2013"
+    ],
+    [
+      "church",
+      "es</w>"
+    ],
+    [
+      "import",
+      "ant</w>"
+    ],
+    [
+      "w",
+      "ood.</w>"
+    ],
+    [
+      "popul",
+      "ation</w>"
+    ],
+    [
+      "\u2013",
+      "</w>"
+    ],
+    [
+      "Gre",
+      "co"
+    ],
+    [
+      "Greco",
+      "-"
+    ],
+    [
+      "Greco-",
+      "Roman.</w>"
+    ],
+    [
+      "por",
+      "t.</w>"
+    ],
+    [
+      "Sandston",
+      "e,</w>"
+    ],
+    [
+      "Moroc",
+      "co.</w>"
+    ],
+    [
+      "mosqu",
+      "es,</w>"
+    ],
+    [
+      "9",
+      "th\u2013"
+    ],
+    [
+      "C",
+      "or"
+    ],
+    [
+      "Cor",
+      "al</w>"
+    ],
+    [
+      "Mas",
+      "o"
+    ],
+    [
+      "Afric",
+      "a,</w>"
+    ],
+    [
+      "(Petra",
+      ").</w>"
+    ],
+    [
+      "sculp",
+      "tural</w>"
+    ],
+    [
+      "2",
+      "00</w>"
+    ],
+    [
+      "Templ",
+      "e.</w>"
+    ],
+    [
+      "ed",
+      ",</w>"
+    ],
+    [
+      "Pattadak",
+      "al.</w>"
+    ],
+    [
+      "Minar",
+      ".</w>"
+    ],
+    [
+      "6",
+      "9</w>"
+    ],
+    [
+      "For",
+      "t.</w>"
+    ],
+    [
+      "Templ",
+      "es.</w>"
+    ],
+    [
+      "ma",
+      "j"
+    ],
+    [
+      "Stup",
+      "a.</w>"
+    ],
+    [
+      "Lion",
+      "s.</w>"
+    ],
+    [
+      "L",
+      "ow"
+    ],
+    [
+      "Al-Khazneh",
+      ".</w>"
+    ],
+    [
+      "t",
+      "re"
+    ],
+    [
+      "C",
+      "ity.</w>"
+    ],
+    [
+      "9",
+      "00</w>"
+    ],
+    [
+      "D",
+      "un"
+    ],
+    [
+      "Dun",
+      "h"
+    ],
+    [
+      "Mausol",
+      "eum.</w>"
+    ],
+    [
+      "14",
+      "00</w>"
+    ],
+    [
+      "Grotto",
+      "es.</w>"
+    ],
+    [
+      "Heaven",
+      ".</w>"
+    ],
+    [
+      "Tai",
+      ".</w>"
+    ],
+    [
+      "Pingyao",
+      ".</w>"
+    ],
+    [
+      "Coloss",
+      "eum.</w>"
+    ],
+    [
+      "ass",
+      "ical</w>"
+    ],
+    [
+      "A",
+      "k"
+    ],
+    [
+      "Stoneheng",
+      "e.</w>"
+    ],
+    [
+      "Mont-Saint-Michel",
+      ".</w>"
+    ],
+    [
+      "Alhambr",
+      "a.</w>"
+    ],
+    [
+      "Spain",
+      ".</w>"
+    ],
+    [
+      "co",
+      ",</w>"
+    ],
+    [
+      "Cathedr",
+      "al.</w>"
+    ],
+    [
+      "S",
+      "w"
+    ],
+    [
+      "7",
+      "9</w>"
+    ],
+    [
+      "Ruin",
+      "s.</w>"
+    ],
+    [
+      "Giz",
+      "a.</w>"
+    ],
+    [
+      "Timbuktu",
+      ".</w>"
+    ],
+    [
+      "Carthag",
+      "e.</w>"
+    ],
+    [
+      "Tun",
+      "i"
+    ],
+    [
+      "Tuni",
+      "sia.</w>"
+    ],
+    [
+      "Fez",
+      ".</w>"
+    ],
+    [
+      "Kisiwani",
+      ".</w>"
+    ],
+    [
+      "Tanzan",
+      "ia.</w>"
+    ],
+    [
+      "(Petra",
+      ")"
+    ],
+    [
+      "(Petra)",
+      "?</w>"
+    ],
+    [
+      "(Petra",
+      ")</w>"
+    ],
+    [
+      "monument",
+      "al</w>"
+    ],
+    [
+      "pr",
+      "o"
+    ],
+    [
+      "h",
+      "ar"
+    ],
+    [
+      "p",
+      "aint"
+    ],
+    [
+      "the",
+      "y</w>"
+    ],
+    [
+      "hav",
+      "e</w>"
+    ],
+    [
+      "Templ",
+      "e?</w>"
+    ],
+    [
+      "co",
+      "ast"
+    ],
+    [
+      "re",
+      "f"
+    ],
+    [
+      "Pattadak",
+      "al?</w>"
+    ],
+    [
+      ".",
+      "6</w>"
+    ],
+    [
+      "p",
+      "alac"
+    ],
+    [
+      "Minar",
+      "?</w>"
+    ],
+    [
+      "comp",
+      "r"
+    ],
+    [
+      "compr",
+      "is"
+    ],
+    [
+      "For",
+      "t"
+    ],
+    [
+      "Fort",
+      "?</w>"
+    ],
+    [
+      "Chittorgar",
+      "h"
+    ],
+    [
+      "a",
+      "ch</w>"
+    ],
+    [
+      "Riv",
+      "er.</w>"
+    ],
+    [
+      "Templ",
+      "es?</w>"
+    ],
+    [
+      "19",
+      "8"
+    ],
+    [
+      "198",
+      "7"
+    ],
+    [
+      "Stup",
+      "a?</w>"
+    ],
+    [
+      "al",
+      ",</w>"
+    ],
+    [
+      "Lion",
+      "s?</w>"
+    ],
+    [
+      "r",
+      "</w>"
+    ],
+    [
+      "po",
+      "s"
+    ],
+    [
+      "monument",
+      "al.</w>"
+    ],
+    [
+      "G",
+      "ate</w>"
+    ],
+    [
+      "Al-Khazneh",
+      "?</w>"
+    ],
+    [
+      "(",
+      "Arabic:</w>"
+    ],
+    [
+      "Chin",
+      "a?</w>"
+    ],
+    [
+      "wall",
+      "s</w>"
+    ],
+    [
+      "og",
+      "e"
+    ],
+    [
+      "oge",
+      "ther</w>"
+    ],
+    [
+      "City",
+      "?</w>"
+    ],
+    [
+      "h",
+      "as</w>"
+    ],
+    [
+      "Arm",
+      "y"
+    ],
+    [
+      "Army",
+      "?</w>"
+    ],
+    [
+      "Tib",
+      "et</w>"
+    ],
+    [
+      "ol",
+      "l"
+    ],
+    [
+      "si",
+      "mpl"
+    ],
+    [
+      "simpl",
+      "ified</w>"
+    ],
+    [
+      "trad",
+      "ition"
+    ],
+    [
+      "tradition",
+      "al</w>"
+    ],
+    [
+      "Mausol",
+      "eum?</w>"
+    ],
+    [
+      "Grotto",
+      "es?</w>"
+    ],
+    [
+      "ou",
+      "t"
+    ],
+    [
+      "Heaven",
+      "?</w>"
+    ],
+    [
+      "st",
+      "o"
+    ],
+    [
+      "Tai",
+      "?</w>"
+    ],
+    [
+      "a",
+      "k</w>"
+    ],
+    [
+      "be",
+      "ing</w>"
+    ],
+    [
+      "Pingyao",
+      "?</w>"
+    ],
+    [
+      "of",
+      "f"
+    ],
+    [
+      "l",
+      "ay"
+    ],
+    [
+      "lay",
+      "out</w>"
+    ],
+    [
+      "str",
+      "at"
+    ],
+    [
+      "Coloss",
+      "eum?</w>"
+    ],
+    [
+      "V",
+      "es"
+    ],
+    [
+      "Greec",
+      "e.</w>"
+    ],
+    [
+      "Athen",
+      "s?</w>"
+    ],
+    [
+      "Ne",
+      "olithic</w>"
+    ],
+    [
+      "Stoneheng",
+      "e?</w>"
+    ],
+    [
+      "m",
+      "egalithic</w>"
+    ],
+    [
+      "E",
+      "ng"
+    ],
+    [
+      "Eng",
+      "l"
+    ],
+    [
+      "Mont-Saint-Michel",
+      "?</w>"
+    ],
+    [
+      "isl",
+      "and</w>"
+    ],
+    [
+      "el",
+      "y</w>"
+    ],
+    [
+      "Alham",
+      "b"
+    ],
+    [
+      "Alhamb",
+      "ra"
+    ],
+    [
+      "Alhambra",
+      "?</w>"
+    ],
+    [
+      "Irel",
+      "and"
+    ],
+    [
+      "Ireland",
+      ".</w>"
+    ],
+    [
+      "Cathedr",
+      "al?</w>"
+    ],
+    [
+      "Chartres",
+      ",</w>"
+    ],
+    [
+      "con",
+      "stru"
+    ],
+    [
+      "Cast",
+      "le"
+    ],
+    [
+      "Castle",
+      "?</w>"
+    ],
+    [
+      "chwangau",
+      ",</w>"
+    ],
+    [
+      "Sou",
+      "thern</w>"
+    ],
+    [
+      "Ruin",
+      "s?</w>"
+    ],
+    [
+      "Egypt",
+      ".</w>"
+    ],
+    [
+      "Giz",
+      "a?</w>"
+    ],
+    [
+      "Egyp",
+      "t,</w>"
+    ],
+    [
+      "O",
+      "l"
+    ],
+    [
+      "Ol",
+      "d</w>"
+    ],
+    [
+      "Timbuktu",
+      "?</w>"
+    ],
+    [
+      "Tomb",
+      "ou"
+    ],
+    [
+      "Tombou",
+      "ct"
+    ],
+    [
+      "Tombouct",
+      "ou"
+    ],
+    [
+      "(",
+      "12"
+    ],
+    [
+      "Carthag",
+      "e?</w>"
+    ],
+    [
+      "Med",
+      "it"
+    ],
+    [
+      "Medit",
+      "er"
+    ],
+    [
+      "Mediter",
+      "r"
+    ],
+    [
+      "Mediterr",
+      "an"
+    ],
+    [
+      "Magn",
+      "a</w>"
+    ],
+    [
+      "Fez",
+      "?</w>"
+    ],
+    [
+      "Fez",
+      "</w>"
+    ],
+    [
+      "Kisiwani",
+      "?</w>"
+    ],
+    [
+      "hamle",
+      "t</w>"
+    ],
+    [
+      "town",
+      "ship</w>"
+    ],
+    [
+      "Mapungubw",
+      "e?</w>"
+    ],
+    [
+      "sculptu",
+      "res"
+    ],
+    [
+      "K",
+      "al"
+    ],
+    [
+      "Kal",
+      "ing"
+    ],
+    [
+      "h",
+      "or"
+    ],
+    [
+      "are",
+      "t</w>"
+    ],
+    [
+      "M",
+      "eh"
+    ],
+    [
+      "Meh",
+      "ra"
+    ],
+    [
+      "Mehra",
+      "ul"
+    ],
+    [
+      "Del",
+      "hi"
+    ],
+    [
+      "Delhi",
+      ",</w>"
+    ],
+    [
+      "c",
+      "ity.</w>"
+    ],
+    [
+      "H",
+      "i"
+    ],
+    [
+      "p",
+      "le"
+    ],
+    [
+      "f",
+      "ac"
+    ],
+    [
+      "tre",
+      "as"
+    ],
+    [
+      "treas",
+      "ur"
+    ],
+    [
+      "si",
+      "v"
+    ],
+    [
+      "siv",
+      "e</w>"
+    ],
+    [
+      "C",
+      "ity,</w>"
+    ],
+    [
+      "G",
+      "an"
+    ],
+    [
+      "Gan",
+      "su"
+    ],
+    [
+      "1",
+      "6"
+    ],
+    [
+      "w",
+      "e</w>"
+    ],
+    [
+      "ra",
+      "g"
+    ],
+    [
+      "Sh",
+      "and"
+    ],
+    [
+      "opol",
+      "is"
+    ],
+    [
+      "cit",
+      "ad"
+    ],
+    [
+      "citad",
+      "el</w>"
+    ],
+    [
+      "Un",
+      "ited</w>"
+    ],
+    [
+      "h",
+      "el"
+    ],
+    [
+      "fort",
+      "ified</w>"
+    ],
+    [
+      "Austr",
+      "ia.</w>"
+    ],
+    [
+      "P",
+      "un"
+    ],
+    [
+      "Pun",
+      "ic</w>"
+    ],
+    [
+      "Magn",
+      "a.</w>"
+    ],
+    [
+      "Lib",
+      "y"
+    ],
+    [
+      "sett",
+      "le"
+    ],
+    [
+      "settle",
+      "m"
+    ],
+    [
+      "settlem",
+      "ent</w>"
+    ],
+    [
+      "Petr",
+      "a</w>"
+    ],
+    [
+      "gr",
+      "and</w>"
+    ],
+    [
+      "Petr",
+      "a.</w>"
+    ],
+    [
+      "cov",
+      "ers</w>"
+    ],
+    [
+      "~",
+      "7"
+    ],
+    [
+      "~7",
+      ",5"
+    ],
+    [
+      "~7,5",
+      "6"
+    ],
+    [
+      "~7,56",
+      "0</w>"
+    ],
+    [
+      "m",
+      "2"
+    ],
+    [
+      "m2",
+      ".</w>"
+    ],
+    [
+      "pro",
+      "b"
+    ],
+    [
+      "prob",
+      "ab"
+    ],
+    [
+      "probab",
+      "ly</w>"
+    ],
+    [
+      "ear",
+      "ly</w>"
+    ],
+    [
+      "AD",
+      ",</w>"
+    ],
+    [
+      "rul",
+      "e</w>"
+    ],
+    [
+      "IV",
+      ",</w>"
+    ],
+    [
+      "su",
+      "gg"
+    ],
+    [
+      "sugg",
+      "est"
+    ],
+    [
+      "suggest",
+      "ed</w>"
+    ],
+    [
+      "s",
+      "econ"
+    ],
+    [
+      "secon",
+      "d</w>"
+    ],
+    [
+      "4",
+      "80</w>"
+    ],
+    [
+      "Aurangab",
+      "ad</w>"
+    ],
+    [
+      "Ma",
+      "har"
+    ],
+    [
+      "Mahar",
+      "ashtr"
+    ],
+    [
+      "Maharashtr",
+      "a</w>"
+    ],
+    [
+      "Un",
+      "iv"
+    ],
+    [
+      "Univ",
+      "ers"
+    ],
+    [
+      "Univers",
+      "ally</w>"
+    ],
+    [
+      "re",
+      "gar"
+    ],
+    [
+      "regar",
+      "ded</w>"
+    ],
+    [
+      "m",
+      "aster"
+    ],
+    [
+      "master",
+      "p"
+    ],
+    [
+      "masterp",
+      "i"
+    ],
+    [
+      "masterpi",
+      "ec"
+    ],
+    [
+      "masterpiec",
+      "es</w>"
+    ],
+    [
+      "art",
+      ",</w>"
+    ],
+    [
+      "inclu",
+      "d"
+    ],
+    [
+      "Aurangab",
+      "ad,</w>"
+    ],
+    [
+      "world",
+      ",</w>"
+    ],
+    [
+      "art",
+      "wor"
+    ],
+    [
+      "artwor",
+      "k</w>"
+    ],
+    [
+      "10",
+      "00"
+    ],
+    [
+      "1000",
+      ",</w>"
+    ],
+    [
+      "Hindu",
+      ",</w>"
+    ],
+    [
+      "Buddhist",
+      ",</w>"
+    ],
+    [
+      "le",
+      "ad"
+    ],
+    [
+      "lead",
+      "ing</w>"
+    ],
+    [
+      "exampl",
+      "e</w>"
+    ],
+    [
+      "13",
+      "th-century</w>"
+    ],
+    [
+      "3",
+      "5</w>"
+    ],
+    [
+      "(2",
+      "2</w>"
+    ],
+    [
+      "coast",
+      "lin"
+    ],
+    [
+      "coastlin",
+      "e</w>"
+    ],
+    [
+      "O",
+      "dis"
+    ],
+    [
+      "Odis",
+      "h"
+    ],
+    [
+      "Odish",
+      "a,</w>"
+    ],
+    [
+      "at",
+      "tri"
+    ],
+    [
+      "attri",
+      "bu"
+    ],
+    [
+      "attribu",
+      "ted</w>"
+    ],
+    [
+      "N",
+      "ar"
+    ],
+    [
+      "Nar",
+      "as"
+    ],
+    [
+      "Naras",
+      "ing"
+    ],
+    [
+      "Narasing",
+      "ha</w>"
+    ],
+    [
+      "Dev",
+      "a</w>"
+    ],
+    [
+      "I",
+      "</w>"
+    ],
+    [
+      "CE",
+      ".</w>"
+    ],
+    [
+      "-",
+      "g"
+    ],
+    [
+      "7",
+      "00</w>"
+    ],
+    [
+      "(",
+      "Pattadak"
+    ],
+    [
+      "(Pattadak",
+      "all"
+    ],
+    [
+      "(Pattadakall",
+      "u"
+    ],
+    [
+      "(Pattadakallu",
+      "),</w>"
+    ],
+    [
+      "R",
+      "ak"
+    ],
+    [
+      "Rak",
+      "t"
+    ],
+    [
+      "Rakt",
+      "ap"
+    ],
+    [
+      "Raktap",
+      "ura"
+    ],
+    [
+      "Raktapura",
+      ",</w>"
+    ],
+    [
+      "b",
+      "an"
+    ],
+    [
+      "ban",
+      "k</w>"
+    ],
+    [
+      "Mal",
+      "ap"
+    ],
+    [
+      "Malap",
+      "r"
+    ],
+    [
+      "Malapr",
+      "ab"
+    ],
+    [
+      "Malaprab",
+      "ha</w>"
+    ],
+    [
+      "B",
+      "ag"
+    ],
+    [
+      "Bag",
+      "al"
+    ],
+    [
+      "Bagal",
+      "ko"
+    ],
+    [
+      "Bagalko",
+      "t</w>"
+    ],
+    [
+      "(",
+      "14"
+    ],
+    [
+      "(14",
+      "</w>"
+    ],
+    [
+      "B",
+      "ad"
+    ],
+    [
+      "mi",
+      "</w>"
+    ],
+    [
+      "D",
+      "ig"
+    ],
+    [
+      "Dig",
+      "am"
+    ],
+    [
+      "Digam",
+      "b"
+    ],
+    [
+      "Digamb",
+      "ara</w>"
+    ],
+    [
+      "headquart",
+      "ers,</w>"
+    ],
+    [
+      "2",
+      "8"
+    ],
+    [
+      "28",
+      "3</w>"
+    ],
+    [
+      "G",
+      "w"
+    ],
+    [
+      "Gw",
+      "ali"
+    ],
+    [
+      "Gwali",
+      "or"
+    ],
+    [
+      "Gwalior",
+      ",</w>"
+    ],
+    [
+      "17",
+      "5</w>"
+    ],
+    [
+      "(",
+      "10"
+    ],
+    [
+      "(10",
+      "9</w>"
+    ],
+    [
+      "J",
+      "h"
+    ],
+    [
+      "Jh",
+      "an"
+    ],
+    [
+      "ref",
+      "er"
+    ],
+    [
+      "refer",
+      "red</w>"
+    ],
+    [
+      "Hamp",
+      "i,</w>"
+    ],
+    [
+      "e",
+      "ast"
+    ],
+    [
+      "east",
+      "-"
+    ],
+    [
+      "east-",
+      "central</w>"
+    ],
+    [
+      "pre",
+      "dat"
+    ],
+    [
+      "predat",
+      "es</w>"
+    ],
+    [
+      "Empi",
+      "re"
+    ],
+    [
+      "Empire",
+      ";</w>"
+    ],
+    [
+      "m",
+      "ent"
+    ],
+    [
+      "ment",
+      "ion"
+    ],
+    [
+      "mention",
+      "ed</w>"
+    ],
+    [
+      "R",
+      "am"
+    ],
+    [
+      "Ram",
+      "ayan"
+    ],
+    [
+      "Ramayan",
+      "a</w>"
+    ],
+    [
+      "sp",
+      "ell"
+    ],
+    [
+      "spell",
+      "ed</w>"
+    ],
+    [
+      "Qu",
+      "tu"
+    ],
+    [
+      "Qutu",
+      "b</w>"
+    ],
+    [
+      "Qut",
+      "ab</w>"
+    ],
+    [
+      "m",
+      "in"
+    ],
+    [
+      "min",
+      "aret</w>"
+    ],
+    [
+      "v",
+      "ict"
+    ],
+    [
+      "vict",
+      "or"
+    ],
+    [
+      "victor",
+      "y</w>"
+    ],
+    [
+      "tow",
+      "er,</w>"
+    ],
+    [
+      "s",
+      "ultan"
+    ],
+    [
+      "sultan",
+      "at"
+    ],
+    [
+      "sultanat",
+      "e,</w>"
+    ],
+    [
+      "compris",
+      "ing</w>"
+    ],
+    [
+      "Mehraul",
+      "i,</w>"
+    ],
+    [
+      "119",
+      "9</w>"
+    ],
+    [
+      "1220",
+      ",</w>"
+    ],
+    [
+      "3",
+      "9"
+    ],
+    [
+      "39",
+      "9</w>"
+    ],
+    [
+      "f",
+      "ter</w>"
+    ],
+    [
+      "Chitt",
+      "or</w>"
+    ],
+    [
+      "Chitt",
+      "od</w>"
+    ],
+    [
+      "fort",
+      "s</w>"
+    ],
+    [
+      "Chittorgarh",
+      ".</w>"
+    ],
+    [
+      "sp",
+      "ra"
+    ],
+    [
+      "spra",
+      "w"
+    ],
+    [
+      "spraw",
+      "l"
+    ],
+    [
+      "sprawl",
+      "s</w>"
+    ],
+    [
+      "in",
+      "ed</w>"
+    ],
+    [
+      "11",
+      "00</w>"
+    ],
+    [
+      "Moder",
+      "at"
+    ],
+    [
+      "Moderat",
+      "e-"
+    ],
+    [
+      "Moderate-",
+      "High.</w>"
+    ],
+    [
+      "design",
+      "ation</w>"
+    ],
+    [
+      "T",
+      "am"
+    ],
+    [
+      "Tam",
+      "il</w>"
+    ],
+    [
+      "N",
+      "ad"
+    ],
+    [
+      "Nad",
+      "u"
+    ],
+    [
+      "Nadu",
+      ".</w>"
+    ],
+    [
+      "Th",
+      "anj"
+    ],
+    [
+      "Thanj",
+      "av"
+    ],
+    [
+      "Thanjav",
+      "ur</w>"
+    ],
+    [
+      "l",
+      "ist</w>"
+    ],
+    [
+      "1987",
+      ",</w>"
+    ],
+    [
+      "w",
+      "hil"
+    ],
+    [
+      "whil",
+      "e</w>"
+    ],
+    [
+      "2",
+      "00"
+    ],
+    [
+      "200",
+      "4.</w>"
+    ],
+    [
+      "Stup",
+      "a,</w>"
+    ],
+    [
+      "hill",
+      "t"
+    ],
+    [
+      "hillt",
+      "op</w>"
+    ],
+    [
+      "T",
+      "ow"
+    ],
+    [
+      "Tow",
+      "n</w>"
+    ],
+    [
+      "St",
+      "ate</w>"
+    ],
+    [
+      "headquart",
+      "ers</w>"
+    ],
+    [
+      "(2",
+      "9</w>"
+    ],
+    [
+      "B",
+      "h"
+    ],
+    [
+      "Bh",
+      "op"
+    ],
+    [
+      "Bhop",
+      "al,</w>"
+    ],
+    [
+      "Low",
+      "-"
+    ],
+    [
+      "Low-",
+      "Moderate.</w>"
+    ],
+    [
+      "d",
+      "ated</w>"
+    ],
+    [
+      "re",
+      "ig"
+    ],
+    [
+      "reig",
+      "n</w>"
+    ],
+    [
+      "K",
+      "ing</w>"
+    ],
+    [
+      "s",
+      "o-"
+    ],
+    [
+      "so-",
+      "called</w>"
+    ],
+    [
+      "S",
+      "ac"
+    ],
+    [
+      "Sac",
+      "red</w>"
+    ],
+    [
+      "Qu",
+      "art"
+    ],
+    [
+      "Quart",
+      "er,</w>"
+    ],
+    [
+      "consist",
+      "ing</w>"
+    ],
+    [
+      "est",
+      "ic</w>"
+    ],
+    [
+      "al",
+      "-"
+    ],
+    [
+      "4",
+      "50</w>"
+    ],
+    [
+      "Chapel",
+      "?</w>"
+    ],
+    [
+      "as-Siq",
+      "?</w>"
+    ],
+    [
+      "as-Siq",
+      "</w>"
+    ],
+    [
+      "tomb",
+      "</w>"
+    ],
+    [
+      "G",
+      "at"
+    ],
+    [
+      "Gat",
+      "e?</w>"
+    ],
+    [
+      "sandston",
+      "e</w>"
+    ],
+    [
+      "Theat",
+      "re"
+    ],
+    [
+      "Theatre",
+      "?</w>"
+    ],
+    [
+      "Theat",
+      "re</w>"
+    ],
+    [
+      "r",
+      "ock-cu"
+    ],
+    [
+      "rock-cu",
+      "t.</w>"
+    ],
+    [
+      "Khazn",
+      "at</w>"
+    ],
+    [
+      "el",
+      "-"
+    ],
+    [
+      "el-",
+      "F"
+    ],
+    [
+      "el-F",
+      "ar"
+    ],
+    [
+      "el-Far",
+      "'"
+    ],
+    [
+      "el-Far'",
+      "oun"
+    ],
+    [
+      "el",
+      "ab"
+    ],
+    [
+      "elab",
+      "or"
+    ],
+    [
+      "elabor",
+      "ate</w>"
+    ],
+    [
+      "tomb",
+      "s</w>"
+    ],
+    [
+      "in",
+      "h"
+    ],
+    [
+      "inh",
+      "ab"
+    ],
+    [
+      "inhab",
+      "ited</w>"
+    ],
+    [
+      "Arab",
+      "s</w>"
+    ],
+    [
+      "t",
+      "im"
+    ],
+    [
+      "tim",
+      "es.</w>"
+    ],
+    [
+      "A",
+      "s</w>"
+    ],
+    [
+      "n",
+      "a"
+    ],
+    [
+      "fortificat",
+      "ion.</w>"
+    ],
+    [
+      "s",
+      "eries</w>"
+    ],
+    [
+      "fortificat",
+      "ions</w>"
+    ],
+    [
+      "acr",
+      "oss</w>"
+    ],
+    [
+      "bord",
+      "ers</w>"
+    ],
+    [
+      "stat",
+      "es</w>"
+    ],
+    [
+      "protect",
+      "ion</w>"
+    ],
+    [
+      "ag",
+      "ain"
+    ],
+    [
+      "again",
+      "st</w>"
+    ],
+    [
+      "v",
+      "ar"
+    ],
+    [
+      "var",
+      "ious</w>"
+    ],
+    [
+      "n",
+      "om"
+    ],
+    [
+      "nom",
+      "ad"
+    ],
+    [
+      "nomad",
+      "ic</w>"
+    ],
+    [
+      "gr",
+      "ou"
+    ],
+    [
+      "grou",
+      "ps</w>"
+    ],
+    [
+      "E",
+      "ura"
+    ],
+    [
+      "Eura",
+      "sian</w>"
+    ],
+    [
+      "St",
+      "ep"
+    ],
+    [
+      "Step",
+      "p"
+    ],
+    [
+      "Stepp",
+      "e.</w>"
+    ],
+    [
+      "d",
+      "ate</w>"
+    ],
+    [
+      "BC",
+      ";</w>"
+    ],
+    [
+      "es",
+      "e</w>"
+    ],
+    [
+      "dynast",
+      "ies</w>"
+    ],
+    [
+      "1",
+      "500</w>"
+    ],
+    [
+      "Beijing",
+      ",</w>"
+    ],
+    [
+      "Emperor",
+      "s,</w>"
+    ],
+    [
+      "pol",
+      "it"
+    ],
+    [
+      "polit",
+      "ical</w>"
+    ],
+    [
+      "po",
+      "w"
+    ],
+    [
+      "pow",
+      "er</w>"
+    ],
+    [
+      "y",
+      "ear"
+    ],
+    [
+      "year",
+      "s</w>"
+    ],
+    [
+      "14",
+      "20</w>"
+    ],
+    [
+      "19",
+      "2"
+    ],
+    [
+      "192",
+      "4.</w>"
+    ],
+    [
+      "(",
+      "Chinese:</w>"
+    ],
+    [
+      "Arm",
+      "y.</w>"
+    ],
+    [
+      "col",
+      "le"
+    ],
+    [
+      "colle",
+      "ction</w>"
+    ],
+    [
+      "t",
+      "erracotta</w>"
+    ],
+    [
+      "sculptu",
+      "res</w>"
+    ],
+    [
+      "d",
+      "ep"
+    ],
+    [
+      "dep",
+      "ict"
+    ],
+    [
+      "depict",
+      "ing</w>"
+    ],
+    [
+      "ar",
+      "mi"
+    ],
+    [
+      "armi",
+      "es</w>"
+    ],
+    [
+      "Sh",
+      "i</w>"
+    ],
+    [
+      "H",
+      "uang,</w>"
+    ],
+    [
+      "funer",
+      "ary</w>"
+    ],
+    [
+      "2",
+      "10</w>"
+    ],
+    [
+      "20",
+      "9</w>"
+    ],
+    [
+      "p",
+      "ur"
+    ],
+    [
+      "pur",
+      "pos"
+    ],
+    [
+      "purpos",
+      "e</w>"
+    ],
+    [
+      "protect",
+      "ing</w>"
+    ],
+    [
+      "hi",
+      "m</w>"
+    ],
+    [
+      "a",
+      "ft"
+    ],
+    [
+      "aft",
+      "er"
+    ],
+    [
+      "after",
+      "lif"
+    ],
+    [
+      "afterlif",
+      "e.</w>"
+    ],
+    [
+      "Cav",
+      "es,</w>"
+    ],
+    [
+      "Buddh",
+      "as,</w>"
+    ],
+    [
+      "(",
+      "1"
+    ],
+    [
+      "(1",
+      "6</w>"
+    ],
+    [
+      "Dunh",
+      "uang,</w>"
+    ],
+    [
+      "o",
+      "as"
+    ],
+    [
+      "oas",
+      "is</w>"
+    ],
+    [
+      "cross",
+      "ro"
+    ],
+    [
+      "crossro",
+      "ad"
+    ],
+    [
+      "crossroad",
+      "s</w>"
+    ],
+    [
+      "S",
+      "il"
+    ],
+    [
+      "Sil",
+      "k</w>"
+    ],
+    [
+      "R",
+      "o"
+    ],
+    [
+      "Ro",
+      "ad,</w>"
+    ],
+    [
+      "Gansu",
+      "</w>"
+    ],
+    [
+      "al",
+      "s</w>"
+    ],
+    [
+      "L",
+      "h"
+    ],
+    [
+      "Lh",
+      "as"
+    ],
+    [
+      "Lhas",
+      "a,</w>"
+    ],
+    [
+      "Au",
+      "ton"
+    ],
+    [
+      "Auton",
+      "om"
+    ],
+    [
+      "Autonom",
+      "ous</w>"
+    ],
+    [
+      "form",
+      "er"
+    ],
+    [
+      "former",
+      "ly</w>"
+    ],
+    [
+      "w",
+      "in"
+    ],
+    [
+      "win",
+      "ter</w>"
+    ],
+    [
+      "Lam",
+      "as,</w>"
+    ],
+    [
+      "d",
+      "z"
+    ],
+    [
+      "dz",
+      "ong</w>"
+    ],
+    [
+      "sty",
+      "le</w>"
+    ],
+    [
+      "p",
+      "o</w>"
+    ],
+    [
+      "un",
+      "til</w>"
+    ],
+    [
+      "'",
+      "</w>"
+    ],
+    [
+      "b",
+      "ec"
+    ],
+    [
+      "bec",
+      "ame</w>"
+    ],
+    [
+      "i",
+      "ef"
+    ],
+    [
+      "an",
+      ":</w>"
+    ],
+    [
+      "H",
+      "ong"
+    ],
+    [
+      "Hong",
+      "w"
+    ],
+    [
+      "Hongw",
+      "u"
+    ],
+    [
+      "Hongwu",
+      "</w>"
+    ],
+    [
+      "Emperor",
+      ",</w>"
+    ],
+    [
+      "foun",
+      "der</w>"
+    ],
+    [
+      "foo",
+      "t</w>"
+    ],
+    [
+      "Pur",
+      "ple</w>"
+    ],
+    [
+      "Mount",
+      "ain"
+    ],
+    [
+      "Mountain",
+      ",</w>"
+    ],
+    [
+      "N",
+      "anj"
+    ],
+    [
+      "Nanj",
+      "ing"
+    ],
+    [
+      "Nanjing",
+      ".</w>"
+    ],
+    [
+      "leg",
+      "end</w>"
+    ],
+    [
+      "s",
+      "ay"
+    ],
+    [
+      "say",
+      "s</w>"
+    ],
+    [
+      "es",
+      "s"
+    ],
+    [
+      "s",
+      "ome</w>"
+    ],
+    [
+      "f",
+      "in"
+    ],
+    [
+      "fin",
+      "est</w>"
+    ],
+    [
+      "art",
+      ".</w>"
+    ],
+    [
+      "H",
+      "ous"
+    ],
+    [
+      "Hous",
+      "ing</w>"
+    ],
+    [
+      "t",
+      "en"
+    ],
+    [
+      "ten",
+      "s</w>"
+    ],
+    [
+      "th",
+      "ous"
+    ],
+    [
+      "thous",
+      "and"
+    ],
+    [
+      "thousand",
+      "s</w>"
+    ],
+    [
+      "S",
+      "ha"
+    ],
+    [
+      "Sha",
+      "k"
+    ],
+    [
+      "Shak",
+      "y"
+    ],
+    [
+      "Shaky",
+      "am"
+    ],
+    [
+      "Shakyam",
+      "un"
+    ],
+    [
+      "Shakyamun",
+      "i</w>"
+    ],
+    [
+      "dis",
+      "ci"
+    ],
+    [
+      "disci",
+      "pl"
+    ],
+    [
+      "discipl",
+      "es,</w>"
+    ],
+    [
+      "(",
+      "simplified</w>"
+    ],
+    [
+      "Confuci",
+      "an</w>"
+    ],
+    [
+      "sou",
+      "the"
+    ],
+    [
+      "southe",
+      "astern</w>"
+    ],
+    [
+      "Beijing",
+      ".</w>"
+    ],
+    [
+      "v",
+      "is"
+    ],
+    [
+      "vis",
+      "ited</w>"
+    ],
+    [
+      "Emperor",
+      "s</w>"
+    ],
+    [
+      "th",
+      "en</w>"
+    ],
+    [
+      "l",
+      "ater</w>"
+    ],
+    [
+      "re",
+      "sto"
+    ],
+    [
+      "resto",
+      "red</w>"
+    ],
+    [
+      "n",
+      ")</w>"
+    ],
+    [
+      "m",
+      "oun"
+    ],
+    [
+      "moun",
+      "t"
+    ],
+    [
+      "mount",
+      "ain</w>"
+    ],
+    [
+      "signific",
+      "ance</w>"
+    ],
+    [
+      "Tai",
+      "'"
+    ],
+    [
+      "Tai'",
+      "an.</w>"
+    ],
+    [
+      "Shand",
+      "ong</w>"
+    ],
+    [
+      "tall",
+      "est</w>"
+    ],
+    [
+      "pe",
+      "ak</w>"
+    ],
+    [
+      "J",
+      "ade</w>"
+    ],
+    [
+      "Pingyao",
+      ",</w>"
+    ],
+    [
+      "off",
+      "ici"
+    ],
+    [
+      "offici",
+      "ally</w>"
+    ],
+    [
+      "Sh",
+      "an"
+    ],
+    [
+      "Shan",
+      "x"
+    ],
+    [
+      "Shanx",
+      "i,</w>"
+    ],
+    [
+      "fam",
+      "ed</w>"
+    ],
+    [
+      "import",
+      "ance</w>"
+    ],
+    [
+      "econ",
+      "om"
+    ],
+    [
+      "econom",
+      "ic</w>"
+    ],
+    [
+      "histor",
+      "y</w>"
+    ],
+    [
+      "pl",
+      "ann"
+    ],
+    [
+      "plann",
+      "ing</w>"
+    ],
+    [
+      "sur",
+      "v"
+    ],
+    [
+      "surv",
+      "ive</w>"
+    ],
+    [
+      "ell",
+      "i"
+    ],
+    [
+      "elli",
+      "pt"
+    ],
+    [
+      "ellipt",
+      "ical</w>"
+    ],
+    [
+      "Rom",
+      "e,</w>"
+    ],
+    [
+      "j",
+      "us"
+    ],
+    [
+      "jus",
+      "t</w>"
+    ],
+    [
+      "For",
+      "um"
+    ],
+    [
+      "Forum",
+      ".</w>"
+    ],
+    [
+      "ev",
+      "er</w>"
+    ],
+    [
+      "buil",
+      "t,</w>"
+    ],
+    [
+      "Con",
+      "stru"
+    ],
+    [
+      "b",
+      "eg"
+    ],
+    [
+      "beg",
+      "an</w>"
+    ],
+    [
+      "us",
+      ".</w>"
+    ],
+    [
+      "(",
+      "</w>"
+    ],
+    [
+      "rock",
+      "y</w>"
+    ],
+    [
+      "out",
+      "cr"
+    ],
+    [
+      "outcr",
+      "op</w>"
+    ],
+    [
+      "Athen",
+      "s,</w>"
+    ],
+    [
+      "re",
+      "m"
+    ],
+    [
+      "rem",
+      "ains</w>"
+    ],
+    [
+      "g",
+      "re"
+    ],
+    [
+      "gre",
+      "at</w>"
+    ],
+    [
+      "pre",
+      "historic</w>"
+    ],
+    [
+      "S",
+      "al"
+    ],
+    [
+      "Sal",
+      "is"
+    ],
+    [
+      "Salis",
+      "bur"
+    ],
+    [
+      "Salisbur",
+      "y</w>"
+    ],
+    [
+      "P",
+      "l"
+    ],
+    [
+      "Pl",
+      "ain</w>"
+    ],
+    [
+      "W",
+      "il"
+    ],
+    [
+      "Wil",
+      "t"
+    ],
+    [
+      "Wilt",
+      "shi"
+    ],
+    [
+      "Wiltshi",
+      "re,</w>"
+    ],
+    [
+      "Engl",
+      "and,</w>"
+    ],
+    [
+      "mil",
+      "es</w>"
+    ],
+    [
+      "(",
+      "3</w>"
+    ],
+    [
+      "k",
+      "m)</w>"
+    ],
+    [
+      "Am",
+      "es"
+    ],
+    [
+      "Ames",
+      "bur"
+    ],
+    [
+      "Amesbur",
+      "y.</w>"
+    ],
+    [
+      "consist",
+      "s</w>"
+    ],
+    [
+      "ou",
+      "ter</w>"
+    ],
+    [
+      "r",
+      "ing</w>"
+    ],
+    [
+      "v",
+      "ert"
+    ],
+    [
+      "vert",
+      "ical</w>"
+    ],
+    [
+      "s",
+      "arsen</w>"
+    ],
+    [
+      "ston",
+      "es,</w>"
+    ],
+    [
+      "e",
+      "ach</w>"
+    ],
+    [
+      "(",
+      "4"
+    ],
+    [
+      "(4",
+      "."
+    ],
+    [
+      "(4.",
+      "0</w>"
+    ],
+    [
+      "high",
+      ",</w>"
+    ],
+    [
+      "sev",
+      "en</w>"
+    ],
+    [
+      "(2",
+      "."
+    ],
+    [
+      "(2.",
+      "1</w>"
+    ],
+    [
+      "wi",
+      "d"
+    ],
+    [
+      "wid",
+      "e,</w>"
+    ],
+    [
+      "w",
+      "e"
+    ],
+    [
+      "we",
+      "igh"
+    ],
+    [
+      "weigh",
+      "ing</w>"
+    ],
+    [
+      "ton",
+      "s,</w>"
+    ],
+    [
+      "ti",
+      "d"
+    ],
+    [
+      "tid",
+      "al</w>"
+    ],
+    [
+      "m",
+      "ain"
+    ],
+    [
+      "main",
+      "l"
+    ],
+    [
+      "mainl",
+      "and</w>"
+    ],
+    [
+      "commun",
+      "e</w>"
+    ],
+    [
+      "Norm",
+      "and"
+    ],
+    [
+      "Normand",
+      "y,</w>"
+    ],
+    [
+      "pr",
+      "on"
+    ],
+    [
+      "]",
+      ";</w>"
+    ],
+    [
+      "ish",
+      ":</w>"
+    ],
+    [
+      "13",
+      "50</w>"
+    ],
+    [
+      "fortres",
+      "s</w>"
+    ],
+    [
+      "Gran",
+      "ad"
+    ],
+    [
+      "Granad",
+      "a,</w>"
+    ],
+    [
+      "A",
+      "dd"
+    ],
+    [
+      "Add",
+      "ition"
+    ],
+    [
+      "Addition",
+      "all"
+    ],
+    [
+      "Additionall",
+      "y,</w>"
+    ],
+    [
+      "Sp",
+      "an"
+    ],
+    [
+      "Clonmacno",
+      "is</w>"
+    ],
+    [
+      "ruin",
+      "ed</w>"
+    ],
+    [
+      "O",
+      "ff"
+    ],
+    [
+      "Off",
+      "al"
+    ],
+    [
+      "Offal",
+      "y</w>"
+    ],
+    [
+      "Irel",
+      "and</w>"
+    ],
+    [
+      "Sh",
+      "ann"
+    ],
+    [
+      "Shann",
+      "on</w>"
+    ],
+    [
+      "Ath",
+      "lon"
+    ],
+    [
+      "Athlon",
+      "e,</w>"
+    ],
+    [
+      "5",
+      "4"
+    ],
+    [
+      "54",
+      "4</w>"
+    ],
+    [
+      "C",
+      "i"
+    ],
+    [
+      "Ci",
+      "ar</w>"
+    ],
+    [
+      "n",
+      ",</w>"
+    ],
+    [
+      "Ra",
+      "th"
+    ],
+    [
+      "Rath",
+      "cr"
+    ],
+    [
+      "Rathcr",
+      "og"
+    ],
+    [
+      "Rathcrog",
+      "h"
+    ],
+    [
+      "Rathcrogh",
+      "an,</w>"
+    ],
+    [
+      "R",
+      "os"
+    ],
+    [
+      "Ros",
+      "common"
+    ],
+    [
+      "Roscommon",
+      ".</w>"
+    ],
+    [
+      "Un",
+      "til</w>"
+    ],
+    [
+      "ha",
+      "d</w>"
+    ],
+    [
+      "clos",
+      "e</w>"
+    ],
+    [
+      "associ",
+      "at"
+    ],
+    [
+      "associat",
+      "ions</w>"
+    ],
+    [
+      "k",
+      "ings</w>"
+    ],
+    [
+      "sum",
+      "m"
+    ],
+    [
+      "summ",
+      "er</w>"
+    ],
+    [
+      "rul",
+      "ers,</w>"
+    ],
+    [
+      "Hi",
+      "et"
+    ],
+    [
+      "Hiet",
+      "z"
+    ],
+    [
+      "Hietz",
+      "ing"
+    ],
+    [
+      "Hietzing",
+      ",</w>"
+    ],
+    [
+      "V",
+      "i"
+    ],
+    [
+      "Vi",
+      "en"
+    ],
+    [
+      "Vien",
+      "n"
+    ],
+    [
+      "Vienn",
+      "a.</w>"
+    ],
+    [
+      "n",
+      "ame</w>"
+    ],
+    [
+      "ro",
+      "ot"
+    ],
+    [
+      "root",
+      "s</w>"
+    ],
+    [
+      "art",
+      "es"
+    ],
+    [
+      "artes",
+      "ian</w>"
+    ],
+    [
+      "w",
+      "ell</w>"
+    ],
+    [
+      "w",
+      "ater</w>"
+    ],
+    [
+      "con",
+      "sum"
+    ],
+    [
+      "consum",
+      "ed</w>"
+    ],
+    [
+      "Sch",
+      "l"
+    ],
+    [
+      "Schl",
+      "oss</w>"
+    ],
+    [
+      "C",
+      "ath"
+    ],
+    [
+      "Cath",
+      "ol"
+    ],
+    [
+      "Cathol",
+      "ic</w>"
+    ],
+    [
+      "sou",
+      "th"
+    ],
+    [
+      "south",
+      "west</w>"
+    ],
+    [
+      "P",
+      "ar"
+    ],
+    [
+      "Par",
+      "is"
+    ],
+    [
+      "Paris",
+      ",</w>"
+    ],
+    [
+      "B",
+      "ish"
+    ],
+    [
+      "Bish",
+      "op</w>"
+    ],
+    [
+      "Chartres",
+      ".</w>"
+    ],
+    [
+      "h",
+      "on"
+    ],
+    [
+      "hon",
+      "our"
+    ],
+    [
+      "honour",
+      "</w>"
+    ],
+    [
+      "V",
+      "ir"
+    ],
+    [
+      "Vir",
+      "g"
+    ],
+    [
+      "Virg",
+      "in</w>"
+    ],
+    [
+      "le",
+      "ast</w>"
+    ],
+    [
+      "(",
+      "'"
+    ],
+    [
+      "19",
+      "th-century</w>"
+    ],
+    [
+      "histor",
+      "ic"
+    ],
+    [
+      "historic",
+      "ist</w>"
+    ],
+    [
+      "r",
+      "u"
+    ],
+    [
+      "ru",
+      "gg"
+    ],
+    [
+      "rugg",
+      "ed</w>"
+    ],
+    [
+      "foo",
+      "th"
+    ],
+    [
+      "footh",
+      "ill"
+    ],
+    [
+      "foothill",
+      "s</w>"
+    ],
+    [
+      "Al",
+      "ps</w>"
+    ],
+    [
+      "v",
+      "ery</w>"
+    ],
+    [
+      "bord",
+      "er</w>"
+    ],
+    [
+      "Bav",
+      "ari"
+    ],
+    [
+      "H",
+      "o"
+    ],
+    [
+      "Ho",
+      "h"
+    ],
+    [
+      "Hoh",
+      "en"
+    ],
+    [
+      "Hohen",
+      "s"
+    ],
+    [
+      "Pompei",
+      ",</w>"
+    ],
+    [
+      "N",
+      "ap"
+    ],
+    [
+      "Nap",
+      "l"
+    ],
+    [
+      "Napl",
+      "es,</w>"
+    ],
+    [
+      "C",
+      "amp"
+    ],
+    [
+      "Camp",
+      "an"
+    ],
+    [
+      "Campan",
+      "ia</w>"
+    ],
+    [
+      "Al",
+      "ong</w>"
+    ],
+    [
+      "Her",
+      "cul"
+    ],
+    [
+      "Hercul",
+      "an"
+    ],
+    [
+      "Herculan",
+      "eum"
+    ],
+    [
+      "Herculaneum",
+      ",</w>"
+    ],
+    [
+      "St",
+      "ab"
+    ],
+    [
+      "Stab",
+      "ia"
+    ],
+    [
+      "Stabia",
+      "e,</w>"
+    ],
+    [
+      "sur",
+      "r"
+    ],
+    [
+      "surr",
+      "oun"
+    ],
+    [
+      "surroun",
+      "ding</w>"
+    ],
+    [
+      "vill",
+      "as,</w>"
+    ],
+    [
+      "as",
+      "h</w>"
+    ],
+    [
+      "p",
+      "um"
+    ],
+    [
+      "pum",
+      "ic"
+    ],
+    [
+      "pumic",
+      "e</w>"
+    ],
+    [
+      "er",
+      "u"
+    ],
+    [
+      "eru",
+      "pt"
+    ],
+    [
+      "13",
+      "00</w>"
+    ],
+    [
+      "sou",
+      "th-"
+    ],
+    [
+      "south-",
+      "eastern</w>"
+    ],
+    [
+      "hill",
+      "s</w>"
+    ],
+    [
+      "c",
+      "oun"
+    ],
+    [
+      "coun",
+      "tr"
+    ],
+    [
+      "countr",
+      "y</w>"
+    ],
+    [
+      "Mas",
+      "v"
+    ],
+    [
+      "Masv",
+      "ing"
+    ],
+    [
+      "Masving",
+      "o"
+    ],
+    [
+      "Masvingo",
+      ".</w>"
+    ],
+    [
+      "sett",
+      "l"
+    ],
+    [
+      "settl",
+      "ed</w>"
+    ],
+    [
+      "CE",
+      ",</w>"
+    ],
+    [
+      "centur",
+      "y.</w>"
+    ],
+    [
+      "pre",
+      "col"
+    ],
+    [
+      "precol",
+      "on"
+    ],
+    [
+      "precolon",
+      "ial</w>"
+    ],
+    [
+      "Egyp",
+      "t</w>"
+    ],
+    [
+      "h",
+      "ome</w>"
+    ],
+    [
+      "Pyramid",
+      ",</w>"
+    ],
+    [
+      "Kha",
+      "f"
+    ],
+    [
+      "Khaf",
+      "re,</w>"
+    ],
+    [
+      "M",
+      "en"
+    ],
+    [
+      "Men",
+      "k"
+    ],
+    [
+      "Menk",
+      "au"
+    ],
+    [
+      "Menkau",
+      "re,</w>"
+    ],
+    [
+      "the",
+      "ir"
+    ],
+    [
+      "their",
+      "</w>"
+    ],
+    [
+      "Sp",
+      "h"
+    ],
+    [
+      "Sph",
+      "in"
+    ],
+    [
+      "Sphin",
+      "x"
+    ],
+    [
+      "Sphinx",
+      ".</w>"
+    ],
+    [
+      "Al",
+      "l</w>"
+    ],
+    [
+      "F",
+      "our"
+    ],
+    [
+      "Four",
+      "th</w>"
+    ],
+    [
+      "Dynast",
+      "y</w>"
+    ],
+    [
+      "12",
+      "00</w>"
+    ],
+    [
+      "N",
+      "ig"
+    ],
+    [
+      "Nig",
+      "er</w>"
+    ],
+    [
+      "Tombouctou",
+      "</w>"
+    ],
+    [
+      "Reg",
+      "ion"
+    ],
+    [
+      "Region",
+      ",</w>"
+    ],
+    [
+      "1",
+      "9</w>"
+    ],
+    [
+      "admini",
+      "strat"
+    ],
+    [
+      "administrat",
+      "ive</w>"
+    ],
+    [
+      "reg",
+      "ions</w>"
+    ],
+    [
+      "Afric",
+      "a</w>"
+    ],
+    [
+      "leg",
+      "en"
+    ],
+    [
+      "legen",
+      "d"
+    ],
+    [
+      "legend",
+      "ary</w>"
+    ],
+    [
+      "Phoen",
+      "ic"
+    ],
+    [
+      "Phoenic",
+      "ian</w>"
+    ],
+    [
+      "qu",
+      "een</w>"
+    ],
+    [
+      "Di",
+      "d"
+    ],
+    [
+      "Did",
+      "o</w>"
+    ],
+    [
+      "L",
+      "ak"
+    ],
+    [
+      "Lak",
+      "e</w>"
+    ],
+    [
+      "Tun",
+      "is</w>"
+    ],
+    [
+      "trad",
+      "ing</w>"
+    ],
+    [
+      "h",
+      "ub"
+    ],
+    [
+      "hub",
+      "s</w>"
+    ],
+    [
+      "Mediterran",
+      "ean</w>"
+    ],
+    [
+      "a",
+      "ff"
+    ],
+    [
+      "Magn",
+      "a?</w>"
+    ],
+    [
+      "B",
+      "al"
+    ],
+    [
+      "Bal",
+      "i</w>"
+    ],
+    [
+      "ol",
+      "d"
+    ],
+    [
+      "old",
+      "est</w>"
+    ],
+    [
+      "distric",
+      "ts</w>"
+    ],
+    [
+      "Jdi",
+      "d</w>"
+    ],
+    [
+      "French",
+      "-"
+    ],
+    [
+      "French-",
+      "c"
+    ],
+    [
+      "French-c",
+      "re"
+    ],
+    [
+      "French-cre",
+      "ated</w>"
+    ],
+    [
+      "V",
+      "ill"
+    ],
+    [
+      "Vill",
+      "e</w>"
+    ],
+    [
+      "N",
+      "ou"
+    ],
+    [
+      "Nou",
+      "v"
+    ],
+    [
+      "Nouv",
+      "ell"
+    ],
+    [
+      "T",
+      "ogether</w>"
+    ],
+    [
+      "Jdi",
+      "d"
+    ],
+    [
+      "Jdid",
+      ",</w>"
+    ],
+    [
+      "form",
+      "s</w>"
+    ],
+    [
+      "m",
+      "ed"
+    ],
+    [
+      "med",
+      "ina</w>"
+    ],
+    [
+      "isl",
+      "and,</w>"
+    ],
+    [
+      "nat",
+      "ion"
+    ],
+    [
+      "nation",
+      "al</w>"
+    ],
+    [
+      "s",
+      "ite,</w>"
+    ],
+    [
+      "commun",
+      "ity</w>"
+    ],
+    [
+      "Maso",
+      "ko"
+    ],
+    [
+      "Masoko",
+      ",</w>"
+    ],
+    [
+      "Tanzan",
+      "ian</w>"
+    ],
+    [
+      "L",
+      "in"
+    ],
+    [
+      "Lin",
+      "di</w>"
+    ],
+    [
+      "n",
+      "ine</w>"
+    ],
+    [
+      "hamle",
+      "ts</w>"
+    ],
+    [
+      "con",
+      "f"
+    ],
+    [
+      "conf",
+      "lu"
+    ],
+    [
+      "conflu",
+      "ence</w>"
+    ],
+    [
+      "Sh",
+      "ash"
+    ],
+    [
+      "Shash",
+      "e</w>"
+    ],
+    [
+      "L",
+      "imp"
+    ],
+    [
+      "Limp",
+      "op"
+    ],
+    [
+      "Limpop",
+      "o</w>"
+    ],
+    [
+      "r",
+      "iv"
+    ],
+    [
+      "riv",
+      "ers</w>"
+    ],
+    [
+      "pres",
+      "ent</w>"
+    ],
+    [
+      "capit",
+      "al"
+    ],
+    [
+      "capital",
+      "'s</w>"
+    ],
+    [
+      "5",
+      ",000</w>"
+    ],
+    [
+      "12",
+      "50"
+    ],
+    [
+      "1250",
+      ",</w>"
+    ],
+    [
+      "li",
+      "k"
+    ],
+    [
+      "lik",
+      "ely</w>"
+    ],
+    [
+      "cov",
+      "ered</w>"
+    ],
+    [
+      "3",
+      "0"
+    ],
+    [
+      "30",
+      ",000</w>"
+    ],
+    [
+      "k",
+      "m"
+    ],
+    [
+      "km",
+      "2</w>"
+    ],
+    [
+      "dr",
+      "om"
+    ],
+    [
+      "drom",
+      "os"
+    ],
+    [
+      "dromos",
+      ",</w>"
+    ],
+    [
+      "col",
+      "onnad"
+    ],
+    [
+      "colonnad",
+      "es,</w>"
+    ],
+    [
+      "theat",
+      "er.</w>"
+    ],
+    [
+      "(",
+      "Buddhist"
+    ],
+    [
+      "(Buddhist",
+      ").</w>"
+    ],
+    [
+      "R",
+      "ashtr"
+    ],
+    [
+      "Rashtr",
+      "ak"
+    ],
+    [
+      "Rashtrak",
+      "u"
+    ],
+    [
+      "Rashtraku",
+      "ta</w>"
+    ],
+    [
+      "Y",
+      "ad"
+    ],
+    [
+      "Yad",
+      "av"
+    ],
+    [
+      "Yadav",
+      "a</w>"
+    ],
+    [
+      "Buddh",
+      "ism</w>"
+    ],
+    [
+      "3",
+      "4</w>"
+    ],
+    [
+      "Kaling",
+      "a</w>"
+    ],
+    [
+      "(",
+      "temple</w>"
+    ],
+    [
+      "ch",
+      "ari"
+    ],
+    [
+      "chari",
+      "ot"
+    ],
+    [
+      "l",
+      "at"
+    ],
+    [
+      "lat",
+      "er"
+    ],
+    [
+      "later",
+      "ite.</w>"
+    ],
+    [
+      "w",
+      "he"
+    ],
+    [
+      "whe",
+      "el"
+    ],
+    [
+      "wheel",
+      "s</w>"
+    ],
+    [
+      "hor",
+      "s"
+    ],
+    [
+      "hors",
+      "es.</w>"
+    ],
+    [
+      "P",
+      "art"
+    ],
+    [
+      "Part",
+      "i"
+    ],
+    [
+      "Parti",
+      "ally</w>"
+    ],
+    [
+      "ruin",
+      "ed,</w>"
+    ],
+    [
+      "Ch",
+      "al"
+    ],
+    [
+      "Chal",
+      "uk"
+    ],
+    [
+      "Chaluk",
+      "ya</w>"
+    ],
+    [
+      "B",
+      "l"
+    ],
+    [
+      "Bl",
+      "end</w>"
+    ],
+    [
+      "sty",
+      "l"
+    ],
+    [
+      "9",
+      "50"
+    ],
+    [
+      "950",
+      "-"
+    ],
+    [
+      "950-",
+      "10"
+    ],
+    [
+      "950-10",
+      "50</w>"
+    ],
+    [
+      "Ch",
+      "and"
+    ],
+    [
+      "Chand",
+      "el"
+    ],
+    [
+      "Chandel",
+      "a</w>"
+    ],
+    [
+      "li",
+      "me</w>"
+    ],
+    [
+      "m",
+      "ort"
+    ],
+    [
+      "mort",
+      "ar.</w>"
+    ],
+    [
+      "palac",
+      "es.</w>"
+    ],
+    [
+      "119",
+      "3</w>"
+    ],
+    [
+      "13",
+      "69</w>"
+    ],
+    [
+      "S",
+      "ultan"
+    ],
+    [
+      "Sultan",
+      "ate.</w>"
+    ],
+    [
+      "Ind",
+      "o-"
+    ],
+    [
+      "Indo-",
+      "Islamic</w>"
+    ],
+    [
+      "R",
+      "ed</w>"
+    ],
+    [
+      "sandston",
+      "e,</w>"
+    ],
+    [
+      "Min",
+      "are"
+    ],
+    [
+      "Minare",
+      "t,</w>"
+    ],
+    [
+      "mosqu",
+      "e,</w>"
+    ],
+    [
+      "(",
+      "Rajput</w>"
+    ],
+    [
+      "pol",
+      "ity"
+    ],
+    [
+      "polity",
+      ").</w>"
+    ],
+    [
+      "hill",
+      "-"
+    ],
+    [
+      "hill-",
+      "fort</w>"
+    ],
+    [
+      "Ston",
+      "e</w>"
+    ],
+    [
+      "(",
+      "Chol"
+    ],
+    [
+      "(Chol",
+      "a"
+    ],
+    [
+      "(Chola",
+      ")</w>"
+    ],
+    [
+      "maj",
+      "or</w>"
+    ],
+    [
+      "Maury",
+      "an.</w>"
+    ],
+    [
+      "(",
+      "Maury"
+    ],
+    [
+      "(Maury",
+      "an"
+    ],
+    [
+      "s",
+      "m"
+    ],
+    [
+      "sm",
+      "all"
+    ],
+    [
+      "small",
+      "er</w>"
+    ],
+    [
+      "stu",
+      "p"
+    ],
+    [
+      "stup",
+      "as"
+    ],
+    [
+      "stupas",
+      ".</w>"
+    ],
+    [
+      "cul",
+      "t</w>"
+    ],
+    [
+      "ro",
+      "om"
+    ],
+    [
+      "room",
+      "s.</w>"
+    ],
+    [
+      "4",
+      "0</w>"
+    ],
+    [
+      "Chapel",
+      ".</w>"
+    ],
+    [
+      "ch",
+      "ap"
+    ],
+    [
+      "chap",
+      "el</w>"
+    ],
+    [
+      "structu",
+      "re.</w>"
+    ],
+    [
+      "as-Siq",
+      ".</w>"
+    ],
+    [
+      "S",
+      "eries</w>"
+    ],
+    [
+      "r",
+      "oyal</w>"
+    ],
+    [
+      "G",
+      "ate.</w>"
+    ],
+    [
+      "M",
+      "asonr"
+    ],
+    [
+      "Masonr",
+      "y</w>"
+    ],
+    [
+      "tri",
+      "ple"
+    ],
+    [
+      "triple",
+      "-"
+    ],
+    [
+      "triple-",
+      "arch"
+    ],
+    [
+      "triple-arch",
+      "ed</w>"
+    ],
+    [
+      "gat",
+      "ew"
+    ],
+    [
+      "gatew",
+      "a"
+    ],
+    [
+      "gatewa",
+      "y.</w>"
+    ],
+    [
+      "R",
+      "ock-cu"
+    ],
+    [
+      "Rock-cu",
+      "t,</w>"
+    ],
+    [
+      "amphitheat",
+      "er.</w>"
+    ],
+    [
+      "M",
+      "ult"
+    ],
+    [
+      "Mult",
+      "i"
+    ],
+    [
+      "Multi",
+      "ple</w>"
+    ],
+    [
+      "fac",
+      "ad"
+    ],
+    [
+      "facad",
+      "e,</w>"
+    ],
+    [
+      "treasur",
+      "y.</w>"
+    ],
+    [
+      "S",
+      "ec"
+    ],
+    [
+      "Sec",
+      "ul"
+    ],
+    [
+      "Secul",
+      "ar.</w>"
+    ],
+    [
+      "M",
+      "il"
+    ],
+    [
+      "Mil",
+      "it"
+    ],
+    [
+      "Milit",
+      "ary</w>"
+    ],
+    [
+      "D",
+      "ef"
+    ],
+    [
+      "Def",
+      "en"
+    ],
+    [
+      "Defen",
+      "sive</w>"
+    ],
+    [
+      "w",
+      "at"
+    ],
+    [
+      "wat",
+      "ch"
+    ],
+    [
+      "watch",
+      "towers.</w>"
+    ],
+    [
+      "courtyard",
+      "s.</w>"
+    ],
+    [
+      "Funer",
+      "ary</w>"
+    ],
+    [
+      "T",
+      "errac"
+    ],
+    [
+      "Terrac",
+      "ott"
+    ],
+    [
+      "Terracott",
+      "a,</w>"
+    ],
+    [
+      "P",
+      "its</w>"
+    ],
+    [
+      "cont",
+      "ain"
+    ],
+    [
+      "contain",
+      "ing</w>"
+    ],
+    [
+      "lif",
+      "e-"
+    ],
+    [
+      "life-",
+      "si"
+    ],
+    [
+      "life-si",
+      "z"
+    ],
+    [
+      "life-siz",
+      "e</w>"
+    ],
+    [
+      "w",
+      "ar"
+    ],
+    [
+      "war",
+      "ri"
+    ],
+    [
+      "warri",
+      "or"
+    ],
+    [
+      "warrior",
+      "s.</w>"
+    ],
+    [
+      "4",
+      "th-14th</w>"
+    ],
+    [
+      "m",
+      "ur"
+    ],
+    [
+      "mur",
+      "al</w>"
+    ],
+    [
+      "4",
+      "9"
+    ],
+    [
+      "49",
+      "2</w>"
+    ],
+    [
+      "sculptures",
+      ".</w>"
+    ],
+    [
+      "7",
+      "th-1"
+    ],
+    [
+      "7th-1",
+      "7th</w>"
+    ],
+    [
+      "monast",
+      "ic"
+    ],
+    [
+      "monastic",
+      "-"
+    ],
+    [
+      "monastic-",
+      "palace</w>"
+    ],
+    [
+      "ra",
+      "m"
+    ],
+    [
+      "ram",
+      "m"
+    ],
+    [
+      "ramm",
+      "ed</w>"
+    ],
+    [
+      "p",
+      "av"
+    ],
+    [
+      "pav",
+      "il"
+    ],
+    [
+      "pavil",
+      "ion"
+    ],
+    [
+      "pavilion",
+      "s.</w>"
+    ],
+    [
+      "5",
+      "th-"
+    ],
+    [
+      "5th-",
+      "10th</w>"
+    ],
+    [
+      "W",
+      "e"
+    ],
+    [
+      "We",
+      "i</w>"
+    ],
+    [
+      "T",
+      "ang</w>"
+    ],
+    [
+      "gr",
+      "ot"
+    ],
+    [
+      "grot",
+      "to</w>"
+    ],
+    [
+      "10",
+      "0"
+    ],
+    [
+      "100",
+      ","
+    ],
+    [
+      "100,",
+      "000"
+    ],
+    [
+      "100,000",
+      "+</w>"
+    ],
+    [
+      "2",
+      ","
+    ],
+    [
+      "2,",
+      "3"
+    ],
+    [
+      "2,3",
+      "00</w>"
+    ],
+    [
+      "W",
+      "or"
+    ],
+    [
+      "Wor",
+      "ship</w>"
+    ],
+    [
+      "c",
+      "eremonial</w>"
+    ],
+    [
+      "C",
+      "eremonial</w>"
+    ],
+    [
+      "al",
+      "t"
+    ],
+    [
+      "alt",
+      "ar"
+    ],
+    [
+      "altar",
+      "s.</w>"
+    ],
+    [
+      "C",
+      "ult"
+    ],
+    [
+      "Cult",
+      "s</w>"
+    ],
+    [
+      "E",
+      "arth.</w>"
+    ],
+    [
+      "s",
+      "h"
+    ],
+    [
+      "sh",
+      "r"
+    ],
+    [
+      "shr",
+      "in"
+    ],
+    [
+      "shrin",
+      "es,</w>"
+    ],
+    [
+      "gat",
+      "es.</w>"
+    ],
+    [
+      "t",
+      "imb"
+    ],
+    [
+      "timb",
+      "er.</w>"
+    ],
+    [
+      "W",
+      "alled</w>"
+    ],
+    [
+      "T",
+      "rav"
+    ],
+    [
+      "Trav",
+      "ert"
+    ],
+    [
+      "Travert",
+      "ine</w>"
+    ],
+    [
+      "limeston",
+      "e,</w>"
+    ],
+    [
+      "con",
+      "c"
+    ],
+    [
+      "conc",
+      "ret"
+    ],
+    [
+      "concret",
+      "e,</w>"
+    ],
+    [
+      "F",
+      "l"
+    ],
+    [
+      "Fl",
+      "av"
+    ],
+    [
+      "Flav",
+      "ian</w>"
+    ],
+    [
+      "A",
+      "mp"
+    ],
+    [
+      "Amp",
+      "hitheat"
+    ],
+    [
+      "Amphitheat",
+      "re.</w>"
+    ],
+    [
+      "C",
+      "l"
+    ],
+    [
+      "Cl",
+      "assical</w>"
+    ],
+    [
+      "Mar",
+      "b"
+    ],
+    [
+      "Marb",
+      "le.</w>"
+    ],
+    [
+      "acr",
+      "opolis"
+    ],
+    [
+      "acropolis",
+      ".</w>"
+    ],
+    [
+      "3",
+      "000"
+    ],
+    [
+      "3000",
+      "-"
+    ],
+    [
+      "3000-",
+      "20"
+    ],
+    [
+      "3000-20",
+      "00</w>"
+    ],
+    [
+      "Br",
+      "it"
+    ],
+    [
+      "Brit",
+      "ain</w>"
+    ],
+    [
+      "P",
+      "re"
+    ],
+    [
+      "Pre",
+      "histor"
+    ],
+    [
+      "Prehistor",
+      "ic.</w>"
+    ],
+    [
+      "th",
+      "ic.</w>"
+    ],
+    [
+      "S",
+      "arsen</w>"
+    ],
+    [
+      "ston",
+      "e,</w>"
+    ],
+    [
+      "b",
+      "lu"
+    ],
+    [
+      "blu",
+      "eston"
+    ],
+    [
+      "blueston",
+      "e.</w>"
+    ],
+    [
+      "M",
+      "egalithic</w>"
+    ],
+    [
+      "ci",
+      "r"
+    ],
+    [
+      "cir",
+      "c"
+    ],
+    [
+      "circ",
+      "le.</w>"
+    ],
+    [
+      "Fr",
+      "an"
+    ],
+    [
+      "Fran",
+      "k"
+    ],
+    [
+      "Frank",
+      "ish</w>"
+    ],
+    [
+      "Norm",
+      "an</w>"
+    ],
+    [
+      "Christi",
+      "an.</w>"
+    ],
+    [
+      "ab",
+      "be"
+    ],
+    [
+      "abbe",
+      "y</w>"
+    ],
+    [
+      "A",
+      "b"
+    ],
+    [
+      "Ab",
+      "be"
+    ],
+    [
+      "Abbe",
+      "y,</w>"
+    ],
+    [
+      "cl",
+      "o"
+    ],
+    [
+      "clo",
+      "i"
+    ],
+    [
+      "cloi",
+      "st"
+    ],
+    [
+      "cloist",
+      "er,</w>"
+    ],
+    [
+      "town",
+      ".</w>"
+    ],
+    [
+      "13",
+      "th-14th</w>"
+    ],
+    [
+      "N",
+      "as"
+    ],
+    [
+      "Nas",
+      "ri"
+    ],
+    [
+      "Nasri",
+      "d</w>"
+    ],
+    [
+      "Islam",
+      "ic.</w>"
+    ],
+    [
+      "M",
+      "o"
+    ],
+    [
+      "Mo",
+      "or"
+    ],
+    [
+      "Moor",
+      "ish</w>"
+    ],
+    [
+      "Stu",
+      "c"
+    ],
+    [
+      "Stuc",
+      "co,</w>"
+    ],
+    [
+      "marb",
+      "le"
+    ],
+    [
+      "marble",
+      ",</w>"
+    ],
+    [
+      "t",
+      "il"
+    ],
+    [
+      "til",
+      "es.</w>"
+    ],
+    [
+      "courtyard",
+      "s,</w>"
+    ],
+    [
+      "fortres",
+      "s.</w>"
+    ],
+    [
+      "6",
+      "th-"
+    ],
+    [
+      "6th-",
+      "12th</w>"
+    ],
+    [
+      "E",
+      "ar"
+    ],
+    [
+      "Ear",
+      "ly</w>"
+    ],
+    [
+      "Christi",
+      "an</w>"
+    ],
+    [
+      "mon",
+      "astic</w>"
+    ],
+    [
+      "Church",
+      "es,</w>"
+    ],
+    [
+      "r",
+      "ound</w>"
+    ],
+    [
+      "tow",
+      "ers,</w>"
+    ],
+    [
+      "cross",
+      "es.</w>"
+    ],
+    [
+      "17",
+      "th-1"
+    ],
+    [
+      "17th-1",
+      "8th</w>"
+    ],
+    [
+      "Mon",
+      "arch"
+    ],
+    [
+      "Monarch",
+      "y.</w>"
+    ],
+    [
+      "B",
+      "ar"
+    ],
+    [
+      "Bar",
+      "o"
+    ],
+    [
+      "Baro",
+      "que</w>"
+    ],
+    [
+      "stu",
+      "c"
+    ],
+    [
+      "stuc",
+      "co.</w>"
+    ],
+    [
+      "gar",
+      "d"
+    ],
+    [
+      "gard",
+      "en"
+    ],
+    [
+      "garden",
+      "s.</w>"
+    ],
+    [
+      "12",
+      "th-"
+    ],
+    [
+      "12th-",
+      "13th</w>"
+    ],
+    [
+      "H",
+      "igh"
+    ],
+    [
+      "High",
+      "</w>"
+    ],
+    [
+      "cathedr",
+      "al.</w>"
+    ],
+    [
+      "19",
+      "th</w>"
+    ],
+    [
+      "Bav",
+      "ar"
+    ],
+    [
+      "Bavar",
+      "ia.</w>"
+    ],
+    [
+      "Rom",
+      "an"
+    ],
+    [
+      "Roman",
+      "es"
+    ],
+    [
+      "Romanes",
+      "que</w>"
+    ],
+    [
+      "R",
+      "ev"
+    ],
+    [
+      "Rev",
+      "iv"
+    ],
+    [
+      "Reviv",
+      "al</w>"
+    ],
+    [
+      "c",
+      "ast"
+    ],
+    [
+      "tow",
+      "ers</w>"
+    ],
+    [
+      "h",
+      "all"
+    ],
+    [
+      "hall",
+      "s.</w>"
+    ],
+    [
+      "pl",
+      "ast"
+    ],
+    [
+      "plast",
+      "er,</w>"
+    ],
+    [
+      "Ex",
+      "cav"
+    ],
+    [
+      "Excav",
+      "ated</w>"
+    ],
+    [
+      "11",
+      "th\u201315th</w>"
+    ],
+    [
+      "D",
+      "r"
+    ],
+    [
+      "Dr",
+      "y"
+    ],
+    [
+      "Dry",
+      "-"
+    ],
+    [
+      "Dry-",
+      "stone</w>"
+    ],
+    [
+      "E",
+      "n"
+    ],
+    [
+      "En",
+      "clos"
+    ],
+    [
+      "Enclos",
+      "u"
+    ],
+    [
+      "Enclosu",
+      "re.</w>"
+    ],
+    [
+      "2",
+      "6th</w>"
+    ],
+    [
+      "gr",
+      "an"
+    ],
+    [
+      "gran",
+      "ite.</w>"
+    ],
+    [
+      "Pyramid",
+      "s,</w>"
+    ],
+    [
+      "m",
+      "or"
+    ],
+    [
+      "mor",
+      "tu"
+    ],
+    [
+      "mortu",
+      "ary</w>"
+    ],
+    [
+      "12th\u2013",
+      "13th</w>"
+    ],
+    [
+      "Z",
+      "ag"
+    ],
+    [
+      "Zag",
+      "we</w>"
+    ],
+    [
+      "Mon",
+      "olithic</w>"
+    ],
+    [
+      "V",
+      "olcanic</w>"
+    ],
+    [
+      "11",
+      "</w>"
+    ],
+    [
+      "12th\u2013",
+      "16th</w>"
+    ],
+    [
+      "Mal",
+      "i</w>"
+    ],
+    [
+      "Su",
+      "d"
+    ],
+    [
+      "Sud",
+      "an"
+    ],
+    [
+      "Sudan",
+      "o"
+    ],
+    [
+      "Sudano",
+      "-S"
+    ],
+    [
+      "Sudano-S",
+      "a"
+    ],
+    [
+      "Sudano-Sa",
+      "hel"
+    ],
+    [
+      "Sudano-Sahel",
+      "ian</w>"
+    ],
+    [
+      "m",
+      "u"
+    ],
+    [
+      "mu",
+      "d</w>"
+    ],
+    [
+      "M",
+      "u"
+    ],
+    [
+      "Mu",
+      "d"
+    ],
+    [
+      "Mud",
+      "brick,</w>"
+    ],
+    [
+      "M",
+      "os"
+    ],
+    [
+      "Mos",
+      "qu"
+    ],
+    [
+      "Mosqu",
+      "es,</w>"
+    ],
+    [
+      "li",
+      "br"
+    ],
+    [
+      "libr",
+      "ari"
+    ],
+    [
+      "librari",
+      "es.</w>"
+    ],
+    [
+      "Phoen",
+      "ici"
+    ],
+    [
+      "Phoenici",
+      "an.</w>"
+    ],
+    [
+      "Christian",
+      "ity</w>"
+    ],
+    [
+      "b",
+      "ath"
+    ],
+    [
+      "bath",
+      "s,</w>"
+    ],
+    [
+      "4",
+      "th\u201315th</w>"
+    ],
+    [
+      "Ak",
+      "sum"
+    ],
+    [
+      "Aksum",
+      "ite</w>"
+    ],
+    [
+      "Ethiop",
+      "i"
+    ],
+    [
+      "Ethiopi",
+      "an.</w>"
+    ],
+    [
+      "rock",
+      ".</w>"
+    ],
+    [
+      "12",
+      "0"
+    ],
+    [
+      "120",
+      "+</w>"
+    ],
+    [
+      "r",
+      "ock-"
+    ],
+    [
+      "rock-",
+      "he"
+    ],
+    [
+      "rock-he",
+      "wn</w>"
+    ],
+    [
+      "theat",
+      "re,</w>"
+    ],
+    [
+      "b",
+      "a"
+    ],
+    [
+      "ba",
+      "si"
+    ],
+    [
+      "basi",
+      "l"
+    ],
+    [
+      "basil",
+      "ic"
+    ],
+    [
+      "basilic",
+      "a.</w>"
+    ],
+    [
+      "13",
+      "th\u201315th</w>"
+    ],
+    [
+      "I",
+      "d"
+    ],
+    [
+      "Id",
+      "ri"
+    ],
+    [
+      "Idri",
+      "si"
+    ],
+    [
+      "Idrisi",
+      "d</w>"
+    ],
+    [
+      "Mar",
+      "ini"
+    ],
+    [
+      "Marini",
+      "d</w>"
+    ],
+    [
+      "Med",
+      "ers"
+    ],
+    [
+      "Meders",
+      "a,</w>"
+    ],
+    [
+      "sou",
+      "k"
+    ],
+    [
+      "souk",
+      "s.</w>"
+    ],
+    [
+      "9th\u2013",
+      "16th</w>"
+    ],
+    [
+      "Sw",
+      "a"
+    ],
+    [
+      "Swa",
+      "hil"
+    ],
+    [
+      "Swahil",
+      "i</w>"
+    ],
+    [
+      "Civiliz",
+      "at"
+    ],
+    [
+      "Civilizat",
+      "ion.</w>"
+    ],
+    [
+      "rag",
+      ",</w>"
+    ],
+    [
+      "l",
+      "im"
+    ],
+    [
+      "lim",
+      "e.</w>"
+    ],
+    [
+      "9th\u2013",
+      "14th</w>"
+    ],
+    [
+      "s",
+      "o"
+    ],
+    [
+      "so",
+      "il"
+    ],
+    [
+      "soil",
+      ".</w>"
+    ],
+    [
+      "d",
+      "et"
+    ],
+    [
+      "det",
+      "a"
+    ],
+    [
+      "includ",
+      "e</w>"
+    ],
+    [
+      "paint",
+      "ings</w>"
+    ],
+    [
+      "c",
+      "ri"
+    ],
+    [
+      "cri",
+      "b"
+    ],
+    [
+      "crib",
+      "ed</w>"
+    ],
+    [
+      "f",
+      "</w>"
+    ],
+    [
+      "architectu",
+      "re,</w>"
+    ],
+    [
+      "n",
+      "o</w>"
+    ],
+    [
+      "S",
+      "un"
+    ],
+    [
+      "Sun",
+      "-g"
+    ],
+    [
+      "Sun-g",
+      "od</w>"
+    ],
+    [
+      "architectur",
+      "</w>"
+    ],
+    [
+      "Bad",
+      "a"
+    ],
+    [
+      "Bada",
+      "mi</w>"
+    ],
+    [
+      "9",
+      "."
+    ],
+    [
+      "9.",
+      "7</w>"
+    ],
+    [
+      "Jhan",
+      "si"
+    ]
+  ]
+}

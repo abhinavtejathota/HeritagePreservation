@@ -1,9 +1,11 @@
 # Shared local port block (avoids 3000/5000/8000 collisions)
-# App UI+API     8175
-# Local RAG      8176
-# Clustering     8177
-# Api-Based      8178   (opt-in: --with-api-fallback)
-# WebGL static   8179   (opt-in: --with-webgl; else REACT_APP_SIM_URL)
+# App UI+API        8175
+# Local RAG         8176   (GGUF fallback)
+# Clustering        8177
+# Api-Based         8178   (opt-in: --with-api-fallback)
+# WebGL static      8179   (opt-in: --with-webgl; else REACT_APP_SIM_URL)
+# Agent Hybrid RAG  8180   (primary chat — extractive + optional cloud polish)
+# Heritage Mini-LM  8181   (optional: project-trained Transformer; start server.py)
 
 # One manager (identical flags on all shells):
 #   python scripts/start_all.py [--start|--stop|--restart|--status]

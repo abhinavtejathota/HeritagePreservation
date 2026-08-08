@@ -6,6 +6,7 @@ import { ReactComponent as MenuIcon } from "../Dashboard/Hamburg_icon.svg";
 import { NavLink } from "react-router-dom";
 
 import { getApiBase } from "../lib/api";
+import { NAV_LINKS } from "../lib/navLinks";
 
 export default function Themes() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -14,13 +15,7 @@ export default function Themes() {
   const [values, setValues] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const links = [
-    { name: "Home", to: "/" },
-    { name: "Explore", to: "/Explore" },
-    { name: "Nearby", to: "/Nearby" },
-    { name: "Favourites", to: "/Favourites" },
-    { name: "Play", to: "/Play" },
-  ];
+  const links = NAV_LINKS;
 
   const params = new URLSearchParams(location.search);
   const type = params.get("type");

@@ -4,7 +4,7 @@ import axios from "axios";
 import { getApiBase } from "../lib/api";
 import { toSlug } from "../lib/favourites";
 
-/** One-tap “today’s place” with a short story — full-width card, not a lonely pill */
+/** One-tap “today’s place” with a short story - full-width card, not a lonely pill */
 export default function SurpriseMe({ className = "" }) {
   const [card, setCard] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -19,7 +19,7 @@ export default function SurpriseMe({ className = "" }) {
       setCard(res.data);
     } catch {
       setCard(null);
-      setError("Couldn’t pick a place — is the app server running?");
+      setError("Couldn’t pick a place - is the app server running?");
     } finally {
       setLoading(false);
     }
@@ -46,7 +46,7 @@ export default function SurpriseMe({ className = "" }) {
                 {loading ? "Finding a place…" : "Surprise me"}
               </h3>
               <p className="mt-2 text-sm text-stone-300 max-w-md">
-                Get one heritage landmark at random — with a short story to start exploring.
+                Get one heritage landmark at random - with a short story to start exploring.
               </p>
             </div>
             <span className="inline-flex items-center gap-2 text-sm font-medium text-stone-900 bg-white/95 px-4 py-2.5 rounded-full group-hover:bg-amber-100 transition shrink-0">

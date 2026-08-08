@@ -1,10 +1,6 @@
-fastapi
-uvicorn
-python-dotenv
-pydantic
-requests
-psycopg2-binary
-# Install GPU stack separately:
-#   pip install torch --index-url https://download.pytorch.org/whl/cu124
-#   pip install llama-cpp-python==0.3.34 --extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cu124
-llama-cpp-python
+# Prefer the repo-root requirements (one venv for the whole project):
+#   pip install -r ../../requirements.txt
+#
+# This file remains for Local-RAG-only installs.
+# GPU llama-cpp / CUDA torch: use scripts/install_gpu_llm.ps1 after the root install.
+-r ../../requirements.txt

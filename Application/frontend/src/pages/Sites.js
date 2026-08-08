@@ -7,6 +7,7 @@ import Sidebar from "../Dashboard/Sidebar.js";
 import { isFavourite, toggleFavourite } from "../lib/favourites";
 import { askPineAI, getKidsMode } from "../lib/prefs";
 import { getApiBase } from "../lib/api";
+import { NAV_LINKS } from "../lib/navLinks";
 
 const SIM_BASE = process.env.REACT_APP_SIM_URL;
 
@@ -45,14 +46,7 @@ export default function Sites() {
   const [visitTips, setVisitTips] = useState(null);
   const [listening, setListening] = useState(false);
 
-  const links = [
-    { name: "Home", to: "/" },
-    { name: "Explore", to: "/Explore" },
-    { name: "Nearby", to: "/Nearby" },
-    { name: "Favourites", to: "/Favourites" },
-    { name: "Play", to: "/Play" },
-    { name: "Trail", to: "/Trail" },
-  ];
+  const links = NAV_LINKS;
 
   const randomSites = [
     { name: "Colosseum", country: "Italy" },
@@ -230,7 +224,7 @@ export default function Sites() {
               askPineAI(
                 getKidsMode()
                   ? `Tell me about ${site.name} in simple words for kids.`
-                  : `Tell me about ${site.name} — architecture, history, and what makes it special.`
+                  : `Tell me about ${site.name} - architecture, history, and what makes it special.`
               )
             }
           >
@@ -249,13 +243,45 @@ export default function Sites() {
                 setListening(false);
                 return;
               }
-              const tipText = (visitTips?.tips || [])
-                .map((t) => `${t.title}. ${t.body}`)
-                .join(" ");
               const kids = getKidsMode();
-              const text = kids
-                ? `${site.name} is in ${site.country || site.continent}. ${tipText || site.era_category || ""}`
-                : `${site.name}. ${site.country || ""}. ${site.era_category || ""}. ${tipText || (site.description || "").replace(/\*\*/g, "").slice(0, 400)}`;
+              const desc = (site.description || "")
+                .replace(/\*\*/g, "")
+                .replace(/\s+/g, " ")
+                .trim()
+                .slice(0, 900);
+              const nextName =
+                alike?.alike?.[0]?.name ||
+                displaySites?.[0]?.name ||
+                null;
+              const nextWhy =
+                alike?.alike?.[0]?.why ||
+                alike?.subtitle ||
+                (nextName ? "a related place visitors often explore next" : "");
+              const parts = kids
+                ? [
+                    `${site.name} is in ${site.country || site.continent || "our archive"}.`,
+                    site.era_category ? `It is from the ${site.era_category} era.` : "",
+                    site.architecture_style
+                      ? `The architecture is ${site.architecture_style}.`
+                      : "",
+                    nextName ? `Next, you might like ${nextName}.` : "",
+                  ]
+                : [
+                    `${site.name}.`,
+                    site.country || site.continent
+                      ? `Located in ${[site.country, site.continent].filter(Boolean).join(", ")}.`
+                      : "",
+                    site.era_category ? `Era: ${site.era_category}.` : "",
+                    site.architecture_style
+                      ? `Architecture: ${site.architecture_style}.`
+                      : "",
+                    site.material ? `Materials: ${site.material}.` : "",
+                    desc,
+                    nextName
+                      ? `Recommended next: ${nextName}${nextWhy ? ` - ${nextWhy}` : "."}`
+                      : "",
+                  ];
+              const text = parts.filter(Boolean).join(" ");
               const u = new SpeechSynthesisUtterance(text);
               u.rate = kids ? 0.95 : 1;
               u.onend = () => setListening(false);
@@ -268,14 +294,14 @@ export default function Sites() {
         </div>
         {/* Before you go */}
         {visitTips?.tips?.length > 0 && (
-          <div className="mb-10 p-5 rounded-2xl bg-stone-50 border border-stone-100">
-            <h2 className="text-lg font-semibold mb-1">
+          <div className="mb-10 p-5 rounded-2xl bg-stone-50 border border-stone-100 text-left">
+            <h2 className="text-lg font-semibold mb-1 text-left">
               {visitTips.title || "Before you go"}
             </h2>
-            <p className="text-sm text-stone-500 mb-4">
-              Quick tips — history vibe, what to notice, and a good follow-up stop.
+            <p className="text-sm text-stone-500 mb-4 text-left">
+              Quick tips - history vibe, what to notice, and a good follow-up stop.
             </p>
-            <ul className="space-y-3">
+            <ul className="space-y-3 text-left">
               {visitTips.tips.map((t) => (
                 <li key={t.title}>
                   <p className="font-medium text-stone-800 text-sm">{t.title}</p>
@@ -356,7 +382,7 @@ export default function Sites() {
           </div>
         )}
 
-        {/* Why similar — plain language */}
+        {/* Why similar - plain language */}
         {alike?.alike?.length > 0 && (
           <div className="mt-12 mb-8">
             <h2 className="text-xl font-semibold mb-1">
@@ -382,7 +408,7 @@ export default function Sites() {
         <div className="mt-10 mb-8 p-4 rounded-xl bg-stone-50 border border-stone-100">
           <h2 className="text-lg font-semibold mb-2">Compare with another place</h2>
           <p className="text-sm text-stone-500 mb-3">
-            See what they share — country, era, style — side by side.
+            See what they share - country, era, style - side by side.
           </p>
           <div className="flex flex-wrap gap-2">
             <select
@@ -440,7 +466,7 @@ export default function Sites() {
                 </table>
               </div>
               <p className="text-xs text-stone-500 mt-3">
-                Tip: ask PineAI (chat) — “{compareResult.ask_pineai}”
+                Tip: ask PineAI (chat) - “{compareResult.ask_pineai}”
               </p>
             </div>
           )}
@@ -498,7 +524,7 @@ export default function Sites() {
           </div>
         )}
         {studyDone && (
-          <p className="mt-8 text-sm text-gray-500">Thanks — preference recorded.</p>
+          <p className="mt-8 text-sm text-gray-500">Thanks - preference recorded.</p>
         )}
 
         {/* Similar sites */}

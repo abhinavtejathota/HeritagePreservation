@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ReactComponent as MenuIcon } from "./Hamburg_icon.svg";
 import Sidebar from "./Sidebar";
 import { getApiBase } from "../lib/api";
+import { NAV_LINKS } from "../lib/navLinks";
 
 const toSlug = (name) =>
   name
@@ -193,7 +194,7 @@ function ArtsPuzzle({ pool }) {
         </h2>
         <p className="text-stone-500 mt-2 max-w-xl mx-auto">
           Tap two tiles to swap them into place, then name the heritage site.
-          Each tile shows a unique region of one photograph — no repeats.
+          Each tile shows a unique region of one photograph - no repeats.
         </p>
         <div className="flex justify-center gap-3 text-sm text-stone-600 mt-4">
           <span className="px-3 py-1 rounded-full bg-stone-100">Moves {moves}</span>
@@ -343,14 +344,7 @@ function ArtsPuzzle({ pool }) {
 export default function Play() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  const links = [
-    { name: "Home", to: "/" },
-    { name: "Explore", to: "/Explore" },
-    { name: "Nearby", to: "/Nearby" },
-    { name: "Favourites", to: "/Favourites" },
-    { name: "Play", to: "/Play" },
-    { name: "Trail", to: "/Trail" },
-  ];
+  const links = NAV_LINKS;
 
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-b from-stone-50 via-amber-50/40 to-stone-100">

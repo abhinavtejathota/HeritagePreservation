@@ -47,7 +47,7 @@ export default function MoodBrowse() {
       }
     } catch {
       setResults([]);
-      setError("Couldn’t load places — check that the app server is running.");
+      setError("Couldn’t load places - check that the app server is running.");
     } finally {
       setLoading(false);
     }
@@ -57,14 +57,14 @@ export default function MoodBrowse() {
     <div className="mb-10">
       <h2 className="text-xl font-semibold text-stone-800 mb-2">Browse by feeling</h2>
       <p className="text-sm text-stone-500 mb-3">
-        Tap a mood — chips update from what’s in the archive.
+        Tap a mood - chips update from what’s in the archive.
       </p>
       {moodsLoading && (
         <p className="text-sm text-stone-400 mb-3">Loading moods…</p>
       )}
       {!moodsLoading && !moods.length && (
         <p className="text-sm text-stone-500 mb-3">
-          No moods available yet — check that the app server can reach the database.
+          No moods available yet - check that the app server can reach the database.
         </p>
       )}
       <div className="flex flex-wrap gap-2 mb-4">

@@ -16,6 +16,7 @@ import {
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { getApiBase } from "../lib/api";
+import { NAV_LINKS } from "../lib/navLinks";
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -107,13 +108,7 @@ export default function Nearby() {
     }
   };
 
-  const links = [
-    { name: "Home", to: "/" },
-    { name: "Explore", to: "/Explore" },
-    { name: "Nearby", to: "/Nearby" },
-    { name: "Favourites", to: "/Favourites" },
-    { name: "Play", to: "/Play" },
-  ];
+  const links = NAV_LINKS;
 
   useEffect(() => {
     fetch(`${getApiBase()}/api/map/sites`)
@@ -309,7 +304,7 @@ export default function Nearby() {
                 >
                   <Popup>
                     Cluster {poly.cluster_id ?? i}
-                    {poly.civilization ? ` — ${poly.civilization}` : ""}
+                    {poly.civilization ? ` - ${poly.civilization}` : ""}
                     <br />
                     {(poly.members || []).slice(0, 5).join(", ")}
                     {(poly.members || []).length > 5 ? "…" : ""}

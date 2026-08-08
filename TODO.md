@@ -92,9 +92,13 @@ Retrieval-extractive on full 40 QA: Hit@K **1.0**, coverage ≈ **0.91**. Genera
 ## Open TODOs (remaining)
 
 ### Paper packaging
+- [x] Dataset stats API + Research UI (`/api/dataset/stats`, `/Research`)
+- [x] Measured metrics JSON (`docs/research_metrics.json`) + `/api/research/metrics`
+- [x] High-DPI paper figures + captions (`Clustering/export_paper_figures.py` → `docs/paper_figures/`)
 - [ ] Methods figure: Application ↔ Clustering ↔ Local-RAG dataflow
 - [ ] Threats-to-validity subsection (n=49, lexical faithfulness, GNN circularity)
 - [ ] Appendix: qualitative win/fail cases from `eval_rag.py` rows
+- [ ] Rewrite `Review/report.docx` Sections III–V to cite measured tables (paper file, not code)
 
 ### Human / optional (blocked on people or installs)
 - [ ] Fill `human_ratings.json` and report κ

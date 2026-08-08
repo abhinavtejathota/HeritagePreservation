@@ -1,0 +1,64 @@
+# =============================================================================
+# Heritage Major Project — Python dependencies (repo root)
+# =============================================================================
+# No project venv is committed. Create one if you want isolation:
+#
+#   python -m venv .venv
+#   # Windows:
+#   .\.venv\Scripts\activate
+#   # Linux/macOS:
+#   source .venv/bin/activate
+#
+#   pip install -U pip
+#   pip install -r requirements.txt
+#
+# Covers: Clustering (:8177), Local-RAG (:8176), scripts/, paper figure export.
+# Node apps (Application, Agent-Based) use package.json — not this file.
+# =============================================================================
+
+# --- Web / API ---
+fastapi>=0.110
+uvicorn[standard]>=0.27
+pydantic>=2.0
+python-dotenv>=1.0
+requests>=2.31
+
+# --- Data / DB ---
+numpy>=1.24
+pandas>=2.0
+scipy>=1.11
+psycopg2-binary>=2.9
+
+# --- Classical ML / clustering / retrieval ---
+scikit-learn>=1.3
+networkx>=3.1
+hdbscan>=0.8.33
+faiss-cpu>=1.7.4
+Pillow>=10.0
+matplotlib>=3.8
+
+# --- Embeddings / multimodal (Clustering CLIP, RAG index helpers) ---
+# CPU torch from PyPI is fine for Clustering. For CUDA torch + llama-cpp GPU
+# wheels, see "GPU extras" below (or run scripts/install_gpu_llm.ps1).
+torch>=2.1
+sentence-transformers>=2.7
+
+# --- Local RAG LLM (CPU wheel by default) ---
+llama-cpp-python>=0.3.0
+
+# =============================================================================
+# GPU extras (optional — do NOT pip install -r this whole file twice)
+# =============================================================================
+# Windows + NVIDIA (recommended for Local-RAG):
+#   .\scripts\install_gpu_llm.ps1
+#
+# Or manually:
+#   pip install torch --index-url https://download.pytorch.org/whl/cu124
+#   pip install llama-cpp-python==0.3.34 --extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cu124
+#
+# Optional human eval / RAGAS notebook (not required for demo):
+#   pip install ragas datasets
+#
+# Optional Api-Based chatbot fallback (cloud keys; not started by default):
+#   pip install google-genai groq
+# =============================================================================

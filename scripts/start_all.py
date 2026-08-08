@@ -2,7 +2,7 @@
 """
 Heritage Ecosystem process manager — start / stop / restart / status.
 
-Core (default): App :8175, Local RAG :8176, Clustering :8177
+Core (default): App :8175, Agent RAG :8180, Local RAG fallback :8176, Clustering :8177
 Optional:     --with-webgl :8179, --with-api-fallback :8178
 
 Usage (from repo root):
@@ -38,6 +38,7 @@ PORTS = {
     "clustering": 8177,
     "fallback": 8178,
     "webgl": 8179,
+    "agent": 8180,
 }
 
 
@@ -113,6 +114,20 @@ def pids_listening_on(port: int) -> list[int]:
     except Exception as e:
         print(f"[warn] port scan {port}: {e}")
     return sorted(pids)
+
+
+def wait_for_port(port: int, timeout_s: float = 120.0, label: str = "") -> bool:
+    """Block until something is LISTENING on port (or timeout)."""
+    label = label or f":{port}"
+    deadline = time.time() + timeout_s
+    print(f"[wait] {label} ready (up to {int(timeout_s)}s)…")
+    while time.time() < deadline:
+        if pids_listening_on(port):
+            print(f"[ok] {label} is listening")
+            return True
+        time.sleep(0.5)
+    print(f"[warn] {label} not listening after {int(timeout_s)}s — continuing anyway")
+    return False
 
 
 def kill_pid(pid: int) -> bool:
@@ -209,12 +224,17 @@ def cmd_stop() -> int:
     return 0
 
 
-def spawn(name: str, cmd: list[str], cwd: Path) -> subprocess.Popen:
+def spawn(
+    name: str, cmd: list[str], cwd: Path, extra_env: dict | None = None
+) -> subprocess.Popen:
     print(f"[start] {name}: {' '.join(cmd)}  (cwd={cwd})")
     # Avoid shell=True so Popen.pid is the real process (esp. important for --stop)
+    env = os.environ.copy()
+    if extra_env:
+        env.update({k: str(v) for k, v in extra_env.items()})
     kwargs: dict = {
         "cwd": str(cwd),
-        "env": os.environ.copy(),
+        "env": env,
     }
     if IS_WIN:
         kwargs["creationflags"] = subprocess.CREATE_NEW_PROCESS_GROUP  # type: ignore[attr-defined]
@@ -224,7 +244,11 @@ def spawn(name: str, cmd: list[str], cwd: Path) -> subprocess.Popen:
 def cmd_start(args: argparse.Namespace) -> int:
     # Don't double-bind ports
     busy = {n: pids_listening_on(p) for n, p in PORTS.items() if pids_listening_on(p)}
-    core_busy = {k: v for k, v in busy.items() if k in ("application", "local-rag", "clustering")}
+    core_busy = {
+        k: v
+        for k, v in busy.items()
+        if k in ("application", "local-rag", "clustering", "agent")
+    }
     if core_busy and not args.force:
         print("[warn] Some services already running:")
         for n, pids in core_busy.items():
@@ -255,35 +279,49 @@ def cmd_start(args: argparse.Namespace) -> int:
             spawn("Clustering API", [sys.executable, "app.py"], ROOT / "Clustering"),
             PORTS["clustering"],
         )
+        # Clustering imports heavy ML libs before binding — wait so Local-RAG
+        # does not spam "connection refused" on first retrieve.
+        wait_for_port(
+            PORTS["clustering"],
+            timeout_s=180.0,
+            label=f"Clustering :{PORTS['clustering']}",
+        )
 
     if not args.no_agent:
         local_rag = ROOT / "Chatbot" / "Local-RAG"
         if (local_rag / "app.py").exists():
             track(
                 "local-rag",
-                spawn("Local RAG Chatbot", [sys.executable, "app.py"], local_rag),
+                spawn("Local RAG (fallback)", [sys.executable, "app.py"], local_rag),
                 PORTS["local-rag"],
             )
-        else:
-            agent_dir = ROOT / "Chatbot" / "Agent-Based"
-            build_js = agent_dir / "build" / "server.js"
-            if not build_js.exists():
-                print("[build] Compiling Agent-Based chatbot (tsc)...")
-                try:
-                    subprocess.check_call(
-                        [_npm(), "run", "build"],
-                        cwd=str(agent_dir),
-                        shell=IS_WIN,
-                    )
-                except subprocess.CalledProcessError:
-                    print("[warn] Agent build failed — skipping")
-                    build_js = None
-            if build_js and build_js.exists():
-                track(
-                    "agent",
-                    spawn("Agent Chatbot", ["node", "build/server.js"], agent_dir),
-                    PORTS["local-rag"],
+
+        agent_dir = ROOT / "Chatbot" / "Agent-Based"
+        build_js = agent_dir / "build" / "server.js"
+        if not build_js.exists():
+            print("[build] Compiling Agent-Based hybrid RAG (tsc)...")
+            try:
+                subprocess.check_call(
+                    [_npm(), "run", "build"],
+                    cwd=str(agent_dir),
+                    shell=IS_WIN,
                 )
+            except subprocess.CalledProcessError:
+                print("[error] Agent-Based build failed — fix Chatbot/Agent-Based (primary chat). Local-RAG alone is not the UI entrypoint.")
+                build_js = None
+        if build_js and build_js.exists():
+            track(
+                "agent",
+                spawn(
+                    "Agent Hybrid RAG (primary chat)",
+                    ["node", "build/server.js"],
+                    agent_dir,
+                    extra_env={"PORT": str(PORTS["agent"])},
+                ),
+                PORTS["agent"],
+            )
+        elif not build_js or not build_js.exists():
+            print("[error] Agent-Based missing build/server.js — run: cd Chatbot/Agent-Based && npm run build")
 
     if args.with_api_fallback:
         # Api-Based reads PORT from its own .env; we don't force 8178 here
@@ -328,7 +366,8 @@ def cmd_start(args: argparse.Namespace) -> int:
     print("\n=== Heritage Ecosystem running ===")
     print(f"  UI + API:      http://localhost:{PORTS['application']}")
     print(f"  Clustering:    http://localhost:{PORTS['clustering']}")
-    print(f"  Local RAG:     http://localhost:{PORTS['local-rag']}")
+    print(f"  Agent RAG:     http://localhost:{PORTS['agent']}/api  (primary chat)")
+    print(f"  Local RAG:     http://localhost:{PORTS['local-rag']}  (fallback)")
     print("  WebGL / Api-Based: only if you passed the flags")
     print("  Stop:  python scripts/start_all.py --stop")
     print("  Or:    Ctrl+C in this window\n")

@@ -1,0 +1,267 @@
+{
+  "title": "Measured research metrics — multi-process archive",
+  "dataset_n": 49,
+  "last_updated": "2026-08-08",
+  "honesty_notes": [
+    "Numbers below are measured on the curated n=49 corpus unless labeled synthetic-scale.",
+    "Faithfulness / hallucination are lexical support proxies, not human κ.",
+    "FAISS speedups are N-conditioned; at n=49 brute force can win.",
+    "Scale rows expand feature matrices synthetically — not new verified heritage sites."
+  ],
+  "contributions": [
+    "Multimodal CLIP-Heritage embeddings with site-to-site vs cross-modal ablations",
+    "GraphSAGE recommender with leave-one-relation-out (LORO) sensitivity",
+    "Vectorizer / feature-fusion ablations (CLIP-text vs TF-IDF; arch-only vs full)",
+    "HDBSCAN clustering validity + FAISS ANN latency across expanded N",
+    "Hybrid dense+sparse RAG index with offline GGUF generation and QA proxies",
+    "Agent-Based hybrid extractive RAG (TypeScript) as primary grounded chat",
+    "In-repo Heritage Mini-LM (BPE→BiLSTM→Transformer) trained on n=49 + filtered Wiki"
+  ],
+  "processes": [
+    {
+      "id": "similarity",
+      "name": "Site-to-site similarity",
+      "script": "Clustering/benchmark.py + bootstrap_mrr.py",
+      "metric": "MRR@5 + 95% bootstrap CI",
+      "status": "measured"
+    },
+    {
+      "id": "cross_modal",
+      "name": "Cross-modal CLIP retrieval",
+      "script": "Clustering/train_clip_heritage.py",
+      "metric": "Image↔text MRR",
+      "status": "measured"
+    },
+    {
+      "id": "thematic",
+      "name": "Thematic ground truth (no civilization)",
+      "script": "Clustering/thematic_gt.py",
+      "metric": "MRR@5 share≥1 / share≥2 fields",
+      "status": "measured"
+    },
+    {
+      "id": "rag_retrieval",
+      "name": "RAG retrieval ablation",
+      "script": "Clustering/rag_ablation.py",
+      "metric": "Hit@5 dense / hybrid / sparse",
+      "status": "measured"
+    },
+    {
+      "id": "rag_generation",
+      "name": "Local RAG generation proxies",
+      "script": "Chatbot/Local-RAG/eval_rag.py",
+      "metric": "Hit@K, faithfulness, hallucination, latency",
+      "status": "measured"
+    },
+    {
+      "id": "agent_chat",
+      "name": "Agent extractive hybrid RAG + Mini-LM",
+      "script": "Chatbot/Agent-Based/eval_agent_chat.py",
+      "metric": "Hit@5, keyword coverage, Mini-LM PPL / site-mention, latency",
+      "status": "measured",
+      "detail_file": "docs/agent_chat_metrics.json"
+    },
+    {
+      "id": "scale",
+      "name": "FAISS + HDBSCAN scale study",
+      "script": "Clustering/scale_cluster_check.py / scale_latency_study.py",
+      "metric": "Speedup vs brute · silhouette vs N",
+      "status": "measured_synthetic_n"
+    },
+    {
+      "id": "fusion",
+      "name": "Feature fusion ablation",
+      "script": "Clustering/feature_fusion.py",
+      "metric": "MRR@5 early/late/arch-heavy",
+      "status": "rerun_for_pickles"
+    },
+    {
+      "id": "vectorizer",
+      "name": "Text vectorizer comparison",
+      "script": "Clustering/compare_vectorizers.py",
+      "metric": "MRR@5 · P@5 · silhouette · DBI",
+      "status": "rerun_for_pickles"
+    },
+    {
+      "id": "gnn_loro",
+      "name": "GraphSAGE LORO sensitivity",
+      "script": "Clustering/gnn_loro_eval.py",
+      "metric": "MRR under held-out relation cues",
+      "status": "rerun_for_pickles"
+    },
+    {
+      "id": "preference",
+      "name": "Model vs random preference study",
+      "script": "POST /api/study/preference · GET /api/study/summary",
+      "metric": "Human choose-rate (target N≥30)",
+      "status": "live_logging"
+    }
+  ],
+  "similarity": {
+    "metric": "MRR@5",
+    "site_to_site": [
+      { "method": "GraphSAGE", "mrr": 0.552, "ci95": [0.413, 0.682], "precision_at_5": null },
+      { "method": "Scalar+Arch", "mrr": 0.54, "ci95": [0.408, 0.668], "precision_at_5": null },
+      { "method": "Primary similarity", "mrr": 0.49, "ci95": [0.357, 0.628], "precision_at_5": null }
+    ],
+    "ranking_insight": "GraphSAGE leads site-to-site MRR; CIs overlap — report with bootstrap intervals.",
+    "cross_modal_clip": {
+      "fine_tuned_mrr": 1.0,
+      "pretrained_relative": "fine-tune +27.5% vs pretrained baseline",
+      "delta_vs_pretrained_pct": 27.5,
+      "insight": "Cross-modal gains from CLIP fine-tuning exceed site-to-site gains on this corpus."
+    }
+  },
+  "thematic_gt": {
+    "note": "Ground truth = share ≥k non-civilization metadata fields (religion, architecture, material, structure, …)",
+    "share_at_least_1_field": [
+      { "method": "Primary", "mrr": 0.719 },
+      { "method": "Scalar+Arch", "mrr": 0.637 },
+      { "method": "GraphSAGE", "mrr": 0.595 }
+    ],
+    "share_at_least_2_fields": [
+      { "method": "Primary", "mrr": 0.357 },
+      { "method": "Scalar+Arch", "mrr": 0.273 },
+      { "method": "GraphSAGE", "mrr": 0.284 }
+    ],
+    "insight": "Primary tabular similarity ranks higher on soft thematic overlap; GraphSAGE still competitive when ≥2 fields must match."
+  },
+  "rag": {
+    "qa_items": 40,
+    "qa_after_abstain_exclude": 36,
+    "coverage_approx": 0.91,
+    "ablation_hit_at_5": [
+      { "mode": "Dense", "hit": 1.0 },
+      { "mode": "Hybrid", "hit": 1.0 },
+      { "mode": "Sparse", "hit": 0.972 }
+    ],
+    "generation_proxies": {
+      "hit_at_k": 1.0,
+      "faithfulness_lexical": 0.79,
+      "hallucination_proxy": 0.21,
+      "approx_latency_s_after_warmup": 3
+    },
+    "insight": "Dense and hybrid both hit@5 = 1.0 on the labeled set; sparse is slightly behind. Generation faithfulness ~0.79 with offline GGUF."
+  },
+  "agent_chat": {
+    "detail_file": "docs/agent_chat_metrics.json",
+    "reproduce": "python Chatbot/Agent-Based/eval_agent_chat.py",
+    "paper_framing": {
+      "primary_claim": "Hybrid retrieval + extractive grounding (Agent-Based TS) yields measurable Hit@K and keyword coverage without a fine-tuned frontier LLM.",
+      "secondary_claim": "Heritage Mini-LM (BPE → embeddings → BiLSTM → causal Transformer) is an in-repo tokenize→train→infer stack on n=49 + filtered Wikipedia; report PPL / site-mention / latency — not LLM parity.",
+      "not_claimed": [
+        "Parity with proprietary large LLMs",
+        "Human κ for faithfulness (unless preference study filled)",
+        "Sites beyond curated n=49"
+      ]
+    },
+    "comparison_table": [
+      {
+        "system": "Hybrid retrieve (Agent index)",
+        "hit_or_site_mention": 1.0,
+        "keyword_coverage": null,
+        "latency_ms": 7576.1,
+        "params_notes": "local_rag_index / Clustering; Hit@5 on 60 curated QA"
+      },
+      {
+        "system": "Extractive grounded answer",
+        "hit_or_site_mention": 1.0,
+        "keyword_coverage": 0.45,
+        "latency_ms": null,
+        "params_notes": "Primary PineAI path (no cloud keys required)"
+      },
+      {
+        "system": "Heritage Mini-LM",
+        "hit_or_site_mention": 0.3,
+        "keyword_coverage": 0.058,
+        "latency_ms": 192.8,
+        "params_notes": "2.21M params · PPL≈5.5 · ctx=192 · offline fallback"
+      },
+      {
+        "system": "Local GGUF RAG",
+        "hit_or_site_mention": 1.0,
+        "keyword_coverage": null,
+        "latency_ms": 3000,
+        "params_notes": "Faithfulness≈0.79 (see rag.generation_proxies); last-resort fluent fallback"
+      }
+    ],
+    "tokenizer_roundtrip_bigram_jaccard": 1.0,
+    "training_data": {
+      "online_training_rows": 551,
+      "qa_training_rows": 425,
+      "wikipedia_extracts": 42,
+      "wikipedia_summaries": 41
+    },
+    "insight": "Lead with extractive hybrid RAG metrics in the paper; Mini-LM supports the architecture/methods section (tokenization, BiLSTM memory, attention) with honest generative limits on a tiny corpus."
+  },
+  "scale_synthetic": {
+    "note": "Feature matrix expanded synthetically from real X — not new verified sites",
+    "rows": [
+      {
+        "n": 49,
+        "faiss_vs_brute": "brute_preferred",
+        "faiss_speedup_approx": null,
+        "hdbscan_silhouette": 0.11
+      },
+      {
+        "n": 500,
+        "faiss_vs_brute": "faiss_faster",
+        "faiss_speedup_approx": 2.5,
+        "hdbscan_silhouette": 0.28
+      },
+      {
+        "n": 5000,
+        "faiss_vs_brute": "faiss_faster",
+        "faiss_speedup_approx": 31,
+        "hdbscan_silhouette": 0.33
+      }
+    ],
+    "insight": "ANN pays off only as N grows; silhouette also improves with denser synthetic neighborhoods."
+  },
+  "systems": {
+    "ports": {
+      "application": 8175,
+      "local_rag_fallback": 8176,
+      "clustering": 8177,
+      "agent_primary_chat": 8180,
+      "webgl_optional": 8179
+    },
+    "local_llm_defaults": {
+      "model_family": "Qwen2.5-1.5B-Instruct Q4 GGUF",
+      "n_gpu_layers": 33,
+      "ctx": 4096,
+      "max_tokens": 192
+    },
+    "heritage_minigpt": {
+      "n_params": 2208000,
+      "context_window": 192,
+      "architecture": "tok_emb + BiLSTM memory + causal Transformer (attn/FFN/LN)"
+    },
+    "features_demo": [
+      "Discover (text + photo)",
+      "Dynamic mood browse",
+      "Surprise me",
+      "Trail planner",
+      "Compare / alike",
+      "Puzzle hints",
+      "Favourites + for-you",
+      "Map + nearest",
+      "Unity WebGL tours",
+      "Agent hybrid RAG chat (primary)",
+      "Heritage Mini-LM + Local GGUF fallbacks"
+    ]
+  },
+  "reproduce": [
+    "python Clustering/benchmark.py",
+    "python Clustering/bootstrap_mrr.py",
+    "python Clustering/thematic_gt.py",
+    "python Clustering/rag_ablation.py",
+    "python Clustering/scale_cluster_check.py",
+    "python Clustering/feature_fusion.py",
+    "python Clustering/compare_vectorizers.py",
+    "python Clustering/gnn_loro_eval.py",
+    "python Chatbot/Local-RAG/eval_rag.py",
+    "python Chatbot/Agent-Based/eval_agent_chat.py",
+    "python Clustering/export_paper_figures.py"
+  ]
+}

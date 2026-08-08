@@ -41,9 +41,11 @@ Frontend defaults (optional `Application/frontend/.env`):
 
 ```
 REACT_APP_API_URL=http://localhost:8175
-REACT_APP_CHA_URL=http://localhost:8176/api
+REACT_APP_CHA_URL=http://localhost:8180/api
 REACT_APP_SIM_URL=http://localhost:8179
 ```
+
+Primary chat is **Agent Hybrid RAG** (`:8180` — retrieve + extractive answers). **Local-RAG** (`:8176`) is the offline GGUF **fallback** inside the Agent.
 
 ---
 
@@ -62,14 +64,28 @@ Expect **n = 49** sites. Do not invent extra sites without images + verified met
 
 ## 3. Python deps
 
-```bash
-# Clustering
-cd Clustering
-pip install -r requirements.txt   # or: fastapi uvicorn scikit-learn pandas numpy psycopg2-binary python-dotenv sentence-transformers torch networkx scipy faiss-cpu
+No virtualenv is committed. Optional but recommended from the **repo root**:
 
-# Local RAG
-cd ../Chatbot/Local-RAG
+```bash
+cd Major   # repo root
+python -m venv .venv
+
+# Windows
+.\.venv\Scripts\activate
+
+# Linux / macOS
+# source .venv/bin/activate
+
+pip install -U pip
 pip install -r requirements.txt
+```
+
+That single [`requirements.txt`](requirements.txt) covers **Clustering**, **Local-RAG**, and root `scripts/`. Module folders still have thin `requirements.txt` files that include the root file.
+
+```bash
+# Equivalent (from a submodule):
+#   pip install -r Clustering/requirements.txt
+#   pip install -r Chatbot/Local-RAG/requirements.txt
 ```
 
 ### GPU LLM (recommended on Windows + NVIDIA)
@@ -137,7 +153,8 @@ cd frontend && npm run build && cd ../..
 |---------|-----|
 | App UI + API | http://localhost:8175 |
 | Clustering | http://localhost:8177 |
-| Local RAG chat | http://localhost:8176 |
+| Local RAG (fallback) | http://localhost:8176 |
+| Agent Hybrid RAG (primary chat) | http://localhost:8180/api |
 
 WebGL and Api-Based are **not** started. Use `REACT_APP_SIM_URL` for your existing WebGL host. Optional flags: `--with-webgl`, `--with-api-fallback`.
 
@@ -192,8 +209,9 @@ Committed / generated pickles under `Clustering/Pickles/` may already exist loca
 | `backend: llama-cpp-gguf-cpu` | Re-run `install_gpu_llm.ps1`; check `nvidia-smi` |
 | Context / n_ctx errors | Keep `LOCAL_LLM_CTX=4096` (default) |
 | DB connection failed | Fix Application + Clustering `.env` credentials |
-| Frontend chat fails | `REACT_APP_CHA_URL=http://localhost:8176/api` |
+| Frontend chat fails | `REACT_APP_CHA_URL=http://localhost:8180/api` + Agent + Clustering up; Local-RAG `:8176` for fallback |
+| Agent returns retrieval miss | Start Clustering `:8177` and ensure `rag_index` pickles exist |
 
-Legacy cloud chatbots (`Agent-Based`, `Api-Based`) need API keys and are **not** required. Use `--with-api-fallback` only if you want them.
+**Chat framing:** Agent Hybrid RAG (extractive + your hybrid index) is primary; Local GGUF is fallback — not “we fine-tuned a local chat LLM.” Cloud keys in Agent-Based are optional polish only. Use `--with-api-fallback` for the separate Api-Based cloud service if needed.
 
 See also: root `README.md`, `TODO.md` (measured metrics), `docs/PHASE2_HANDOFF.md`.

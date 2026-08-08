@@ -12,6 +12,7 @@ import SitesList from "./pages/SitesList";
 import Chatbot from "./component/Chatbot";
 import Themes from "./pages/Themes";
 import Trail from "./pages/Trail";
+import Research from "./pages/Research";
 
 function App() {
   useEffect(() => {
@@ -36,6 +37,7 @@ function App() {
         <Route path="/Nearby" element={<Nearby />} />
         <Route path="/Play" element={<Play />} />
         <Route path="/Trail" element={<Trail />} />
+        <Route path="/Research" element={<Research />} />
         <Route path="/continent/:name" element={<Continent />} />
         <Route path="/sites/:name" element={<Sites />} />
         <Route path="/sites-list" element={<SitesList />} />

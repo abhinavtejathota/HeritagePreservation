@@ -1,10 +1,10 @@
-/** Saved places — stored only in this browser (no login / no server account). */
+/** Saved places - stored only in this browser (no login / no server account). */
 
 const KEY = "vheritage_favourites";
 
 /** Shown in the UI so visitors know where data lives */
 export const STORAGE_NOTE =
-  "Saved on this device only — no account or login. Clearing browser data or using another phone/computer will not show the same list.";
+  "Saved on this device only - no account or login. Clearing browser data or using another phone/computer will not show the same list.";
 
 export function getFavourites() {
   try {

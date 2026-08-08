@@ -1,16 +1,5 @@
-fastapi
-uvicorn
-scikit-learn
-pandas
-numpy
-psycopg2-binary
-python-dotenv
-sentence-transformers
-torch
-networkx
-scipy
-faiss-cpu
-Pillow
-requests
-pydantic
-hdbscan
+# Prefer the repo-root requirements (one venv for the whole project):
+#   pip install -r ../requirements.txt
+#
+# This file remains for Clustering-only installs.
+-r ../requirements.txt

@@ -4,6 +4,7 @@ import axios from "axios";
 import { ReactComponent as MenuIcon } from "../Dashboard/Hamburg_icon.svg";
 import Sidebar from "../Dashboard/Sidebar";
 import { getApiBase } from "../lib/api";
+import { NAV_LINKS } from "../lib/navLinks";
 
 const toSlug = (name) =>
   name
@@ -14,14 +15,7 @@ const toSlug = (name) =>
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
 
-const links = [
-  { name: "Home", to: "/" },
-  { name: "Explore", to: "/Explore" },
-  { name: "Nearby", to: "/Nearby" },
-  { name: "Favourites", to: "/Favourites" },
-  { name: "Play", to: "/Play" },
-  { name: "Trail", to: "/Trail" },
-];
+const links = NAV_LINKS;
 
 export default function Trail() {
   const location = useLocation();
@@ -81,7 +75,7 @@ export default function Trail() {
       <div className="px-6 md:px-16 pt-28 pb-16 max-w-3xl mx-auto w-full">
         <h1 className="text-3xl font-semibold text-stone-900 mb-2">Heritage trail</h1>
         <p className="text-stone-600 mb-6">
-          Pick a starting place. We suggest a short path of related sites — useful for
+          Pick a starting place. We suggest a short path of related sites - useful for
           planning what to explore next.
         </p>
 

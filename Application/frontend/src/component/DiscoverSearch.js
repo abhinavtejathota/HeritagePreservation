@@ -25,7 +25,7 @@ export default function DiscoverSearch({ compact = false }) {
       setHeading(res.data.heading || "Matches");
       setResults(res.data.results || []);
       if (!(res.data.results || []).length) {
-        setError("No close matches — try another description or photo.");
+        setError("No close matches - try another description or photo.");
       }
     } catch {
       setError("Search is taking a break. Is the app server running?");
@@ -52,17 +52,17 @@ export default function DiscoverSearch({ compact = false }) {
   };
 
   return (
-    <div className={compact ? "" : "w-full max-w-4xl mb-10"}>
+    <div className={`${compact ? "" : "w-full mb-10"} text-center`}>
       <form
         onSubmit={onSubmit}
-        className="flex flex-col sm:flex-row gap-2 items-stretch"
+        className="flex flex-col sm:flex-row gap-2 items-stretch justify-center"
       >
         <input
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder='Try “rock-cut temples in India” or “Gothic cathedral”…'
-          className="flex-1 px-4 py-3 rounded-xl border border-stone-200 text-sm outline-none focus:ring-2 focus:ring-amber-400/40"
+          placeholder='Try "rock-cut temples in India" or "Gothic cathedral"...'
+          className="flex-1 px-4 py-3 rounded-xl border border-stone-200 text-sm outline-none focus:ring-2 focus:ring-amber-400/40 text-left"
         />
         <button
           type="submit"
@@ -88,9 +88,9 @@ export default function DiscoverSearch({ compact = false }) {
         />
       </form>
 
-      {error && <p className="text-sm text-rose-600 mt-3">{error}</p>}
+      {error && <p className="text-sm text-rose-600 mt-3 text-center">{error}</p>}
       {heading && results.length > 0 && (
-        <div className="mt-6">
+        <div className="mt-6 text-left">
           <h3 className="text-lg font-semibold text-stone-800 mb-3">{heading}</h3>
           <div className="flex gap-4 overflow-x-auto pb-2">
             {results.map((r) => (

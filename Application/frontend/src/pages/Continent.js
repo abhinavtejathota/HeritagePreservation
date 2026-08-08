@@ -11,6 +11,7 @@ import { ReactComponent as SearchIcon } from "../Dashboard/Search.svg";
 import airplane from "./images/airplane.png";
 
 import { getApiBase } from "../lib/api";
+import { NAV_LINKS } from "../lib/navLinks";
 
 export default function Continent() {
   const navigate = useNavigate();
@@ -22,13 +23,7 @@ export default function Continent() {
   const [suggestions, setSuggestions] = useState([]);
   const [searchLoading, setSearchLoading] = useState(false);
 
-  const links = [
-    { name: "Home", to: "/" },
-    { name: "Explore", to: "/Explore" },
-    { name: "Nearby", to: "/Nearby" },
-    { name: "Favourites", to: "/Favourites" },
-    { name: "Play", to: "/Play" },
-  ];
+  const links = NAV_LINKS;
 
   useEffect(() => {
     if (!query.trim()) {

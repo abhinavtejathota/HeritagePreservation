@@ -11,6 +11,7 @@ import Colosseum from "./images/Colosseum.jpg";
 
 import Sidebar from "./Sidebar";
 import SurpriseMe from "../component/SurpriseMe";
+import { NAV_LINKS } from "../lib/navLinks";
 import { getApiBase } from "../lib/api";
 
 /* -------------------- HELPERS -------------------- */
@@ -23,7 +24,7 @@ const toSlug = (name) =>
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
 
-/* -------------------- SITE GUESSER — moved to /Play (fixed Arts puzzle) -------------------- */
+/* -------------------- SITE GUESSER - moved to /Play (fixed Arts puzzle) -------------------- */
 function SiteGuesserTeaser() {
   const navigate = useNavigate();
   return (
@@ -42,7 +43,7 @@ function SiteGuesserTeaser() {
         </h2>
         <p className="text-lg text-stone-200 max-w-2xl">
           Swap unique image tiles, reconstruct the landmark, and guess the
-          heritage site — Google Arts–style, no repeated crops.
+          heritage site - Google Arts–style, no repeated crops.
         </p>
         <span className="inline-block mt-8 px-5 py-2.5 rounded-full bg-white text-stone-900 text-sm font-medium group-hover:bg-amber-100 transition">
           Open puzzle →
@@ -132,14 +133,7 @@ export default function Dashboard() {
   }, [query]);
 
   /* -------------------- NAV LINKS -------------------- */
-  const links = [
-    { name: "Home", to: "/" },
-    { name: "Explore", to: "/Explore" },
-    { name: "Nearby", to: "/Nearby" },
-    { name: "Favourites", to: "/Favourites" },
-    { name: "Play", to: "/Play" },
-    { name: "Trail", to: "/Trail" },
-  ];
+  const links = NAV_LINKS;
 
   /* -------------------- RANDOM SITES -------------------- */
   const randomSites = [
@@ -383,7 +377,7 @@ export default function Dashboard() {
             </div>
           </button>
         </div>
-        {/* SITE GUESS — full puzzle lives on /Play */}
+        {/* SITE GUESS - full puzzle lives on /Play */}
         <div className="mt-28 mb-24 flex flex-col items-center px-2">
           <SiteGuesserTeaser />
         </div>

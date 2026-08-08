@@ -1,0 +1,94 @@
+{
+  "title": "Agent-Based chat + Heritage Mini-LM \u2014 measured proxies",
+  "last_updated": "2026-08-08",
+  "dataset_n": 49,
+  "qa_items": 147,
+  "tokenizer": {
+    "ok": true,
+    "n": 20,
+    "bigram_jaccard": 1.0,
+    "vocab_size": 3000
+  },
+  "retrieval": {
+    "n": 60,
+    "clustering_reachable": true,
+    "source": "local_rag_index",
+    "answered": 60,
+    "hit_at_k": 1.0,
+    "mean_latency_ms": 7576.1,
+    "top_k": 5
+  },
+  "extractive": {
+    "n": 60,
+    "keyword_coverage": 0.45,
+    "site_mention_rate": 1.0,
+    "note": "Extractive stitch of hybrid contexts (Agent primary path without cloud polish)."
+  },
+  "agent_http": {
+    "agent_reachable": false,
+    "n": 0,
+    "keyword_coverage": null,
+    "site_mention_rate": null,
+    "mean_latency_ms": 4096.4,
+    "modes_note": "End-to-end Agent :8180 (extractive RAG \u2192 Mini-LM \u2192 Local-RAG fallback)."
+  },
+  "minigpt": {
+    "ok": true,
+    "n": 20,
+    "site_mention_rate": 0.3,
+    "keyword_coverage": 0.0583,
+    "mean_latency_ms": 192.8,
+    "perplexity_on_gold_qa": 5.501,
+    "n_params": 2208000,
+    "context_window": 192,
+    "architecture": "tok_emb + BiLSTM memory + causal Transformer (attn/FFN/LN)",
+    "train_epochs": 35,
+    "train_tokens": 32122,
+    "data_source": {
+      "source": "qa_training.csv (filtered from online_training.csv)",
+      "n_rows": 425,
+      "qa_training_csv": "qa_training.csv"
+    },
+    "honesty": "Generative quality of a ~2\u20135M param LM on n=49 is limited; report Mini-LM as a compact domain LM + architecture study, and Agent extractive hybrid RAG as the primary grounded chat path."
+  },
+  "training_data": {
+    "online_training_csv": true,
+    "online_rows": 551,
+    "qa_training_csv": true,
+    "qa_rows": 425,
+    "corpus_meta": {
+      "n_sites": 49,
+      "n_training_rows": 551,
+      "chars": 180148,
+      "online_wikipedia_extracts": 42,
+      "online_wikipedia_summaries": 41,
+      "csv_sites": "Dataset/heritage_sites_v2.csv",
+      "training_csv": "data/online_training.csv",
+      "note": "Curated CSV dossiers; Wikipedia texts attributed CC BY-SA and cached under wiki_cache/."
+    }
+  },
+  "paper_framing": {
+    "primary_claim": "Hybrid retrieval + extractive grounding over a curated heritage index (Agent-Based TypeScript orchestrator) yields measurable Hit@K and keyword coverage without requiring a fine-tuned frontier LLM.",
+    "secondary_claim": "A compact in-repo Mini-LM (BPE \u2192 embeddings \u2192 BiLSTM memory \u2192 causal Transformer) trained on CSV dossiers + relevance-filtered Wikipedia extracts demonstrates an end-to-end local tokenization\u2192train\u2192infer stack with reported PPL / coverage / latency.",
+    "not_claimed": [
+      "Parity with proprietary large LLMs on open-domain fluency",
+      "Human \u03ba for faithfulness (lexical proxies only unless preference study filled)",
+      "Invented heritage sites beyond the curated n=49"
+    ],
+    "suggested_table_columns": [
+      "System",
+      "Hit@5 / site mention",
+      "Keyword coverage",
+      "Faithfulness proxy",
+      "Latency",
+      "Params / notes"
+    ],
+    "metrics_snapshot": {
+      "hybrid_hit_at_5": 1.0,
+      "extractive_keyword_coverage": 0.45,
+      "minigpt_site_mention": 0.3,
+      "minigpt_ppl": 5.501,
+      "agent_e2e_coverage": null
+    }
+  }
+}

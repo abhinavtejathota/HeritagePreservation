@@ -661,7 +661,7 @@ function registerAiRoutes(app, db) {
     }
   });
 
-  /** Before you go — practical tips, no jargon */
+  /** Before you go - practical tips, no jargon */
   app.get("/api/ai/visit-tips/:name", async (req, res) => {
     try {
       const name = decodeURIComponent(req.params.name);
@@ -673,13 +673,13 @@ function registerAiRoutes(app, db) {
       if (s.era_category) {
         tips.push({
           title: "When it belongs in history",
-          body: `This place is tied to the ${s.era_category} era — useful context before you read or visit virtually.`,
+          body: `This place is tied to the ${s.era_category} era - useful context before you read or visit virtually.`,
         });
       }
       const continentTips = {
-        Asia: "Many Asian heritage sites are best imagined in early morning light — quieter, softer photos.",
-        Africa: "African heritage landscapes often reward slow looking — open space and stone textures matter.",
-        Europe: "European monuments are often densest in historic city centres — plan a walking loop.",
+        Asia: "Many Asian heritage sites are best imagined in early morning light - quieter, softer photos.",
+        Africa: "African heritage landscapes often reward slow looking - open space and stone textures matter.",
+        Europe: "European monuments are often densest in historic city centres - plan a walking loop.",
       };
       if (s.continent && continentTips[s.continent]) {
         tips.push({ title: "Atmosphere tip", body: continentTips[s.continent] });
@@ -696,7 +696,7 @@ function registerAiRoutes(app, db) {
       if (pairWith) {
         tips.push({
           title: "Pair with",
-          body: `If you liked this, explore ${pairWith} next — visitors with similar taste often do.`,
+          body: `If you liked this, explore ${pairWith} next - visitors with similar taste often do.`,
         });
       } else if (s.country) {
         tips.push({

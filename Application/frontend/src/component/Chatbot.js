@@ -2,14 +2,15 @@ import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import ReactMarkdown from "react-markdown";
 import { getKidsMode } from "../lib/prefs";
+import { getChatApiBase } from "../lib/api";
 
-/** Local RAG reasoner (Chatbot/Local-RAG on :8176) — no cloud API keys */
-const API_CHA = process.env.REACT_APP_CHA_URL || "http://localhost:8176/api";
+/** Primary: Agent hybrid RAG (:8180). Local-RAG GGUF is server-side fallback. */
+const API_CHA = getChatApiBase();
 
 const adultHello =
-  "Hi — I’m PineAI. Ask about heritage places, buildings, history, or eras. I’ll stick to what’s in this archive.";
+  "Hi - I'm PineAI. Ask about heritage places, buildings, history, or eras. I'll stick to what's in this archive.";
 const kidsHello =
-  "Hi! I’m PineAI. Ask me about cool old places — castles, temples, caves. I’ll keep answers short and simple.";
+  "Hi! I'm PineAI. Ask me about cool old places - castles, temples, caves. I'll keep answers short and simple.";
 
 export default function Chatbot() {
   const [open, setOpen] = useState(false);
@@ -97,12 +98,26 @@ export default function Chatbot() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open, pendingAsk]);
 
+  const buildHistory = () =>
+    messages
+      .filter((m) => m.sender === "user" || m.sender === "bot")
+      .filter((m) => m.text && !m.streaming)
+      .slice(-6)
+      .map((m) => ({
+        role: m.sender === "user" ? "user" : "assistant",
+        content: String(m.text),
+      }));
+
   const sendJson = async (askText, displayText) => {
     try {
       const res = await fetch(`${API_CHA}/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ query: askText, session_id: sessionId }),
+        body: JSON.stringify({
+          query: askText,
+          session_id: sessionId,
+          history: buildHistory(),
+        }),
       });
       const data = await res.json();
       applySession(data.session_id);
@@ -150,7 +165,11 @@ export default function Chatbot() {
       const res = await fetch(`${API_CHA}/chat/stream`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ query: askText, session_id: sessionId }),
+        body: JSON.stringify({
+          query: askText,
+          session_id: sessionId,
+          history: buildHistory(),
+        }),
       });
       if (!res.ok || !res.body) throw new Error("stream failed");
 
@@ -229,10 +248,14 @@ export default function Chatbot() {
     <>
       <button
         onClick={() => setOpen(true)}
-        className="fixed bottom-6 right-6 w-14 h-14 rounded-full bg-stone-900 text-white shadow-xl flex items-center justify-center z-50 hover:bg-stone-700 transition hover:scale-105"
+        className="fixed bottom-6 right-6 w-14 h-14 rounded-full bg-stone-900 text-white shadow-xl flex items-center justify-center z-50 hover:bg-stone-700 transition hover:scale-105 overflow-hidden p-0"
         aria-label="Open PineAI chat"
       >
-        <span className="text-xl">✦</span>
+        <img
+          src="/logo.jpg"
+          alt="PineAI"
+          className="w-full h-full object-cover"
+        />
       </button>
 
       <AnimatePresence>
@@ -253,14 +276,21 @@ export default function Chatbot() {
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex justify-between items-center px-4 py-3 border-b bg-gradient-to-r from-stone-900 to-stone-800 text-white">
-                <div>
-                  <h2 className="font-semibold tracking-tight">PineAI</h2>
-                  <p className="text-[11px] text-stone-300">
-                    {kids ? "Kids mode · simple answers" : "Heritage guide"} ·{" "}
-                    {useStream ? "live" : "batch"}
-                  </p>
+                <div className="flex items-center gap-3 min-w-0 text-left">
+                  <img
+                    src="/logo.jpg"
+                    alt=""
+                    className="w-9 h-9 rounded-lg object-cover ring-1 ring-white/20 shrink-0"
+                  />
+                  <div className="min-w-0 text-left">
+                    <h2 className="font-semibold tracking-tight text-left">PineAI</h2>
+                    <p className="text-[11px] text-stone-300 text-left">
+                      {kids ? "Kids mode · simple answers" : "Heritage guide"} ·{" "}
+                      {useStream ? "live" : "batch"}
+                    </p>
+                  </div>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 shrink-0">
                   <button
                     type="button"
                     className="text-[10px] uppercase tracking-wide opacity-80 hover:opacity-100"

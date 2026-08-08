@@ -1,9 +1,10 @@
 /**
  * Dense + hybrid retrieval helper for the RAG reasoner.
- * Calls Clustering service `/api/rag-context`.
+ * Calls Clustering service `/api/rag-context` (project hybrid index).
  */
-const CLUSTERING_URL =
-  process.env.CLUSTERING_URL || "http://localhost:8177";
+import { env } from "../config/env";
+
+const CLUSTERING_URL = env.CLUSTERING_URL || "http://localhost:8177";
 
 export type RagContext = {
   name: string;

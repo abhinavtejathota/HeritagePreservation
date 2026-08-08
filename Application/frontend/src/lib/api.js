@@ -24,6 +24,6 @@ export function getApiBase() {
 
 export function getChatApiBase() {
   return (
-    cleanEnvUrl(process.env.REACT_APP_CHA_URL) || "http://localhost:8176/api"
+    cleanEnvUrl(process.env.REACT_APP_CHA_URL) || "http://localhost:8180/api"
   );
 }

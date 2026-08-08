@@ -8,6 +8,7 @@ import Sidebar from "../Dashboard/Sidebar.js";
 import { ReactComponent as MenuIcon } from "../Dashboard/Hamburg_icon.svg";
 
 import { getApiBase } from "../lib/api";
+import { NAV_LINKS } from "../lib/navLinks";
 
 const toSlug = (name) =>
   name
@@ -25,13 +26,7 @@ export default function SitesList() {
   const [sites, setSites] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const links = [
-    { name: "Home", to: "/" },
-    { name: "Explore", to: "/Explore" },
-    { name: "Nearby", to: "/Nearby" },
-    { name: "Favourites", to: "/Favourites" },
-    { name: "Play", to: "/Play" },
-  ];
+  const links = NAV_LINKS;
 
   // Example: /sites-list?type=era&value=Ancient
   const params = new URLSearchParams(location.search);

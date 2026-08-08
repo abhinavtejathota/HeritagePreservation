@@ -50,7 +50,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen, links }) => {
           Kids mode
         </label>
         <p className="px-3 text-[11px] text-stone-400 leading-snug">
-          Shorter answers and simpler puzzle help. Saved on this device only — no login.
+          Shorter answers and simpler puzzle help. Saved on this device only - no login.
         </p>
       </nav>
     </div>

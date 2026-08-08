@@ -6,6 +6,7 @@ const fs = require("fs");
 require("dotenv").config({ path: path.join(__dirname, ".env") });
 const db = require("./db");
 const { registerAiRoutes } = require("./ai_routes");
+const { registerResearchRoutes } = require("./research_routes");
 
 const app = express();
 app.use(cors());
@@ -18,6 +19,9 @@ if (SERVE_FRONTEND) {
   app.use(express.static(FRONTEND_BUILD));
   console.log(`Serving frontend from ${FRONTEND_BUILD}`);
 }
+
+registerResearchRoutes(app, db);
+registerAiRoutes(app, db);
 
 app.get("/api/health", (req, res) => {
   res.json({
@@ -142,8 +146,6 @@ app.get("/api/study/pair/:name", async (req, res) => {
     res.status(500).json({ message: "Failed to build study pair" });
   }
 });
-
-registerAiRoutes(app, db);
 
 // Dev-only plaintext health when frontend build is absent
 if (!SERVE_FRONTEND) {

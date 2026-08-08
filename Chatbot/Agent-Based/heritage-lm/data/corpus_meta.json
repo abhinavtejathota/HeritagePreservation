@@ -1,0 +1,10 @@
+{
+  "n_sites": 49,
+  "n_training_rows": 551,
+  "chars": 180148,
+  "online_wikipedia_extracts": 42,
+  "online_wikipedia_summaries": 41,
+  "csv_sites": "Dataset/heritage_sites_v2.csv",
+  "training_csv": "data/online_training.csv",
+  "note": "Curated CSV dossiers; Wikipedia texts attributed CC BY-SA and cached under wiki_cache/."
+}

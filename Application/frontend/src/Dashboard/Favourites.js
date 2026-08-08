@@ -5,6 +5,7 @@ import { ReactComponent as MenuIcon } from "./Hamburg_icon.svg";
 import Sidebar from "./Sidebar";
 import { getFavourites, toggleFavourite, clearFavourites, toSlug } from "../lib/favourites";
 import { getApiBase } from "../lib/api";
+import { NAV_LINKS } from "../lib/navLinks";
 
 export default function Favourites() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -13,14 +14,7 @@ export default function Favourites() {
   const [picks, setPicks] = useState([]);
   const [pickMeta, setPickMeta] = useState(null);
 
-  const links = [
-    { name: "Home", to: "/" },
-    { name: "Explore", to: "/Explore" },
-    { name: "Nearby", to: "/Nearby" },
-    { name: "Favourites", to: "/Favourites" },
-    { name: "Play", to: "/Play" },
-    { name: "Trail", to: "/Trail" },
-  ];
+  const links = NAV_LINKS;
 
   useEffect(() => {
     const load = async () => {
@@ -74,10 +68,10 @@ export default function Favourites() {
       <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} links={links} />
 
       <div className="px-6 md:px-16 pt-28 pb-16">
-        <div className="flex flex-wrap items-end justify-between gap-4 mb-8">
-          <div>
-            <h1 className="text-3xl font-semibold mb-2">Favourites</h1>
-            <p className="text-stone-600">
+        <div className="flex flex-wrap items-end justify-between gap-4 mb-8 text-left">
+          <div className="text-left">
+            <h1 className="text-3xl font-semibold mb-2 text-left">Favourites</h1>
+            <p className="text-stone-600 text-left">
               Places you saved. We also suggest what to explore next.
             </p>
           </div>
@@ -93,8 +87,8 @@ export default function Favourites() {
         </div>
 
         {!names.length && (
-          <p className="text-stone-500 mb-10">
-            Nothing saved yet — open any site and tap <strong>Save</strong>.
+          <p className="text-stone-500 mb-10 text-left">
+            Nothing saved yet - open any site and tap <strong>Save</strong>.
           </p>
         )}
 

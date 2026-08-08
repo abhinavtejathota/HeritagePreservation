@@ -47,6 +47,7 @@ import Winged from "./images/Winged.jpg"; //Temple of Winged Lions
 import DiscoverSearch from "../component/DiscoverSearch";
 import MoodBrowse from "../component/MoodBrowse";
 import SurpriseMe from "../component/SurpriseMe";
+import { NAV_LINKS } from "../lib/navLinks";
 
 const DashboardCard = ({ content, image, variant, queryKey }) => {
   const navigate = useNavigate();
@@ -287,14 +288,7 @@ export default function Explore() {
     { content: "Temple of the Winged Lions", image: Winged },
   ];
 
-  const links = [
-    { name: "Home", to: "/" },
-    { name: "Explore", to: "/Explore" },
-    { name: "Nearby", to: "/Nearby" },
-    { name: "Favourites", to: "/Favourites" },
-    { name: "Play", to: "/Play" },
-    { name: "Trail", to: "/Trail" },
-  ];
+  const links = NAV_LINKS;
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -333,17 +327,21 @@ export default function Explore() {
       />
 
       <div className="flex flex-col gap-6 mt-20 text-left px-6 md:px-0">
-        <div className="ms-0 md:ms-24 me-0 md:me-24">
+        <div className="ms-0 md:ms-24 me-0 md:me-24 flex flex-col items-center text-center">
           <h1 className="text-3xl py-2 mb-2 font-sans font-bold">Discover</h1>
           <p className="text-stone-600 mb-4 max-w-2xl">
-            Not sure where to start? Describe a place — or use a photo — and we will
+            Not sure where to start? Describe a place - or use a photo - and we will
             find heritage sites that feel the same.
           </p>
-          <DiscoverSearch />
-          <div className="mt-8 mb-4">
+          <div className="w-full max-w-4xl">
+            <DiscoverSearch />
+          </div>
+          <div className="mt-8 mb-4 w-full max-w-4xl text-left">
             <SurpriseMe />
           </div>
-          <MoodBrowse />
+          <div className="w-full max-w-4xl text-left">
+            <MoodBrowse />
+          </div>
         </div>
         <h1 className="text-3xl py-2 mb-4 ms-24 font-sans font-bold">
           Categories

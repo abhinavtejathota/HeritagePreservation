@@ -1,12 +1,9 @@
 import { Router } from "express";
-import { chatController } from "./chat.controller";
+import { chatController, chatStreamController } from "./chat.controller";
 
 const router = Router();
 
-/*
-	* POST /api/chat
-	* body: { query: string }
-*/
 router.post("/", chatController);
+router.post("/stream", chatStreamController);
 
 export default router;

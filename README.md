@@ -6,6 +6,15 @@ End-to-end research + product stack for **cultural heritage**: multimodal site s
 
 **New clone?** Start with **[SETUP.md](SETUP.md)**.
 
+**Python:** no project venv is committed. From the repo root you can create one and install everything with [`requirements.txt`](requirements.txt) (Clustering + Local-RAG + scripts).
+
+```bash
+python -m venv .venv
+# Windows: .\.venv\Scripts\activate
+# Unix:    source .venv/bin/activate
+pip install -r requirements.txt
+```
+
 ---
 
 ## Architecture
@@ -13,11 +22,12 @@ End-to-end research + product stack for **cultural heritage**: multimodal site s
 | Module | Stack | Role |
 |--------|--------|------|
 | **Application** | React 19, Express 5, PostgreSQL | Dashboard, map, favorites, Play puzzle, serves SPA from `:8175` |
-| **Clustering** | FastAPI, sklearn, CLIP, GraphSAGE, HDBSCAN, FAISS | Similarity, clusters, multimodal search, hybrid RAG index |
-| **Local RAG** | FastAPI, llama-cpp GGUF (Qwen2.5-1.5B Q4), MiniLM+TF-IDF | Grounded chat with CoT — primary chatbot on `:8176` |
+| **Clustering** | FastAPI, sklearn, CLIP, GraphSAGE, HDBSCAN, FAISS | Similarity, clusters, multimodal search, **hybrid RAG index** |
+| **Agent Hybrid RAG** | Node/TS on `:8180` | **Primary chat** — retrieve from your index + extractive grounded answers; optional cloud polish |
+| **Local RAG** | FastAPI, llama-cpp GGUF on `:8176` | **Offline fallback** fluent generation (not the claimed novelty) |
 | **WebGL** | Unity URP builds | 1st-person tours (Petra sites, etc.) on `:8179` |
 
-Legacy `Chatbot/Agent-Based` (Gemini/Groq) and `Api-Based` are optional fallbacks only.
+Cloud Gemini/Groq are **optional polish** inside Agent-Based when keys exist. Prefer extractive RAG for demos without keys.
 
 ---
 
@@ -26,10 +36,11 @@ Legacy `Chatbot/Agent-Based` (Gemini/Groq) and `Api-Based` are optional fallback
 | Service | Path | Port | Env file |
 |---------|------|------|----------|
 | App API + UI | `Application/backend/server` | **8175** | `server/.env` (`DB_*`) |
+| **Agent Hybrid RAG** | `Chatbot/Agent-Based` | **8180** | `.env` (`PORT=8180`) |
+| Local RAG (fallback) | `Chatbot/Local-RAG/` | **8176** | `.env` optional |
 | Clustering | `Clustering/` | **8177** | `.env` (`DB_*`) |
-| **Local RAG** | `Chatbot/Local-RAG/` | **8176** | `.env` optional — **GPU defaults baked in** |
 | WebGL | `WebGLBuilds/` | **8179** | — |
-| Frontend env | `Application/frontend` | — | `REACT_APP_CHA_URL=http://localhost:8176/api` |
+| Frontend env | `Application/frontend` | — | `REACT_APP_CHA_URL=http://localhost:8180/api` |
 
 ### Local LLM defaults (no PowerShell exports)
 
@@ -60,24 +71,47 @@ python scripts/start_all.py
 | URL | What |
 |-----|------|
 | http://localhost:8175 | Full app (API + React build) |
+| http://localhost:8180/api | **Primary chat** — Agent hybrid RAG |
 | http://localhost:8177 | Clustering / RAG retrieve |
-| http://localhost:8176 | Local RAG chat |
+| http://localhost:8176 | Local RAG GGUF (**fallback**) |
 
 `start_all` does **not** start WebGL or Api-Based (WebGL comes from your existing `REACT_APP_SIM_URL`; Api-Based is opt-in via `--with-api-fallback`).
 
 ---
 
+## Exclusive research endpoints (not in the UI)
+
+These are **hidden from navigation** — no menu item or button. Open them by typing the URL (or calling the API) when you need the metrics demo / paper figures.
+
+| Path | What |
+|------|------|
+| http://localhost:8175/Research | Metrics dashboard (dataset, MRR, RAG, scale, preference study, figures) |
+| `GET /api/dataset/stats` | Corpus n, geography, feature distributions, sources |
+| `GET /api/research/metrics` | Measured multi-process metrics snapshot (+ Pickles overlays if present) |
+| `GET /api/research/dashboard` | One-shot: headline metrics + live Clustering/RAG health + study log |
+| `GET /api/research/overview` | Short overview (n, preference N, figure list) |
+| `/paper-figures/…` | High-DPI exports from `docs/paper_figures/` |
+
+Regenerate figures:
+
+```bash
+python Clustering/export_paper_figures.py
+```
+
+Snapshot source: [`docs/research_metrics.json`](docs/research_metrics.json). Dataset notes: [`Dataset/README.md`](Dataset/README.md).
+
+---
+
 ## Research contributions (paper-facing)
 
-This is **not** “we called a frontier API.” Research-grade pieces:
+This is **not** “we fine-tuned a local chat LLM.” Prefer this framing:
 
-1. **Multimodal heritage embeddings** — CLIP-Heritage + honest site-to-site vs cross-modal ablations  
-2. **Heterogeneous GraphSAGE** recommenders + leave-one-relation-out sensitivity  
-3. **Vectorizer / fusion ablations** — CLIP-text vs TF-IDF; Arch-only vs full concat  
-4. **HDBSCAN + FAISS** — cluster validity + scale latency (wins at N≫49)  
-5. **Hybrid RAG** — multi-aspect chunks, dense+sparse retrieve, structured CoT, faithfulness/hallucination proxies on a labeled QA set, **reproducible offline** GGUF (consumer GPU)
+1. **Hybrid heritage retrieval** — dense + sparse index over your corpus (`Clustering/rag_index`), with CLIP-Heritage / fusion ablations you trained  
+2. **Agent Hybrid RAG** — retrieve-then-**extractive** grounded answers in code (`Chatbot/Agent-Based`), citing passages  
+3. **GraphSAGE / clustering / FAISS** — recommendation and scale studies (see `TODO.md`)  
+4. **Local GGUF RAG** — optional **offline fallback** for fluent generation when retrieval is empty or Agent is down  
 
-Local LLM impact on the paper: strengthens **reproducibility**, **grounding evaluation**, and **deployment** claims; the scientific novelty is retrieval + ablations + metrics, not model scale. Report faithfulness ~0.79 / hallucination ~0.21 / Hit@K=1.0 (see `TODO.md`).
+Local LLM impact: strengthens **offline demos**, not the core novelty. Report retrieval Hit@K / faithfulness from `TODO.md`; chat `mode` field shows `agent-hybrid-rag` vs `local-rag-fallback`.
 
 ---
 
@@ -85,8 +119,8 @@ Local LLM impact on the paper: strengthens **reproducibility**, **grounding eval
 
 ```
 Application/          # Express + React (unified :8175)
-Chatbot/Local-RAG/    # Primary chatbot (GGUF + hybrid RAG)
-Chatbot/Agent-Based/  # Legacy proxy / cloud (optional)
+Chatbot/Agent-Based/  # Primary chat (TS) — RAG + bundled heritage-lm MiniGPT (:8180)
+Chatbot/Local-RAG/    # GGUF offline fallback only (:8176) — not the UI entrypoint
 Clustering/           # ML API, train_*, benchmark, rag_index
 Dataset/              # heritage_sites_v*.csv
 WebGLBuilds/          # Static Unity builds
@@ -94,6 +128,7 @@ scripts/              # start_all, sync_sites_to_db, install_gpu_llm
 docs/                 # PHASE2_HANDOFF, plans
 SETUP.md              # Clone-friendly setup
 TODO.md               # Measured benchmarks & roadmap
+requirements.txt      # Root Python deps (create your own venv)
 ```
 
 ---
@@ -107,14 +142,18 @@ TODO.md               # Measured benchmarks & roadmap
 - `GET /api/clusters/spatial-polygons` — hull overlays  
 - `GET /api/benchmarks` — metric tables  
 
-**Local RAG `:8176`**
-- `POST /api/chat` — `{ "query", "session_id?" }` → answer, reasoning, sources, `latency_ms`  
-- `GET /api/health` — backend + `gpu_layers`  
-- `POST /api/chat/reset` — clear session  
+**Local RAG `:8176` (fallback)**
+- `POST /api/chat` — GGUF fluent generation when Agent retrieval path needs fallback  
+
+**Agent Hybrid RAG `:8180` (primary PineAI)**
+- `POST /api/chat` — hybrid retrieve → extractive grounded answer (+ optional cloud polish)  
+- `POST /api/chat/stream` — SSE for the React widget  
+- `GET /api/health` — mode + clustering / fallback URLs  
 
 **Express `:8175`**
 - `GET /api/health`, `/api/sites`, `/api/sites/:name/similar`, spatial polygons proxy  
 - Serves `frontend/build` SPA  
+- Exclusive research routes (not linked in UI): see **Exclusive research endpoints** above  
 
 ---
 

@@ -47,14 +47,12 @@ venv/
 *.bin
 !**/package-lock.json
 
-# --- Process / OS junk ---
-.heritage_pids.json
-scripts/.heritage_pids.json
-.DS_Store
-Thumbs.db
-*.log
-npm-debug.log*
-yarn-error.log*
+Chatbot/Heritage-LM/checkpoints/*.pt
+Chatbot/Heritage-LM/data/wiki_cache/
+Chatbot/Heritage-LM/data/corpus.txt
+Chatbot/Agent-Based/heritage-lm/checkpoints/*.pt
+Chatbot/Agent-Based/heritage-lm/data/wiki_cache/
+Chatbot/Agent-Based/heritage-lm/data/corpus.txt
 
 Environment/My project/.plastic/plastic.changes
 Environment/My project/.plastic/plastic.selector

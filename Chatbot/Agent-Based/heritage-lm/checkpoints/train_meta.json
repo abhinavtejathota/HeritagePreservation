@@ -1,0 +1,25 @@
+{
+  "n_params": 2208000,
+  "epochs": 35,
+  "train_seconds": 27.8,
+  "n_tokens": 32122,
+  "device": "cuda",
+  "data": {
+    "source": "qa_training.csv (filtered from online_training.csv)",
+    "n_rows": 425,
+    "qa_training_csv": "qa_training.csv"
+  },
+  "architecture": "tok_emb + BiLSTM memory + causal Transformer (attn/FFN/LN)",
+  "context_window": 192,
+  "config": {
+    "vocab_size": 3000,
+    "block_size": 192,
+    "n_layer": 3,
+    "n_head": 3,
+    "n_embd": 192,
+    "dropout": 0.1,
+    "use_bilstm": true,
+    "lstm_layers": 1,
+    "lstm_hidden": 96
+  }
+}

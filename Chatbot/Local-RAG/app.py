@@ -136,6 +136,23 @@ class ChatRequest(BaseModel):
 
 
 def generate_local(prompt: str, history: Optional[list[dict]] = None) -> str:
+    # Prefer project Mini-LM when trained (domain LM you own end-to-end)
+    try:
+        from heritage_bridge import try_heritage_answer
+
+        # prompt is user-facing block; pull last Question-ish line if present
+        q = prompt
+        if "User question:" in prompt:
+            q = prompt.split("User question:")[-1].split("\n")[0].strip()
+        elif "Question:" in prompt:
+            q = prompt.split("Question:")[-1].split("\n")[0].strip()
+        h = try_heritage_answer(q)
+        if h:
+            print("[gen] backend=heritage-minigpt")
+            return f"REASONING: Heritage Mini-LM (project-trained Transformer).\nANSWER: {h}\nCONFIDENCE: 0.55"
+    except Exception as e:
+        print(f"[gen] heritage bridge skipped: {e}")
+
     from local_llm import generate, backend_name, gpu_layers_used
 
     text = generate(SYSTEM_PROMPT, prompt, history=history)
@@ -158,7 +175,14 @@ def retrieve_contexts(query: str, top_k: int = 5) -> list[dict]:
         if r.status_code == 200:
             return r.json().get("contexts") or []
     except Exception as e:
-        print(f"[retrieve] Clustering unavailable: {e}")
+        # Common right after start_all: Clustering still loading ML deps.
+        msg = str(e)
+        if "10061" in msg or "Connection refused" in msg or "Max retries" in msg:
+            print(
+                "[retrieve] Clustering not ready yet (normal during startup) — using local index"
+            )
+        else:
+            print(f"[retrieve] Clustering unavailable: {e}")
 
     try:
         import sys
@@ -268,6 +292,23 @@ def parse_structured(raw: str) -> dict[str, Any]:
 
 
 UNSAFE = re.compile(r"\b(hack|bomb|kill|terror|weapon)\b", re.I)
+
+
+@app.get("/")
+def root():
+    """Browser-friendly landing — this service is an API, not the UI."""
+    return {
+        "service": "Local RAG (GGUF fallback)",
+        "port": PORT,
+        "role": "Offline fluent fallback inside Agent-Based — not the product UI",
+        "ui": "http://localhost:8175",
+        "primary_chat": "http://localhost:8180/api",
+        "endpoints": {
+            "health": "GET /api/health",
+            "chat": "POST /api/chat",
+            "stream": "POST /api/chat/stream",
+        },
+    }
 
 
 @app.get("/api/health")
