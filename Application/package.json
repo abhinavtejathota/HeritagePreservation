@@ -1,0 +1,14 @@
+{
+  "name": "heritage-application",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Unified Application package — build React and serve via Express",
+  "scripts": {
+    "install:all": "npm --prefix frontend install && npm --prefix backend install",
+    "build:frontend": "npm --prefix frontend run build",
+    "start": "node backend/server/index.js",
+    "start:prod": "npm run build:frontend && npm start",
+    "dev:backend": "node backend/server/index.js",
+    "dev:frontend": "npm --prefix frontend start"
+  }
+}

@@ -11,9 +11,11 @@ import {
   Marker,
   Popup,
   CircleMarker,
+  Polygon,
 } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+import { getApiBase } from "../lib/api";
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -48,8 +50,6 @@ const toSlug = (name) =>
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
 
-const API_BASE = process.env.REACT_APP_API_URL;
-
 export default function Nearby() {
   const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -62,6 +62,18 @@ export default function Nearby() {
   const [searchError, setSearchError] = useState("");
   const [detectedCountry, setDetectedCountry] = useState("");
   const [zoomLevel, setZoomLevel] = useState(5);
+  const [clusterPolygons, setClusterPolygons] = useState([]);
+
+  const CLUSTER_COLORS = [
+    "#1d4ed8",
+    "#b45309",
+    "#047857",
+    "#be123c",
+    "#6d28d9",
+    "#0f766e",
+    "#a16207",
+    "#334155",
+  ];
 
   const detectCountryFromCoords = async (lat, lng) => {
     try {
@@ -104,7 +116,7 @@ export default function Nearby() {
   ];
 
   useEffect(() => {
-    fetch(`${API_BASE}/api/map/sites`)
+    fetch(`${getApiBase()}/api/map/sites`)
       .then((res) => res.json())
       .then((data) => {
         setSites(data.sites || []);
@@ -115,6 +127,14 @@ export default function Nearby() {
         setSites([]);
         setLoading(false);
       });
+
+    fetch(`${getApiBase()}/api/clusters/spatial-polygons`)
+      .then((res) => res.json())
+      .then((data) => {
+        const polys = (data.polygons || []).filter((p) => p.type === "Polygon");
+        setClusterPolygons(polys);
+      })
+      .catch(() => setClusterPolygons([]));
   }, []);
 
   useEffect(() => {
@@ -129,7 +149,7 @@ export default function Nearby() {
         setUserLocation(loc);
         detectCountryFromCoords(loc.lat, loc.lng);
 
-        fetch(`${API_BASE}/api/map/nearest?lat=${loc.lat}&lng=${loc.lng}`)
+        fetch(`${getApiBase()}/api/map/nearest?lat=${loc.lat}&lng=${loc.lng}`)
           .then((res) => res.json())
           .then((data) => setNearestSite(data));
       },
@@ -172,7 +192,7 @@ export default function Nearby() {
       detectCountryFromCoords(loc.lat, loc.lng);
 
       const nearest = await fetch(
-        `${API_BASE}/api/map/nearest?lat=${loc.lat}&lng=${loc.lng}`
+        `${getApiBase()}/api/map/nearest?lat=${loc.lat}&lng=${loc.lng}`
       );
       setNearestSite(await nearest.json());
     } catch (err) {
@@ -268,6 +288,35 @@ export default function Nearby() {
               url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
               attribution="© OpenStreetMap contributors"
             />
+
+            {/* HDBSCAN / civilization convex hull overlays */}
+            {clusterPolygons.map((poly, i) => {
+              const ring = poly.coordinates?.[0] || [];
+              // GeoJSON is [lon, lat]; Leaflet wants [lat, lon]
+              const positions = ring.map(([lon, lat]) => [lat, lon]);
+              if (positions.length < 3) return null;
+              const color = CLUSTER_COLORS[i % CLUSTER_COLORS.length];
+              return (
+                <Polygon
+                  key={`cluster-${poly.cluster_id ?? i}`}
+                  positions={positions}
+                  pathOptions={{
+                    color,
+                    fillColor: color,
+                    fillOpacity: 0.15,
+                    weight: 2,
+                  }}
+                >
+                  <Popup>
+                    Cluster {poly.cluster_id ?? i}
+                    {poly.civilization ? ` — ${poly.civilization}` : ""}
+                    <br />
+                    {(poly.members || []).slice(0, 5).join(", ")}
+                    {(poly.members || []).length > 5 ? "…" : ""}
+                  </Popup>
+                </Polygon>
+              );
+            })}
 
             {/* All heritage sites */}
             {sites.map((site, i) => (

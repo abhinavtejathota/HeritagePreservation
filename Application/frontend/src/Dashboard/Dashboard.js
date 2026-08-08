@@ -10,8 +10,8 @@ import Giza from "./images/Giza.jpg";
 import Colosseum from "./images/Colosseum.jpg";
 
 import Sidebar from "./Sidebar";
-
-const API_BASE = process.env.REACT_APP_API_URL;
+import SurpriseMe from "../component/SurpriseMe";
+import { getApiBase } from "../lib/api";
 
 /* -------------------- HELPERS -------------------- */
 const toSlug = (name) =>
@@ -23,164 +23,32 @@ const toSlug = (name) =>
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
 
-/* -------------------- SITE GUESSER COMPONENT -------------------- */
-const shuffleArray = (array) => {
-  const shuffled = [...array];
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-  }
-  return shuffled;
-};
-
-const BG_POSITIONS = [
-  "0% 0%",
-  "50% 0%",
-  "100% 0%",
-  "0% 50%",
-  "",
-  "100% 50%",
-  "0% 100%",
-  "50% 100%",
-  "100% 100%",
-];
-
-function SiteGuesser({ randomSites }) {
+/* -------------------- SITE GUESSER — moved to /Play (fixed Arts puzzle) -------------------- */
+function SiteGuesserTeaser() {
   const navigate = useNavigate();
-  const [site, setSite] = useState(null);
-  const [guess, setGuess] = useState("");
-  const [result, setResult] = useState(null);
-  const [shuffledBgPositions, setShuffledBgPositions] = useState([]);
-  const containerWidth = 1250;
-  const containerHeight = 750;
-  const rectangleWidth = containerWidth / 3;
-  const rectangleHeight = containerHeight / 3;
-  const margin = 10;
-  const rectangles = [
-    { top: 0, left: 0 },
-    { top: 0, left: rectangleWidth },
-    { top: 0, left: rectangleWidth * 2 },
-
-    { top: rectangleHeight, left: 0 },
-    { top: rectangleHeight, left: rectangleWidth * 2 },
-
-    { top: rectangleHeight * 2, left: 0 },
-    { top: rectangleHeight * 2, left: rectangleWidth },
-    { top: rectangleHeight * 2, left: rectangleWidth * 2 },
-  ];
-
-  const showAnswer = () => {
-    if (!site) return;
-    navigate(`/sites/${toSlug(site.name)}`);
-  };
-
-
-  useEffect(() => {
-    if (!randomSites || randomSites.length === 0) return;
-
-    const randomIndex = Math.floor(Math.random() * randomSites.length);
-    const selectedSite = randomSites[randomIndex];
-
-    setSite({
-      name: selectedSite,
-      image: `/sites/${toSlug(selectedSite)}.jpg`,
-    });
-
-    setShuffledBgPositions(shuffleArray(BG_POSITIONS));
-    setGuess("");
-    setResult(null);
-  }, [randomSites]);
-
-  const checkGuess = () => {
-    if (!site) return;
-
-    if (guess.trim().toLowerCase() === site.name.toLowerCase()) {
-      setResult("correct");
-
-      setTimeout(() => {
-        navigate(`/sites/${toSlug(site.name)}`);
-      }, 800);
-    } else {
-      setResult("wrong");
-    }
-  };
-
-  if (!site) return null;
-
   return (
-    <div
-      className="relative mx-auto bg-neutral-400 p-3"
-      style={{
-        width: containerWidth,
-        height: containerHeight,
-        marginBottom: 200,
-      }}
+    <button
+      type="button"
+      onClick={() => navigate("/Play")}
+      className="group relative w-full max-w-[1250px] mx-auto overflow-hidden rounded-3xl shadow-lg ring-1 ring-stone-200"
     >
-      {rectangles.map((pos, i) => (
-        <div
-          key={i}
-          className="absolute"
-          style={{
-            width: rectangleWidth,
-            height: rectangleHeight,
-            top: pos.top,
-            left: pos.left,
-            backgroundImage: `url(${site.image})`,
-            backgroundSize: "300% 300%",
-            backgroundPosition: shuffledBgPositions[i] || "0% 0%",
-          }}
-        />
-      ))}
-
-      <div
-        className="absolute flex flex-col items-center justify-center"
-        style={{
-          top: rectangleHeight + margin,
-          left: rectangleWidth + margin,
-          width: rectangleWidth - margin * 2,
-          height: rectangleHeight - margin * 2,
-        }}
-      >
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            checkGuess();
-          }}
-          className="w-full flex flex-col items-center"
-        >
-          <input
-            type="text"
-            value={guess}
-            onChange={(e) => setGuess(e.target.value)}
-            placeholder="Guess the site..."
-            className="w-full px-4 py-3 rounded-lg border shadow-md text-center text-lg bg-white text-neutral-900 placeholder-neutral-400"
-          />
-
-          <div className="mt-4 flex gap-4">
-            <button
-              type="submit"
-              className="px-6 py-2 rounded-md bg-stone-800 text-white text-lg"
-            >
-              Guess
-            </button>
-
-            <button
-              type="button"
-              onClick={showAnswer}
-              className="px-6 py-2 rounded-md bg-stone-500 text-white text-lg"
-            >
-              Show Answer
-            </button>
-          </div>
-        </form>
-
-        {result === "correct" && (
-          <p className="mt-3 text-green-600 font-semibold">Correct 🎉</p>
-        )}
-
-        {result === "wrong" && <p className="mt-3 text-red-600">Try again</p>}
+      <div className="absolute inset-0 bg-gradient-to-br from-stone-800 via-stone-700 to-amber-900" />
+      <div className="relative px-8 py-16 md:py-24 text-left text-white">
+        <p className="text-sm uppercase tracking-[0.2em] text-amber-200/90 mb-3">
+          Play
+        </p>
+        <h2 className="text-4xl md:text-5xl font-semibold mb-4 group-hover:translate-x-1 transition-transform">
+          Arts &amp; Culture puzzle
+        </h2>
+        <p className="text-lg text-stone-200 max-w-2xl">
+          Swap unique image tiles, reconstruct the landmark, and guess the
+          heritage site — Google Arts–style, no repeated crops.
+        </p>
+        <span className="inline-block mt-8 px-5 py-2.5 rounded-full bg-white text-stone-900 text-sm font-medium group-hover:bg-amber-100 transition">
+          Open puzzle →
+        </span>
       </div>
-    </div>
+    </button>
   );
 }
 
@@ -248,7 +116,7 @@ export default function Dashboard() {
     const fetchSuggestions = async () => {
       setSearchLoading(true);
       try {
-        const res = await axios.get(`${API_BASE}/api/search`, {
+        const res = await axios.get(`${getApiBase()}/api/search`, {
           params: { q: query },
         });
         setSuggestions(res.data);
@@ -270,6 +138,7 @@ export default function Dashboard() {
     { name: "Nearby", to: "/Nearby" },
     { name: "Favourites", to: "/Favourites" },
     { name: "Play", to: "/Play" },
+    { name: "Trail", to: "/Trail" },
   ];
 
   /* -------------------- RANDOM SITES -------------------- */
@@ -380,30 +249,33 @@ export default function Dashboard() {
       />
 
       {/* MAIN */}
-      <main className="flex-1 mt-20 px-6">
-        <h1 className="text-4xl py-8 font-sans mb-12">
+      <main className="flex-1 mt-20 px-6 pb-16">
+        <h1 className="text-4xl md:text-5xl py-8 font-sans mb-8 tracking-tight text-stone-900">
           Which historical landmark are you keen to discover?
         </h1>
 
         {/* SEARCH */}
-        <div className="w-full mx-auto px-24">
-          <div className="relative z-50 flex items-center gap-2 p-4 bg-gray-100 rounded-lg shadow-md">
+        <div className="w-full mx-auto px-4 md:px-24">
+          <div className="relative z-50 flex items-center gap-2 p-3 md:p-4 bg-stone-100/90 backdrop-blur rounded-2xl shadow-sm ring-1 ring-stone-200/80">
             <input
               type="text"
               placeholder="Search heritage sites..."
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-              className="w-full px-3 py-2 border rounded-md text-sm"
+              className="w-full px-3 py-2.5 border-0 bg-white rounded-xl text-sm shadow-inner focus:ring-2 focus:ring-amber-400/50 outline-none"
             />
 
             {searchLoading && (
-              <span className="absolute right-12 animate-spin">⏳</span>
+              <span className="absolute right-14 text-stone-400 animate-pulse text-xs">
+                …
+              </span>
             )}
 
             <button
               onClick={handleSearch}
-              className="p-2 rounded-md hover:bg-gray-200 transition"
+              className="p-2.5 rounded-xl hover:bg-white transition"
+              aria-label="Search"
             >
               <SearchIcon className="w-6 h-6" />
             </button>
@@ -411,7 +283,7 @@ export default function Dashboard() {
 
           {suggestions.length > 0 && (
             <div className="relative z-50">
-              <div className="absolute w-full mt-2 bg-white border rounded-md shadow-lg">
+              <div className="absolute w-full mt-2 bg-white border border-stone-100 rounded-xl shadow-xl overflow-hidden">
                 {suggestions.map((site) => (
                   <NavLink
                     key={site.name}
@@ -420,10 +292,10 @@ export default function Dashboard() {
                       setQuery("");
                       setSuggestions([]);
                     }}
-                    className="block px-4 py-2 hover:bg-gray-100"
+                    className="block px-4 py-3 hover:bg-amber-50/80 transition border-b border-stone-50 last:border-0"
                   >
-                    <div className="font-medium">{site.name}</div>
-                    <div className="text-xs text-gray-500">
+                    <div className="font-medium text-stone-800">{site.name}</div>
+                    <div className="text-xs text-stone-500">
                       {site.country} · {site.era_category}
                     </div>
                   </NavLink>
@@ -431,6 +303,10 @@ export default function Dashboard() {
               </div>
             </div>
           )}
+        </div>
+
+        <div className="mt-10 flex justify-center">
+          <SurpriseMe />
         </div>
 
         {/* CONTINENT CARDS */}
@@ -507,10 +383,9 @@ export default function Dashboard() {
             </div>
           </button>
         </div>
-        {/* SITE GUESS */}
-        <div className="mt-32 flex flex-col items-center">
-          <h2 className="text-4xl font-bold mb-8">Guess the Site!</h2>
-          <SiteGuesser randomSites={randomSites} />
+        {/* SITE GUESS — full puzzle lives on /Play */}
+        <div className="mt-28 mb-24 flex flex-col items-center px-2">
+          <SiteGuesserTeaser />
         </div>
       </main>
     </div>

@@ -1,0 +1,16 @@
+fastapi
+uvicorn
+scikit-learn
+pandas
+numpy
+psycopg2-binary
+python-dotenv
+sentence-transformers
+torch
+networkx
+scipy
+faiss-cpu
+Pillow
+requests
+pydantic
+hdbscan

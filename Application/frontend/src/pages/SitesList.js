@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import Sidebar from "../Dashboard/Sidebar.js";
 import { ReactComponent as MenuIcon } from "../Dashboard/Hamburg_icon.svg";
 
-const API_BASE = process.env.REACT_APP_API_URL;
+import { getApiBase } from "../lib/api";
 
 const toSlug = (name) =>
   name
@@ -46,7 +46,7 @@ export default function SitesList() {
     const fetchSites = async () => {
       setLoading(true);
       try {
-        let url = `${API_BASE}/api/sites?&limit=30`;
+        let url = `${getApiBase()}/api/sites?&limit=100`;
         if (nameParam) {
           navigate(`/sites/${toSlug(nameParam)}`);
           setLoading(false);

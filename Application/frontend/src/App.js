@@ -11,6 +11,7 @@ import Sites from "./pages/Sites";
 import SitesList from "./pages/SitesList";
 import Chatbot from "./component/Chatbot";
 import Themes from "./pages/Themes";
+import Trail from "./pages/Trail";
 
 function App() {
   useEffect(() => {
@@ -34,6 +35,7 @@ function App() {
         <Route path="/Favourites" element={<Favourites />} />
         <Route path="/Nearby" element={<Nearby />} />
         <Route path="/Play" element={<Play />} />
+        <Route path="/Trail" element={<Trail />} />
         <Route path="/continent/:name" element={<Continent />} />
         <Route path="/sites/:name" element={<Sites />} />
         <Route path="/sites-list" element={<SitesList />} />

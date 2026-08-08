@@ -1,16 +1,156 @@
 // import ./db for connection
 const express = require("express");
 const cors = require("cors");
-require("dotenv").config();
+const path = require("path");
+const fs = require("fs");
+require("dotenv").config({ path: path.join(__dirname, ".env") });
 const db = require("./db");
+const { registerAiRoutes } = require("./ai_routes");
 
 const app = express();
 app.use(cors());
-app.use(express.json());
+app.use(express.json({ limit: "8mb" }));
 
-app.get("/", (req, res) => {
-  res.send("Backend is running!");
+// Serve React production build from the same origin (one-command Application start)
+const FRONTEND_BUILD = path.join(__dirname, "../../frontend/build");
+const SERVE_FRONTEND = fs.existsSync(path.join(FRONTEND_BUILD, "index.html"));
+if (SERVE_FRONTEND) {
+  app.use(express.static(FRONTEND_BUILD));
+  console.log(`Serving frontend from ${FRONTEND_BUILD}`);
+}
+
+app.get("/api/health", (req, res) => {
+  res.json({
+    status: "ok",
+    frontend_served: SERVE_FRONTEND,
+  });
 });
+
+/** Lightweight recommendation preference study (model vs random). JSONL log. */
+const STUDY_LOG = path.join(__dirname, "data", "study_events.jsonl");
+function appendStudyEvent(ev) {
+  const dir = path.dirname(STUDY_LOG);
+  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+  fs.appendFileSync(STUDY_LOG, JSON.stringify({ ...ev, ts: Date.now() }) + "\n");
+}
+
+app.post("/api/study/preference", async (req, res) => {
+  try {
+    const {
+      query_site,
+      option_a,
+      option_b,
+      chosen,
+      condition, // "model" | "random" — which side was model-ranked first pair source
+      participant_id,
+    } = req.body || {};
+    if (!query_site || !option_a || !option_b || !chosen) {
+      return res.status(400).json({ message: "query_site, option_a, option_b, chosen required" });
+    }
+    if (![option_a, option_b].includes(chosen)) {
+      return res.status(400).json({ message: "chosen must be option_a or option_b name" });
+    }
+    const row = {
+      query_site,
+      option_a,
+      option_b,
+      chosen,
+      condition: condition || "model_vs_random",
+      participant_id: participant_id || null,
+      chose_a: chosen === option_a,
+    };
+    appendStudyEvent(row);
+    res.status(201).json({ ok: true, logged: row });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Failed to log preference" });
+  }
+});
+
+app.get("/api/study/summary", (req, res) => {
+  try {
+    if (!fs.existsSync(STUDY_LOG)) {
+      return res.json({ n: 0, prefer_a_rate: null, events: [] });
+    }
+    const lines = fs
+      .readFileSync(STUDY_LOG, "utf8")
+      .trim()
+      .split("\n")
+      .filter(Boolean)
+      .map((l) => JSON.parse(l));
+    const n = lines.length;
+    const preferA = lines.filter((e) => e.chose_a).length;
+    res.json({
+      n,
+      prefer_a_rate: n ? preferA / n : null,
+      note: "A is typically model recommendation; B random distractor when UI sets condition.",
+      events: lines.slice(-50),
+    });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+app.get("/api/study/pair/:name", async (req, res) => {
+  /** Returns one model recommendation + one random other site for A/B preference. */
+  const name = decodeURIComponent(req.params.name);
+  try {
+    const sitesRes = await db.query(
+      `SELECT name, country FROM heritage_sites WHERE name IS NOT NULL`
+    );
+    const all = sitesRes.rows || [];
+    const others = all.filter((s) => s.name !== name);
+    if (others.length < 2) {
+      return res.status(404).json({ message: "Not enough sites" });
+    }
+
+    let modelPick = null;
+    try {
+      const sim = await db.query(
+        `SELECT top_5_similar FROM site_similarity WHERE site_name = $1`,
+        [name]
+      );
+      const top = sim.rows[0]?.top_5_similar || [];
+      if (Array.isArray(top) && top[0]?.name) {
+        modelPick = others.find((s) => s.name === top[0].name) || { name: top[0].name };
+      }
+    } catch (_) {
+      /* ignore */
+    }
+    if (!modelPick) {
+      modelPick = others[Math.floor(Math.random() * others.length)];
+    }
+    let randomPick = others[Math.floor(Math.random() * others.length)];
+    let guard = 0;
+    while (randomPick.name === modelPick.name && guard++ < 20) {
+      randomPick = others[Math.floor(Math.random() * others.length)];
+    }
+
+    // Randomize left/right presentation
+    const swap = Math.random() < 0.5;
+    const option_a = swap ? randomPick : modelPick;
+    const option_b = swap ? modelPick : randomPick;
+    res.json({
+      query_site: name,
+      option_a: { name: option_a.name, country: option_a.country },
+      option_b: { name: option_b.name, country: option_b.country },
+      model_is: swap ? "b" : "a",
+      condition: "model_vs_random",
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Failed to build study pair" });
+  }
+});
+
+registerAiRoutes(app, db);
+
+// Dev-only plaintext health when frontend build is absent
+if (!SERVE_FRONTEND) {
+  app.get("/", (req, res) => {
+    res.send("Backend is running! (frontend build not found)");
+  });
+}
 
 const PRESERVATION_MAP = {
   5: "Excellent",
@@ -169,7 +309,7 @@ app.get("/api/sites", async (req, res) => {
 			ORDER BY preservation_rank DESC, popularity_rank DESC
 		`;
 
-    const safeLimit = Math.min(parseInt(limit) || 30, 50);
+    const safeLimit = Math.min(parseInt(limit, 10) || 100, 200);
 
     values.push(safeLimit);
     query += ` LIMIT $${values.length}`;
@@ -180,6 +320,32 @@ app.get("/api/sites", async (req, res) => {
   } catch (err) {
     console.error("SQL Error", err.message);
     res.status(500).json({ message: "Error fetching Sites" });
+  }
+});
+
+/** Resolve a URL slug like obelisk-tomb-and-bab-as-siq → site row */
+app.get("/api/sites/by-slug/:slug", async (req, res) => {
+  const slug = String(req.params.slug || "")
+    .toLowerCase()
+    .replace(/^-+|-+$/g, "");
+  try {
+    const result = await db.query(`SELECT * FROM heritage_sites WHERE name IS NOT NULL`);
+    const toSlug = (name) =>
+      String(name)
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .replace(/&/g, "and")
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "");
+    const row = (result.rows || []).find((s) => toSlug(s.name) === slug);
+    if (!row) {
+      return res.status(404).json({ message: "Site not found", slug });
+    }
+    res.status(200).json(row);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json({ message: "Error fetching site by slug" });
   }
 });
 
@@ -436,7 +602,112 @@ app.get("/api/map/nearest", async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT;
+/**
+ * Phase 2 Option 5: Spatial cluster polygons (convex hulls).
+ * Prefer Clustering service artifact; fallback: hulls by civilization from DB coords.
+ */
+app.get("/api/clusters/spatial-polygons", async (req, res) => {
+  const fsPath = path.join(
+    __dirname,
+    "../../../Clustering/Pickles/spatial_polygons.json"
+  );
+  if (fs.existsSync(fsPath)) {
+    try {
+      const raw = fs.readFileSync(fsPath, "utf8");
+      return res.status(200).json(JSON.parse(raw));
+    } catch (err) {
+      console.error("Failed reading spatial_polygons.json", err.message);
+    }
+  }
+
+  try {
+    const result = await db.query(
+      `SELECT name, civilization, latitude, longitude
+       FROM heritage_sites
+       WHERE latitude IS NOT NULL AND longitude IS NOT NULL`
+    );
+
+    const byCiv = {};
+    for (const row of result.rows) {
+      const key = row.civilization || "Unknown";
+      if (!byCiv[key]) byCiv[key] = [];
+      byCiv[key].push({
+        name: row.name,
+        lon: Number(row.longitude),
+        lat: Number(row.latitude),
+      });
+    }
+
+    // Convex hull (Andrew's monotone chain) per civilization with >= 3 points
+    const cross = (o, a, b) =>
+      (a.lon - o.lon) * (b.lat - o.lat) - (a.lat - o.lat) * (b.lon - o.lon);
+
+    const hull = (pts) => {
+      const sorted = [...pts].sort((a, b) =>
+        a.lon === b.lon ? a.lat - b.lat : a.lon - b.lon
+      );
+      if (sorted.length < 3) return sorted;
+      const lower = [];
+      for (const p of sorted) {
+        while (
+          lower.length >= 2 &&
+          cross(lower[lower.length - 2], lower[lower.length - 1], p) <= 0
+        ) {
+          lower.pop();
+        }
+        lower.push(p);
+      }
+      const upper = [];
+      for (let i = sorted.length - 1; i >= 0; i--) {
+        const p = sorted[i];
+        while (
+          upper.length >= 2 &&
+          cross(upper[upper.length - 2], upper[upper.length - 1], p) <= 0
+        ) {
+          upper.pop();
+        }
+        upper.push(p);
+      }
+      upper.pop();
+      lower.pop();
+      return lower.concat(upper);
+    };
+
+    const polygons = Object.entries(byCiv).map(([civ, members], idx) => {
+      const h = hull(members);
+      const ring = h.map((p) => [p.lon, p.lat]);
+      if (ring.length) ring.push(ring[0]);
+      return {
+        cluster_id: idx,
+        civilization: civ,
+        type: ring.length >= 4 ? "Polygon" : "MultiPoint",
+        coordinates: ring.length >= 4 ? [ring] : members.map((m) => [m.lon, m.lat]),
+        members: members.map((m) => m.name),
+      };
+    });
+
+    res.status(200).json({ polygons, source: "civilization_fallback" });
+  } catch (err) {
+    console.error("Spatial polygons error", err.message);
+    res.status(500).json({ message: "Failed to compute spatial polygons" });
+  }
+});
+
+// SPA fallback — keep after all /api routes
+if (SERVE_FRONTEND) {
+  app.get(/^(?!\/api).*/, (req, res) => {
+    res.sendFile(path.join(FRONTEND_BUILD, "index.html"));
+  });
+}
+
+const PORT = process.env.PORT || 8175;
 app.listen(PORT, () => {
   console.log(`Server is running on port http://localhost:${PORT}`);
+  if (SERVE_FRONTEND) {
+    console.log(`Frontend UI: http://localhost:${PORT}`);
+  } else {
+    console.log(
+      "Frontend build not found. Run: npm --prefix ../frontend run build"
+    );
+  }
 });

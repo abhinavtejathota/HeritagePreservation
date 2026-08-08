@@ -1,0 +1,22 @@
+{
+  "scale": "1=ungrounded … 5=fully grounded in retrieved context",
+  "instructions": "Rate each answer independently after viewing retrieved contexts. Do not discuss until both raters finish. Copy this file to human_ratings.json to score.",
+  "rater_A": [
+    { "id": "q1", "faithfulness_1to5": 0 },
+    { "id": "q4", "faithfulness_1to5": 0 },
+    { "id": "q8", "faithfulness_1to5": 0 },
+    { "id": "q9", "faithfulness_1to5": 0 },
+    { "id": "q16", "faithfulness_1to5": 0 },
+    { "id": "q25", "faithfulness_1to5": 0 },
+    { "id": "q40", "faithfulness_1to5": 0 }
+  ],
+  "rater_B": [
+    { "id": "q1", "faithfulness_1to5": 0 },
+    { "id": "q4", "faithfulness_1to5": 0 },
+    { "id": "q8", "faithfulness_1to5": 0 },
+    { "id": "q9", "faithfulness_1to5": 0 },
+    { "id": "q16", "faithfulness_1to5": 0 },
+    { "id": "q25", "faithfulness_1to5": 0 },
+    { "id": "q40", "faithfulness_1to5": 0 }
+  ]
+}

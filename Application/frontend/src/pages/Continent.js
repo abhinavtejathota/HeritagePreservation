@@ -10,7 +10,7 @@ import Sidebar from "../Dashboard/Sidebar.js";
 import { ReactComponent as SearchIcon } from "../Dashboard/Search.svg";
 import airplane from "./images/airplane.png";
 
-const API_BASE = process.env.REACT_APP_API_URL;
+import { getApiBase } from "../lib/api";
 
 export default function Continent() {
   const navigate = useNavigate();
@@ -39,7 +39,7 @@ export default function Continent() {
     const fetchSuggestions = async () => {
       setSearchLoading(true);
       try {
-        const res = await axios.get(`${API_BASE}/api/search`, {
+        const res = await axios.get(`${getApiBase()}/api/search`, {
           params: { q: query },
         });
         setSuggestions(res.data);
@@ -58,7 +58,7 @@ export default function Continent() {
     const fetchSites = async () => {
       setLoading(true);
       try {
-        const res = await axios.get(`${API_BASE}/api/sites`, {
+        const res = await axios.get(`${getApiBase()}/api/sites`, {
           params: {
             continent: name,
           },

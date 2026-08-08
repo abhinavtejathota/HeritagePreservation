@@ -1,98 +1,134 @@
-# TODO: Research-Grade Novel Roadmap, Step-by-Step Execution Plan & Comparative Benchmarking Metrics
+# Research Status, Assurance & Open TODOs
 
-This document outlines the state-of-the-art (SOTA) research roadmap for the Cultural Heritage Ecosystem. Each proposal includes **Implementation Steps**, **Comparative Baseline**, **Quantitative Performance Metrics**, and **Expected Benchmark Improvements**.
-
----
-
-## 📌 Phase 1: Completed Core Enhancements
-
-- [x] **Multi-Signal Unsupervised Ranker**: Combines feature vectors, embeddings, and popularity scores in `Clustering/utils.py`.
-- [x] **Unsupervised Score Calibration**: Min-max normalization and temperature scaling across feature matrices.
-- [x] **Diversity-Aware Re-Ranking (MMR)**: Maximal Marginal Relevance ($\lambda=0.7$) to eliminate duplicate site recommendations.
-- [x] **API & PostgreSQL Persistence**: Full backward compatibility for `/get-similarity` and SQL logging.
+> Last updated: 2026-08-08 · Dataset **n = 49** · No invented metrics  
+> Setup: [`SETUP.md`](SETUP.md) · Framing: [`docs/RESEARCH.md`](docs/RESEARCH.md)
 
 ---
 
-## 🔬 Phase 2: Novel Research Upgrades & Execution Plan
+## How claims are ensured
 
-### 1. Multi-Modal Heritage Representation Learning (CLIP-Heritage)
-
-#### 📝 Concrete Action Steps
-1. **Dataset Alignment**: Pair heritage site images (`Application/frontend/public/sites/`) and 3D textures (`Environment/My project/Assets/`) with descriptive text metadata (`Dataset/heritage_sites_v2.csv`).
-2. **Model Architecture**: Fine-tune an OpenCLIP (`ViT-B/32`) vision-language model using contrastive cross-entropy loss.
-3. **Embedding Storage**: Save 512-dim joint image-text embeddings into `Clustering/Pickles/clip_embeddings.pkl`.
-4. **Zero-Shot Query API**: Add `/api/multimodal-search` in `Clustering/app.py` enabling text-to-image and text-to-3D asset retrieval.
-
-#### 📊 Comparative Benchmark & Quantitative Metrics
-- **Baseline**: Standard TF-IDF text vector similarity.
-- **Evaluation Metrics**:
-  - **Mean Reciprocal Rank (MRR@5)**: Target improvement from **0.42 → 0.81** (+92.8% gain).
-  - **Cross-Modal Retrieval Precision (Precision@5)**: Target improvement from **35% → 78%**.
-- **Research Edge**: Enables natural language cross-modal discovery (e.g., querying *"rock-cut architecture with pillars"* directly retrieves Petra, Ellora Caves, and 3D WebGL assets).
+| Claim | Enforced / measured by | Reproduce |
+|-------|------------------------|-----------|
+| Hybrid retrieval | `rag_index` dense+sparse; API `mode` | `python Clustering/rag_ablation.py` |
+| Structured CoT | Prompt + `parse_structured()` | Chat API `reasoning` / `answer` |
+| Faithfulness proxies | Lexical support in `eval_rag.py` | `python Chatbot/Local-RAG/eval_rag.py` |
+| Human κ / RAGAS hook | `human_eval_kappa.py` + template | Fill `human_ratings.json` |
+| Multi-turn + persist | `session_id` + SQLite `session_store.py` | Restart Local-RAG; same session |
+| Offline LLM | Fixed GGUF; `/api/health` gpu_layers | `SETUP.md` |
+| MRR + CI | `bootstrap_mrr.py` | Pickles JSON |
+| Thematic (non-civ) GT | `thematic_gt.py` | Pickles JSON |
+| Scale FAISS/HDBSCAN | `scale_cluster_check.py` | N-conditioned metrics |
 
 ---
 
-### 2. Heterogeneous Heritage Knowledge Graph & Graph Neural Networks (GraphSAGE / HeteroGNN)
+## Measured results (archive)
 
-#### 📝 Concrete Action Steps
-1. **Graph Construction**: Construct PyTorch Geometric (`PyG`) graph `G = (V, E)`.
-   - **Nodes ($V$)**: Sites (68), Civilizations (14), Eras (12), Architectural Styles (22), Materials (15).
-   - **Edges ($E$)**: `(Site, BUILT_BY, Civilization)`, `(Site, LOCATED_IN, Era)`, `(Site, USES_MATERIAL, Material)`.
-2. **Model Training**: Train a 2-layer HeteroGNN / GraphSAGE to aggregate neighborhood context into 128-dim node embeddings.
-3. **Graph Similarity Function**: Compute cosine similarity on learned node embeddings (`gnn_embeddings.pkl`).
-4. **Integration**: Expose `get_top_gnn_similar()` in `Clustering/utils.py`.
+### Similarity (site-to-site) + bootstrap 95% CI
 
-#### 📊 Comparative Benchmark & Quantitative Metrics
-- **Baseline**: Cosine similarity on flat tabular data (K-Means / GMM).
-- **Evaluation Metrics**:
-  - **Adjusted Rand Index (ARI)**: Target improvement from **0.28 → 0.64** (+128% clustering fidelity).
-  - **Silhouette Coefficient**: Target improvement from **0.31 → 0.58**.
-- **Research Edge**: Captures hidden trade-route and cultural transmission links across civilizations that flat feature vectors miss.
+| Method | MRR@5 | CI95 |
+|--------|-------|------|
+| GraphSAGE | **0.552** | [0.413, 0.682] |
+| Scalar+Arch | 0.540 | [0.408, 0.668] |
+| Primary similarity | 0.490 | [0.357, 0.628] |
 
----
+Cross-modal CLIP fine-tune retrieval MRR **1.0** (+27.5% vs pretrained).
 
-### 3. Hierarchical Density-Based Clustering & Vector Indexing (HDBSCAN + FAISS HNSW)
+### Thematic GT (no Civilization)
 
-#### 📝 Concrete Action Steps
-1. **HDBSCAN Implementation**: Replace fixed cluster count ($K=5$) with `hdbscan.HDBSCAN(min_cluster_size=3, metric='euclidean')`.
-2. **Outlier/Noise Detection**: Classify noise points (`cluster_id = -1`) to prevent anomalous sites from cluttering main clusters.
-3. **FAISS HNSW Vector Index**: Build `faiss.IndexHNSWFlat(d=128, M=16)` index over unified GNN+CLIP embeddings.
-4. **Fast API Retrieval**: Benchmark sub-millisecond query latency under `Clustering/app.py`.
+| Method | MRR@5 (share ≥1 field) | MRR@5 (share ≥2) |
+|--------|------------------------|------------------|
+| Primary | **0.719** | 0.357 |
+| Scalar+Arch | 0.637 | 0.273 |
+| GraphSAGE | 0.595 | 0.284 |
 
-#### 📊 Comparative Benchmark & Quantitative Metrics
-- **Baseline**: Standard K-Means ($K$-fixed) & brute-force $O(N^2)$ matrix multiplication.
-- **Evaluation Metrics**:
-  - **Search Latency (Query Time)**: Target reduction from **45ms → 0.8ms** per query (56x speedup).
-  - **Davies-Bouldin Index (DBI)**: Lower is better; target reduction from **1.85 → 0.92** (-50.2%).
-  - **Cluster Noise Robustness**: Successfully identifies isolated heritage anomalies without forcing artificial cluster assignment.
+### RAG ablation (40 QA; abstain excluded → n=36)
 
----
+| Mode | Hit@5 |
+|------|-------|
+| Dense | **1.000** |
+| Hybrid | **1.000** |
+| Sparse | 0.972 |
 
-### 4. Agentic Retrieval-Augmented Generation (Agentic RAG)
+Retrieval-extractive on full 40 QA: Hit@K **1.0**, coverage ≈ **0.91**. Generation metrics: re-run `eval_rag.py --generate`.
 
-#### 📝 Concrete Action Steps
-1. **Knowledge Indexing**: Chunk heritage documentation & CSV metadata into vector store (FAISS / ChromaDB).
-2. **Orchestrator Upgrade**: Update `Chatbot/Agent-Based/src/orchestrator/orchestrator.ts` to perform dense vector context retrieval before generating prompt payloads.
-3. **Verification Guardrail**: Integrate `escalation.guard.ts` to score context relevance before emitting response.
+### Scale (synthetic expand of real X; not new sites)
 
-#### 📊 Comparative Benchmark & Quantitative Metrics
-- **Baseline**: Pure LLM direct generation (prone to hallucination on niche historical dates).
-- **Evaluation Metrics**:
-  - **Hallucination Rate**: Target reduction from **18.4% → 1.2%** (-93.5% error reduction).
-  - **Factual Exact-Match Accuracy (EM)**: Target improvement from **62% → 94.5%**.
-  - **Faithfulness Score (RAGAS framework)**: Target improvement from **0.55 → 0.91**.
+| N | FAISS speedup vs brute | HDBSCAN silhouette (clustered) |
+|---|------------------------|--------------------------------|
+| 49 | ≪1 (brute wins) | ~0.11 |
+| 500 | ~2.5× | ~0.28 |
+| 5000 | ~31× | ~0.33 |
+
+### Local RAG systems
+
+- Citations: `aspect` + `score` in API + UI  
+- Sessions: SQLite under `Chatbot/Local-RAG/data/`  
+- Streaming: `POST /api/chat/stream` (SSE)  
+- Preference study: `POST /api/study/preference`, site-page A/B UI  
 
 ---
 
-### 5. Spatial Geo-Clustering & Interactive Map Convex Hulls
+## Completed this cycle
 
-#### 📝 Concrete Action Steps
-1. **Convex Hull Algorithm**: Compute spatial convex hull polygons (`scipy.spatial.ConvexHull`) around HDBSCAN clusters using site coordinates (Latitude/Longitude).
-2. **API Endpoint**: Add `/api/clusters/spatial-polygons` in `Application/backend/server/index.js`.
-3. **React-Leaflet Rendering**: Update `Application/frontend/src/Dashboard/Explore.js` to draw dynamic colored polygon overlays representing cultural spheres of influence.
+### Evaluation rigor
+- [x] Expand `qa_set.json` to **40** items (compare / multi-hop / abstain)
+- [x] Dense vs sparse vs hybrid ablation → `rag_ablation_metrics.json`
+- [x] Bootstrap CI + LOSO → `bootstrap_mrr_metrics.json`
+- [x] Human rating template + Cohen κ harness + RAGAS note → `human_eval_kappa.py`
+- [x] Non-civilization thematic GT → `thematic_gt_metrics.json`
 
-#### 📊 Comparative Benchmark & Quantitative Metrics
-- **Baseline**: Isolated marker pins without spatial boundary context.
-- **Evaluation Metrics**:
-  - **Spatial Coverage Accuracy (IoU)**: Target **> 0.85** spatial boundary fit.
-  - **User Interaction Engagement (Time-on-Map)**: Estimated **+45%** user engagement improvement based on interactive region discovery.
+### Application / systems
+- [x] Citation UI (name · aspect · score)
+- [x] Persist sessions (SQLite)
+- [x] Preference study API + Sites UI (model vs random)
+- [x] Token streaming (SSE)
+
+### Dataset & scale
+- [x] Growth gate: `Dataset/candidates/` + `scripts/validate_site_growth.py` (no invented sites; n stays 49 until verified)
+- [x] Re-check FAISS + HDBSCAN across N → `scale_cluster_metrics.json`
+
+---
+
+## Open TODOs (remaining)
+
+### Paper packaging
+- [ ] Methods figure: Application ↔ Clustering ↔ Local-RAG dataflow
+- [ ] Threats-to-validity subsection (n=49, lexical faithfulness, GNN circularity)
+- [ ] Appendix: qualitative win/fail cases from `eval_rag.py` rows
+
+### Human / optional (blocked on people or installs)
+- [ ] Fill `human_ratings.json` and report κ
+- [ ] Optional `pip install ragas` notebook run
+- [ ] Collect preference-study N≥30 via `/api/study/summary`
+
+### Real corpus growth (when you have sources)
+- [ ] Add verified rows + images via candidates pipeline; then retrain all models
+
+### Explicitly out of scope
+- Frontier API as primary generator · inventing sites · FAISS speedup claims on n=49 alone  
+
+### Application AI (user-facing) — DONE
+- [x] Discover by description / photo (`/Explore`)
+- [x] “You might also like” + what they share (site pages)
+- [x] Compare two places
+- [x] Heritage trail planner (`/Trail`)
+- [x] Favourites + “Picked for you” (**device-local `localStorage`, no login**)
+- [x] Puzzle hints (3 soft clues, no spoilers)
+- [x] Surprise me · mood browse · ask about this page · listen · kids mode · before you go
+
+---
+
+## Ops
+
+```bash
+# eval suite
+python Clustering/rag_ablation.py
+python Clustering/bootstrap_mrr.py
+python Clustering/thematic_gt.py
+python Clustering/scale_cluster_check.py
+python Chatbot/Local-RAG/eval_rag.py
+python scripts/validate_site_growth.py
+```
+
+`scripts/start_all.py` · Express `:8175` · Local RAG `:8176` · Clustering `:8177` · WebGL `:8179`  
+Port map: `scripts/PORTS.txt`

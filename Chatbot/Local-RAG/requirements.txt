@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+python-dotenv
+pydantic
+requests
+psycopg2-binary
+# Install GPU stack separately:
+#   pip install torch --index-url https://download.pytorch.org/whl/cu124
+#   pip install llama-cpp-python==0.3.34 --extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cu124
+llama-cpp-python

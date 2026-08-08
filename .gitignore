@@ -6,6 +6,55 @@ Review
 Models
 Environment
 Environment/*
+Chatbot/Local-RAG/models/*.gguf
+
+# --- Secrets & local config (never push) ---
+.env
+**/.env
+!.env.example
+!**/.env.example
+*.pem
+*.key
+credentials.json
+service-account*.json
+
+# --- Dependencies & build output ---
+node_modules/
+**/node_modules/
+dist/
+**/dist/
+build/
+**/build/
+!Application/frontend/public/
+.cache/
+**/.cache/
+
+# --- Python / ML runtime ---
+__pycache__/
+**/__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+*.pkl
+*.joblib
+*.gguf
+*.pt
+*.pth
+*.safetensors
+*.bin
+!**/package-lock.json
+
+# --- Process / OS junk ---
+.heritage_pids.json
+scripts/.heritage_pids.json
+.DS_Store
+Thumbs.db
+*.log
+npm-debug.log*
+yarn-error.log*
 
 Environment/My project/.plastic/plastic.changes
 Environment/My project/.plastic/plastic.selector
@@ -744,11 +793,9 @@ Clustering/__pycache__/
 Clustering/.env
 Clustering/*.png
 Clustering/*.html
-Clustering/__pycache__/app.cpython-313.pyc
-Clustering/__pycache__/db.cpython-313.pyc
-Clustering/__pycache__/query.cpython-313.pyc
-Clustering/__pycache__/utils.cpython-313.pyc
-Clustering/Pickles
+Clustering/Pickles/
+Clustering/rag_index.pkl
+Clustering/*.pkl
 
 # Chatbot
 Chatbot/Api-Based/__pycache__/
@@ -756,11 +803,18 @@ Chatbot/Api-Based/.env
 Chatbot/Agent-Based/node_modules/
 Chatbot/Agent-Based/build/
 Chatbot/Agent-Based/.env
+Chatbot/Local-RAG/__pycache__/
+Chatbot/Local-RAG/.env
+Chatbot/Local-RAG/data/
+Chatbot/Local-RAG/models/
+Chatbot/Local-RAG/human_ratings.json
+Chatbot/Local-RAG/*.gguf
 
 # Application
 Application/.hintrc
 Application/backend/node_modules/
 Application/backend/server/.env
+Application/backend/server/data/
 Application/frontend/node_modules/
 Application/frontend/.env
-Application/frontend/.gitignore
+Application/frontend/build/

@@ -1,193 +1,159 @@
 # Global Heritage Preservation & Virtual Exploration Ecosystem
 
-An end-to-end, multi-tiered AI and 3D Web Application suite dedicated to **World Cultural Heritage Preservation**, **Unsupervised Site Clustering & Recommender Systems**, **Multi-Agent Conversational AI Assistants**, and **Interactive WebGL 3D Virtual Exploration**.
+End-to-end research + product stack for **cultural heritage**: multimodal site similarity, graph-based recommenders, **local hybrid RAG** (no cloud LLM keys), React exploration UI, and Unity WebGL tours.
+
+**Dataset:** n = **49** verified heritage sites (CSV ↔ PostgreSQL). Metrics in `TODO.md` are measured — not invented.
+
+**New clone?** Start with **[SETUP.md](SETUP.md)**.
 
 ---
 
-## 📑 Table of Contents
-- [Architecture & Tech Stack](#-architecture--tech-stack)
-- [Module Breakdown](#-module-breakdown)
-  - [1. Web Application (`Application/`)](#1-web-application-application)
-  - [2. Multi-Agent & LLM Chatbots (`Chatbot/`)](#2-multi-agent--llm-chatbots-chatbot)
-  - [3. Unsupervised Clustering & Recommender Engine (`Clustering/`)](#3-unsupervised-clustering--recommender-engine-clustering)
-  - [4. Unity 3D Environment & WebGL Builds (`Environment/` & `WebGLBuilds/`)](#4-unity-3d-environment--webgl-builds-environment--webglbuilds)
-  - [5. Datasets (`Dataset/`)](#5-datasets-dataset)
-- [Project Directory Structure](#-project-directory-structure)
-- [System Environment Variables & Port Map](#-system-environment-variables--port-map)
-- [Getting Started & Running the Services](#-getting-started--running-the-services)
-  - [1. Backend Service (`Application/backend`)](#1-backend-service-applicationbackend)
-  - [2. Agent-Based Chatbot Service (`Chatbot/Agent-Based`)](#2-agent-based-chatbot-service-chatbotagent-based)
-  - [3. Fallback Chatbot Service (`Chatbot/Api-Based`)](#3-fallback-chatbot-service-chatbotapi-based)
-  - [4. Clustering API (`Clustering`)](#4-clustering-api-clustering)
-  - [5. WebGL 3D Simulation Server (`WebGLBuilds`)](#5-webgl-3d-simulation-server-webglbuilds)
-  - [6. Frontend Web App (`Application/frontend`)](#6-frontend-web-app-applicationfrontend)
-- [Database Schema & Data Pipelines](#-database-schema--data-pipelines)
-- [API Reference](#-api-reference)
-- [Future Roadmap (`TODO.md`)](#-future-roadmap-todomd)
+## Architecture
+
+| Module | Stack | Role |
+|--------|--------|------|
+| **Application** | React 19, Express 5, PostgreSQL | Dashboard, map, favorites, Play puzzle, serves SPA from `:8175` |
+| **Clustering** | FastAPI, sklearn, CLIP, GraphSAGE, HDBSCAN, FAISS | Similarity, clusters, multimodal search, hybrid RAG index |
+| **Local RAG** | FastAPI, llama-cpp GGUF (Qwen2.5-1.5B Q4), MiniLM+TF-IDF | Grounded chat with CoT — primary chatbot on `:8176` |
+| **WebGL** | Unity URP builds | 1st-person tours (Petra sites, etc.) on `:8179` |
+
+Legacy `Chatbot/Agent-Based` (Gemini/Groq) and `Api-Based` are optional fallbacks only.
 
 ---
 
-## 🏛 Architecture & Tech Stack
+## Ports & env
 
-| Module | Core Technology Stack | Description |
-| :--- | :--- | :--- |
-| **Frontend** | React 19, TailwindCSS, React-Leaflet, Framer Motion | Dynamic dashboard, interactive spatial map visualization, themed exploration, and embedded 3D WebGL viewers. |
-| **Backend** | Express 5, Node.js, PostgreSQL (`pg`) | RESTful API service managing heritage site metadata, spatial filtering, multi-value querying, user favorites, and cluster result logging. |
-| **Agent Chatbot** | TypeScript, Node.js, Gemini API, Groq SDK, Compromise NLP | Domain-specialized multi-agent orchestrator (Architecture, Geo, Timeline, Monument, Civilization) with intent classification & scoring synthesis. |
-| **Fallback Chatbot** | Python, FastAPI, Google GenAI SDK, Groq | Lightweight REST endpoint featuring prompt safety guardrails and automatic model fallback switching. |
-| **ML Engine** | Python, FastAPI, Scikit-learn, Pandas, NumPy | Unsupervised heritage site similarity ranking & clustering using TF-IDF Cosine Similarity, K-Means, AGNES (Hierarchical), GMM, and MMR Multi-Signal Re-Ranking. |
-| **3D Virtual Environments** | Unity 3D (URP), C#, WebGL | Interactive 1st-person virtual tours of reconstructed heritage sites (*Petra*, *Temple of the Winged Lions*, *Blue Pillar Chapel*, *The Nabataean Theatre*). |
+| Service | Path | Port | Env file |
+|---------|------|------|----------|
+| App API + UI | `Application/backend/server` | **8175** | `server/.env` (`DB_*`) |
+| Clustering | `Clustering/` | **8177** | `.env` (`DB_*`) |
+| **Local RAG** | `Chatbot/Local-RAG/` | **8176** | `.env` optional — **GPU defaults baked in** |
+| WebGL | `WebGLBuilds/` | **8179** | — |
+| Frontend env | `Application/frontend` | — | `REACT_APP_CHA_URL=http://localhost:8176/api` |
 
----
+### Local LLM defaults (no PowerShell exports)
 
-## 🌐 System Environment Variables & Port Map
-
-All services are configured to run locally across dedicated ports:
-
-| Service Module | Location | Default Port | Environment File | Key Environment Variables |
-| :--- | :--- | :--- | :--- | :--- |
-| **Backend API** | `Application/backend/server/` | `5000` | `.env` | `PORT=5000`, `DB_HOST`, `DB_USER`, `DB_PASS`, `DB_NAME`, `DB_PORT` |
-| **Agent Chatbot** | `Chatbot/Agent-Based/` | `5001` | `.env` | `PORT=5001`, `GROQ_API_KEY`, `GOOGLE_API_KEY`, `DB_*` |
-| **Fallback Chatbot** | `Chatbot/Api-Based/` | `8001` | `.env` | `PORT=8001`, `GROQ_API_KEY`, `GOOGLE_API_KEY` |
-| **Clustering Engine**| `Clustering/` | `8000` | `.env` | `PORT=8000`, `DB_HOST`, `DB_USER`, `DB_PASSWORD`, `DB_NAME`, `DB_PORT` |
-| **WebGL Server** | `WebGLBuilds/` | `8002` | N/A | Served via `http-server` or `npx serve -p 8002 --cors` |
-| **Frontend UI** | `Application/frontend/` | `3000` | `.env` | `REACT_APP_API_URL=http://localhost:5000`<br>`REACT_APP_CHA_URL=http://localhost:5001/api`<br>`REACT_APP_GOG_URL=http://localhost:8001`<br>`REACT_APP_SIM_URL=http://localhost:8002` |
-
----
-
-## 🎮 WebGL 3D Simulation Web Server
-
-The application renders interactive 1st-person WebGL simulations for 4 major heritage sites:
-- **Great Temple (Petra)** (`WebGLBuilds/Great_Temple_(Petra)/Buildv3/index.html`)
-- **Temple of the Winged Lions** (`WebGLBuilds/Temple_of_the_Winged_Lions/Buildv3/index.html`)
-- **Blue Pillar Chapel** (`WebGLBuilds/Blue_Pillar_Chapel/Buildv3/index.html`)
-- **The Nabataean Theatre** (`WebGLBuilds/The_Nabataean_Theatre/Buildv3/index.html`)
-
-To serve the WebGL builds so the React frontend can load them inside iframes, launch a static web server on port `8002`:
+`LOCAL_LLM_N_GPU_LAYERS=33`, `LOCAL_LLM_CTX=4096`, `LOCAL_LLM_MAX_TOKENS=192` are defaults in code / `Chatbot/Local-RAG/.env.example`. Just:
 
 ```bash
-cd WebGLBuilds
-npx serve -p 8002 --cors
-# OR using http-server:
-# npx http-server -p 8002 --cors
-```
-
----
-
-## ⚙️ Getting Started & Running the Services
-
-### Prerequisites
-- **Node.js** (v18.x or later)
-- **Python** (v3.9 or later)
-- **PostgreSQL / Supabase instance**
-
----
-
-### 1. Backend Service (`Application/backend`)
-```bash
-cd Application/backend
-npm install
-node server/index.js
-```
-
-### 2. Agent-Based Chatbot Service (`Chatbot/Agent-Based`)
-```bash
-cd Chatbot/Agent-Based
-npm install
-npm run build
-npm start
-```
-
-### 3. Fallback Chatbot Service (`Chatbot/Api-Based`)
-```bash
-cd Chatbot/Api-Based
-pip install fastapi uvicorn google-genai groq python-dotenv pydantic
+cd Chatbot/Local-RAG
 python app.py
 ```
 
-### 4. Clustering API (`Clustering`)
-```bash
-cd Clustering
-pip install fastapi uvicorn scikit-learn pandas numpy psycopg2-binary python-dotenv
-python app.py
+---
+
+## Quick start
+
+```powershell
+.\scripts\start-all.ps1
+.\scripts\start-all.ps1 --stop
+.\scripts\start-all.ps1 --restart
+.\scripts\start-all.ps1 --status
+# same flags: python scripts/start_all.py …  /  ./scripts/start-all.sh …
 ```
 
-### 5. WebGL 3D Simulation Server (`WebGLBuilds`)
 ```bash
-cd WebGLBuilds
-
-# Option A: Using Python http.server
-python -m http.server 8002
-
-# Option B: Using Node serve
-npx serve -p 8002 --cors
+python scripts/start_all.py
+./scripts/start-all.sh
 ```
 
-### 6. Frontend Web App (`Application/frontend`)
-```bash
-cd Application/frontend
-npm install
-npm start
-```
-*Access the web app in your browser at `http://localhost:3000`.*
+| URL | What |
+|-----|------|
+| http://localhost:8175 | Full app (API + React build) |
+| http://localhost:8177 | Clustering / RAG retrieve |
+| http://localhost:8176 | Local RAG chat |
+
+`start_all` does **not** start WebGL or Api-Based (WebGL comes from your existing `REACT_APP_SIM_URL`; Api-Based is opt-in via `--with-api-fallback`).
 
 ---
 
-## 📁 Project Directory Structure
+## Research contributions (paper-facing)
+
+This is **not** “we called a frontier API.” Research-grade pieces:
+
+1. **Multimodal heritage embeddings** — CLIP-Heritage + honest site-to-site vs cross-modal ablations  
+2. **Heterogeneous GraphSAGE** recommenders + leave-one-relation-out sensitivity  
+3. **Vectorizer / fusion ablations** — CLIP-text vs TF-IDF; Arch-only vs full concat  
+4. **HDBSCAN + FAISS** — cluster validity + scale latency (wins at N≫49)  
+5. **Hybrid RAG** — multi-aspect chunks, dense+sparse retrieve, structured CoT, faithfulness/hallucination proxies on a labeled QA set, **reproducible offline** GGUF (consumer GPU)
+
+Local LLM impact on the paper: strengthens **reproducibility**, **grounding evaluation**, and **deployment** claims; the scientific novelty is retrieval + ablations + metrics, not model scale. Report faithfulness ~0.79 / hallucination ~0.21 / Hit@K=1.0 (see `TODO.md`).
+
+---
+
+## Module map
 
 ```
-├── Application/                        # Full-Stack Web Platform
-│   ├── backend/                        # Express API & Postgres Integration
-│   │   └── server/                     # index.js API routes & db.js connection
-│   └── frontend/                       # React 19 SPA Frontend
-│       ├── public/sites/               # Heritage site images
-│       └── src/                        # React Components, Dashboard, Map, Pages
-├── Chatbot/                            # AI Conversational Services
-│   ├── Agent-Based/                    # Multi-Agent TypeScript System
-│   │   └── src/                        # Agents, NLP Extractor, Orchestrator, Repository
-│   └── Api-Based/                      # Lightweight FastAPI LLM Fallback Service
-├── Clustering/                         # Unsupervised Machine Learning Engine
-│   ├── app.py                          # FastAPI endpoint for site recommendation
-│   ├── utils.py                        # Clustering & similarity computations
-│   ├── db.py / query.py                # PostgreSQL persistence for recommendations
-│   └── Grouping.ipynb                  # ML Analysis & Model Training Notebook
-├── Dataset/                            # Heritage Sites CSV Datasets
-│   ├── heritage_sites_v1.csv
-│   └── heritage_sites_v2.csv
-├── Environment/                        # Unity 3D Environment Source
-│   └── My project/                     # Unity Assets, Scenes, Scripts & Render Settings
-├── WebGLBuilds/                        # Compiled WebGL 3D Interactive Builds
-└── TODO.md                             # Research & Development Plan
+Application/          # Express + React (unified :8175)
+Chatbot/Local-RAG/    # Primary chatbot (GGUF + hybrid RAG)
+Chatbot/Agent-Based/  # Legacy proxy / cloud (optional)
+Clustering/           # ML API, train_*, benchmark, rag_index
+Dataset/              # heritage_sites_v*.csv
+WebGLBuilds/          # Static Unity builds
+scripts/              # start_all, sync_sites_to_db, install_gpu_llm
+docs/                 # PHASE2_HANDOFF, plans
+SETUP.md              # Clone-friendly setup
+TODO.md               # Measured benchmarks & roadmap
 ```
 
 ---
 
-## 📊 Database Schema & Data Pipelines
+## Key APIs
 
-The system utilizes PostgreSQL / Supabase for site persistence and ML recommendation history:
-- **`heritage_sites` Table**: Stores structured attributes (site name, coordinates, era, civilization, material, structure, preservation rank, popularity rank).
-- **`site_similarity` Table**: Records similarity outputs generated by `/get-similarity`:
-  - `site_name` (Text)
-  - `top_5_kmeans` (JSONB)
-  - `top_5_agnes` (JSONB)
-  - `top_5_gmm` (JSONB)
-  - `top_5_similar` (JSONB)
+**Clustering `:8177`**
+- `POST /get-similarity` — cosine / KMeans / AGNES / GMM / MMR / GraphSAGE / HDBSCAN  
+- `POST /api/multimodal-search` — CLIP text→site  
+- `POST /api/rag-context` — hybrid contexts for Local RAG  
+- `GET /api/clusters/spatial-polygons` — hull overlays  
+- `GET /api/benchmarks` — metric tables  
+
+**Local RAG `:8176`**
+- `POST /api/chat` — `{ "query", "session_id?" }` → answer, reasoning, sources, `latency_ms`  
+- `GET /api/health` — backend + `gpu_layers`  
+- `POST /api/chat/reset` — clear session  
+
+**Express `:8175`**
+- `GET /api/health`, `/api/sites`, `/api/sites/:name/similar`, spatial polygons proxy  
+- Serves `frontend/build` SPA  
 
 ---
 
-## 🔌 API Reference
+## Database
 
-### Express Backend (`Application/backend/server/index.js` - Port 5000)
-- `GET /` - Health check endpoint.
-- `GET /api/sites` - Retrieves all heritage sites with spatial & category metadata.
-- `GET /api/sites/:name/similar` - Fetches similarity recommendations logged in database.
+- `heritage_sites` — attributes, coords, ranks  
+- `site_similarity` — logged recommendation JSON  
 
-### Clustering API (`Clustering/app.py` - Port 8000)
-- `POST /get-similarity`
-  - **Payload**: `{ "site_name": "Great Temple (Petra)" }`
-  - **Returns**: Top 5 similar sites grouped across 4 clustering algorithms + MMR Multi-Signal Re-Ranker.
+Sync: `python scripts/sync_sites_to_db.py` (never invent sites).
 
-### Agent Chatbot API (`Chatbot/Agent-Based/` - Port 5001)
-- `POST /api/chat`
-  - **Payload**: `{ "query": "Tell me about the architecture of Petra" }`
-  - **Returns**: Synthesized response from specialized sub-agents with confidence scores.
+---
+
+## WebGL
+
+Configured via `REACT_APP_SIM_URL` (your existing static host). Not launched by `start_all`.
+
+To serve locally only if you need it:
+
+```bash
+cd WebGLBuilds && npx serve -p 8179 --cors
+# or: python scripts/start_all.py --with-webgl
+```
+
+Sites include Great Temple (Petra), Temple of the Winged Lions, Blue Pillar Chapel, Nabataean Theatre.
+
+---
+
+## Docs
+
+| Doc | Purpose |
+|-----|---------|
+| [SETUP.md](SETUP.md) | Clone → deps → run (for GitHub collaborators) |
+| [TODO.md](TODO.md) | Honest metrics & experiments |
+| [docs/RESEARCH.md](docs/RESEARCH.md) | Paper framing for local LLM + ML stack |
+| [docs/PHASE2_HANDOFF.md](docs/PHASE2_HANDOFF.md) | Research stack handoff |
+| [Chatbot/Local-RAG/README.md](Chatbot/Local-RAG/README.md) | GPU install + eval |
+
+---
+
+## License / academic use
+
+Use measured numbers from `Clustering/Pickles/*.json` and `TODO.md` in papers. Prefer ablations over single “best” claims on n=49.

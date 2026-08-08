@@ -5,7 +5,7 @@ import Sidebar from "../Dashboard/Sidebar.js";
 import { ReactComponent as MenuIcon } from "../Dashboard/Hamburg_icon.svg";
 import { NavLink } from "react-router-dom";
 
-const API_BASE = process.env.REACT_APP_API_URL;
+import { getApiBase } from "../lib/api";
 
 export default function Themes() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -31,7 +31,7 @@ export default function Themes() {
     const fetchValues = async () => {
       setLoading(true);
       try {
-        const res = await fetch(`${API_BASE}/api/themes/${type}`);
+        const res = await fetch(`${getApiBase()}/api/themes/${type}`);
         const data = await res.json();
         setValues(data);
       } catch (err) {

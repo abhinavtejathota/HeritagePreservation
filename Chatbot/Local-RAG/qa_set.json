@@ -1,0 +1,264 @@
+[
+  {
+    "id": "q1",
+    "question": "Where are the Ajanta Caves located and what religion are they associated with?",
+    "gold_sites": ["Ajanta Caves"],
+    "gold_facts": ["India", "Buddhist", "rock-cut"],
+    "answer_must_include_any": ["India", "Buddhist", "Buddhism"]
+  },
+  {
+    "id": "q2",
+    "question": "Name a Nabataean rock-cut monument in Jordan related to Petra.",
+    "gold_sites": ["Great Temple (Petra)", "Al-Khazneh", "The Nabataean Theatre"],
+    "gold_facts": ["Jordan", "Nabataean"],
+    "answer_must_include_any": ["Petra", "Jordan", "Nabataean"]
+  },
+  {
+    "id": "q3",
+    "question": "What architectural style and material characterize the Colosseum?",
+    "gold_sites": ["Colosseum"],
+    "gold_facts": ["Roman", "Italy"],
+    "answer_must_include_any": ["Roman", "Italy", "amphitheatre", "amphitheater", "Colosseum"]
+  },
+  {
+    "id": "q4",
+    "question": "Compare Ajanta Caves and Ellora Caves — what do they share?",
+    "gold_sites": ["Ajanta Caves", "Ellora Caves"],
+    "gold_facts": ["India", "rock-cut"],
+    "answer_must_include_any": ["India", "rock-cut", "Ellora", "Ajanta"],
+    "type": "compare"
+  },
+  {
+    "id": "q5",
+    "question": "Which Chinese imperial palace complex is in Beijing?",
+    "gold_sites": ["Forbidden City"],
+    "gold_facts": ["China", "Beijing"],
+    "answer_must_include_any": ["Forbidden", "China", "Beijing"]
+  },
+  {
+    "id": "q6",
+    "question": "What is the Great Wall of China primarily known for regarding preservation and popularity?",
+    "gold_sites": ["Great Wall of China"],
+    "gold_facts": ["China"],
+    "answer_must_include_any": ["China", "Wall"]
+  },
+  {
+    "id": "q7",
+    "question": "Tell me about rock-hewn churches in Ethiopia.",
+    "gold_sites": ["Lalibela Rock-Hewn Churches", "Tigray Rock-Hewn Churches"],
+    "gold_facts": ["Ethiopia", "rock"],
+    "answer_must_include_any": ["Lalibela", "Ethiopia", "Tigray", "rock"]
+  },
+  {
+    "id": "q8",
+    "question": "What civilization built the Pyramids of Giza?",
+    "gold_sites": ["Pyramids of Giza"],
+    "gold_facts": ["Egypt", "Ancient Egyptian"],
+    "answer_must_include_any": ["Egypt", "Egyptian", "Giza"]
+  },
+  {
+    "id": "q9",
+    "question": "Is the Eiffel Tower in our heritage sites dataset?",
+    "gold_sites": [],
+    "gold_facts": [],
+    "answer_must_include_any": ["not", "no", "unavailable", "insufficient", "don't", "cannot", "dataset"],
+    "expect_abstain": true
+  },
+  {
+    "id": "q10",
+    "question": "What material and structure are typical of Chartres Cathedral?",
+    "gold_sites": ["Chartres Cathedral"],
+    "gold_facts": ["France", "Gothic"],
+    "answer_must_include_any": ["Chartres", "France", "Gothic", "Cathedral"]
+  },
+  {
+    "id": "q11",
+    "question": "Name a Buddhist monument among Indian heritage sites besides Ajanta.",
+    "gold_sites": ["Sanchi Stupa", "Ellora Caves"],
+    "gold_facts": ["Buddhist", "India"],
+    "answer_must_include_any": ["Sanchi", "Ellora", "Buddhist", "India"]
+  },
+  {
+    "id": "q12",
+    "question": "What country is Machu Picchu in?",
+    "gold_sites": [],
+    "gold_facts": [],
+    "answer_must_include_any": ["not", "no", "unavailable", "insufficient", "don't", "cannot", "dataset", "context"],
+    "expect_abstain": true
+  },
+  {
+    "id": "q13",
+    "question": "Where is Hampi and what empire is it associated with?",
+    "gold_sites": ["Hampi Monuments"],
+    "answer_must_include_any": ["India", "Hampi", "Vijayanagara", "Hindu"]
+  },
+  {
+    "id": "q14",
+    "question": "Describe the Alhambra — country and cultural tradition.",
+    "gold_sites": ["Alhambra"],
+    "answer_must_include_any": ["Spain", "Alhambra", "Islamic", "Moorish", "Nasrid"]
+  },
+  {
+    "id": "q15",
+    "question": "What is Stonehenge and in which country does it stand?",
+    "gold_sites": ["Stonehenge"],
+    "answer_must_include_any": ["Stonehenge", "England", "Britain", "UK", "United Kingdom", "prehistoric"]
+  },
+  {
+    "id": "q16",
+    "question": "Compare Lalibela and Tigray rock-hewn churches.",
+    "gold_sites": ["Lalibela Rock-Hewn Churches", "Tigray Rock-Hewn Churches"],
+    "answer_must_include_any": ["Ethiopia", "rock", "Lalibela", "Tigray"],
+    "type": "compare"
+  },
+  {
+    "id": "q17",
+    "question": "Which site is the Acropolis of Athens associated with?",
+    "gold_sites": ["Acropolis of Athens"],
+    "answer_must_include_any": ["Athens", "Greece", "Greek", "Acropolis"]
+  },
+  {
+    "id": "q18",
+    "question": "Tell me about the Terracotta Army.",
+    "gold_sites": ["Terracotta Army "],
+    "answer_must_include_any": ["China", "Terracotta", "Qin", "army"]
+  },
+  {
+    "id": "q19",
+    "question": "Where is Mont-Saint-Michel and what kind of site is it?",
+    "gold_sites": ["Mont-Saint-Michel"],
+    "answer_must_include_any": ["France", "Mont", "abbey", "island", "tidal"]
+  },
+  {
+    "id": "q20",
+    "question": "What African stone city ruins are called Great Zimbabwe?",
+    "gold_sites": ["Great Zimbabwe Ruins"],
+    "answer_must_include_any": ["Zimbabwe", "Africa", "stone", "ruins"]
+  },
+  {
+    "id": "q21",
+    "question": "Name a Petra facade or tomb site besides the Great Temple.",
+    "gold_sites": ["Al-Khazneh", "The Royal Tombs", "Facade Tombs", "Obelisk Tomb & Bab as-Siq"],
+    "answer_must_include_any": ["Petra", "Jordan", "tomb", "Khazneh", "Nabataean"]
+  },
+  {
+    "id": "q22",
+    "question": "Is Angkor Wat in this project's heritage dataset?",
+    "gold_sites": [],
+    "answer_must_include_any": ["not", "no", "unavailable", "insufficient", "don't", "cannot", "dataset"],
+    "expect_abstain": true
+  },
+  {
+    "id": "q23",
+    "question": "What is Qutb Minar and where is it?",
+    "gold_sites": ["Qutb Minar"],
+    "answer_must_include_any": ["India", "Qutb", "Delhi", "minaret", "Islamic"]
+  },
+  {
+    "id": "q24",
+    "question": "Describe Pompeii Archaeological Site briefly.",
+    "gold_sites": ["Pompeii Archaeological Site"],
+    "answer_must_include_any": ["Pompeii", "Italy", "Roman", "volcan", "Vesuvius"]
+  },
+  {
+    "id": "q25",
+    "question": "Compare Colosseum and Leptis Magna — Roman connection?",
+    "gold_sites": ["Colosseum", "Leptis Magna"],
+    "answer_must_include_any": ["Roman", "Colosseum", "Leptis"],
+    "type": "compare"
+  },
+  {
+    "id": "q26",
+    "question": "Where is the Potala Palace?",
+    "gold_sites": ["Potala Palace"],
+    "answer_must_include_any": ["Potala", "Tibet", "Lhasa", "China"]
+  },
+  {
+    "id": "q27",
+    "question": "What is Konark Sun Temple known for?",
+    "gold_sites": ["Konark Sun Temple"],
+    "answer_must_include_any": ["Konark", "India", "Sun", "temple", "Odisha", "Orissa"]
+  },
+  {
+    "id": "q28",
+    "question": "Tell me about Medina of Fez.",
+    "gold_sites": ["Medina of Fez"],
+    "answer_must_include_any": ["Fez", "Morocco", "medina", "Islamic"]
+  },
+  {
+    "id": "q29",
+    "question": "Which site is Neuschwanstein Castle and in which country?",
+    "gold_sites": ["Neuschwanstein Castle"],
+    "answer_must_include_any": ["Neuschwanstein", "Germany", "castle", "Bavaria"]
+  },
+  {
+    "id": "q30",
+    "question": "What is Timbuktu historically known for?",
+    "gold_sites": ["Timbuktu"],
+    "answer_must_include_any": ["Timbuktu", "Mali", "manuscript", "Islamic", "Sahara", "trade"]
+  },
+  {
+    "id": "q31",
+    "question": "Name Chinese Buddhist cave sites in the dataset.",
+    "gold_sites": ["Mogao Caves", "Longmen Grottoes"],
+    "answer_must_include_any": ["Mogao", "Longmen", "China", "Buddhist", "cave"]
+  },
+  {
+    "id": "q32",
+    "question": "Where is Chittorgarh Fort?",
+    "gold_sites": ["Chittorgarh Fort"],
+    "answer_must_include_any": ["Chittorgarh", "India", "Rajasthan", "fort"]
+  },
+  {
+    "id": "q33",
+    "question": "Compare Forbidden City and Temple of Heaven — both in Beijing?",
+    "gold_sites": ["Forbidden City", "Temple of Heaven"],
+    "answer_must_include_any": ["Beijing", "China", "Forbidden", "Heaven"],
+    "type": "compare"
+  },
+  {
+    "id": "q34",
+    "question": "What is Kilwa Kisiwani?",
+    "gold_sites": ["Kilwa Kisiwani"],
+    "answer_must_include_any": ["Kilwa", "Tanzania", "Swahili", "Africa", "island"]
+  },
+  {
+    "id": "q35",
+    "question": "Is the Statue of Liberty part of this heritage corpus?",
+    "gold_sites": [],
+    "answer_must_include_any": ["not", "no", "unavailable", "insufficient", "don't", "cannot", "dataset"],
+    "expect_abstain": true
+  },
+  {
+    "id": "q36",
+    "question": "Describe Sanchi Stupa's religious association.",
+    "gold_sites": ["Sanchi Stupa"],
+    "answer_must_include_any": ["Sanchi", "Buddhist", "India", "stupa"]
+  },
+  {
+    "id": "q37",
+    "question": "What era or culture is Mapungubwe linked to?",
+    "gold_sites": ["Mapungubwe"],
+    "answer_must_include_any": ["Mapungubwe", "Africa", "South Africa", "kingdom"]
+  },
+  {
+    "id": "q38",
+    "question": "Tell me about Carthage as a heritage site.",
+    "gold_sites": ["Carthage"],
+    "answer_must_include_any": ["Carthage", "Tunisia", "Phoenician", "Punic", "Roman"]
+  },
+  {
+    "id": "q39",
+    "question": "If someone liked Ajanta, which other rock-cut Indian site might they explore?",
+    "gold_sites": ["Ellora Caves"],
+    "answer_must_include_any": ["Ellora", "Ajanta", "India", "rock"],
+    "type": "multi-hop"
+  },
+  {
+    "id": "q40",
+    "question": "Compare Al-Khazneh and the Great Temple in Petra.",
+    "gold_sites": ["Al-Khazneh", "Great Temple (Petra)"],
+    "answer_must_include_any": ["Petra", "Jordan", "Nabataean", "Khazneh", "Temple"],
+    "type": "compare"
+  }
+]
