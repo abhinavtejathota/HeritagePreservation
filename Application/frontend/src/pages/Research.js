@@ -412,6 +412,76 @@ export default function Research() {
           </Section>
         )}
 
+        {(metrics?.photo_discover || metrics?.pickles?.photo_discover_metrics) && (
+          <Section
+            id="photo-discover"
+            title="Discover photo search"
+            subtitle={
+              metrics.photo_discover?.protocol ||
+              "Closed-set archive photo self-retrieval + strict heritage gates."
+            }
+          >
+            {(() => {
+              const pd =
+                metrics.pickles?.photo_discover_metrics || metrics.photo_discover || {};
+              const strict = pd.strict_photo_search || {};
+              const look = pd.lookalike_pressure || {};
+              return (
+                <>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+                    <MetricCard
+                      label="Raw CLIP Hit@1"
+                      value={pd.raw_clip?.hit_at_1 ?? metrics.photo_discover?.raw_clip_hit_at_1}
+                    />
+                    <MetricCard
+                      label="Strict Hit@1"
+                      value={strict.hit_at_1 ?? metrics.photo_discover?.strict_hit_at_1}
+                    />
+                    <MetricCard
+                      label="Strict mean #results"
+                      value={
+                        strict.mean_results_returned ??
+                        metrics.photo_discover?.strict_mean_results_returned
+                      }
+                    />
+                    <MetricCard
+                      label="Look-alike frac (raw top-5)"
+                      value={
+                        look.mean_fraction_of_raw_top5_neighbors_failing_heritage_gate ??
+                        metrics.photo_discover?.lookalike_fraction_raw_top5_failing_heritage_gate
+                      }
+                      hint="neighbors failing heritage gate"
+                    />
+                  </div>
+                  {(pd.paper_framing || metrics.photo_discover?.paper_framing) && (
+                    <div className="bg-white border border-stone-200 rounded-xl p-4 mb-3 text-sm text-stone-700 space-y-2">
+                      <p>
+                        <span className="font-semibold text-stone-900">Claim. </span>
+                        {(pd.paper_framing || metrics.photo_discover.paper_framing).primary_claim}
+                      </p>
+                      <p className="text-stone-500">
+                        Not claimed:{" "}
+                        {(
+                          (pd.paper_framing || metrics.photo_discover.paper_framing)
+                            .not_claimed || []
+                        ).join(" · ")}
+                      </p>
+                    </div>
+                  )}
+                  <p className="text-sm text-stone-600">
+                    {look.insight ||
+                      metrics.photo_discover?.insight ||
+                      "Re-measure: python Clustering/eval_photo_discover.py"}
+                  </p>
+                  <p className="text-xs text-stone-400 mt-2 font-mono">
+                    {pd.reproduce || metrics.photo_discover?.reproduce}
+                  </p>
+                </>
+              );
+            })()}
+          </Section>
+        )}
+
         {metrics?.thematic_gt && (
           <Section
             id="thematic"

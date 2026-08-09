@@ -75,8 +75,8 @@ export default function Trail() {
       <div className="px-6 md:px-16 pt-28 pb-16 max-w-3xl mx-auto w-full">
         <h1 className="text-3xl font-semibold text-stone-900 mb-2">Heritage trail</h1>
         <p className="text-stone-600 mb-6">
-          Pick a starting place. We suggest a short path of related sites - useful for
-          planning what to explore next.
+          Pick a starting place. Each next stop is the strongest unused match from the
+          same similarity table used by You might also like.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-3 mb-8">

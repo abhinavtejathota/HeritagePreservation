@@ -135,6 +135,8 @@ npm run install:all
 cd frontend && npm run build && cd ../..
 ```
 
+Frontend is **Vite** (not CRA). `npm run build` writes to `Application/frontend/build/` for Express. Dev: `cd Application/frontend && npm start` (Vite). Keep using `REACT_APP_*` in `.env`.
+
 ---
 
 ## 5. Run

@@ -14,6 +14,14 @@ async function fetchJson(url, options = {}) {
     const res = await fetch(url, { ...options, signal: ctrl.signal });
     const data = await res.json().catch(() => ({}));
     return { ok: res.ok, status: res.status, data };
+  } catch (err) {
+    return {
+      ok: false,
+      status: 0,
+      data: {},
+      error: err?.cause?.code || err?.name || "fetch_failed",
+      message: err?.message || "upstream unreachable",
+    };
   } finally {
     clearTimeout(t);
   }
@@ -22,14 +30,14 @@ async function fetchJson(url, options = {}) {
 function sharedReasons(a, b) {
   const reasons = [];
   const pairs = [
-    ["country", "Same country"],
-    ["continent", "Same continent"],
-    ["civilization", "Same civilization"],
-    ["religion", "Shared religious tradition"],
-    ["architecture_style", "Similar architecture"],
-    ["material", "Built with similar materials"],
-    ["structure", "Similar type of structure"],
-    ["era_category", "Same historical era"],
+    ["architecture_style", "kindred architecture"],
+    ["material", "similar materials underfoot"],
+    ["structure", "a related building type"],
+    ["era_category", "the same historical chapter"],
+    ["civilization", "a shared cultural world"],
+    ["country", "the same country"],
+    ["continent", "the same continent"],
+    ["religion", "a related spiritual setting"],
   ];
   for (const [key, label] of pairs) {
     const va = String(a[key] || "").trim().toLowerCase();
@@ -43,7 +51,35 @@ function sharedReasons(a, b) {
       reasons.push(label);
     }
   }
-  return reasons;
+  // Prefer distinctive reasons; avoid generic continent/country-only lists
+  const weak = new Set(["the same continent", "the same country"]);
+  const strong = reasons.filter((r) => !weak.has(r));
+  const out = strong.length ? strong : reasons;
+  return out.slice(0, 2);
+}
+
+function alikeBlurb(site, other, reasons) {
+  const style = String(other.architecture_style || "").trim();
+  const era = String(other.era_category || "").trim();
+  const place = [other.country, other.continent].filter(Boolean).join(", ");
+  if (reasons.includes("kindred architecture") && style) {
+    return `Same architectural family (${style}) - a strong follow-up after ${site.name}.`;
+  }
+  if (reasons.includes("a shared cultural world") && other.civilization) {
+    return `Also from the ${other.civilization} world${place ? ` in ${place}` : ""}.`;
+  }
+  if (reasons.includes("the same historical chapter") && era) {
+    return `Another ${era} landmark worth pairing with this visit.`;
+  }
+  if (reasons.includes("similar materials underfoot") && other.material) {
+    return `Built with a similar feel in ${other.material}${place ? ` · ${place}` : ""}.`;
+  }
+  if (reasons.length) {
+    return `Why visit next: ${reasons.join("; ")}.`;
+  }
+  return place
+    ? `A natural next stop - ${place}.`
+    : "A natural follow-up stop on a similar heritage trail.";
 }
 
 function slugifyMood(s) {
@@ -56,164 +92,122 @@ function slugifyMood(s) {
     .replace(/^-+|-+$/g, "");
 }
 
-/** Soft “feeling” templates — only shown if the live archive has enough matches */
+/** Soft creative feeling templates - no religion / continent / country chips */
 const FEELING_TEMPLATES = [
   {
-    id: "peaceful",
-    label: "Peaceful",
-    patterns: ["temple", "chapel", "monaster", "buddhist", "stupa", "garden"],
+    id: "hushed",
+    label: "Hushed and contemplative",
+    patterns: ["temple", "chapel", "monaster", "stupa", "cloister", "meditation"],
   },
   {
     id: "dramatic",
-    label: "Dramatic ruins",
-    patterns: ["ruin", "archaeolog", "zimbabwe", "pompeii", "carthage", "leptis"],
+    label: "Weathered drama",
+    patterns: ["ruin", "archaeolog", "zimbabwe", "pompeii", "carthage", "leptis", "crumbling"],
   },
   {
     id: "royal",
-    label: "Royal & grand",
-    patterns: ["palace", "castle", "forbidden", "schonbrunn", "schönbrunn", "royal"],
-  },
-  {
-    id: "sacred",
-    label: "Sacred",
-    patterns: ["temple", "church", "cathedral", "mosque", "stupa", "sacred", "christian", "buddhist", "hindu", "islam"],
+    label: "Royal spectacle",
+    patterns: ["palace", "castle", "forbidden", "schonbrunn", "schönbrunn", "royal", "court"],
   },
   {
     id: "rockcut",
-    label: "Carved from rock",
-    patterns: ["rock-cut", "rock cut", "cave", "petra", "lalibela", "ajanta", "ellora", "grotto"],
+    label: "Carved from living rock",
+    patterns: ["rock-cut", "rock cut", "cave", "petra", "lalibela", "ajanta", "ellora", "grotto", "hewn"],
   },
   {
     id: "wonder",
-    label: "Wonder vibe",
-    patterns: ["pyramid", "wall of china", "colosseum", "acropolis", "wonder"],
+    label: "Monumental wow",
+    patterns: ["pyramid", "wall of china", "colosseum", "acropolis", "wonder", "terracotta"],
   },
   {
     id: "tombs",
-    label: "Tombs & memorials",
-    patterns: ["tomb", "mausoleum", "funerary", "necropol"],
+    label: "Quiet memorials",
+    patterns: ["tomb", "mausoleum", "funerary", "necropol", "xiaoling"],
   },
   {
     id: "fortress",
-    label: "Forts & walls",
-    patterns: ["fort", "wall", "castle", "citadel", "rampart"],
+    label: "Walls and strongholds",
+    patterns: ["fort", "wall", "castle", "citadel", "rampart", "bastion"],
+  },
+  {
+    id: "canyon",
+    label: "Cliff and canyon light",
+    patterns: ["petra", "siq", "facade", "khazneh", "obelisk", "nabataean", "winged"],
+  },
+  {
+    id: "skyline",
+    label: "Towers against the sky",
+    patterns: ["minar", "pagoda", "tower", "spire", "cathedral", "steeple"],
+  },
+  {
+    id: "water",
+    label: "Island and water edge",
+    patterns: ["mont-saint", "michel", "kilwa", "harbour", "harbor", "island", "coast"],
   },
 ];
 
-const SITE_TEXT = `COALESCE(name,'') || ' ' || COALESCE(architecture_style,'') || ' ' || COALESCE(structure,'') || ' ' || COALESCE(religion,'') || ' ' || COALESCE(description,'')`;
+const SITE_TEXT = `COALESCE(name,'') || ' ' || COALESCE(architecture_style,'') || ' ' || COALESCE(structure,'') || ' ' || COALESCE(description,'')`;
 
-async function countFeeling(db, patterns) {
+async function sitesForFeeling(db, patterns, limit = 12, excludeNames = []) {
   const ors = patterns.map((_, i) => `${SITE_TEXT} ILIKE $${i + 1}`).join(" OR ");
   const params = patterns.map((p) => `%${p}%`);
-  const r = await db.query(
-    `SELECT COUNT(*)::int AS c FROM heritage_sites WHERE ${ors}`,
-    params
-  );
-  return r.rows[0]?.c || 0;
-}
-
-async function sitesForFeeling(db, patterns, limit = 12) {
-  const ors = patterns.map((_, i) => `${SITE_TEXT} ILIKE $${i + 1}`).join(" OR ");
-  const params = patterns.map((p) => `%${p}%`);
+  let sql = `SELECT name, country, continent, architecture_style
+     FROM heritage_sites WHERE (${ors})`;
+  if (excludeNames.length) {
+    params.push(excludeNames);
+    sql += ` AND NOT (name = ANY($${params.length}::text[]))`;
+  }
   params.push(limit);
-  const r = await db.query(
-    `SELECT name, country, continent, architecture_style, religion
-     FROM heritage_sites WHERE ${ors} LIMIT $${params.length}`,
-    params
-  );
+  sql += ` LIMIT $${params.length}`;
+  const r = await db.query(sql, params);
   return r.rows || [];
 }
 
 /**
- * Build mood chips from the live archive:
- * 1) feeling templates that match ≥2 sites
- * 2) era / religion / continent facets that appear ≥2 times
+ * Creative mood chips only. Each site is assigned to at most one feeling
+ * so Browse-by-feeling does not look like the same places repeating.
  */
 async function buildDynamicMoods(db) {
   const moods = [];
+  const claimed = new Set();
+  const ordered = [...FEELING_TEMPLATES].sort(
+    (a, b) => b.patterns.length - a.patterns.length
+  );
 
-  for (const t of FEELING_TEMPLATES) {
-    const count = await countFeeling(db, t.patterns);
-    if (count >= 2) {
-      moods.push({
-        id: t.id,
-        label: t.label,
-        count,
-        kind: "feeling",
-      });
-    }
+  for (const t of ordered) {
+    const results = await sitesForFeeling(db, t.patterns, 14, [...claimed]);
+    if (results.length < 2) continue;
+    for (const row of results) claimed.add(row.name);
+    moods.push({
+      id: t.id,
+      label: t.label,
+      count: results.length,
+      kind: "feeling",
+    });
   }
 
-  const facets = [
-    {
-      column: "era_category",
-      prefix: "era",
-      kind: "era",
-      limit: 5,
-    },
-    {
-      column: "religion",
-      prefix: "faith",
-      kind: "faith",
-      limit: 5,
-    },
-    {
-      column: "continent",
-      prefix: "place",
-      kind: "place",
-      limit: 5,
-    },
-  ];
-
-  for (const f of facets) {
-    const r = await db.query(
-      `SELECT TRIM(${f.column}) AS label, COUNT(*)::int AS c
-       FROM heritage_sites
-       WHERE ${f.column} IS NOT NULL AND TRIM(${f.column}) <> ''
-       GROUP BY 1
-       HAVING COUNT(*) >= 2
-       ORDER BY c DESC
-       LIMIT $1`,
-      [f.limit]
-    );
-    for (const row of r.rows) {
-      moods.push({
-        id: `${f.prefix}-${slugifyMood(row.label)}`,
-        label: row.label,
-        count: row.c,
-        kind: f.kind,
-        column: f.column,
-        value: row.label,
-      });
-    }
-  }
-
+  moods.sort((a, b) => a.label.localeCompare(b.label));
   return moods;
 }
 
 async function resolveMoodQuery(db, moodId) {
   const id = String(moodId || "").toLowerCase();
   const feeling = FEELING_TEMPLATES.find((t) => t.id === id);
-  if (feeling) {
-    const results = await sitesForFeeling(db, feeling.patterns);
-    return { id, label: feeling.label, results };
-  }
+  if (!feeling) return null;
 
-  const moods = await buildDynamicMoods(db);
-  const facet = moods.find((m) => m.id === id && m.column && m.value);
-  if (facet) {
-    const r = await db.query(
-      `SELECT name, country, continent, architecture_style, religion
-       FROM heritage_sites
-       WHERE TRIM(${facet.column}) = $1
-       ORDER BY popularity_rank DESC NULLS LAST
-       LIMIT 12`,
-      [facet.value]
-    );
-    return { id, label: facet.label, results: r.rows || [] };
+  const claimed = new Set();
+  const ordered = [...FEELING_TEMPLATES].sort(
+    (a, b) => b.patterns.length - a.patterns.length
+  );
+  for (const t of ordered) {
+    const rows = await sitesForFeeling(db, t.patterns, 14, [...claimed]);
+    if (rows.length < 2) continue;
+    for (const row of rows) claimed.add(row.name);
+    if (t.id === id) {
+      return { id, label: feeling.label, results: rows };
+    }
   }
-
-  return null;
+  return { id, label: feeling.label, results: [] };
 }
 
 function registerAiRoutes(app, db) {
@@ -226,20 +220,39 @@ function registerAiRoutes(app, db) {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ image_base64, top_k }),
+          timeout: 60000,
         });
-        if (r.ok && r.data.results) {
+        if (r.ok && Array.isArray(r.data.results) && r.data.results.length) {
           return res.json({
             mode: "photo",
             heading: "Places that look similar",
+            note:
+              r.data.note ||
+              "Strict photo match - only high-confidence archive hits are shown.",
             results: r.data.results,
           });
         }
+        if (!r.ok || r.status === 0) {
+          return res.status(503).json({
+            message:
+              "Photo search needs the Clustering service (:8177). Start it with: python scripts/start_all.py",
+            clustering_url: CLUSTERING_URL,
+            detail: r.message || r.error || null,
+          });
+        }
+        return res.json({
+          mode: "photo",
+          heading: "Places that look similar",
+          results: [],
+          note: r.data?.error || "No visual matches in the archive for that photo.",
+        });
       }
       if (query && String(query).trim()) {
         const r = await fetchJson(`${CLUSTERING_URL}/api/multimodal-search`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ query: String(query).trim(), top_k }),
+          timeout: 60000,
         });
         if (r.ok && r.data.results) {
           return res.json({
@@ -249,7 +262,7 @@ function registerAiRoutes(app, db) {
             query: r.data.query,
           });
         }
-        // DB keyword fallback
+        // DB keyword fallback when Clustering is down or empty
         const q = `%${String(query).trim()}%`;
         const result = await db.query(
           `SELECT name, country, continent, architecture_style, religion
@@ -269,6 +282,10 @@ function registerAiRoutes(app, db) {
             similarity: null,
           })),
           fallback: true,
+          note:
+            r.status === 0
+              ? "Visual/semantic search unavailable (Clustering offline) - showing keyword matches from the archive."
+              : undefined,
         });
       }
       return res.status(400).json({ message: "Add a short description or a photo." });
@@ -299,36 +316,59 @@ function registerAiRoutes(app, db) {
       } catch (_) {}
 
       if (!recNames.length) {
+        // Prefer shared style / civilization over bare continent
         const near = await db.query(
           `SELECT name FROM heritage_sites
-           WHERE continent = $1 AND name <> $2 LIMIT 5`,
-          [site.continent, name]
+           WHERE name <> $1
+             AND (
+               (NULLIF(TRIM(architecture_style), '') IS NOT NULL
+                 AND architecture_style = $2)
+               OR (NULLIF(TRIM(civilization), '') IS NOT NULL
+                 AND civilization = $3)
+               OR (NULLIF(TRIM(structure), '') IS NOT NULL
+                 AND structure = $4)
+             )
+           ORDER BY
+             CASE WHEN architecture_style = $2 THEN 0 ELSE 1 END,
+             CASE WHEN civilization = $3 THEN 0 ELSE 1 END
+           LIMIT 5`,
+          [
+            name,
+            site.architecture_style || "",
+            site.civilization || "",
+            site.structure || "",
+          ]
         );
         recNames = near.rows.map((r) => r.name);
       }
 
       const alike = [];
+      const seen = new Set();
       for (const otherName of recNames) {
-        const o = await db.query(`SELECT * FROM heritage_sites WHERE name = $1`, [otherName]);
+        const key = String(otherName || "").trim();
+        if (!key || seen.has(key.toLowerCase()) || key === name) continue;
+        seen.add(key.toLowerCase());
+        const o = await db.query(
+          `SELECT * FROM heritage_sites WHERE TRIM(name) = TRIM($1) LIMIT 1`,
+          [key]
+        );
         if (!o.rows.length) continue;
         const other = o.rows[0];
         const reasons = sharedReasons(site, other);
         alike.push({
-          name: other.name,
+          name: other.name.trim(),
           country: other.country,
           in_common: reasons.length
             ? reasons
-            : ["Often explored together by visitors with similar interests"],
-          blurb: reasons.length
-            ? `Shares: ${reasons.slice(0, 3).join(" · ")}`
-            : "A related stop on your heritage journey",
+            : ["often paired by visitors with similar taste"],
+          blurb: alikeBlurb(site, other, reasons),
         });
       }
 
       res.json({
         site: name,
         title: "You might also like",
-        subtitle: "Based on places that feel similar — not just nearby on a map",
+        subtitle: "Based on places that feel similar - not just nearby on a map",
         alike,
       });
     } catch (err) {
@@ -389,7 +429,7 @@ function registerAiRoutes(app, db) {
     }
   });
 
-  /** Visit trail: seed → diverse similar stops */
+  /** Visit trail: walk top_5_similar from the seed (same ranker as "You might also like") */
   app.post("/api/ai/trail", async (req, res) => {
     try {
       const { start, stops = 4 } = req.body || {};
@@ -397,85 +437,107 @@ function registerAiRoutes(app, db) {
       const n = Math.min(8, Math.max(2, Number(stops) || 4));
 
       const trail = [start];
-      const used = new Set([start]);
+      const used = new Set([String(start).trim().toLowerCase()]);
       let current = start;
 
       for (let i = 0; i < n - 1; i++) {
-        let candidates = [];
+        let ranked = [];
         try {
           const sim = await db.query(
             `SELECT top_5_similar FROM site_similarity WHERE site_name = $1`,
             [current]
           );
-          candidates = (sim.rows[0]?.top_5_similar || [])
-            .map((t) => t.name)
-            .filter((nm) => nm && !used.has(nm));
+          ranked = (sim.rows[0]?.top_5_similar || [])
+            .filter((t) => t?.name && !used.has(String(t.name).trim().toLowerCase()))
+            .sort((a, b) => (Number(b.similarity) || 0) - (Number(a.similarity) || 0));
         } catch (_) {}
 
-        if (!candidates.length) {
-          const row = await db.query(
-            `SELECT continent FROM heritage_sites WHERE name = $1`,
-            [current]
-          );
-          const cont = row.rows[0]?.continent;
-          const alt = await db.query(
-            `SELECT name FROM heritage_sites WHERE continent = $1 AND name <> ALL($2::text[]) LIMIT 8`,
-            [cont, [...used]]
-          );
-          candidates = alt.rows.map((r) => r.name);
-        }
-
-        // Prefer candidates that share fewer continents with trail so far (light diversity)
-        const trailContinents = new Set();
-        for (const nm of trail) {
-          const c = await db.query(
-            `SELECT continent FROM heritage_sites WHERE name = $1`,
-            [nm]
-          );
-          if (c.rows[0]?.continent) trailContinents.add(c.rows[0].continent);
-        }
-
-        let next = candidates[0];
-        for (const c of candidates) {
-          const info = await db.query(
-            `SELECT continent FROM heritage_sites WHERE name = $1`,
-            [c]
-          );
-          const cont = info.rows[0]?.continent;
-          if (cont && !trailContinents.has(cont)) {
-            next = c;
-            break;
+        // If the local top-5 are exhausted, pull from unused similar of earlier stops
+        if (!ranked.length) {
+          for (const prev of [...trail].reverse()) {
+            try {
+              const sim = await db.query(
+                `SELECT top_5_similar FROM site_similarity WHERE site_name = $1`,
+                [prev]
+              );
+              ranked = (sim.rows[0]?.top_5_similar || [])
+                .filter(
+                  (t) => t?.name && !used.has(String(t.name).trim().toLowerCase())
+                )
+                .sort(
+                  (a, b) => (Number(b.similarity) || 0) - (Number(a.similarity) || 0)
+                );
+              if (ranked.length) break;
+            } catch (_) {}
           }
         }
+
+        if (!ranked.length) {
+          // Last resort: same architecture / civilization (not bare continent)
+          const row = await db.query(
+            `SELECT architecture_style, civilization FROM heritage_sites WHERE name = $1`,
+            [current]
+          );
+          const style = row.rows[0]?.architecture_style || "";
+          const civ = row.rows[0]?.civilization || "";
+          const alt = await db.query(
+            `SELECT name FROM heritage_sites
+             WHERE name <> ALL($1::text[])
+               AND (
+                 (NULLIF(TRIM($2), '') IS NOT NULL AND architecture_style = $2)
+                 OR (NULLIF(TRIM($3), '') IS NOT NULL AND civilization = $3)
+               )
+             LIMIT 8`,
+            [[...trail], style, civ]
+          );
+          ranked = alt.rows
+            .filter((r) => !used.has(String(r.name).trim().toLowerCase()))
+            .map((r) => ({ name: r.name, similarity: 0 }));
+        }
+
+        const next = ranked[0]?.name;
         if (!next) break;
         trail.push(next);
-        used.add(next);
+        used.add(String(next).trim().toLowerCase());
         current = next;
       }
 
       const detailed = [];
       for (let i = 0; i < trail.length; i++) {
         const r = await db.query(
-          `SELECT name, country, continent FROM heritage_sites WHERE name = $1`,
+          `SELECT name, country, continent, architecture_style FROM heritage_sites WHERE name = $1`,
           [trail[i]]
         );
-        if (r.rows[0]) {
-          detailed.push({
-            step: i + 1,
-            ...r.rows[0],
-            tip:
-              i === 0
-                ? "Your starting point"
-                : i === trail.length - 1
-                  ? "Final stop on this trail"
-                  : "Next stop — related in story or style",
-          });
+        if (!r.rows[0]) continue;
+        const stop = r.rows[0];
+        let tip = "Your starting point";
+        if (i > 0) {
+          const prev = await db.query(`SELECT * FROM heritage_sites WHERE name = $1`, [
+            trail[i - 1],
+          ]);
+          const reasons = prev.rows[0] ? sharedReasons(prev.rows[0], stop) : [];
+          tip =
+            i === trail.length - 1
+              ? reasons.length
+                ? `Final stop - ${reasons.join("; ")}`
+                : "Final stop on this similarity path"
+              : reasons.length
+                ? `Next because: ${reasons.join("; ")}`
+                : "Next on the similarity path from the previous stop";
         }
+        detailed.push({
+          step: i + 1,
+          name: stop.name,
+          country: stop.country,
+          continent: stop.continent,
+          tip,
+        });
       }
 
       res.json({
         title: "Your heritage trail",
-        subtitle: "A short journey of related places — great for planning what to explore next",
+        subtitle:
+          "Built from the same similarity rankings as You might also like - each stop follows the strongest unused match",
         stops: detailed,
       });
     } catch (err) {

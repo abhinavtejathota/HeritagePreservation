@@ -5,8 +5,9 @@ import { getApiBase } from "../lib/api";
 import { toSlug } from "../lib/favourites";
 
 /**
- * Discover: type a description → visual/text match via Clustering,
- * or upload a photo → same visual match. Results are heritage sites from our archive.
+ * Discover: type a description → CLIP text match via Clustering,
+ * or upload a photo → CLIP image match against archived site photos.
+ * Visual similarity can confuse look-alikes (e.g. churches that share form).
  */
 export default function DiscoverSearch({ compact = false }) {
   const [query, setQuery] = useState("");
@@ -24,11 +25,16 @@ export default function DiscoverSearch({ compact = false }) {
       const res = await axios.post(`${getApiBase()}/api/ai/discover`, payload);
       setHeading(res.data.heading || "Matches");
       setResults(res.data.results || []);
-      if (!(res.data.results || []).length) {
+      if (res.data.note) {
+        setError(res.data.note);
+      } else if (!(res.data.results || []).length) {
         setError("No close matches - try another description or photo.");
       }
-    } catch {
-      setError("Search is taking a break. Is the app server running?");
+    } catch (err) {
+      const msg =
+        err?.response?.data?.message ||
+        "Search is taking a break. Check that Clustering (:8177) is running alongside the app.";
+      setError(msg);
       setResults([]);
     } finally {
       setLoading(false);
@@ -88,7 +94,21 @@ export default function DiscoverSearch({ compact = false }) {
         />
       </form>
 
-      {error && <p className="text-sm text-rose-600 mt-3 text-center">{error}</p>}
+      {error && (
+        <p
+          className={`text-sm mt-3 text-center ${
+            results.length ? "text-stone-500" : "text-rose-600"
+          }`}
+        >
+          {error}
+        </p>
+      )}
+      {!compact && (
+        <p className="text-xs text-stone-400 mt-2 max-w-xl mx-auto">
+          Photo search is strict: only high-confidence matches from the archive.
+          Unrelated look-alikes are filtered out (you may get fewer results).
+        </p>
+      )}
       {heading && results.length > 0 && (
         <div className="mt-6 text-left">
           <h3 className="text-lg font-semibold text-stone-800 mb-3">{heading}</h3>

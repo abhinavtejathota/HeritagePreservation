@@ -1,15 +1,18 @@
 {
   "title": "Measured research metrics — multi-process archive",
   "dataset_n": 49,
-  "last_updated": "2026-08-08",
+  "last_updated": "2026-08-09",
   "honesty_notes": [
     "Numbers below are measured on the curated n=49 corpus unless labeled synthetic-scale.",
     "Faithfulness / hallucination are lexical support proxies, not human κ.",
     "FAISS speedups are N-conditioned; at n=49 brute force can win.",
-    "Scale rows expand feature matrices synthetically — not new verified heritage sites."
+    "Scale rows expand feature matrices synthetically — not new verified heritage sites.",
+    "Photo Discover Hit@1 is closed-set self-retrieval after viewpoint-augmented CLIP training (n=49).",
+    "CLIP bank rebuilt 2026-08-09 with crop/rotate augmentations per site image."
   ],
   "contributions": [
     "Multimodal CLIP-Heritage embeddings with site-to-site vs cross-modal ablations",
+    "Discover photo search with strict heritage gates (look-alike suppression)",
     "GraphSAGE recommender with leave-one-relation-out (LORO) sensitivity",
     "Vectorizer / feature-fusion ablations (CLIP-text vs TF-IDF; arch-only vs full)",
     "HDBSCAN clustering validity + FAISS ANN latency across expanded N",
@@ -31,6 +34,14 @@
       "script": "Clustering/train_clip_heritage.py",
       "metric": "Image↔text MRR",
       "status": "measured"
+    },
+    {
+      "id": "photo_discover",
+      "name": "Discover photo search (strict)",
+      "script": "Clustering/eval_photo_discover.py",
+      "metric": "Self-retrieval Hit@1 · look-alike rejection · mean results",
+      "status": "measured",
+      "detail_file": "Clustering/Pickles/photo_discover_metrics.json"
     },
     {
       "id": "thematic",
@@ -73,21 +84,21 @@
       "name": "Feature fusion ablation",
       "script": "Clustering/feature_fusion.py",
       "metric": "MRR@5 early/late/arch-heavy",
-      "status": "rerun_for_pickles"
+      "status": "measured"
     },
     {
       "id": "vectorizer",
       "name": "Text vectorizer comparison",
       "script": "Clustering/compare_vectorizers.py",
       "metric": "MRR@5 · P@5 · silhouette · DBI",
-      "status": "rerun_for_pickles"
+      "status": "measured"
     },
     {
       "id": "gnn_loro",
       "name": "GraphSAGE LORO sensitivity",
       "script": "Clustering/gnn_loro_eval.py",
       "metric": "MRR under held-out relation cues",
-      "status": "rerun_for_pickles"
+      "status": "measured"
     },
     {
       "id": "preference",
@@ -100,9 +111,33 @@
   "similarity": {
     "metric": "MRR@5",
     "site_to_site": [
-      { "method": "GraphSAGE", "mrr": 0.552, "ci95": [0.413, 0.682], "precision_at_5": null },
-      { "method": "Scalar+Arch", "mrr": 0.54, "ci95": [0.408, 0.668], "precision_at_5": null },
-      { "method": "Primary similarity", "mrr": 0.49, "ci95": [0.357, 0.628], "precision_at_5": null }
+      {
+        "method": "GraphSAGE",
+        "mrr": 0.552,
+        "ci95": [
+          0.413,
+          0.682
+        ],
+        "precision_at_5": null
+      },
+      {
+        "method": "Scalar+Arch",
+        "mrr": 0.54,
+        "ci95": [
+          0.408,
+          0.668
+        ],
+        "precision_at_5": null
+      },
+      {
+        "method": "Primary similarity",
+        "mrr": 0.49,
+        "ci95": [
+          0.357,
+          0.628
+        ],
+        "precision_at_5": null
+      }
     ],
     "ranking_insight": "GraphSAGE leads site-to-site MRR; CIs overlap — report with bootstrap intervals.",
     "cross_modal_clip": {
@@ -112,17 +147,63 @@
       "insight": "Cross-modal gains from CLIP fine-tuning exceed site-to-site gains on this corpus."
     }
   },
+  "photo_discover": {
+    "detail_file": "Clustering/Pickles/photo_discover_metrics.json",
+    "docs_copy": "docs/photo_discover_metrics.json",
+    "reproduce": "python Clustering/eval_photo_discover.py",
+    "protocol": "Closed-set self-retrieval on all 49 archive JPGs after CLIP retrain with viewpoint augmentations; strict heritage gates applied.",
+    "n_evaluated": 49,
+    "n_missing_images": 0,
+    "raw_clip_hit_at_1": 1.0,
+    "projected_clip_hit_at_1": 1.0,
+    "strict_hit_at_1": 1.0,
+    "strict_mean_results_returned": 1.0,
+    "lookalike_fraction_raw_top5_failing_heritage_gate": 0.5184,
+    "encode_latency_s_mean": 0.376,
+    "training_note": "Clustering/train_clip_heritage.py averages CLIP embeddings over crops/rotates per site so tourist viewpoints match more reliably.",
+    "paper_framing": {
+      "primary_claim": "Archive photo self-retrieval reaches high Hit@1 with CLIP image embeddings; a strict heritage gate reduces look-alike false positives at the cost of fewer secondary suggestions.",
+      "not_claimed": [
+        "Open-world landmark recognition outside the 49-site archive",
+        "Human-level historical identification from arbitrary tourist photos"
+      ]
+    },
+    "honesty_notes": [
+      "Self-retrieval uses each site's archive JPG already in the CLIP image bank — Hit@1≈1.0 is expected closed-set behavior.",
+      "Report lookalike_pressure + mean_results_returned to show strict mode's precision benefit.",
+      "Do not claim open-world landmark ID from tourist photos outside n=49."
+    ],
+    "insight": "Under raw CLIP, a large share of top-5 neighbors (excluding the true site) fail the heritage gate — these are the visual look-alikes strict mode drops."
+  },
   "thematic_gt": {
     "note": "Ground truth = share ≥k non-civilization metadata fields (religion, architecture, material, structure, …)",
     "share_at_least_1_field": [
-      { "method": "Primary", "mrr": 0.719 },
-      { "method": "Scalar+Arch", "mrr": 0.637 },
-      { "method": "GraphSAGE", "mrr": 0.595 }
+      {
+        "method": "Primary",
+        "mrr": 0.719
+      },
+      {
+        "method": "Scalar+Arch",
+        "mrr": 0.637
+      },
+      {
+        "method": "GraphSAGE",
+        "mrr": 0.595
+      }
     ],
     "share_at_least_2_fields": [
-      { "method": "Primary", "mrr": 0.357 },
-      { "method": "Scalar+Arch", "mrr": 0.273 },
-      { "method": "GraphSAGE", "mrr": 0.284 }
+      {
+        "method": "Primary",
+        "mrr": 0.357
+      },
+      {
+        "method": "Scalar+Arch",
+        "mrr": 0.273
+      },
+      {
+        "method": "GraphSAGE",
+        "mrr": 0.284
+      }
     ],
     "insight": "Primary tabular similarity ranks higher on soft thematic overlap; GraphSAGE still competitive when ≥2 fields must match."
   },
@@ -131,9 +212,18 @@
     "qa_after_abstain_exclude": 36,
     "coverage_approx": 0.91,
     "ablation_hit_at_5": [
-      { "mode": "Dense", "hit": 1.0 },
-      { "mode": "Hybrid", "hit": 1.0 },
-      { "mode": "Sparse", "hit": 0.972 }
+      {
+        "mode": "Dense",
+        "hit": 1.0
+      },
+      {
+        "mode": "Hybrid",
+        "hit": 1.0
+      },
+      {
+        "mode": "Sparse",
+        "hit": 0.972
+      }
     ],
     "generation_proxies": {
       "hit_at_k": 1.0,
@@ -238,7 +328,7 @@
       "architecture": "tok_emb + BiLSTM memory + causal Transformer (attn/FFN/LN)"
     },
     "features_demo": [
-      "Discover (text + photo)",
+      "Discover (text + photo, strict CLIP+heritage)",
       "Dynamic mood browse",
       "Surprise me",
       "Trail planner",
@@ -262,6 +352,7 @@
     "python Clustering/gnn_loro_eval.py",
     "python Chatbot/Local-RAG/eval_rag.py",
     "python Chatbot/Agent-Based/eval_agent_chat.py",
+    "python Clustering/eval_photo_discover.py",
     "python Clustering/export_paper_figures.py"
   ]
 }

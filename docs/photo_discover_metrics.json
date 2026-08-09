@@ -1,0 +1,49 @@
+{
+  "title": "Discover photo search (archive self-retrieval)",
+  "n_sites": 49,
+  "n_evaluated": 49,
+  "n_missing_images": 0,
+  "missing_images": [],
+  "protocol": "Each site's public archive JPG is encoded and ranked against the 49-site CLIP image bank. Strict mode applies heritage gates from Clustering/app.py (_heritage_rerank_photo).",
+  "raw_clip": {
+    "hit_at_1": 1.0,
+    "hit_at_5": 1.0,
+    "mrr": 1.0,
+    "mean_rank": 1.0
+  },
+  "projected_clip": {
+    "hit_at_1": 1.0,
+    "hit_at_5": 1.0,
+    "mrr": 1.0,
+    "mean_rank": 1.0
+  },
+  "strict_photo_search": {
+    "hit_at_1": 1.0,
+    "mrr_when_returned": 1.0,
+    "mean_results_returned": 1.0,
+    "pct_single_result_when_correct": 1.0,
+    "empty_result_rate": 0.0
+  },
+  "lookalike_pressure": {
+    "mean_fraction_of_raw_top5_neighbors_failing_heritage_gate": 0.5184,
+    "insight": "Under raw CLIP, a large share of top-5 neighbors (excluding the true site) fail the heritage gate \u2014 these are the visual look-alikes strict mode drops."
+  },
+  "honesty_notes": [
+    "Self-retrieval uses each site's archive JPG already in the CLIP image bank \u2014 Hit@1\u22481.0 is expected closed-set behavior.",
+    "Report lookalike_pressure + mean_results_returned to show strict mode's precision benefit.",
+    "Do not claim open-world landmark ID from tourist photos outside n=49."
+  ],
+  "latency_s": {
+    "encode_mean": 0.376,
+    "encode_p95": 0.272
+  },
+  "paper_framing": {
+    "primary_claim": "Archive photo self-retrieval reaches high Hit@1 with CLIP image embeddings; a strict heritage gate reduces look-alike false positives at the cost of fewer secondary suggestions.",
+    "not_claimed": [
+      "Open-world landmark recognition outside the 49-site archive",
+      "Human-level historical identification from arbitrary tourist photos"
+    ]
+  },
+  "elapsed_s": 23.7,
+  "reproduce": "python Clustering/eval_photo_discover.py"
+}

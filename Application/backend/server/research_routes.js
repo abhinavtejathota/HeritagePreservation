@@ -28,6 +28,7 @@ const PICKLE_METRIC_FILES = [
   "vectorizer_comparison.json",
   "gnn_loro_metrics.json",
   "hybrid_arch_metrics.json",
+  "photo_discover_metrics.json",
 ];
 
 const DATASET_CSV = path.join(ROOT, "Dataset/heritage_sites_v2.csv");

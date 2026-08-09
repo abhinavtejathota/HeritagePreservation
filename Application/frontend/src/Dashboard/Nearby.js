@@ -284,12 +284,17 @@ export default function Nearby() {
               attribution="© OpenStreetMap contributors"
             />
 
-            {/* HDBSCAN / civilization convex hull overlays */}
+            {/* Local geographic clusters only (skip continent-spanning hulls) */}
             {clusterPolygons.map((poly, i) => {
               const ring = poly.coordinates?.[0] || [];
-              // GeoJSON is [lon, lat]; Leaflet wants [lat, lon]
               const positions = ring.map(([lon, lat]) => [lat, lon]);
               if (positions.length < 3) return null;
+              const lats = positions.map((p) => p[0]);
+              const lons = positions.map((p) => p[1]);
+              const latSpan = Math.max(...lats) - Math.min(...lats);
+              const lonSpan = Math.max(...lons) - Math.min(...lons);
+              // ~1 deg lat ≈ 111km; drop overlays larger than ~1200km
+              if (latSpan > 12 || lonSpan > 12) return null;
               const color = CLUSTER_COLORS[i % CLUSTER_COLORS.length];
               return (
                 <Polygon
@@ -298,12 +303,12 @@ export default function Nearby() {
                   pathOptions={{
                     color,
                     fillColor: color,
-                    fillOpacity: 0.15,
+                    fillOpacity: 0.12,
                     weight: 2,
                   }}
                 >
                   <Popup>
-                    Cluster {poly.cluster_id ?? i}
+                    Nearby cluster {poly.cluster_id ?? i}
                     {poly.civilization ? ` - ${poly.civilization}` : ""}
                     <br />
                     {(poly.members || []).slice(0, 5).join(", ")}

@@ -20,6 +20,21 @@ if (SERVE_FRONTEND) {
   console.log(`Serving frontend from ${FRONTEND_BUILD}`);
 }
 
+// Unity WebGL builds (avoids a separate :8179 process for local demos)
+const WEBGL_ROOT = path.join(__dirname, "../../../WebGLBuilds");
+if (fs.existsSync(WEBGL_ROOT)) {
+  app.use(
+    "/sim",
+    express.static(WEBGL_ROOT, {
+      setHeaders(res) {
+        res.setHeader("Cross-Origin-Embedder-Policy", "credentialless");
+        res.setHeader("Cross-Origin-Opener-Policy", "same-origin");
+      },
+    })
+  );
+  console.log(`Serving WebGL sims from ${WEBGL_ROOT} at /sim/`);
+}
+
 registerResearchRoutes(app, db);
 registerAiRoutes(app, db);
 
@@ -400,30 +415,40 @@ app.get("/api/sites/:name/similar", async (req, res) => {
 
     const row = result.rows[0];
 
-    const merged = [
-      ...(row.top_5_kmeans || []),
-      ...(row.top_5_agnes || []),
-      ...(row.top_5_gmm || []),
-      ...(row.top_5_similar || []),
-    ];
-
-    const map = new Map();
-    for (const item of merged) {
-      if (!item?.name) continue;
-      const sim = Number(item.similarity) || 0;
-      if (!map.has(item.name) || sim > map.get(item.name).similarity) {
-        map.set(item.name, { ...item, similarity: sim });
+    // Prefer the primary fusion list; cluster lists are research variants only
+    const primary = (row.top_5_similar || []).filter((item) => item?.name);
+    let recommendations;
+    if (primary.length) {
+      recommendations = primary
+        .filter((item) => item.name !== decodedName)
+        .slice(0, limit)
+        .map((item) => ({
+          name: item.name,
+          similarity: Number(item.similarity) || 0,
+        }));
+    } else {
+      const merged = [
+        ...(row.top_5_kmeans || []),
+        ...(row.top_5_agnes || []),
+        ...(row.top_5_gmm || []),
+      ];
+      const map = new Map();
+      for (const item of merged) {
+        if (!item?.name) continue;
+        const sim = Number(item.similarity) || 0;
+        if (!map.has(item.name) || sim > map.get(item.name).similarity) {
+          map.set(item.name, { ...item, similarity: sim });
+        }
       }
+      recommendations = [...map.values()]
+        .filter((item) => item.name !== decodedName)
+        .sort((a, b) => b.similarity - a.similarity)
+        .slice(0, limit)
+        .map((item) => ({
+          name: item.name,
+          similarity: item.similarity,
+        }));
     }
-
-    const recommendations = [...map.values()]
-      .filter((item) => item.name !== decodedName)
-      .sort((a, b) => b.similarity - a.similarity)
-      .slice(0, limit)
-      .map((item) => ({
-        name: item.name,
-        similarity: item.similarity,
-      }));
 
     res.status(200).json({
       site: decodedName,
@@ -616,7 +641,19 @@ app.get("/api/clusters/spatial-polygons", async (req, res) => {
   if (fs.existsSync(fsPath)) {
     try {
       const raw = fs.readFileSync(fsPath, "utf8");
-      return res.status(200).json(JSON.parse(raw));
+      const data = JSON.parse(raw);
+      // Drop continent-spanning hulls (bad HDBSCAN merges e.g. Petra+India)
+      const polygons = (data.polygons || []).filter((p) => {
+        if (p.type !== "Polygon") return true;
+        const ring = p.coordinates?.[0] || [];
+        if (ring.length < 3) return false;
+        const lats = ring.map((c) => c[1]);
+        const lons = ring.map((c) => c[0]);
+        const latSpan = Math.max(...lats) - Math.min(...lats);
+        const lonSpan = Math.max(...lons) - Math.min(...lons);
+        return latSpan <= 12 && lonSpan <= 12;
+      });
+      return res.status(200).json({ ...data, polygons, filtered_span: true });
     } catch (err) {
       console.error("Failed reading spatial_polygons.json", err.message);
     }
@@ -695,9 +732,9 @@ app.get("/api/clusters/spatial-polygons", async (req, res) => {
   }
 });
 
-// SPA fallback — keep after all /api routes
+// SPA fallback — keep after all /api routes (do not swallow /sim WebGL)
 if (SERVE_FRONTEND) {
-  app.get(/^(?!\/api).*/, (req, res) => {
+  app.get(/^(?!\/api)(?!\/sim).*/, (req, res) => {
     res.sendFile(path.join(FRONTEND_BUILD, "index.html"));
   });
 }

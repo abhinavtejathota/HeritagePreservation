@@ -73,9 +73,35 @@ for idx, row in df.iterrows():
 
 print(f"Aligned {len(aligned_data)} out of {len(df)} sites.")
 
-# 2. Extract Base Embeddings using CLIP
+# 2. Extract Base Embeddings using CLIP (+ viewpoint augmentations per site)
 print("Loading CLIP model (clip-ViT-B-32)...")
 model = SentenceTransformer('clip-ViT-B-32')
+
+
+def _viewpoint_variants(img: Image.Image):
+    """Fixed crops/rotates so photo search is robust to tourist angles."""
+    img = img.convert("RGB")
+    w, h = img.size
+    variants = [img]
+    # mild zoom / crop
+    for left, top, right, bottom in [
+        (0.08, 0.05, 0.92, 0.95),
+        (0.0, 0.0, 0.88, 0.88),
+        (0.12, 0.12, 1.0, 1.0),
+        (0.05, 0.15, 0.95, 1.0),
+    ]:
+        box = (
+            int(w * left),
+            int(h * top),
+            int(w * right),
+            int(h * bottom),
+        )
+        if box[2] - box[0] > 32 and box[3] - box[1] > 32:
+            variants.append(img.crop(box).resize((w, h), Image.Resampling.BICUBIC))
+    for angle in (-10, 10):
+        variants.append(img.rotate(angle, expand=False, fillcolor=(20, 20, 20)))
+    return variants
+
 
 raw_text_list = []
 raw_img_list = []
@@ -93,9 +119,10 @@ for i, item in enumerate(aligned_data):
     text_emb = model.encode(desc)
     raw_text_list.append(text_emb)
     
-    # Encode 2D image
+    # Encode 2D image + viewpoint variants (mean → more robust photo match)
     img = Image.open(item["img_path"])
-    img_emb = model.encode(img)
+    view_embs = [model.encode(v) for v in _viewpoint_variants(img)]
+    img_emb = np.mean(np.stack(view_embs, axis=0), axis=0)
     raw_img_list.append(img_emb)
     
     # Encode 3D textures (if available)
@@ -114,6 +141,9 @@ for i, item in enumerate(aligned_data):
             if tex_embs:
                 avg_tex_emb = np.mean(tex_embs, axis=0)
                 textures_list.append((i, avg_tex_emb))
+
+    if (i + 1) % 10 == 0 or (i + 1) == len(aligned_data):
+        print(f"  encoded site images {i + 1}/{len(aligned_data)}")
 
 raw_text_embs = torch.tensor(np.array(raw_text_list), dtype=torch.float32)
 raw_img_embs = torch.tensor(np.array(raw_img_list), dtype=torch.float32)

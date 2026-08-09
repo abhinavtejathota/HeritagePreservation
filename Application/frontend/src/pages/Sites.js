@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useParams, NavLink } from "react-router-dom";
 import axios from "axios";
 import { motion } from "framer-motion";
@@ -9,7 +9,10 @@ import { askPineAI, getKidsMode } from "../lib/prefs";
 import { getApiBase } from "../lib/api";
 import { NAV_LINKS } from "../lib/navLinks";
 
-const SIM_BASE = process.env.REACT_APP_SIM_URL;
+const SIM_BASE =
+  import.meta.env.REACT_APP_SIM_URL ||
+  (typeof window !== "undefined" ? `${window.location.origin}/sim` : "/sim");
+
 
 const toSimFolder = (name) => name?.trim().replace(/\s+/g, "_");
 
@@ -33,7 +36,6 @@ export default function Sites() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { name: slug } = useParams();
   const [site, setSite] = useState(null);
-  const [similar, setSimilar] = useState([]);
   const [loading, setLoading] = useState(true);
   const [openSim, setOpenSim] = useState(null);
   const [studyPair, setStudyPair] = useState(null);
@@ -45,17 +47,11 @@ export default function Sites() {
   const [allNames, setAllNames] = useState([]);
   const [visitTips, setVisitTips] = useState(null);
   const [listening, setListening] = useState(false);
+  const [listenPaused, setListenPaused] = useState(false);
+  const listenTextRef = useRef("");
+
 
   const links = NAV_LINKS;
-
-  const randomSites = [
-    { name: "Colosseum", country: "Italy" },
-    { name: "Great Wall of China", country: "China" },
-    { name: "Sanchi Stupa", country: "India" },
-    { name: "Hampi Monuments", country: "India" },
-    { name: "Great Temple (Petra)", country: "Jordan" },
-    { name: "Pyramids of Giza", country: "Egypt" },
-  ];
 
   useEffect(() => {
     const fetchData = async () => {
@@ -83,18 +79,6 @@ export default function Sites() {
 
         const sitesRes = await axios.get(`${API}/api/sites?limit=100`);
         const allSites = sitesRes.data || [];
-
-        const similarRes = await axios.get(
-          `${API}/api/sites/${encodeURIComponent(current.name)}/similar`
-        );
-
-        const recommendations = similarRes.data.recommendations || [];
-
-        const similarSites = recommendations
-          .map((rec) => allSites.find((s) => s.name === rec.name))
-          .filter(Boolean);
-
-        setSimilar(similarSites);
         setAllNames(allSites.map((s) => s.name).filter((n) => n !== current.name));
 
         try {
@@ -103,7 +87,30 @@ export default function Sites() {
           );
           setAlike(alikeRes.data);
         } catch {
-          setAlike(null);
+          // Fallback: primary similarity list without blurbs
+          try {
+            const similarRes = await axios.get(
+              `${API}/api/sites/${encodeURIComponent(current.name)}/similar?limit=5`
+            );
+            const recommendations = similarRes.data.recommendations || [];
+            setAlike({
+              title: "You might also like",
+              subtitle:
+                "Based on places that feel similar - not just nearby on a map",
+              alike: recommendations.map((rec) => {
+                const s = allSites.find((x) => x.name === rec.name);
+                return {
+                  name: rec.name,
+                  country: s?.country || "",
+                  blurb: s?.country
+                    ? `Heritage landmark in ${s.country}.`
+                    : "A natural next stop on a similar trail.",
+                };
+              }),
+            });
+          } catch {
+            setAlike(null);
+          }
         }
 
         try {
@@ -135,7 +142,126 @@ export default function Sites() {
     fetchData();
   }, [slug]);
 
-  const displaySites = similar.length > 0 ? similar : randomSites;
+  const pickVoice = () => {
+    const voices = window.speechSynthesis.getVoices?.() || [];
+    const prefer = voices.find(
+      (v) =>
+        /en(-|_)?(GB|US|IN|AU)?/i.test(v.lang) &&
+        /natural|neural|google|microsoft|samantha|daniel|aria/i.test(v.name)
+    );
+    return (
+      prefer ||
+      voices.find((v) => /^en/i.test(v.lang)) ||
+      voices[0] ||
+      null
+    );
+  };
+
+  const buildListenScript = () => {
+    const kids = getKidsMode();
+    const place = [site.country, site.continent].filter(Boolean).join(", ");
+    const desc = (site.description || "")
+      .replace(/\*\*/g, "")
+      .replace(/\s+/g, " ")
+      .trim();
+    // Keep 2-3 short sentences from the dossier for a natural spoken pace
+    const sentences = desc
+      .split(/(?<=[.!?])\s+/)
+      .map((s) => s.trim())
+      .filter((s) => s.length > 40)
+      .slice(0, 3);
+    const nextName = alike?.alike?.[0]?.name || null;
+    const nextHint = alike?.alike?.[0]?.blurb || "";
+
+    if (kids) {
+      return [
+        `Let's visit ${site.name}.`,
+        place ? `It is in ${place}.` : "",
+        site.architecture_style
+          ? `Look for the ${site.architecture_style} style.`
+          : "",
+        sentences[0] || "",
+        nextName ? `When you are done, try ${nextName} next.` : "",
+      ]
+        .filter(Boolean)
+        .join(" ");
+    }
+
+    return [
+      `You are looking at ${site.name}${place ? `, in ${place}` : ""}.`,
+      site.era_category
+        ? `It belongs to the ${site.era_category} chapter of history.`
+        : "",
+      site.architecture_style
+        ? `Visitors often notice its ${site.architecture_style}${
+            site.material ? `, shaped in ${site.material}` : ""
+          }.`
+        : site.material
+          ? `Much of what you see is crafted from ${site.material}.`
+          : "",
+      ...sentences,
+      nextName
+        ? `If this place stays with you, ${nextName} is a natural next stop${
+            nextHint ? `. ${nextHint}` : "."
+          }`
+        : "",
+    ]
+      .filter(Boolean)
+      .join(" ");
+  };
+
+  const startListening = () => {
+    if (!("speechSynthesis" in window)) {
+      alert("Voice readout uses the browser Web Speech API, which is not available here.");
+      return;
+    }
+    window.speechSynthesis.cancel();
+    const text = buildListenScript();
+    listenTextRef.current = text;
+    const u = new SpeechSynthesisUtterance(text);
+    const voice = pickVoice();
+    if (voice) u.voice = voice;
+    u.rate = getKidsMode() ? 0.92 : 0.96;
+    u.pitch = 1;
+    u.onend = () => {
+      setListening(false);
+      setListenPaused(false);
+    };
+    u.onerror = () => {
+      setListening(false);
+      setListenPaused(false);
+    };
+    setListening(true);
+    setListenPaused(false);
+    // Some browsers need voices loaded asynchronously
+    const speak = () => window.speechSynthesis.speak(u);
+    if ((window.speechSynthesis.getVoices?.() || []).length === 0) {
+      window.speechSynthesis.onvoiceschanged = () => {
+        const v = pickVoice();
+        if (v) u.voice = v;
+        speak();
+      };
+    } else {
+      speak();
+    }
+  };
+
+  const stopListening = () => {
+    window.speechSynthesis?.cancel();
+    setListening(false);
+    setListenPaused(false);
+  };
+
+  const togglePauseListen = () => {
+    if (!listening || !window.speechSynthesis) return;
+    if (listenPaused) {
+      window.speechSynthesis.resume();
+      setListenPaused(false);
+    } else {
+      window.speechSynthesis.pause();
+      setListenPaused(true);
+    }
+  };
 
   if (loading) {
     return (
@@ -230,68 +356,66 @@ export default function Sites() {
           >
             Ask about this place
           </button>
-          <button
-            type="button"
-            className="px-4 py-2 rounded-full text-sm border border-stone-300 hover:bg-stone-50"
-            onClick={() => {
-              if (!("speechSynthesis" in window)) {
-                alert("Voice readout is not supported in this browser.");
-                return;
-              }
-              window.speechSynthesis.cancel();
-              if (listening) {
-                setListening(false);
-                return;
-              }
-              const kids = getKidsMode();
-              const desc = (site.description || "")
-                .replace(/\*\*/g, "")
-                .replace(/\s+/g, " ")
-                .trim()
-                .slice(0, 900);
-              const nextName =
-                alike?.alike?.[0]?.name ||
-                displaySites?.[0]?.name ||
-                null;
-              const nextWhy =
-                alike?.alike?.[0]?.why ||
-                alike?.subtitle ||
-                (nextName ? "a related place visitors often explore next" : "");
-              const parts = kids
-                ? [
-                    `${site.name} is in ${site.country || site.continent || "our archive"}.`,
-                    site.era_category ? `It is from the ${site.era_category} era.` : "",
-                    site.architecture_style
-                      ? `The architecture is ${site.architecture_style}.`
-                      : "",
-                    nextName ? `Next, you might like ${nextName}.` : "",
-                  ]
-                : [
-                    `${site.name}.`,
-                    site.country || site.continent
-                      ? `Located in ${[site.country, site.continent].filter(Boolean).join(", ")}.`
-                      : "",
-                    site.era_category ? `Era: ${site.era_category}.` : "",
-                    site.architecture_style
-                      ? `Architecture: ${site.architecture_style}.`
-                      : "",
-                    site.material ? `Materials: ${site.material}.` : "",
-                    desc,
-                    nextName
-                      ? `Recommended next: ${nextName}${nextWhy ? ` - ${nextWhy}` : "."}`
-                      : "",
-                  ];
-              const text = parts.filter(Boolean).join(" ");
-              const u = new SpeechSynthesisUtterance(text);
-              u.rate = kids ? 0.95 : 1;
-              u.onend = () => setListening(false);
-              setListening(true);
-              window.speechSynthesis.speak(u);
-            }}
-          >
-            {listening ? "Stop listening" : "Listen"}
-          </button>
+          <div className="flex items-center gap-1.5">
+            <button
+              type="button"
+              className="px-4 py-2 rounded-full text-sm border border-stone-300 hover:bg-stone-50"
+              onClick={() => {
+                if (!listening) startListening();
+                else if (listenPaused) togglePauseListen();
+              }}
+              title="Uses your browser Web Speech API (speechSynthesis)"
+            >
+              {listening ? (listenPaused ? "Resume" : "Listening…") : "Listen"}
+            </button>
+            {listening && (
+              <>
+                <button
+                  type="button"
+                  aria-label={listenPaused ? "Resume" : "Pause"}
+                  title={listenPaused ? "Resume" : "Pause"}
+                  className="w-9 h-9 rounded-md border border-stone-300 bg-white text-stone-900 hover:bg-stone-50 flex items-center justify-center"
+                  onClick={togglePauseListen}
+                >
+                  {listenPaused ? (
+                    <svg
+                      width="12"
+                      height="12"
+                      viewBox="0 0 12 12"
+                      aria-hidden="true"
+                      className="fill-stone-900"
+                    >
+                      <path d="M2.5 1.2v9.6L10.5 6 2.5 1.2z" />
+                    </svg>
+                  ) : (
+                    <svg
+                      width="12"
+                      height="12"
+                      viewBox="0 0 12 12"
+                      aria-hidden="true"
+                      className="fill-stone-900"
+                    >
+                      <rect x="2" y="1.5" width="2.5" height="9" rx="0.4" />
+                      <rect x="7.5" y="1.5" width="2.5" height="9" rx="0.4" />
+                    </svg>
+                  )}
+                </button>
+                <button
+                  type="button"
+                  aria-label="Stop and restart from beginning"
+                  title="Stop (next Listen starts from the beginning)"
+                  className="w-9 h-9 rounded-md border border-stone-300 bg-white text-stone-900 hover:bg-stone-50 flex items-center justify-center"
+                  onClick={stopListening}
+                >
+                  <span className="w-3 h-3 bg-stone-900 rounded-[2px]" />
+                </button>
+              </>
+            )}
+          </div>
         </div>
+        <p className="text-[11px] text-stone-400 mb-6 -mt-4">
+          Listen uses your browser&apos;s built-in Web Speech API (not a cloud TTS).
+        </p>
         {/* Before you go */}
         {visitTips?.tips?.length > 0 && (
           <div className="mb-10 p-5 rounded-2xl bg-stone-50 border border-stone-100 text-left">
@@ -358,7 +482,6 @@ export default function Sites() {
           <button
             onClick={(e) => {
               e.preventDefault();
-              console.log("Button clicked:", site.name);
               setOpenSim(openSim === site.name ? null : site.name);
             }}
             className="mt-3 px-4 py-2 bg-gray-600 text-white rounded"
@@ -366,38 +489,57 @@ export default function Sites() {
             {openSim === site.name ? "Hide Simulation" : "View Simulation"}
           </button>
         )}
-        {/* Simulation iframe */}
         {openSim === site.name && (
           <div className="mt-4 flex flex-col items-center">
+            <p className="text-sm mb-2 text-stone-500 max-w-xl text-center">
+              Unity WebGL in the browser - first load can feel heavy on free hosting
+              (cold start / bandwidth). Later visits are usually smoother if the browser
+              cache keeps the build.
+            </p>
             <p className="text-sm mb-2">Click to Enter</p>
             <iframe
-              src={`${SIM_BASE}/${toSimFolder(site.name)}/Buildv3/`}
+              src={`${SIM_BASE.replace(/\/$/, "")}/${encodeURIComponent(
+                toSimFolder(site.name)
+              ).replace(/%28/g, "(").replace(/%29/g, ")")}/Buildv3/`}
               title={`${site.name} Simulation`}
-              className="w-[960px] h-[580px] rounded-lg border shadow-lg"
+              className="w-[960px] h-[580px] rounded-lg border shadow-lg bg-stone-100"
               sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-fullscreen"
               allow="autoplay; fullscreen; gamepad; xr-spatial-tracking"
               allowFullScreen
+              loading="eager"
             />
-            <p className="text-sm mb-2">Esc(2 times) to Exit</p>
+            <p className="text-sm mb-2">Esc (2 times) to Exit</p>
           </div>
         )}
 
         {/* Why similar - plain language */}
         {alike?.alike?.length > 0 && (
-          <div className="mt-12 mb-8">
+          <div className="mt-12 mb-8 text-left">
             <h2 className="text-xl font-semibold mb-1">
               {alike.title || "You might also like"}
             </h2>
             <p className="text-sm text-stone-500 mb-4">{alike.subtitle}</p>
-            <div className="space-y-3">
+            <div className="flex gap-4 overflow-x-auto pb-2">
               {alike.alike.map((item) => (
                 <NavLink
                   key={item.name}
                   to={`/sites/${toSlug(item.name)}`}
-                  className="block no-underline text-stone-900 border-b border-stone-100 pb-3 hover:bg-stone-50 px-1 rounded"
+                  onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                  className="min-w-[200px] max-w-[220px] no-underline text-stone-900 shrink-0"
                 >
-                  <p className="font-medium">{item.name}</p>
-                  <p className="text-sm text-stone-600">{item.blurb}</p>
+                  <img
+                    src={`/sites/${toSlug(item.name)}.jpg`}
+                    alt={item.name}
+                    className="h-36 w-full object-cover rounded-lg"
+                    onError={(e) => {
+                      e.currentTarget.src = "/sites/placeholder.jpg";
+                    }}
+                  />
+                  <p className="mt-2 font-medium text-sm">{item.name}</p>
+                  {item.country ? (
+                    <p className="text-xs text-stone-400">{item.country}</p>
+                  ) : null}
+                  <p className="text-xs text-stone-500 leading-snug mt-1">{item.blurb}</p>
                 </NavLink>
               ))}
             </div>
@@ -525,45 +667,6 @@ export default function Sites() {
         )}
         {studyDone && (
           <p className="mt-8 text-sm text-gray-500">Thanks - preference recorded.</p>
-        )}
-
-        {/* Similar sites */}
-        {displaySites.length > 0 && (
-          <>
-            <h2 className="text-xl text-left font-semibold mt-20 mb-6">
-              {similar.length > 0 ? "You may also like" : "Explore other sites"}
-            </h2>
-
-            <div className="flex gap-6 overflow-x-auto pb-4">
-              {displaySites.map((s, index) => (
-                <NavLink
-                  key={s.name}
-                  to={`/sites/${toSlug(s.name)}`}
-                  onClick={() =>
-                    window.scrollTo({ top: 0, behavior: "smooth" })
-                  }
-                  className="min-w-[240px] no-underline text-black"
-                >
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.05 }}
-                  >
-                    <img
-                      src={`/sites/${toSlug(s.name)}.jpg`}
-                      alt={s.name}
-                      className="h-40 w-full object-cover rounded-lg"
-                      onError={(e) => {
-                        e.currentTarget.src = "/sites/placeholder.jpg";
-                      }}
-                    />
-                    <p className="mt-2 font-medium">{s.name}</p>
-                    <p className="text-xs text-gray-500">{s.country}</p>
-                  </motion.div>
-                </NavLink>
-              ))}
-            </div>
-          </>
         )}
       </div>
     </div>

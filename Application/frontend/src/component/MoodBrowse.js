@@ -57,7 +57,7 @@ export default function MoodBrowse() {
     <div className="mb-10">
       <h2 className="text-xl font-semibold text-stone-800 mb-2">Browse by feeling</h2>
       <p className="text-sm text-stone-500 mb-3">
-        Tap a mood - chips update from what’s in the archive.
+        Creative moods from the archive - each place appears under one feeling only.
       </p>
       {moodsLoading && (
         <p className="text-sm text-stone-400 mb-3">Loading moods…</p>

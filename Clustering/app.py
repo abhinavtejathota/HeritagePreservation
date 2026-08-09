@@ -115,12 +115,7 @@ def _site_image_url(site_name: str) -> str:
 
 
 def _rank_against_embeddings(query_vec, emb_key: str, top_k: int):
-    site_names = clip_embeddings_data["site_names"]
-    bank = clip_embeddings_data.get(emb_key) or clip_embeddings_data["joint_embeddings"]
-    # normalize
-    q = query_vec / (np.linalg.norm(query_vec) + 1e-9)
-    bank_n = bank / (np.linalg.norm(bank, axis=1, keepdims=True) + 1e-9)
-    sims = bank_n @ q
+    sims, site_names = _similarity_to_bank(query_vec, emb_key)
     top_indices = np.argsort(sims)[::-1][:top_k]
     results = []
     for idx in top_indices:
@@ -140,6 +135,192 @@ def _rank_against_embeddings(query_vec, emb_key: str, top_k: int):
             }
         )
     return results
+
+
+def _similarity_to_bank(query_vec, emb_key: str):
+    site_names = clip_embeddings_data["site_names"]
+    bank = clip_embeddings_data.get(emb_key)
+    if bank is None:
+        bank = clip_embeddings_data["joint_embeddings"]
+    bank = np.asarray(bank, dtype=np.float32)
+    query_vec = np.asarray(query_vec, dtype=np.float32).reshape(-1)
+    q = query_vec / (np.linalg.norm(query_vec) + 1e-9)
+    bank_n = bank / (np.linalg.norm(bank, axis=1, keepdims=True) + 1e-9)
+    sims = bank_n @ q
+    return sims, site_names
+
+
+def _meta_overlap(a_row, b_row) -> float:
+    """0..1 overlap on heritage fields (not bare continent)."""
+    keys = [
+        "Architecture Style",
+        "Civilization",
+        "Structure",
+        "Material",
+        "Era",
+        "Country",
+    ]
+    weights = {
+        "Architecture Style": 0.35,
+        "Civilization": 0.25,
+        "Structure": 0.2,
+        "Material": 0.1,
+        "Era": 0.05,
+        "Country": 0.05,
+    }
+    score = 0.0
+    for k in keys:
+        va = str(a_row.get(k, "") or "").strip().lower()
+        vb = str(b_row.get(k, "") or "").strip().lower()
+        if not va or not vb or va == "nan" or vb == "nan":
+            continue
+        if va == vb:
+            score += weights[k]
+        elif va in vb or vb in va:
+            score += weights[k] * 0.5
+    return min(1.0, score)
+
+
+def _heritage_rerank_photo(visual_sims: np.ndarray, site_names: list, top_k: int):
+    """
+    Precision-first photo match: keep a confident top hit even for different
+    viewpoints of the same monument; only add neighbors that are both visually
+    close and heritage-related.
+    """
+    from utils import similarity_matrix, site_names as util_names, df, get_top_similar
+
+    order = np.argsort(visual_sims)[::-1]
+    if len(order) == 0:
+        return []
+
+    name_to_util = {n: i for i, n in enumerate(util_names)}
+    df_by_name = {str(r["Name"]).strip(): r for _, r in df.iterrows()}
+
+    anchor_idx = int(order[0])
+    anchor_name = site_names[anchor_idx]
+    anchor_vis = float(visual_sims[anchor_idx])
+    second_vis = float(visual_sims[int(order[1])]) if len(order) > 1 else 0.0
+    margin = anchor_vis - second_vis
+    anchor_util = name_to_util.get(anchor_name)
+    anchor_row = df_by_name.get(anchor_name)
+
+    # Tourist photos of the same site rarely score near 1.0 vs the archive JPG.
+    # Accept a clear winner (~0.42+) or a moderate score with margin over #2.
+    confident_top = anchor_vis >= 0.42 or (anchor_vis >= 0.36 and margin >= 0.035)
+    if not confident_top:
+        return []
+
+    similar_names = set()
+    try:
+        for item in get_top_similar(anchor_name, top_k=8) or []:
+            if item.get("name"):
+                similar_names.add(str(item["name"]).strip())
+    except Exception:
+        pass
+
+    vis_floor = max(0.40, anchor_vis - (0.06 if anchor_vis >= 0.55 else 0.04))
+
+    picked = []
+    for idx in order:
+        idx = int(idx)
+        name = site_names[idx]
+        v = float(visual_sims[idx])
+
+        h = 0.0
+        u = name_to_util.get(name)
+        if anchor_util is not None and u is not None:
+            h = max(0.0, min(1.0, float(similarity_matrix[anchor_util, u])))
+
+        meta = 0.0
+        row = df_by_name.get(name)
+        if anchor_row is not None and row is not None:
+            meta = _meta_overlap(anchor_row, row)
+
+        if len(picked) == 0:
+            # Always keep the best hit when above absolute floor
+            ok = True
+        else:
+            # Secondary: must look almost as close AND be heritage-related
+            near_visual = v >= vis_floor
+            heritage_ok = (
+                name in similar_names
+                or h >= 0.55
+                or meta >= 0.45
+            )
+            ok = near_visual and heritage_ok
+
+        if not ok:
+            continue
+
+        final = 0.55 * v + 0.30 * h + 0.15 * meta
+        picked.append(
+            {
+                "name": name,
+                "similarity": round(float(final), 4),
+                "visual_similarity": round(v, 4),
+                "heritage_similarity": round(float(h), 4),
+                "image_url": _site_image_url(name),
+                "has_3d_asset": name
+                in [
+                    "Great Temple (Petra)",
+                    "Blue Pillar Chapel",
+                    "Temple of the Winged Lions",
+                    "The Nabataean Theatre",
+                ],
+            }
+        )
+        if len(picked) >= min(top_k, 5):
+            break
+
+    return picked
+
+
+@app.post("/api/multimodal-search-image")
+def multimodal_search_image(data: ImageSearchRequest):
+    """Strict photo → site match (CLIP + hard heritage gates)."""
+    import base64
+    import io
+
+    load_models()
+    if clip_model is None or clip_embeddings_data is None:
+        return {"error": "Visual search model not ready", "results": []}
+    try:
+        from PIL import Image
+
+        raw = data.image_base64
+        if "," in raw:
+            raw = raw.split(",", 1)[1]
+        img = Image.open(io.BytesIO(base64.b64decode(raw))).convert("RGB")
+        with torch.no_grad():
+            raw_emb = np.asarray(clip_model.encode([img])[0], dtype=np.float32)
+            raw_t = torch.tensor(raw_emb, dtype=torch.float32).unsqueeze(0)
+            proj = proj_model.img_proj(raw_t)
+            proj = nn.functional.normalize(proj, dim=-1).squeeze(0).numpy()
+
+        sims_raw, names = _similarity_to_bank(raw_emb, "raw_image_embeddings")
+        img_bank = (
+            "image_embeddings"
+            if "image_embeddings" in clip_embeddings_data
+            else "joint_embeddings"
+        )
+        sims_proj, _ = _similarity_to_bank(proj, img_bank)
+
+        # Lean harder on projected heritage image space for accuracy
+        visual = 0.25 * sims_raw + 0.75 * sims_proj
+        results = _heritage_rerank_photo(visual, names, data.top_k)
+        return {
+            "results": results,
+            "mode": "image_strict",
+            "note": (
+                "Strict match: only high-confidence visual hits that also agree "
+                "with archive similarity. Weak look-alikes are dropped."
+                if results
+                else "No strict match in the archive for that photo."
+            ),
+        }
+    except Exception as e:
+        return {"error": str(e), "results": []}
+
 
 @app.post("/get-similarity")
 def get_similarity(data: RequestData):
@@ -162,6 +343,7 @@ def get_similarity(data: RequestData):
         print("Similarity DB insert error:", e)
 
     return result
+
 
 @app.post("/api/multimodal-search")
 def multimodal_search(data: SearchRequest):
@@ -192,17 +374,6 @@ def multimodal_search(data: SearchRequest):
     for idx in top_indices:
         site_name = site_names[idx]
         score = float(sims[idx])
-        
-        # Helper to convert site name to image path URL / relative path
-        clean_name = site_name.replace("Schnbrunn", "Schönbrunn").replace("Sch\u00f6nbrunn", "Schönbrunn").lower().strip()
-        clean_name = clean_name.replace("ö", "o")
-        clean_name = clean_name.replace("(", "").replace(")", "").replace("&", "and").replace(",", "").replace("  ", " ").replace(" ", "-")
-        clean_name = clean_name.replace("'", "").replace("/", "-")
-        while "--" in clean_name:
-            clean_name = clean_name.replace("--", "-")
-        img_url = f"/sites/{clean_name}.jpg"
-        
-        # Check if it has 3D assets
         has_3d = site_name in ["Great Temple (Petra)", "Blue Pillar Chapel", "Temple of the Winged Lions", "The Nabataean Theatre"]
         
         results.append({
@@ -214,36 +385,6 @@ def multimodal_search(data: SearchRequest):
         
     return {"query": query_text, "results": results}
 
-
-@app.post("/api/multimodal-search-image")
-def multimodal_search_image(data: ImageSearchRequest):
-    """Find heritage sites that look like an uploaded photo."""
-    import base64
-    import io
-
-    load_models()
-    if clip_model is None or clip_embeddings_data is None:
-        return {"error": "Visual search model not ready", "results": []}
-    try:
-        from PIL import Image
-
-        raw = data.image_base64
-        if "," in raw:
-            raw = raw.split(",", 1)[1]
-        img = Image.open(io.BytesIO(base64.b64decode(raw))).convert("RGB")
-        with torch.no_grad():
-            # sentence-transformers CLIP encodes PIL images → 512-d
-            emb = clip_model.encode([img])
-            emb = np.asarray(emb[0], dtype=np.float32)
-            bank_key = (
-                "raw_image_embeddings"
-                if "raw_image_embeddings" in clip_embeddings_data
-                else "image_embeddings"
-            )
-            results = _rank_against_embeddings(emb, bank_key, data.top_k)
-        return {"results": results, "mode": "image"}
-    except Exception as e:
-        return {"error": str(e), "results": []}
 
 # Test function for multimodal search endpoint
 def test_multimodal_search(sample_query="rock-cut cave architecture with pillars", top_k=5, output_path=os.path.join(PICKLES_DIR, "api_test_results.json")):

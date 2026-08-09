@@ -1,7 +1,7 @@
 /**
  * API base for the Express backend.
  * When the UI is served from Express (:8175), use same-origin ("").
- * That avoids stale CRA builds still pointing at :5000 (or localhost vs 127.0.0.1).
+ * That avoids stale builds still pointing at a wrong host/port.
  */
 function cleanEnvUrl(raw) {
   return String(raw || "")
@@ -19,11 +19,11 @@ export function getApiBase() {
       }
     }
   }
-  return cleanEnvUrl(process.env.REACT_APP_API_URL) || "http://localhost:8175";
+  return cleanEnvUrl(import.meta.env.REACT_APP_API_URL) || "http://localhost:8175";
 }
 
 export function getChatApiBase() {
   return (
-    cleanEnvUrl(process.env.REACT_APP_CHA_URL) || "http://localhost:8180/api"
+    cleanEnvUrl(import.meta.env.REACT_APP_CHA_URL) || "http://localhost:8180/api"
   );
 }
