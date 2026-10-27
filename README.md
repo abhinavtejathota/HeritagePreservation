@@ -191,6 +191,20 @@ Sites include Great Temple (Petra), Temple of the Winged Lions, Blue Pillar Chap
 | [docs/PHASE2_HANDOFF.md](docs/PHASE2_HANDOFF.md) | Research stack handoff |
 | [Chatbot/Local-RAG/README.md](Chatbot/Local-RAG/README.md) | GPU install + eval |
 
+## 3D Model Credits
+
+The Petra 3D models used in the Unity WebGL tours (Great Temple, Temple of the
+Winged Lions, Blue Pillar Chapel, Nabataean Theatre) were obtained from Sketchfab,
+published by Global Digital Heritage and GDH-Afrika
+(https://sketchfab.com/GlobalDigitalHeritage), and are licensed under
+CC BY-NC 4.0 (http://creativecommons.org/licenses/by-nc/4.0/).
+
+Great Temple: https://sketchfab.com/3d-models/the-great-temple-petra-jordan-35ba08e72ed949659f229ac7739d95fb
+
+The models were imported into Unity and adapted for first-person navigation.
+They were not created by the authors of this project and are used here for
+non-commercial academic purposes only.
+
 ---
 
 ## License / academic use
